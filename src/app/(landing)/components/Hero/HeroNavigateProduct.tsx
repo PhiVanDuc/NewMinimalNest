@@ -187,7 +187,7 @@ export default function HeroNavigateProduct({ currentProduct, setCurrentProduct 
                     <div
                         id="hero-product-sub-thumb-top"
                         className={cn(
-                            "absolute right-[-5%] top-[-10%] translate-x-[5%] translate-y-[10%] w-[60px] aspect-square bg-theme-main overflow-hidden",
+                            "absolute right-0 top-[-10%] translate-y-[10%] w-[60px] aspect-square bg-theme-main overflow-hidden",
                             "min-[350px]:w-[80px]",
                             "min-[400px]:w-[100px]",
                             "min-[450px]:w-[130px]",
@@ -223,7 +223,7 @@ export default function HeroNavigateProduct({ currentProduct, setCurrentProduct 
                     <div
                         id="hero-product-sub-thumb-bottom"
                         className={cn(
-                            "absolute left-[-5%] bottom-[-10%] translate-x-[5%] translate-y-[-10%] w-[60px] aspect-square bg-theme-main overflow-hidden",
+                            "absolute left-0 bottom-[-10%] translate-y-[-10%] w-[60px] aspect-square bg-theme-main overflow-hidden",
                             "min-[350px]:w-[80px]",
                             "min-[400px]:w-[100px]",
                             "min-[450px]:w-[130px]",

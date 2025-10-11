@@ -261,7 +261,7 @@
 
 .navbar-mobile-down,
 .navbar-desktop-down {
-    transform: translateY(-120%);
+    transform: translateY(-130%);
     opacity: 1;
     background-color: oklch(21% 0.006 285.885);
 }

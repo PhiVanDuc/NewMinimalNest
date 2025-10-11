@@ -25,6 +25,12 @@ export default function NavbarMobile() {
         }
     );
 
+    const isLittle = useMediaQuery(
+        {
+            query: `(max-width: ${sizeResponsive.lt.max}px)`
+        }
+    )
+
     useEffect(() => {
         if (isMobile) {
             const handleScroll = () => {
@@ -78,10 +84,13 @@ export default function NavbarMobile() {
     return (
         <nav
             ref={navbarRef}
-            className="navbar-mobile-top fixed top-[15px] left-[15px] right-[15px] px-[25px] py-[15px] flex lg:hidden items-center justify-between rounded-[15px] translate-y-[0%] opacity-100 transition-all duration-500 ease-in-out z-20"
+            className={cn(
+                "navbar-mobile-top fixed top-[15px] left-[15px] right-[15px] px-[20px] py-[10px] flex lg:hidden items-center justify-between rounded-[15px] translate-y-[0%] opacity-100 transition-all duration-500 ease-in-out z-20",
+                "sm:px-[25px] sm:py-[15px]"
+            )}
         >
             <Logo
-                size={22}
+                size={isLittle ? 18 : 22}
                 className="cursor-pointer"
                 translateTop="translate-x-[1.5px] translate-y-[3px]"
                 translateDown="translate-x-[-1.5px] translate-y-[-3px]"

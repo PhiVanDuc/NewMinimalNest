@@ -72,7 +72,8 @@ export default function Hero() {
             {/* Khối bên trái - bên trên */}
             <div
                 className={cn(
-                    "relative shrink-0 mt-[120px] w-full z-10",
+                    "relative shrink-0 mt-[100px] w-full z-10",
+                    "sm:mt-[120px]",
                     "lg:mt-0 lg:w-[40%]"
                 )}
             >

@@ -1,0 +1,84 @@
+"use client"
+
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+
+import { FiShoppingCart } from "react-icons/fi";
+import { Check } from "lucide-react";
+
+export default function Compliment() {
+    return (
+        <section className="relative flex flex-col xl:flex-row items-start justify-between gap-[40px] xl:gap-[100px]">
+            <div className="xl:block flex flex-col items-center space-y-[40px] w-full xl:w-[550px]">
+                <h2 className="text-center xl:text-left text-[30px] md:text-[36px] xl:text-[48px] font-bold">Nâng tầm cảm xúc với nội thất êm ái</h2>
+
+                <p className="text-center xl:text-left text-[16px] text-zinc-600 leading-[24px]">Không gian xung quanh bạn ảnh hưởng sâu sắc đến tâm trạng. Khám phá cách nội thất tối giản, chất lượng cao của chúng tôi có thể biến ngôi nhà bạn thành một chốn yên bình, thoải mái. Tạo nên môi trường tinh tế, hài hòa, giúp nâng tầm cảm xúc với thiết kế đơn giản nhưng đầy phong cách và tiện nghi.</p>
+
+                <div className="w-fit space-y-[40px]">
+                    <ul className="space-y-[20px]">
+                        <li className="flex items-center gap-x-[15px] font-medium">
+                            <span className="flex items-center justify-center bg-theme-main/60 rounded-full w-[28px] aspect-square">
+                                <Check size={18} className="text-white" />
+                            </span>
+
+                            <p>Sự thoải mái tuyệt đối</p>
+                        </li>
+
+                        <li className="flex items-center gap-x-[15px] font-medium">
+                            <span className="flex items-center justify-center bg-theme-main/60 rounded-full w-[28px] aspect-square">
+                                <Check size={18} className="text-white" />
+                            </span>
+
+                            <p>Tinh tế trong từng chất lượng</p>
+                        </li>
+
+                        <li className="flex items-center gap-x-[15px] font-medium">
+                            <span className="flex items-center justify-center bg-theme-main/60 rounded-full w-[28px] aspect-square">
+                                <Check size={18} className="text-white" />
+                            </span>
+
+                            <p>Vẻ đẹp tối giản</p>
+                        </li>
+                    </ul>
+
+                    <Button className="px-[20px] py-[25px] gap-[12px] bg-theme-main hover:bg-theme-main/95 cursor-pointer transition-colors">
+                        <FiShoppingCart className="!size-5" />
+                        Bắt đầu mua sắm
+                    </Button>
+                </div>
+            </div>
+
+            <div className="relative flex items-center self-stretch gap-x-[30px]">
+                <div className="w-full xl:w-[500px] h-[300px] xl:h-full rounded-[15px] bg-slate-300 overflow-hidden">
+                    <Image
+                        src="/images/compliment.webp"
+                        alt="Compliment Image"
+                        width={2000}
+                        height={2000}
+                        className="w-full h-full object-cover object-center"
+                        loading="lazy"
+                    />
+                </div>
+
+                <div className="shrink-0 self-stretch hidden xl:flex items-center">
+                    <Image
+                        src="/images/compliment-decor.png"
+                        alt="Decor image"
+                        width={45}
+                        height={45}
+                        className="w-[45px] aspect-square object-cover object-center"
+                        loading="lazy"
+                    />
+                </div>
+
+                <div className="absolute bottom-0 left-[-50%] hidden xl:flex items-center gap-x-[15px] text-[16px] px-[25px] py-[18px] rounded-[10px] border border-theme-main/30 bg-white">
+                    <span className="flex items-center justify-center border-[2px] border-theme-main rounded-full w-[25px] aspect-square">
+                        <Check size={15} className="text-theme-main" />
+                    </span>
+
+                    <p>Chúng tôi cam kết sự thoải mái cho bạn.</p>
+                </div>
+            </div>
+        </section>
+    )
+}

@@ -94,7 +94,7 @@ export default function NavbarDesktop() {
         >
             <div className="flex items-center gap-[30px]">
                 <Logo
-                    size={22}
+                    size={18}
                     className="cursor-pointer"
                     translateTop="translate-x-[1.5px] translate-y-[3px]"
                     translateDown="translate-x-[-1.5px] translate-y-[-3px]"

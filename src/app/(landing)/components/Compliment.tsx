@@ -6,39 +6,72 @@ import { Button } from "@/components/ui/button";
 import { FiShoppingCart } from "react-icons/fi";
 import { Check } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+
+const standards = [
+    "Sự thoải mái tuyệt đối",
+    "Tinh tế trong từng chất lượng",
+    "Vẻ đẹp tối giản"
+];
+
 export default function Compliment() {
     return (
-        <section className="relative flex flex-col xl:flex-row items-start justify-between gap-[40px] xl:gap-[100px]">
-            <div className="xl:block flex flex-col items-center space-y-[40px] w-full xl:w-[550px]">
-                <h2 className="text-center xl:text-left text-[30px] md:text-[36px] xl:text-[48px] font-bold">Nâng tầm cảm xúc với nội thất êm ái</h2>
+        <section
+            className={cn(
+                "relative flex flex-col items-start justify-between gap-[40px]",
+                "xl:flex-row xl:gap-[100px]"
+            )}
+        >
+            <div
+                className={cn(
+                    "flex flex-col items-center w-full",
+                    "xl:block xl:w-[550px]"
+                )}
+            >
+                <h2
+                    className={cn(
+                        "mb-[20px] text-center text-[30px] font-bold",
+                        "md:text-[36px]",
+                        "xl:text-left xl:text-[48px]"
+                    )}
+                >
+                    Nâng tầm cảm xúc với nội thất êm ái
+                </h2>
 
-                <p className="text-center xl:text-left text-[16px] text-zinc-600 leading-[24px]">Không gian xung quanh bạn ảnh hưởng sâu sắc đến tâm trạng. Khám phá cách nội thất tối giản, chất lượng cao của chúng tôi có thể biến ngôi nhà bạn thành một chốn yên bình, thoải mái. Tạo nên môi trường tinh tế, hài hòa, giúp nâng tầm cảm xúc với thiết kế đơn giản nhưng đầy phong cách và tiện nghi.</p>
+                <p
+                    className={cn(
+                        "mb-[60px] text-[14px] text-zinc-500",
+                        "md:mb-[80px] md:text-[16px]"
+                    )}
+                >
+                    Không gian xung quanh bạn ảnh hưởng sâu sắc đến tâm trạng. Khám phá cách nội thất tối giản, chất lượng cao của chúng tôi có thể biến ngôi nhà bạn thành một chốn yên bình, thoải mái. Tạo nên môi trường tinh tế, hài hòa, giúp nâng tầm cảm xúc với thiết kế đơn giản nhưng đầy phong cách và tiện nghi.
+                </p>
 
-                <div className="w-fit space-y-[40px]">
+                <div className="w-full space-y-[40px]">
                     <ul className="space-y-[20px]">
-                        <li className="flex items-center gap-x-[15px] font-medium">
-                            <span className="flex items-center justify-center bg-theme-main/60 rounded-full w-[28px] aspect-square">
-                                <Check size={18} className="text-white" />
-                            </span>
+                        {
+                            standards.map((item, index) => {
+                                return (
+                                    <li
+                                        key={index}
+                                        className="flex items-center gap-x-[15px]"
+                                    >
+                                        <span className="flex items-center justify-center bg-theme-main/60 rounded-full w-[28px] aspect-square">
+                                            <Check size={18} className="text-white" />
+                                        </span>
 
-                            <p>Sự thoải mái tuyệt đối</p>
-                        </li>
-
-                        <li className="flex items-center gap-x-[15px] font-medium">
-                            <span className="flex items-center justify-center bg-theme-main/60 rounded-full w-[28px] aspect-square">
-                                <Check size={18} className="text-white" />
-                            </span>
-
-                            <p>Tinh tế trong từng chất lượng</p>
-                        </li>
-
-                        <li className="flex items-center gap-x-[15px] font-medium">
-                            <span className="flex items-center justify-center bg-theme-main/60 rounded-full w-[28px] aspect-square">
-                                <Check size={18} className="text-white" />
-                            </span>
-
-                            <p>Vẻ đẹp tối giản</p>
-                        </li>
+                                        <p
+                                            className={cn(
+                                                "text-[14px]",
+                                                "md:text-[16px]"
+                                            )}
+                                        >
+                                            {item}
+                                        </p>
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
 
                     <Button className="px-[20px] py-[25px] gap-[12px] bg-theme-main hover:bg-theme-main/95 cursor-pointer transition-colors">

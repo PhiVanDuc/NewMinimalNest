@@ -25,12 +25,6 @@ export default function NavbarMobile() {
         }
     );
 
-    const isLittle = useMediaQuery(
-        {
-            query: `(max-width: ${sizeResponsive.lt.max}px)`
-        }
-    )
-
     useEffect(() => {
         if (isMobile) {
             const handleScroll = () => {
@@ -90,7 +84,7 @@ export default function NavbarMobile() {
             )}
         >
             <Logo
-                size={isLittle ? 18 : 22}
+                size={18}
                 className="cursor-pointer"
                 translateTop="translate-x-[1.5px] translate-y-[3px]"
                 translateDown="translate-x-[-1.5px] translate-y-[-3px]"

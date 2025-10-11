@@ -38,8 +38,9 @@ export default function Hero() {
             {/* Nút khám phá */}
             <div
                 className={cn(
-                    "group absolute position-edge-right bottom-[20px] flex items-center gap-[10px] p-[5px] pr-[10px] rounded-full bg-theme-main/30 cursor-pointer z-10",
-                    "md:gap-[15px] md:bottom-[40px] md:pr-[15px]",
+                    "group absolute position-edge-right bottom-[20px] flex items-center gap-[10px] p-[5px] rounded-full bg-theme-main/30 cursor-pointer z-10",
+                    "sm:gap-[15px] sm:pr-[15px]",
+                    "md:bottom-[40px]",
                     "lg:gap-[20px] lg:bottom-[60px] md:pr-[20px]"
                 )}
             >
@@ -54,7 +55,8 @@ export default function Hero() {
 
                 <p
                     className={cn(
-                        "text-[12px] text-theme-main font-medium",
+                        "hidden text-[12px] text-theme-main font-medium",
+                        "sm:block",
                         "lg:text-[14px]"
                     )}
                 >
@@ -63,7 +65,8 @@ export default function Hero() {
 
                 <FaChevronRight
                     className={cn(
-                        "text-[13px] text-theme-main group-hover:animate-[bounceX_1.2s_ease-in-out_infinite]",
+                        "hidden text-[13px] text-theme-main group-hover:animate-[bounceX_1.2s_ease-in-out_infinite]",
+                        "sm:block",
                         "lg:text-[15px]"
                     )}
                 />
@@ -120,8 +123,8 @@ export default function Hero() {
 
                     <p
                         className={cn(
-                            "text-[14px] text-zinc-500",
-                            "md:text-[16px]"
+                            "text-[14px] text-zinc-500 truncate-2",
+                            "md:text-[16px] md:un-truncate"
                         )}
                     >
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae assumenda quia sit nostrum inventore at impedit commodi quos nobis, voluptates vero accusamus tenetur neque, doloribus voluptatum quis cum.

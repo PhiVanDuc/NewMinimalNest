@@ -45,7 +45,7 @@ export default function LatestProduct() {
                 </Button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[15px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px]">
                 {
                     Array.from({ length: 6 }).map((_, index) => {
                         return <Product key={index} />

@@ -29,7 +29,7 @@ interface PropsType {
 }
 
 export default function HeroNavigateProduct({ currentProduct, setCurrentProduct }: PropsType) {
-    const [navigateDireection, setNavigateDirection] = useState<"up" | "down" | null>(null);
+    const [navigateDirection, setNavigateDirection] = useState<"up" | "down" | null>(null);
 
     useGSAP(() => {
         const tl = gsap.timeline({
@@ -37,7 +37,7 @@ export default function HeroNavigateProduct({ currentProduct, setCurrentProduct 
             onComplete: () => setNavigateDirection(null)
         });
 
-        if (navigateDireection === "up") {
+        if (navigateDirection === "up") {
             tl
                 .to(
                     "#hero-product-sub-thumb-top",
@@ -98,7 +98,7 @@ export default function HeroNavigateProduct({ currentProduct, setCurrentProduct 
                     "<+0.25"
                 )
         }
-        else if (navigateDireection === "down") {
+        else if (navigateDirection === "down") {
             tl
                 .to(
                     "#hero-product-sub-thumb-top",
@@ -159,7 +159,7 @@ export default function HeroNavigateProduct({ currentProduct, setCurrentProduct 
                     "<+0.25"
                 )
         }
-    }, [navigateDireection]);
+    }, [navigateDirection]);
 
     const handleNavigateProduct = (direction: "up" | "down") => {
         setNavigateDirection(direction);

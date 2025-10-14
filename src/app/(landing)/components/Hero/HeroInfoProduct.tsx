@@ -21,8 +21,7 @@ export default function HeroInfoProduct({ currentProduct }: PropsType) {
     return (
         <div
             className={cn(
-                "relative shrink-0 mt-[100px] w-full z-10",
-                "sm:mt-[120px]",
+                "relative shrink-0 container-top w-full z-10",
                 "lg:mt-0 lg:w-[40%]"
             )}
         >

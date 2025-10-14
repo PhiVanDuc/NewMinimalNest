@@ -117,7 +117,7 @@ export default function NavbarDesktop() {
                             <li key={item.id}>
                                 <Link
                                     href={item.href}
-                                    className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-800 hover:text-white font-semibold rounded-full bg-transparent hover:bg-zinc-800 cursor-pointer"
+                                    className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-600 hover:text-white font-semibold rounded-full bg-transparent hover:bg-zinc-800 cursor-pointer"
                                 >
                                     {item.name}
                                 </Link>
@@ -130,7 +130,7 @@ export default function NavbarDesktop() {
             <div className="flex items-center gap-[10px]">
                 <Link
                     href="/register"
-                    className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-800 hover:text-white font-semibold rounded-full bg-transparent hover:bg-zinc-800 cursor-pointer"
+                    className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-600 hover:text-white font-semibold rounded-full bg-transparent hover:bg-zinc-800 cursor-pointer"
                 >
                     Đăng ký
                 </Link>

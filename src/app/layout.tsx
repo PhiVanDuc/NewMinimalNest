@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import ReduxProvider from "@/components/ReduxProvider";
+import ReduxProvider from "@/providers/ReduxProvider";
 
 import "./globals.css";
 

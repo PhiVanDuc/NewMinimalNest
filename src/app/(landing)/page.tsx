@@ -9,18 +9,16 @@ import { cn } from "@/lib/utils";
 
 export default function Page() {
     return (
-        <div
-            className={cn(
-                "pb-[50px]",
-                "md:pb-[80px]"
-            )}
-        >
+        <div className={cn(
+            "space-y-[100px] container-bottom",
+            "md:space-y-[150px]"
+        )}>
             <Hero />
 
             <div
                 className={cn(
-                    "mt-[100px] space-y-[100px] container-horizontal",
-                    "md:mt-[150px] md:space-y-[150px]"
+                    "space-y-[100px] container-horizontal",
+                    "md:space-y-[150px]"
                 )}
             >
                 <Compliment />

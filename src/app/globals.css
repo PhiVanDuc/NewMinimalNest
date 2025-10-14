@@ -210,10 +210,19 @@
 
 @theme {
     --color-theme-main: #12778A;
+    --aspect-16/6: 16 / 6;
 }
 
 @utility container-horizontal {
     @apply px-[20px] md:px-[40px] xl:px-[80px] 2xl:px-[160px];
+}
+
+@utility container-top {
+    @apply pt-[100px] md:pt-[120px]
+}
+
+@utility container-bottom {
+    @apply pb-[50px] md:pb-[80px];
 }
 
 @utility position-edge-right {
@@ -222,6 +231,13 @@
 
 @utility position-center {
     @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+@utility truncate-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 @utility truncate-2 {

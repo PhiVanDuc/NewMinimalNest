@@ -80,7 +80,7 @@ export default function NavbarMobile() {
             ref={navbarRef}
             className={cn(
                 "navbar-mobile-top fixed top-[15px] left-[15px] right-[15px] px-[20px] py-[10px] flex lg:hidden items-center justify-between rounded-[15px] translate-y-[0%] opacity-100 transition-all duration-500 ease-in-out z-20",
-                "sm:px-[25px] sm:py-[15px]"
+                "md:px-[25px] md:py-[15px]"
             )}
         >
             <Logo
@@ -93,11 +93,11 @@ export default function NavbarMobile() {
             <button
                 className={cn(
                     "flex items-center justify-center w-[35px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors",
-                    "sm:w-[45px]"
+                    "md:w-[45px]"
                 )}
                 onClick={handleToggle}
             >
-                <FiMenu className="text-[15px] sm:text-[20px]" />
+                <FiMenu className="text-[15px] md:text-[20px]" />
             </button>
         </nav>
     )

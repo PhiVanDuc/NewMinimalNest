@@ -1,4 +1,4 @@
-"use client"
+import Link from "next/link";
 
 import Product from "@/components/Product";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export default function FeaturedProduct() {
+    // Fetch dữ liệu nếu cần
+
     return (
         <section className="space-y-[60px]">
             <div
@@ -33,7 +35,14 @@ export default function FeaturedProduct() {
                     </p>
                 </header>
 
-                <Button className="rounded-full cursor-pointer">Xem tất cả sản phẩm</Button>
+                <Button
+                    className="rounded-full cursor-pointer"
+                    asChild
+                >
+                    <Link href="">
+                        Xem tất cả sản phẩm
+                    </Link>
+                </Button>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[15px]">

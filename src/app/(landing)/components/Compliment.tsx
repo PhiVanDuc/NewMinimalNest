@@ -1,5 +1,3 @@
-"use client"
-
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
@@ -82,7 +80,12 @@ export default function Compliment() {
             </div>
 
             <div className="relative flex items-center self-stretch gap-x-[30px]">
-                <div className="w-full xl:w-[500px] h-[300px] xl:h-full rounded-[15px] bg-slate-300 overflow-hidden">
+                <div
+                    className={cn(
+                        "w-full h-[300px] rounded-[15px] bg-slate-300 overflow-hidden",
+                        "xl:w-[500px] xl:h-full"
+                    )}
+                >
                     <Image
                         src="/images/compliment.webp"
                         alt="Compliment Image"
@@ -93,7 +96,12 @@ export default function Compliment() {
                     />
                 </div>
 
-                <div className="shrink-0 self-stretch hidden xl:flex items-center">
+                <div
+                    className={cn(
+                        "shrink-0 self-stretch hidden items-center",
+                        "xl:flex"
+                    )}
+                >
                     <Image
                         src="/images/compliment-decor.png"
                         alt="Decor image"
@@ -104,7 +112,12 @@ export default function Compliment() {
                     />
                 </div>
 
-                <div className="absolute bottom-0 left-[-50%] hidden xl:flex items-center gap-x-[15px] text-[16px] px-[25px] py-[18px] rounded-[10px] border border-theme-main/30 bg-white">
+                <div
+                    className={cn(
+                        "absolute bottom-0 left-[-50%] hidden items-center gap-x-[15px] text-[16px] px-[25px] py-[18px] rounded-[10px] border border-theme-main/30 bg-white",
+                        "xl:flex"
+                    )}
+                >
                     <span className="flex items-center justify-center border-[2px] border-theme-main rounded-full w-[25px] aspect-square">
                         <Check size={15} className="text-theme-main" />
                     </span>

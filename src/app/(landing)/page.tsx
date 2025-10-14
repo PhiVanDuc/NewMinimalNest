@@ -19,15 +19,15 @@ export default function Page() {
 
             <div
                 className={cn(
-                    "mt-[100px] space-y-[150px] container-horizontal",
-                    "md:mt-[150px]"
+                    "mt-[100px] space-y-[100px] container-horizontal",
+                    "md:mt-[150px] md:space-y-[150px]"
                 )}
             >
                 <Compliment />
                 <FeaturedProduct />
-                {/* <LatestProduct />
+                <LatestProduct />
                 <Policy />
-                <Newsletter /> */}
+                <Newsletter />
             </div>
         </div>
     )

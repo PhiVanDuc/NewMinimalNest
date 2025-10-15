@@ -10,7 +10,7 @@ import { TiLocationArrow } from "react-icons/ti";
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import sizeResponsive from "@/consts/size-responsive";
+import breakpoints from "@/consts/breakpoints";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,7 +39,7 @@ export default function NavbarDesktop() {
 
     const isDesktop = useMediaQuery(
         {
-            query: `(min-width: ${sizeResponsive.lg.min}px)`
+            query: `(min-width: ${breakpoints.lg.min}px)`
         }
     );
 
@@ -130,7 +130,7 @@ export default function NavbarDesktop() {
             <div className="flex items-center gap-[10px]">
                 <Link
                     href="/register"
-                    className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-600 hover:text-white font-semibold rounded-full bg-transparent hover:bg-zinc-800 cursor-pointer"
+                    className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-600 font-semibold rounded-full cursor-pointer"
                 >
                     Đăng ký
                 </Link>

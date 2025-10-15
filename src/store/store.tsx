@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import navbarSidebarSlice from "./slices/navbarSidebarSlice";
+import drawerSlice from "./slices/drawerSlice";
 
 const store = configureStore({
     reducer: {
-        navbarSidebar: navbarSidebarSlice.reducer
+        drawer: drawerSlice.reducer,
     }
 });
 

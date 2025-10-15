@@ -7,8 +7,9 @@ import { useMediaQuery } from "react-responsive";
 import Logo from "@/components/layouts/user/Logo";
 import { FiMenu } from "react-icons/fi";
 
-import sizeResponsive from "@/consts/size-responsive";
-import navbarSidebarSlice from "@/store/slices/navbarSidebarSlice";
+import drawerIds from "@/consts/drawer-ids";
+import breakpoints from "@/consts/breakpoints";
+import drawerSlice from "@/store/slices/drawerSlice";
 
 import { cn } from "@/lib/utils";
 
@@ -21,7 +22,7 @@ export default function NavbarMobile() {
 
     const isMobile = useMediaQuery(
         {
-            query: `(max-width: ${sizeResponsive.md.max}px)`
+            query: `(max-width: ${breakpoints.md.max}px)`
         }
     );
 
@@ -69,9 +70,9 @@ export default function NavbarMobile() {
         }
     }, [isMobile]);
 
-    const handleToggle = () => {
+    const handleOpen = () => {
         dispatch(
-            navbarSidebarSlice.actions.toggle()
+            drawerSlice.actions.open(drawerIds.navbar)
         );
     }
 
@@ -95,7 +96,7 @@ export default function NavbarMobile() {
                     "flex items-center justify-center w-[35px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors",
                     "md:w-[45px]"
                 )}
-                onClick={handleToggle}
+                onClick={handleOpen}
             >
                 <FiMenu className="text-[15px] md:text-[20px]" />
             </button>

@@ -7,7 +7,7 @@ interface PropsType {
     className?: string
 }
 
-export default function NavbarPartTitle({ title, className = "" }: PropsType) {
+export default function DrawerPartTitle({ title, className = "" }: PropsType) {
     return (
         <p
             className={cn(

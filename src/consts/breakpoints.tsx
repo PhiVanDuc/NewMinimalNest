@@ -1,4 +1,4 @@
-const sizeResponsive = {
+const breakpoints = {
     lt: {
         max: 639
     },
@@ -23,4 +23,4 @@ const sizeResponsive = {
     }
 }
 
-export default sizeResponsive;
+export default breakpoints;

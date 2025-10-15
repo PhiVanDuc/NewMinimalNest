@@ -108,7 +108,7 @@ export default function NavbarMobileSidebar() {
                 <div className="flex items-center gap-[5px]">
                     <Link
                         href="/"
-                        className="flex items-center justify-between gap-[10px] px-[20px] py-[9px] w-[70%] text-[14px] text-white font-semibold rounded-[6px] bg-zinc-800 cursor-pointer"
+                        className="flex items-center justify-between gap-[10px] px-[20px] py-[9px] w-full text-[14px] text-white font-semibold rounded-[6px] bg-zinc-800 cursor-pointer"
                     >
                         Đăng nhập
 
@@ -117,7 +117,7 @@ export default function NavbarMobileSidebar() {
 
                     <Link
                         href="/register"
-                        className="shrink-0 px-[20px] py-[9px] w-[30%] text-[14px] text-zinc-800 font-semibold rounded-[6px] bg-transparent cursor-pointer"
+                        className="shrink-0 px-[20px] py-[9px] text-[14px] text-zinc-800 font-semibold rounded-[6px] bg-transparent cursor-pointer"
                     >
                         Đăng ký
                     </Link>

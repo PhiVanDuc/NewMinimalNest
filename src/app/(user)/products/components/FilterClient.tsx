@@ -65,7 +65,7 @@ export default function FilterClient() {
                     >
                         {/* Danh mục */}
                         <AccordionItem value="categories">
-                            <AccordionTrigger>Danh mục</AccordionTrigger>
+                            <AccordionTrigger className="hover:bg-zinc-100">Danh mục</AccordionTrigger>
 
                             <AccordionContent>
                                 Nội dung
@@ -74,7 +74,7 @@ export default function FilterClient() {
 
                         {/* Trạng thái */}
                         <AccordionItem value="statuses">
-                            <AccordionTrigger>Trạng thái</AccordionTrigger>
+                            <AccordionTrigger className="hover:bg-zinc-100">Trạng thái</AccordionTrigger>
 
                             <AccordionContent>
                                 Nội dung
@@ -83,7 +83,7 @@ export default function FilterClient() {
 
                         {/* Màu sắc */}
                         <AccordionItem value="colors">
-                            <AccordionTrigger>Màu sắc</AccordionTrigger>
+                            <AccordionTrigger className="hover:bg-zinc-100">Màu sắc</AccordionTrigger>
 
                             <AccordionContent>
                                 Nội dung
@@ -92,7 +92,7 @@ export default function FilterClient() {
 
                         {/* Khoảng giá */}
                         <AccordionItem value="price-range">
-                            <AccordionTrigger>Khoảng giá</AccordionTrigger>
+                            <AccordionTrigger className="hover:bg-zinc-100">Khoảng giá</AccordionTrigger>
 
                             <AccordionContent>
                                 Nội dung
@@ -109,7 +109,7 @@ export default function FilterClient() {
 
                 <div className="flex items-center gap-[5px]">
                     <button
-                        className="shrink-0 flex items-center justify-between gap-[10px] px-[20px] py-[9px] w-[70%] text-[14px] text-white font-semibold rounded-[6px] bg-zinc-800 cursor-pointer"
+                        className="flex items-center justify-between gap-[10px] px-[20px] py-[9px] w-full text-[14px] text-white font-semibold rounded-[6px] bg-zinc-800 cursor-pointer"
                     >
                         Tìm kiếm
 
@@ -117,7 +117,7 @@ export default function FilterClient() {
                     </button>
 
                     <button
-                        className="shrink-0 px-[20px] py-[9px] w-[30%] text-[14px] text-zinc-800 font-semibold rounded-[6px] cursor-pointer"
+                        className="shrink-0 px-[20px] py-[9px] text-[14px] text-zinc-800 font-semibold rounded-[6px] cursor-pointer"
                         onClick={handleClose}
                     >
                         Đóng

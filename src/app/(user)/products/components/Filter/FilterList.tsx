@@ -30,6 +30,12 @@ export default function FilterList() {
 
     const filterItemClass = "px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-100 text-left text-[14px] text-zinc-600 font-medium transition-colors cursor-pointer";
 
+    const handleChangeProductName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(
+            filterProductSlice.actions.setProductName(e.target.value)
+        );
+    }
+
     function handleSelectFilter(data: SelectFilterType) {
         switch (data.type) {
             case "categories":
@@ -63,8 +69,10 @@ export default function FilterList() {
                 />
 
                 <Input
+                    value={filter.productName}
                     placeholder="Nhập tên sản phẩm . . ."
                     className="py-[20px]"
+                    onChange={handleChangeProductName}
                 />
             </label>
 

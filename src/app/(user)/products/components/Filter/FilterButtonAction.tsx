@@ -1,6 +1,6 @@
 "use client"
 
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Search } from "lucide-react";
@@ -13,7 +13,6 @@ import { ReduxStateType } from "@/store/store";
 
 export default function FilterButtonAction() {
     const router = useRouter();
-    const pathname = usePathname();
 
     const dispatch = useDispatch();
     const filter = useSelector((state: ReduxStateType) => state.filterProduct);
@@ -28,7 +27,7 @@ export default function FilterButtonAction() {
         const params = new URLSearchParams();
 
         if (filter.productName.trim()) {
-            params.set("name", filter.productName.trim());
+            params.set("productName", filter.productName.trim());
         }
 
         if (filter.categories.length > 0) {
@@ -58,7 +57,7 @@ export default function FilterButtonAction() {
         query = query.replace(/%2C/g, ",");
 
         if (query) {
-            const href = `${pathname}/search?${query}`;
+            const href = `/products/search?${query}`;
             router.push(href);
 
             handleClose();

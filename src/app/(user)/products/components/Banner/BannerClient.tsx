@@ -87,7 +87,7 @@ export default function BannerClient() {
                     </span>
                 </Link>
 
-                <p
+                <h1
                     id="banner-title"
                     className={cn(
                         "text-[20px] text-white text-center font-extrabold capitalize truncate-1",
@@ -95,7 +95,7 @@ export default function BannerClient() {
                     )}
                 >
                     Bàn làm việc ISOMATRIC
-                </p>
+                </h1>
             </div>
 
             <div className="absolute bottom-[20px] right-[20px] flex items-center gap-[10px]">

@@ -17,15 +17,23 @@ import { Search } from "lucide-react";
 
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
+import { categories, statuses, colors, priceRanges } from "@/consts/filter";
 
-/*
-    1. Tên sản phẩm - Tìm kiếm theo từ khoá
-
-    2.1. Danh mục - Sẽ lấy từ Database
-    2.2. Trạng thái - Còn hàng / Giảm giá / Nổi bật / Mới
-    2.3. Màu sắc - Sẽ lấy từ Database
-    2.4. Khoảng giá - Lọc theo từ sản phẩm rẻ nhất đến đắt nhất
-*/
+function FilterItem(
+    {
+        children
+    }: {
+        readonly children: React.ReactNode
+    }
+) {
+    return (
+        <li
+            className="px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors cursor-pointer"
+        >
+            {children}
+        </li>
+    )
+}
 
 export default function FilterClient() {
     const dispatch = useDispatch();
@@ -49,7 +57,7 @@ export default function FilterClient() {
 
                     <Input
                         placeholder="Nhập tên sản phẩm . . ."
-                        className="py-[22px]"
+                        className="py-[20px]"
                     />
                 </div>
 
@@ -68,7 +76,17 @@ export default function FilterClient() {
                             <AccordionTrigger className="hover:bg-zinc-100">Danh mục</AccordionTrigger>
 
                             <AccordionContent>
-                                Nội dung
+                                <ul className="space-y-[5px]">
+                                    {
+                                        categories.map(category => {
+                                            return (
+                                                <FilterItem key={category.id}>
+                                                    {category.name}
+                                                </FilterItem>
+                                            )
+                                        })
+                                    }
+                                </ul>
                             </AccordionContent>
                         </AccordionItem>
 
@@ -77,7 +95,17 @@ export default function FilterClient() {
                             <AccordionTrigger className="hover:bg-zinc-100">Trạng thái</AccordionTrigger>
 
                             <AccordionContent>
-                                Nội dung
+                                <ul className="space-y-[5px]">
+                                    {
+                                        statuses.map(status => {
+                                            return (
+                                                <FilterItem key={status.id}>
+                                                    {status.name}
+                                                </FilterItem>
+                                            )
+                                        })
+                                    }
+                                </ul>
                             </AccordionContent>
                         </AccordionItem>
 
@@ -86,7 +114,26 @@ export default function FilterClient() {
                             <AccordionTrigger className="hover:bg-zinc-100">Màu sắc</AccordionTrigger>
 
                             <AccordionContent>
-                                Nội dung
+                                <ul className="space-y-[5px]">
+                                    {
+                                        colors.map(color => {
+                                            return (
+                                                <FilterItem key={color.id}>
+                                                    <div className="flex items-center gap-[15px]">
+                                                        <span
+                                                            className="w-[20px] aspect-square rounded-full outline-[2px] outline-offset-2 outline-zinc-100"
+                                                            style={{
+                                                                background: color.color
+                                                            }}
+                                                        />
+
+                                                        <p>{color.name}</p>
+                                                    </div>
+                                                </FilterItem>
+                                            )
+                                        })
+                                    }
+                                </ul>
                             </AccordionContent>
                         </AccordionItem>
 
@@ -95,7 +142,17 @@ export default function FilterClient() {
                             <AccordionTrigger className="hover:bg-zinc-100">Khoảng giá</AccordionTrigger>
 
                             <AccordionContent>
-                                Nội dung
+                                <ul className="space-y-[5px]">
+                                    {
+                                        priceRanges.map(price => {
+                                            return (
+                                                <FilterItem key={price.id}>
+                                                    {price.name}
+                                                </FilterItem>
+                                            )
+                                        })
+                                    }
+                                </ul>
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>

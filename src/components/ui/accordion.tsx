@@ -19,7 +19,7 @@ function AccordionItem({
     return (
         <AccordionPrimitive.Item
             data-slot="accordion-item"
-            className={cn("space-y-[5px]", className)}
+            className={cn("space-y-[10px]", className)}
             {...props}
         />
     )

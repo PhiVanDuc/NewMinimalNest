@@ -10,8 +10,8 @@ interface PropsType {
 export default function Layout({ children }: Readonly<PropsType>) {
     return (
         <>
-            <Suspense fallback={null}><FilterSync /></Suspense>
             <Filter />
+            <Suspense fallback={null}><FilterSync /></Suspense>
             {children}
         </>
     )

@@ -45,10 +45,11 @@ const filterProductSlice = createSlice({
             state.statuses = action.payload;
         },
         setColors: (state, action: PayloadAction<colorType[]>) => {
-            state.categories = action.payload;
+            state.colors = action.payload;
         },
-        setPriceRange: (state, action: PayloadAction<priceRangeType | null>) => {
-            state.priceRange = action.payload;
+        setPriceRange: (state, action: PayloadAction<priceRangeType>) => {
+            if (state.priceRange?.id === action.payload.id) state.priceRange = null;
+            else state.priceRange = action.payload;
         },
         toggleCategory: (state, action: PayloadAction<itemType>) => {
             const index = state.categories.findIndex(
@@ -62,6 +63,7 @@ const filterProductSlice = createSlice({
             const index = state.statuses.findIndex(
                 status => status.slug === action.payload.slug
             );
+
             if (index === -1) state.statuses.push(action.payload);
             else state.statuses.splice(index, 1);
         },

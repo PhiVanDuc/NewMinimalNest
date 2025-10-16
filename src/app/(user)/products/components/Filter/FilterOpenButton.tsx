@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import drawerSlice from "@/store/slices/drawerSlice";
 import drawerIds from "@/consts/drawer-ids";
 
-export default function ButtonToggleFilter() {
+export default function FilterOpenButton() {
     const dispatch = useDispatch();
 
     const handleClick = () => {

@@ -1,4 +1,6 @@
-import ProductListClient from "./ProductListClient";
+import { Suspense } from "react";
+
+import ProductListClient from "@/app/(user)/products/components/ProductList/ProductListClient";
 
 import { redirect } from "next/navigation";
 import positiveIntegerValidator from "@/utils/positive-integer-validator";
@@ -13,5 +15,5 @@ export default function ProductList({ searchParams }: PropsType) {
 
     // Fetch data nếu cần
 
-    return <ProductListClient />
+    return <Suspense fallback={null}><ProductListClient /></Suspense>
 }

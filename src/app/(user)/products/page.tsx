@@ -1,6 +1,6 @@
-import Banner from "@/app/(user)/products/components/Banner";
-import ButtonToggleFilter from "./components/ButtonToggleFilter";
-import ProductList from "@/app/(user)/products/components/ProductList";
+import Banner from "@/app/(user)/products/components/Banner/Banner";
+import FilterOpenButton from "@/app/(user)/products/components/Filter/FilterOpenButton";
+import ProductList from "@/app/(user)/products/components/ProductList/ProductList";
 import BreadcrumbCustom from "@/components/BreadcrumbCustom";
 
 interface PropsType {
@@ -18,7 +18,7 @@ export default async function Page({ searchParams }: PropsType) {
             </div>
 
             <div className="space-y-[20px]">
-                <ButtonToggleFilter />
+                <FilterOpenButton />
                 <ProductList searchParams={parseSearchParams} />
             </div>
         </div>

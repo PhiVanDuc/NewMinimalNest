@@ -8,7 +8,7 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import positiveIntegerValidator from "@/utils/positive-integer-validator";
 
-export default function ProductVariant() {
+export default function ProductOption() {
     const [quantity, setQuantity] = useState("1");
 
     const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,12 +44,12 @@ export default function ProductVariant() {
     };
 
     return (
-        <div className="p-[20px] rounded-[10px] border border-zinc-200 space-y-[25px]">
+        <div className="p-[15px] border border-zinc-200 rounded-[10px] space-y-[20px]">
             <div className="space-y-[10px]">
                 <p
                     className={cn(
                         "text-[14px] text-zinc-600 font-medium",
-                        "sm:text-[16px]"
+                        "sm:text-[15px]"
                     )}
                 >
                     Màu sắc
@@ -69,42 +69,7 @@ export default function ProductVariant() {
                 <p
                     className={cn(
                         "text-[14px] text-zinc-600 font-medium",
-                        "sm:text-[16px]"
-                    )}
-                >
-                    Kích cỡ
-                </p>
-
-                <div
-                    className={cn(
-                        "grid grid-cols-1 gap-[10px]",
-                        "sm:grid-cols-2",
-                        "md:grid-cols-3"
-                    )}
-                >
-                    {
-                        Array.from({ length: 6 }).map((_, index) => {
-                            return (
-                                <button
-                                    key={index}
-                                    className={cn(
-                                        "w-full px-[20px] py-[12px] rounded-[10px] border border-transparent hover:border-zinc-400 bg-zinc-100 text-center text-[14px] text-zinc-600 transition-colors cursor-pointer",
-                                        "sm:text-[15px] sm:py-[15px]"
-                                    )}
-                                >
-                                    200 x 80 x 75 cm
-                                </button>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-
-            <div className="space-y-[10px]">
-                <p
-                    className={cn(
-                        "text-[14px] text-zinc-600 font-medium",
-                        "sm:text-[16px]"
+                        "sm:text-[15px]"
                     )}
                 >
                     Số lượng
@@ -117,7 +82,7 @@ export default function ProductVariant() {
                     )}
                 >
                     <FaMinus
-                        className="text-[15px] cursor-pointer"
+                        className="text-[15px] text-zinc-600 cursor-pointer"
                         onClick={handleDecrease}
                     />
 
@@ -132,7 +97,7 @@ export default function ProductVariant() {
                     />
 
                     <FaPlus
-                        className="text-[15px] cursor-pointer"
+                        className="text-[15px] text-zinc-600 cursor-pointer"
                         onClick={handleIncrease}
                     />
                 </div>

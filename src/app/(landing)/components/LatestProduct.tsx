@@ -17,12 +17,7 @@ export default function LatestProduct() {
                 )}
             >
                 <header className="space-y-[10px]">
-                    <h2
-                        className={cn(
-                            "text-[22px] font-semibold",
-                            "md:text-[26px]"
-                        )}
-                    >
+                    <h2 className="header-basic">
                         Sản Phẩm Mới
                     </h2>
                     <p

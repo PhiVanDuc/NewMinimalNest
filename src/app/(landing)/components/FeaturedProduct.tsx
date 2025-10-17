@@ -17,12 +17,7 @@ export default function FeaturedProduct() {
                 )}
             >
                 <header className="space-y-[10px]">
-                    <h2
-                        className={cn(
-                            "text-[22px] font-semibold",
-                            "md:text-[26px]"
-                        )}
-                    >
+                    <h2 className="header-basic">
                         Sản Phẩm Nổi Bật
                     </h2>
                     <p
@@ -39,7 +34,7 @@ export default function FeaturedProduct() {
                     className="rounded-full cursor-pointer"
                     asChild
                 >
-                    <Link href="">
+                    <Link href="/products">
                         Xem tất cả sản phẩm
                     </Link>
                 </Button>

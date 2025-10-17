@@ -226,8 +226,8 @@
     @apply pb-[50px] md:pb-[80px];
 }
 
-@utility position-edge-right {
-    @apply right-[20px] md:right-[40px] xl:right-[80px] 2xl:right-[160px];
+@utility header-basic {
+    @apply text-[22px] font-semibold capitalize md:text-[26px];
 }
 
 @utility position-center {

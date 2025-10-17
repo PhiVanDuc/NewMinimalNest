@@ -31,7 +31,7 @@ export default function ProductPrice() {
                     >
                         <p
                             className={cn(
-                                "text-[18px] text-zinc-600 font-semibold",
+                                "text-[18px] text-zinc-700 font-semibold",
                                 "sm:text-[22px]"
                             )}
                         >

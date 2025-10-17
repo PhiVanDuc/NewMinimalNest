@@ -1,11 +1,17 @@
 "use client"
 
+import { useState } from "react";
+
+import ProductImageMore from "@/app/(user)/products/[productId]/components/ProductImageMore";
+
 import { Button } from "@/components/ui/button";
 import { TbLayoutGridFilled } from "react-icons/tb";
 
 import { cn } from "@/lib/utils";
 
 export default function ProductImage() {
+    const [isOpenDrawer, setisOpenDrawer] = useState(false);
+
     return (
         <section
             className={cn(
@@ -15,7 +21,7 @@ export default function ProductImage() {
         >
             <div
                 className={cn(
-                    "w-full aspect-square hidden grid-cols-2 gap-[10px]",
+                    "hidden grid-cols-2 gap-[10px] w-full aspect-square",
                     "md:grid"
                 )}
             >
@@ -34,10 +40,16 @@ export default function ProductImage() {
 
             <Button
                 className="absolute bottom-[15px] right-[15px] flex items-center bg-theme-main hover:bg-theme-main/95 transition-colors cursor-pointer"
+                onClick={() => { setisOpenDrawer(true) }}
             >
                 <TbLayoutGridFilled className="!size-5 translate-y-[-1px]" />
                 <span className="leading-tight">Hiển thị thêm</span>
             </Button>
+
+            <ProductImageMore
+                isOpen={isOpenDrawer}
+                setIsOpen={setisOpenDrawer}
+            />
         </section>
     )
 }

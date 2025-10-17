@@ -36,10 +36,12 @@ export default function HeroClient() {
             {/* Nút khám phá */}
             <div
                 className={cn(
-                    "group absolute position-edge-right bottom-[20px] flex items-center gap-[10px] p-[5px] rounded-full bg-theme-main/30 cursor-pointer z-10",
+                    "group absolute right-[20px] bottom-[20px] flex items-center gap-[10px] p-[5px] rounded-full bg-theme-main/30 cursor-pointer z-10",
                     "sm:gap-[15px] sm:pr-[15px]",
-                    "md:bottom-[40px] md:pr-[20px]",
-                    "lg:gap-[20px] lg:bottom-[60px]"
+                    "md:right-[40px] md:bottom-[40px] md:pr-[20px]",
+                    "lg:gap-[20px] lg:bottom-[60px]",
+                    "xl:right-[80px]",
+                    "2xl:right-[160px]"
                 )}
             >
                 <button

@@ -6,12 +6,7 @@ export default function Newsletter() {
     return (
         <section className="space-y-[60px]">
             <header className="flex flex-col items-center space-y-[8px] text-center">
-                <h2
-                    className={cn(
-                        "text-[22px] font-semibold",
-                        "md:text-[26px]"
-                    )}
-                >
+                <h2 className="header-basic">
                     Newsletter
                 </h2>
 

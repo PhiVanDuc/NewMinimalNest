@@ -53,12 +53,7 @@ export default function Policy() {
     return (
         <section className="space-y-[80px]">
             <header className="flex flex-col items-center space-y-[8px] text-center">
-                <h2
-                    className={cn(
-                        "text-[22px] font-semibold",
-                        "md:text-[26px]"
-                    )}
-                >
+                <h2 className="header-basic">
                     Chính Sách
                 </h2>
 

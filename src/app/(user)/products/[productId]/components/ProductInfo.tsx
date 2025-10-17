@@ -6,8 +6,6 @@ import ProductOption from "@/app/(user)/products/[productId]/components/ProductO
 import ProductButtonAction from "@/app/(user)/products/[productId]/components/ProductButtonAction";
 import ProductDetailInfo from "@/app/(user)/products/[productId]/components/ProductDetailInfo";
 
-import { Separator } from "@/components/ui/separator";
-
 import { cn } from "@/lib/utils";
 
 export default function ProductInfo() {

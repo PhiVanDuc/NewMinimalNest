@@ -57,7 +57,7 @@ export default function ProductComment() {
                                         "sm:text-[15px]"
                                     )}
                                 >
-                                    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A sit recusandae quia doloribus rem, ducimus minima quis porro id? Voluptatibus est dicta, quasi enim excepturi quam! At adipisci eius veniam!Ut repellat, aliquid quibusdam nam et sit veniam beatae, numquam ex commodi impedit animi, omnis accusantium."
+                                    &quot;Lorem, ipsum dolor sit amet consectetur adipisicing elit. A sit recusandae quia doloribus rem, ducimus minima quis porro id? Voluptatibus est dicta, quasi enim excepturi quam! At adipisci eius veniam!Ut repellat, aliquid quibusdam nam et sit veniam beatae, numquam ex commodi impedit animi, omnis accusantium.&quot;
                                 </p>
 
                                 <div className="w-[50px] aspect-square rounded-full bg-zinc-300" />

@@ -57,12 +57,7 @@ export default function Policy() {
                     Chính Sách
                 </h2>
 
-                <p
-                    className={cn(
-                        "text-[14px] text-zinc-600 max-w-[800px]",
-                        "md:text-[16px]"
-                    )}
-                >
+                <p className="desc-basic max-w-[800px]">
                     Chúng tôi mang đến dịch vụ hàng đầu và sự tiện lợi tối đa để đảm bảo trải nghiệm mua sắm của bạn diễn ra suôn sẻ, an toàn và hoàn toàn không phiền toái.
                 </p>
             </header>

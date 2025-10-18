@@ -10,12 +10,7 @@ export default function Newsletter() {
                     Newsletter
                 </h2>
 
-                <p
-                    className={cn(
-                        "text-[14px] text-zinc-600 max-w-[800px]",
-                        "md:text-[16px]"
-                    )}
-                >
+                <p className="desc-basic max-w-[800px]">
                     Đăng ký để nhận các ưu đãi độc quyền, sản phẩm mới và những cập nhật đặc biệt được gửi thẳng đến hộp thư của bạn mỗi tuần.
                 </p>
             </header>

@@ -1,29 +1,17 @@
-import { cn } from "@/lib/utils";
 import Link from "next/link";
+
+import Price from "@/components/Price";
 import { FaStar } from "react-icons/fa6";
-import { IoMdPricetag } from "react-icons/io";
+
+import { cn } from "@/lib/utils";
 
 export default function Product() {
     return (
         <Link href="/products/product-id">
             <article className="w-full rounded-[10px] cursor-pointer">
                 <figure className="group relative w-full aspect-square rounded-[10px] bg-zinc-300">
-                    <div className="absolute right-[15px] top-[15px] flex items-center gap-[10px] px-[10px] py-[8px] rounded-full bg-zinc-800 text-white">
-                        <IoMdPricetag
-                            className={cn(
-                                "text-[16px]",
-                                "sm:text-[18px]"
-                            )}
-                        />
-
-                        <p
-                            className={cn(
-                                "text-[12px]",
-                                "sm:text-[13px]"
-                            )}
-                        >
-                            999,000 VNĐ
-                        </p>
+                    <div className="absolute right-[15px] top-[15px] flex items-center gap-[10px] px-[10px] py-[8px] rounded-full bg-zinc-800">
+                        <Price className="text-white" />
                     </div>
                 </figure>
 

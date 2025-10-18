@@ -6,6 +6,8 @@ import ProductComment from "@/app/(user)/products/[productId]/components/Product
 import { cn } from "@/lib/utils";
 
 export default function Page() {
+    // Fetch data nếu cần
+
     return (
         <div className="space-y-[60px]">
             <div

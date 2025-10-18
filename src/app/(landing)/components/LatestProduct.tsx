@@ -20,12 +20,7 @@ export default function LatestProduct() {
                     <h2 className="header-basic">
                         Sản Phẩm Mới
                     </h2>
-                    <p
-                        className={cn(
-                            "text-[14px] text-zinc-600 max-w-[800px]",
-                            "md:text-[16px]"
-                        )}
-                    >
+                    <p className="desc-basic max-w-[800px]">
                         Cập nhật ngay những sản phẩm mới vừa ra mắt, kết hợp giữa thẩm mỹ hiện đại và chất lượng vượt trội, tạo nên điểm nhấn hoàn hảo cho ngôi nhà của bạn.
                     </p>
                 </header>

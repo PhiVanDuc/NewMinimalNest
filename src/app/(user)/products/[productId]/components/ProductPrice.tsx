@@ -1,6 +1,6 @@
 "use client"
 
-import { IoMdPricetag } from "react-icons/io";
+import Price from "@/components/Price";
 import { FaCircleInfo } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils";
@@ -11,48 +11,30 @@ export default function ProductPrice() {
             <div className="flex items-center justify-between">
                 <div
                     className={cn(
-                        "flex gap-[15px]",
-                        "sm:items-center"
+                        "flex flex-col items-center gap-[5px]",
+                        "sm:flex-row sm:gap-[15px]"
                     )}
                 >
-                    <IoMdPricetag
-                        className={cn(
-                            "hidden text-[20px] translate-y-[2px]",
-                            "min-[400px]:inline-block min-[400px]:text-[25px]",
-                            "sm:text-[30px] sm:translate-y-0"
+                    <Price
+                        iconClassName={cn(
+                            "hidden",
+                            "min-[400px]:block min-[400px]:text-[20px]",
+                            "sm:text-[25px] sm:translate-y-0"
                         )}
+                        priceClassName="!text-[18px] text-zinc-600 font-medium opacity-60 line-through"
                     />
 
-                    <div
-                        className={cn(
-                            "flex flex-col gap-[5px]",
-                            "sm:flex-row sm:items-end sm:gap-[15px]"
+                    <Price
+                        iconClassName={cn(
+                            "hidden",
+                            "min-[400px]:block min-[400px]:text-[20px]",
+                            "sm:text-[25px] sm:translate-y-0"
                         )}
-                    >
-                        <p
-                            className={cn(
-                                "text-[18px] text-zinc-700 font-semibold",
-                                "sm:text-[22px]"
-                            )}
-                        >
-                            <span>899.000</span>
-                            <span className="inline-block w-[8px]" />
-                            <span
-                                className={cn(
-                                    "text-[14px] underline",
-                                    "lg:text-[18px]"
-                                )}
-                            >VNĐ</span>
-                        </p>
-
-                        <p
-                            className="text-[18px] text-zinc-600 font-medium opacity-60"
-                        >
-                            <span className="line-through">999.000</span>
-                            <span className="inline-block w-[8px]" />
-                            <span className="text-[14px] underline">VNĐ</span>
-                        </p>
-                    </div>
+                        priceClassName={cn(
+                            "text-[18px] text-zinc-700 font-semibold",
+                            "sm:text-[22px]"
+                        )}
+                    />
                 </div>
 
                 <p

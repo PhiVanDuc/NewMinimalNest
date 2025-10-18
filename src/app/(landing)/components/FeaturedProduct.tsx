@@ -20,12 +20,8 @@ export default function FeaturedProduct() {
                     <h2 className="header-basic">
                         Sản Phẩm Nổi Bật
                     </h2>
-                    <p
-                        className={cn(
-                            "text-[14px] text-zinc-600 max-w-[800px]",
-                            "md:text-[16px]"
-                        )}
-                    >
+
+                    <p className="desc-basic max-w-[800px]">
                         Khám phá những sản phẩm được đánh giá tốt nhất của chúng tôi mà khách hàng yêu thích. Từ thiết kế tinh tế đến chất lượng vượt trội, mang lại trải nghiệm hoàn hảo cho không gian sống của bạn.
                     </p>
                 </header>

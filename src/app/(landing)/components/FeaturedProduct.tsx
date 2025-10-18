@@ -30,7 +30,7 @@ export default function FeaturedProduct() {
                     className="rounded-full cursor-pointer"
                     asChild
                 >
-                    <Link href="/products">
+                    <Link href="/products/search?statuses=noi-bat">
                         Xem tất cả sản phẩm
                     </Link>
                 </Button>

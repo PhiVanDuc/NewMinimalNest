@@ -4,6 +4,7 @@ import Price from "@/components/Price";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
+import { PiTrashSimpleBold } from "react-icons/pi";
 
 import { cn } from "@/lib/utils";
 
@@ -102,11 +103,38 @@ const cartColumns: ColumnDef<number>[] = [
     },
     {
         accessorKey: "subTotal",
-        header: () => <h3 className={headerClassName}>Thành tiền</h3>
+        header: () => <h3 className={headerClassName}>Thành tiền</h3>,
+        cell: () => {
+            return (
+                <div className="space-y-[8px]">
+                    <Price
+                        priceClassName={cn(
+                            "!text-[14px] font-medium",
+                            "md:!text-[15px]"
+                        )}
+                    />
+
+                    <p className="flex items-center gap-[5px] text-[14px]">
+                        <span className="text-zinc-600">Số lượng</span>
+                        <span className="font-medium">--</span>
+                        <span className="font-medium">1</span>
+                    </p>
+                </div>
+            )
+        }
     },
     {
         accessorKey: "delete",
-        header: () => <h3 className="text-end">Xoá</h3>
+        header: () => <h3 className={cn(headerClassName, "text-center")}>Xoá</h3>,
+        cell: () => {
+            return (
+                <div className="flex w-full justify-center">
+                    <div className="flex items-center justify-center w-[30px] aspect-square rounded-[10px] hover:bg-zinc-200 transition-colors cursor-pointer">
+                        <PiTrashSimpleBold size={18} className="text-[18px] text-red-500" />
+                    </div>
+                </div>
+            )
+        }
     }
 ];
 

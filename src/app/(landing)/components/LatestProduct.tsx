@@ -29,7 +29,7 @@ export default function LatestProduct() {
                     className="rounded-full cursor-pointer"
                     asChild
                 >
-                    <Link href="">
+                    <Link href="/products/search?statuses=moi">
                         Xem tất cả sản phẩm
                     </Link>
                 </Button>

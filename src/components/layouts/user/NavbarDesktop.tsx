@@ -6,6 +6,8 @@ import { useMediaQuery } from "react-responsive";
 import Logo from "@/components/layouts/user/Logo";
 import Link from "next/link";
 
+import { FiUser } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
 import { TiLocationArrow } from "react-icons/ti";
 
 import gsap from "gsap";
@@ -127,8 +129,19 @@ export default function NavbarDesktop() {
                 }
             </ul>
 
-            <div className="flex items-center gap-[10px]">
+            <div className="flex items-center gap-[35px]">
                 <Link
+                    href="/cart"
+                    className="cart-button text-zinc-800 cursor-pointer"
+                >
+                    <FiShoppingCart size={20} />
+                </Link>
+
+                <button className="flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors">
+                    <FiUser size={20} />
+                </button>
+
+                {/* <Link
                     href="/register"
                     className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-600 font-semibold rounded-full cursor-pointer"
                 >
@@ -136,27 +149,14 @@ export default function NavbarDesktop() {
                 </Link>
 
                 <Link
-                    href="/"
+                    href="/sign-in"
                     className="navigate-button-bold flex items-center gap-[10px] px-[20px] py-[9px] text-[14px] text-white font-semibold rounded-full bg-zinc-800 cursor-pointer"
                 >
                     Đăng nhập
 
                     <TiLocationArrow size={18} className="translate-y-[-0.5px]" />
-                </Link>
+                </Link> */}
             </div>
         </nav>
     )
 }
-
-// import { FiUser } from "react-icons/fi";
-// import { FiShoppingCart } from "react-icons/fi";
-
-{/* gap-[30px] */ }
-
-{/* <button className="cart-button text-zinc-600 cursor-pointer">
-    <FiShoppingCart size={20} />
-</button>
-
-<button className="flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors">
-    <FiUser size={20} />
-</button> */}

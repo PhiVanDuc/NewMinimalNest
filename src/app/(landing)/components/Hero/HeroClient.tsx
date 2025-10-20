@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import Link from "next/link";
 import Squares from "@/components/Squares";
 import HeroInfoProduct from "./HeroInfoProduct";
 import HeroNavigateProduct from "@/app/(landing)/components/Hero/HeroNavigateProduct";
@@ -36,7 +37,7 @@ export default function HeroClient() {
             {/* Nút khám phá */}
             <div
                 className={cn(
-                    "group absolute right-[20px] bottom-[20px] flex items-center gap-[10px] p-[5px] rounded-full bg-theme-main/30 cursor-pointer z-10",
+                    "group absolute right-[20px] bottom-[20px] flex items-center gap-[10px] p-[5px] rounded-full bg-theme-main/30 z-10",
                     "sm:gap-[15px] sm:pr-[15px]",
                     "md:right-[40px] md:bottom-[40px] md:pr-[20px]",
                     "lg:gap-[20px] lg:bottom-[60px]",
@@ -44,14 +45,15 @@ export default function HeroClient() {
                     "2xl:right-[160px]"
                 )}
             >
-                <button
+                <Link
+                    href="/products/product-id"
                     className={cn(
                         "text-[10px] text-white font-semibold uppercase px-[15px] py-[8px] rounded-full bg-theme-main cursor-pointer",
                         "lg:text-[12px]"
                     )}
                 >
                     Khám phá
-                </button>
+                </Link>
 
                 <p
                     className={cn(

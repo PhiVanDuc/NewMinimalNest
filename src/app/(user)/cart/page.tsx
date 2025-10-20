@@ -1,3 +1,5 @@
+"use client"
+
 import CartTable from "@/app/(user)/cart/components/CartTable";
 import CartSummary from "@/app/(user)/cart/components/CartSummary";
 

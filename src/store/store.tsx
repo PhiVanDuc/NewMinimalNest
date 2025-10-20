@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import drawerSlice from "./slices/drawerSlice";
 import filterProductSlice from "./slices/filterProduct";
+import cartSlice from "./slices/cartSlice";
 
 const store = configureStore({
     reducer: {
         drawer: drawerSlice.reducer,
-        filterProduct: filterProductSlice.reducer
+        filterProduct: filterProductSlice.reducer,
+        cart: cartSlice.reducer
     }
 });
 

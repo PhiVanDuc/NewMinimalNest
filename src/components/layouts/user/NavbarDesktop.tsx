@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
 import Logo from "@/components/layouts/user/Logo";
@@ -13,6 +14,8 @@ import { TiLocationArrow } from "react-icons/ti";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import breakpoints from "@/consts/breakpoints";
+
+import type { ReduxStateType } from "@/store/store";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,6 +41,8 @@ export default function NavbarDesktop() {
     const navbarRef = useRef<null | HTMLElement>(null);
     const lastScrollRef = useRef(0);
     const displayStatusRef = useRef("top");
+
+    const cart = useSelector((state: ReduxStateType) => state.cart);
 
     const isDesktop = useMediaQuery(
         {
@@ -130,12 +135,26 @@ export default function NavbarDesktop() {
             </ul>
 
             <div className="flex items-center gap-[35px]">
-                <Link
-                    href="/cart"
-                    className="cart-button text-zinc-800 cursor-pointer"
-                >
-                    <FiShoppingCart size={20} />
-                </Link>
+                <div className="relative">
+                    <Link
+                        href="/cart"
+                        className="cart-button text-zinc-800 cursor-pointer"
+                    >
+                        <FiShoppingCart size={20} />
+                    </Link>
+
+                    {
+                        cart.length > 0 &&
+                        (
+                            <Link
+                                href="/cart"
+                                className="absolute inline-block top-[-15px] right-[-20px] w-fit px-[8px] py-[4px] bg-orange-700 rounded-full text-[10px] text-white font-medium"
+                            >
+                                {cart.length > 99 ? "+99" : cart.length}
+                            </Link>
+                        )
+                    }
+                </div>
 
                 <button className="flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors">
                     <FiUser size={20} />

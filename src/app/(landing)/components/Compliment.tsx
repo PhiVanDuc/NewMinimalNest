@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
@@ -72,9 +74,14 @@ export default function Compliment() {
                         }
                     </ul>
 
-                    <Button className="px-[20px] py-[25px] gap-[12px] bg-theme-main hover:bg-theme-main/95 cursor-pointer transition-colors">
-                        <FiShoppingCart className="!size-5" />
-                        Bắt đầu mua sắm
+                    <Button
+                        className="px-[20px] py-[25px] gap-[12px] bg-theme-main hover:bg-theme-main/95 cursor-pointer transition-colors"
+                        asChild
+                    >
+                        <Link href="/products">
+                            <FiShoppingCart className="!size-5" />
+                            Bắt đầu mua sắm
+                        </Link>
                     </Button>
                 </div>
             </div>

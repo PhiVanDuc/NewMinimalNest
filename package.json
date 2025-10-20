@@ -34,6 +34,7 @@
     "redux": "^5.0.1",
     "tailwind-merge": "^3.3.1",
     "three": "^0.180.0",
+    "uuid": "^13.0.0",
     "vaul": "^1.1.2"
   },
   "devDependencies": {

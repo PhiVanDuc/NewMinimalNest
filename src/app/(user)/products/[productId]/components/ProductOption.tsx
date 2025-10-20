@@ -44,7 +44,7 @@ export default function ProductOption() {
     };
 
     return (
-        <div className="p-[15px] border border-zinc-200 rounded-[10px] space-y-[20px]">
+        <div className="space-y-[20px]">
             <div className="space-y-[10px]">
                 <p
                     className={cn(
@@ -59,7 +59,7 @@ export default function ProductOption() {
                     <span
                         className={cn(
                             "shrink-0 w-[25px] aspect-square rounded-full bg-amber-400 outline-[3px] outline-offset-2 outline-zinc-100 hover:outline-zinc-200 transition-colors cursor-pointer",
-                            "sm:w-[30px]"
+                            "sm:w-[28px]"
                         )}
                     />
                 </div>
@@ -77,7 +77,7 @@ export default function ProductOption() {
 
                 <div
                     className={cn(
-                        "flex items-center gap-[20px] w-full px-[20px] py-[10px] rounded-[10px] border border-zinc-200",
+                        "flex items-center gap-[20px] w-full px-[15px] py-[10px] rounded-[10px] border border-zinc-200",
                         "sm:w-fit"
                     )}
                 >

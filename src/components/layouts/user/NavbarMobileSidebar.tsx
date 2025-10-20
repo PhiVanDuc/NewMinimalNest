@@ -1,6 +1,6 @@
 "use client"
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Logo from "./Logo";
 import Link from "next/link";
@@ -11,6 +11,8 @@ import { TiLocationArrow } from "react-icons/ti";
 
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
+
+import type { ReduxStateType } from "@/store/store";
 
 const navList = [
     {
@@ -32,6 +34,7 @@ const navList = [
 
 export default function NavbarMobileSidebar() {
     const dispatch = useDispatch();
+    const cart = useSelector((state: ReduxStateType) => state.cart);
 
     const handleClose = () => {
         dispatch(
@@ -87,7 +90,7 @@ export default function NavbarMobileSidebar() {
                                     <li key={item.id}>
                                         <Link
                                             href={item.href}
-                                            className="flex items-center justify-between px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-800 text-[14px] text-zinc-600 hover:text-white font-medium transition-colors"
+                                            className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-800 text-[14px] text-zinc-600 hover:text-white font-medium transition-colors"
                                             onClick={handleClose}
                                         >
                                             {item.name}
@@ -105,24 +108,56 @@ export default function NavbarMobileSidebar() {
                     title="Người dùng"
                 />
 
-                <div className="flex items-center gap-[5px]">
-                    <Link
-                        href="/"
-                        className="flex items-center justify-between gap-[10px] px-[20px] py-[9px] w-full text-[14px] text-white font-semibold rounded-[6px] bg-zinc-800 cursor-pointer"
-                    >
-                        Đăng nhập
+                <div className="flex flex-col gap-[5px]">
+                    <div className="relative">
+                        <Link
+                            href="/cart"
+                            className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors"
+                        >
+                            Giỏ hàng
+                        </Link>
 
-                        <TiLocationArrow size={18} className="translate-y-[-0.5px]" />
-                    </Link>
+                        {
+                            cart.length > 0 &&
+                            (
+                                <Link
+                                    href="/cart"
+                                    className="absolute inline-block top-1/2 right-[15px] -translate-y-1/2 w-fit px-[8px] py-[4px] bg-orange-700 rounded-full text-[10px] text-white font-medium"
+                                >
+                                    {cart.length > 99 ? "+99" : cart.length}
+                                </Link>
+                            )
+                        }
+                    </div>
 
-                    <Link
-                        href="/register"
-                        className="shrink-0 px-[20px] py-[9px] text-[14px] text-zinc-800 font-semibold rounded-[6px] bg-transparent cursor-pointer"
-                    >
-                        Đăng ký
-                    </Link>
+                    <button className="flex items-center gap-[12px] w-full px-[15px] py-[12px] rounded-[10px] bg-zinc-100 cursor-pointer">
+                        <div className="shrink-0 w-[40px] aspect-square rounded-full bg-zinc-300" />
+
+                        <div className="text-start leading-tight space-y-[4px]">
+                            <p className="text-[14px] text-zinc-700 font-medium capitalize truncate-1">Tên người dùng</p>
+                            <p className="text-[14px] text-zinc-600 truncate-1">example@gmail.com</p>
+                        </div>
+                    </button>
                 </div>
             </div>
         </Drawer>
     )
 }
+
+{/* <div className="flex items-center gap-[5px]">
+    <Link
+        href="/"
+        className="flex items-center justify-between gap-[10px] px-[20px] py-[9px] w-full text-[14px] text-white font-semibold rounded-[6px] bg-zinc-800 cursor-pointer"
+    >
+        Đăng nhập
+
+        <TiLocationArrow size={18} className="translate-y-[-0.5px]" />
+    </Link>
+
+    <Link
+        href="/register"
+        className="shrink-0 px-[20px] py-[9px] text-[14px] text-zinc-800 font-semibold rounded-[6px] bg-transparent cursor-pointer"
+    >
+        Đăng ký
+    </Link>
+</div> */}

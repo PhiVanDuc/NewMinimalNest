@@ -148,7 +148,7 @@ export default function NavbarDesktop() {
                         (
                             <Link
                                 href="/cart"
-                                className="absolute inline-block top-[-15px] right-[-20px] w-fit px-[8px] py-[4px] bg-orange-700 rounded-full text-[10px] text-white font-medium"
+                                className="absolute inline-block top-[-12px] right-[-14px] w-fit px-[8px] py-[4px] bg-orange-600 rounded-full text-[10px] text-white font-medium"
                             >
                                 {cart.length > 99 ? "+99" : cart.length}
                             </Link>
@@ -159,23 +159,23 @@ export default function NavbarDesktop() {
                 <button className="flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors">
                     <FiUser size={20} />
                 </button>
-
-                {/* <Link
-                    href="/register"
-                    className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-600 font-semibold rounded-full cursor-pointer"
-                >
-                    Đăng ký
-                </Link>
-
-                <Link
-                    href="/sign-in"
-                    className="navigate-button-bold flex items-center gap-[10px] px-[20px] py-[9px] text-[14px] text-white font-semibold rounded-full bg-zinc-800 cursor-pointer"
-                >
-                    Đăng nhập
-
-                    <TiLocationArrow size={18} className="translate-y-[-0.5px]" />
-                </Link> */}
             </div>
         </nav>
     )
 }
+
+{/* <Link
+    href="/register"
+    className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-600 font-semibold rounded-full cursor-pointer"
+>
+    Đăng ký
+</Link>
+
+<Link
+    href="/sign-in"
+    className="navigate-button-bold flex items-center gap-[10px] px-[20px] py-[9px] text-[14px] text-white font-semibold rounded-full bg-zinc-800 cursor-pointer"
+>
+    Đăng nhập
+
+    <TiLocationArrow size={18} className="translate-y-[-0.5px]" />
+</Link> */}

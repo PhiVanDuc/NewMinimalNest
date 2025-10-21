@@ -231,7 +231,7 @@
 }
 
 @utility desc-basic {
-    @apply text-[14px] text-zinc-600 md:text-[16px];
+    @apply text-[14px] text-zinc-600 md:text-[15px];
 }
 
 @utility position-center {

@@ -77,7 +77,7 @@ export default function ProductOption() {
 
                 <div
                     className={cn(
-                        "flex items-center gap-[20px] w-full px-[15px] py-[10px] rounded-[10px] border border-zinc-200",
+                        "flex items-center gap-[20px] w-full px-[15px] py-[8px] rounded-[10px] border border-zinc-200",
                         "sm:w-fit"
                     )}
                 >
@@ -92,7 +92,7 @@ export default function ProductOption() {
                         onBlur={handleBlurQuantity}
                         className={cn(
                             "w-full h-fit p-0 text-center text-[14px] focus-visible:ring-transparent border-none shadow-none",
-                            "sm:text-[16px] sm:w-[80px]"
+                            "sm:w-[60px]"
                         )}
                     />
 

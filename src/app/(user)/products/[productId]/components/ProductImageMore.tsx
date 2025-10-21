@@ -23,7 +23,7 @@ export default function ProductImageMore({ isOpen, setIsOpen }: PropsType) {
             open={isOpen}
             onOpenChange={setIsOpen}
         >
-            <DrawerContent className="flex flex-col gap-0 h-dvh">
+            <DrawerContent className="flex flex-col gap-0 h-[85dvh]">
                 <DrawerHeader>
                     <DrawerTitle></DrawerTitle>
                     <DrawerDescription></DrawerDescription>

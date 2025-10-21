@@ -230,6 +230,10 @@
     @apply text-[22px] font-semibold capitalize md:text-[26px];
 }
 
+@utility sub-header-basic {
+    @apply text-[18px] font-semibold capitalize md:text-[22px];
+}
+
 @utility desc-basic {
     @apply text-[14px] text-zinc-600 md:text-[15px];
 }

@@ -4,8 +4,14 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
-import Logo from "@/components/layouts/user/Logo";
 import Link from "next/link";
+import Logo from "@/components/layouts/user/Logo";
+import NavbarDropdownMenu from "@/components/layouts/user/NavbarDropdownMenu";
+
+import {
+    DropdownMenu,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
 import { FiUser } from "react-icons/fi";
 import { FiShoppingCart } from "react-icons/fi";
@@ -43,7 +49,6 @@ export default function NavbarDesktop() {
     const displayStatusRef = useRef("top");
 
     const cart = useSelector((state: ReduxStateType) => state.cart);
-
     const isDesktop = useMediaQuery(
         {
             query: `(min-width: ${breakpoints.lg.min}px)`
@@ -156,9 +161,17 @@ export default function NavbarDesktop() {
                     }
                 </div>
 
-                <button className="flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors">
-                    <FiUser size={20} />
-                </button>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <button
+                            className="flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors"
+                        >
+                            <FiUser size={20} />
+                        </button>
+                    </DropdownMenuTrigger>
+
+                    <NavbarDropdownMenu />
+                </DropdownMenu>
             </div>
         </nav>
     )

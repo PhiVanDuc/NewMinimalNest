@@ -8,14 +8,19 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel
+    FormLabel,
+    FormMessage
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import signUpSchema from "@/schema/sign-up-schema";
+
 export default function SignUpForm() {
     const form = useForm({
+        resolver: zodResolver(signUpSchema),
         defaultValues: {
             username: "",
             email: "",
@@ -48,6 +53,8 @@ export default function SignUpForm() {
                                         className="py-[22px]"
                                     />
                                 </FormControl>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}
@@ -68,6 +75,8 @@ export default function SignUpForm() {
                                         className="py-[22px]"
                                     />
                                 </FormControl>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}
@@ -89,6 +98,8 @@ export default function SignUpForm() {
                                         className="py-[22px]"
                                     />
                                 </FormControl>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}
@@ -110,6 +121,8 @@ export default function SignUpForm() {
                                         className="py-[22px]"
                                     />
                                 </FormControl>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}

@@ -8,23 +8,21 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel
+    FormLabel,
+    FormMessage
 } from "@/components/ui/form";
-
-import {
-    InputOTP,
-    InputOTPGroup,
-    InputOTPSeparator,
-    InputOTPSlot,
-} from "@/components/ui/input-otp"
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { RiSendPlaneFill } from "react-icons/ri";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import forgotPasswordSchema from "@/schema/forgot-password-schema";
+
 export default function ForgotPasswordForm() {
     const form = useForm({
+        resolver: zodResolver(forgotPasswordSchema),
         defaultValues: {
             email: "",
             otp: "",
@@ -57,6 +55,8 @@ export default function ForgotPasswordForm() {
                                         className="py-[22px]"
                                     />
                                 </FormControl>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}
@@ -86,6 +86,8 @@ export default function ForgotPasswordForm() {
                                         <RiSendPlaneFill className="text-[20px]" />
                                     </Button>
                                 </div>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}
@@ -107,6 +109,8 @@ export default function ForgotPasswordForm() {
                                         className="py-[22px]"
                                     />
                                 </FormControl>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}
@@ -128,6 +132,8 @@ export default function ForgotPasswordForm() {
                                         className="py-[22px]"
                                     />
                                 </FormControl>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}

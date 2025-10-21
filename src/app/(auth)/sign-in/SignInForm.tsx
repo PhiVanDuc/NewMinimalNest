@@ -8,7 +8,8 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel
+    FormLabel,
+    FormMessage
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
@@ -17,8 +18,12 @@ import { Button } from "@/components/ui/button";
 
 import { FcGoogle } from "react-icons/fc";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import signInSchema from "@/schema/sign-in-schema";
+
 export default function SignInForm() {
     const form = useForm({
+        resolver: zodResolver(signInSchema),
         defaultValues: {
             email: "",
             password: ""
@@ -49,6 +54,8 @@ export default function SignInForm() {
                                         className="py-[22px]"
                                     />
                                 </FormControl>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}
@@ -70,6 +77,8 @@ export default function SignInForm() {
                                         className="py-[22px]"
                                     />
                                 </FormControl>
+
+                                <FormMessage />
                             </FormItem>
                         )
                     }}

@@ -1,13 +1,20 @@
 "use client"
 
 import Price from "@/components/Price";
+import Badge from "@/components/Badge";
+
 import { FaCircleInfo } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils";
 
 export default function ProductPrice() {
     return (
-        <div className="space-y-[15px]">
+        <div className="space-y-[12px]">
+            <div className="flex items-center gap-[15px] px-[15px] py-[5px] w-fit rounded-full border border-zinc-300 bg-zinc-50 text-zinc-700">
+                <FaCircleInfo className="text-[18px]" />
+                <p className="text-[14px] font-medium">Còn hàng</p>
+            </div>
+
             <div className="flex items-center justify-between">
                 <div
                     className={cn(
@@ -21,35 +28,25 @@ export default function ProductPrice() {
                             "min-[400px]:block min-[400px]:text-[20px]",
                             "sm:text-[25px] sm:translate-y-0"
                         )}
-                        priceClassName="!text-[18px] text-zinc-600 font-medium opacity-60 line-through"
+                        priceClassName={cn(
+                            "text-[18px] font-semibold",
+                            "sm:text-[22px]"
+                        )}
                     />
 
                     <Price
                         iconClassName={cn(
-                            "hidden",
+                            "hidden text-zinc-400",
                             "min-[400px]:block min-[400px]:text-[20px]",
                             "sm:text-[25px] sm:translate-y-0"
                         )}
-                        priceClassName={cn(
-                            "text-[18px] text-zinc-700 font-semibold",
-                            "sm:text-[22px]"
-                        )}
+                        priceClassName="!text-[18px] text-zinc-600 font-medium opacity-60 line-through"
                     />
                 </div>
 
-                <p
-                    className={cn(
-                        "shrink-0 w-fit px-[10px] py-[4px] bg-theme-main/5 rounded-full text-[12px] text-theme-main font-medium",
-                        "sm:text-[14px]"
-                    )}
-                >
+                <Badge>
                     - 10%
-                </p>
-            </div>
-
-            <div className="flex items-center gap-[15px] px-[20px] py-[8px] rounded-full border border-theme-main/10 bg-theme-main/5 text-theme-main">
-                <FaCircleInfo className="text-[20px]" />
-                <p className="text-[15px] font-medium">Còn hàng</p>
+                </Badge>
             </div>
         </div>
     )

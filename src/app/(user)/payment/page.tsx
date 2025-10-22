@@ -1,6 +1,7 @@
 "use client"
 
 import PaymentAddress from "@/app/(user)/payment/components/PaymentAddress";
+import PaymentTable from "@/app/(user)/payment/components/PaymentTable";
 import PaymentCoupon from "@/app/(user)/payment/components/PaymentCoupon";
 import PaymentMessage from "@/app/(user)/payment/components/PaymentMessage";
 import PaymentMethod from "@/app/(user)/payment/components/PaymentMethod";
@@ -45,9 +46,7 @@ export default function Page() {
             >
                 <div className="space-y-[40px] w-full">
                     <PaymentAddress />
-
-                    {/* <DataTable /> */}
-
+                    <PaymentTable />
                     <PaymentCoupon />
                     <PaymentMessage />
                     <PaymentMethod />

@@ -10,30 +10,7 @@ import { cn } from "@/lib/utils";
 
 const headerClassName = "text-[14px] text-zinc-700 font-medium";
 
-const cartColumns: ColumnDef<number>[] = [
-    {
-        accessorKey: "selectAll",
-        header: () => {
-            return (
-                <Checkbox
-                    className={cn(
-                        "size-[16px] border-zinc-400 data-[state=checked]:bg-theme-main data-[state=checked]:border-theme-main/80",
-                        "md:size-[18px]"
-                    )}
-                />
-            )
-        },
-        cell: () => {
-            return (
-                <Checkbox
-                    className={cn(
-                        "size-[16px] border-zinc-400 data-[state=checked]:bg-theme-main data-[state=checked]:border-theme-main/80",
-                        "md:size-[18px]"
-                    )}
-                />
-            )
-        }
-    },
+const paymentColumns: ColumnDef<number>[] = [
     {
         accessorKey: "product",
         header: () => <h3 className={headerClassName}>Sản phẩm</h3>,
@@ -117,20 +94,7 @@ const cartColumns: ColumnDef<number>[] = [
                 </div>
             )
         }
-    },
-    {
-        accessorKey: "delete",
-        header: () => <h3 className={cn(headerClassName, "text-center")}>Xoá</h3>,
-        cell: () => {
-            return (
-                <div className="flex w-full justify-center">
-                    <div className="flex items-center justify-center w-[30px] aspect-square rounded-[10px] hover:bg-zinc-200 transition-colors cursor-pointer">
-                        <PiTrashSimpleBold size={18} className="text-[18px] text-red-500" />
-                    </div>
-                </div>
-            )
-        }
     }
 ];
 
-export default cartColumns;
+export default paymentColumns;

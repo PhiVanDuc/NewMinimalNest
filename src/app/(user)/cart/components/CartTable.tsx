@@ -24,7 +24,6 @@ export default function CartTable() {
             <DataTable
                 data={cart.map(() => 1)}
                 columns={cartColumns}
-                isLoading={false}
             />
         </div>
     )

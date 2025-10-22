@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { Input } from "@/components/ui/input";
-import { FaPlus, FaMinus } from "react-icons/fa6";
+import { FiMinus, FiPlus } from "react-icons/fi";
 
 import { cn } from "@/lib/utils";
 import positiveIntegerValidator from "@/utils/positive-integer-validator";
@@ -77,14 +77,16 @@ export default function ProductOption() {
 
                 <div
                     className={cn(
-                        "flex items-center gap-[20px] w-full px-[15px] py-[8px] rounded-[10px] border border-zinc-200",
+                        "flex items-center gap-[10px] w-full p-[3px] rounded-full border border-zinc-200",
                         "sm:w-fit"
                     )}
                 >
-                    <FaMinus
-                        className="text-[15px] text-zinc-600 cursor-pointer"
+                    <button
+                        className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
                         onClick={handleDecrease}
-                    />
+                    >
+                        <FiMinus className="text-[16px]" />
+                    </button>
 
                     <Input
                         value={quantity}
@@ -96,10 +98,12 @@ export default function ProductOption() {
                         )}
                     />
 
-                    <FaPlus
-                        className="text-[15px] text-zinc-600 cursor-pointer"
+                    <button
+                        className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
                         onClick={handleIncrease}
-                    />
+                    >
+                        <FiPlus className="text-[16px]" />
+                    </button>
                 </div>
             </div>
         </div>

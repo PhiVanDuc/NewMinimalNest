@@ -24,18 +24,13 @@ export default function PaymentAddress() {
             </header>
 
             <div className="flex items-stretch gap-[15px]">
-                <span
-                    className={cn(
-                        "hidden self-stretch shrink-0 my-[4px] w-[3px] rounded-full bg-theme-main",
-                        "sm:block"
-                    )}
-                />
+                <span className="self-stretch shrink-0 my-[4px] w-[3px] rounded-full bg-theme-main" />
 
                 <div className="flex items-start justify-between w-full">
                     <div className="space-y-[12px]">
                         <p
                             className={cn(
-                                "text-[15px] font-medium capitalize truncate-1",
+                                "text-[15px] font-medium capitalize truncate-2",
                                 "sm:text-[17px]"
                             )}
                         >
@@ -49,7 +44,7 @@ export default function PaymentAddress() {
                     </div>
 
                     <Button
-                        className="bg-zinc-100 hover:bg-zinc-200 text-zinc-700"
+                        className="shrink-0 bg-zinc-100 hover:bg-zinc-200 text-zinc-700"
                         onClick={() => { setIsOpenDialog(true); }}
                     >
                         <IoReloadOutline />

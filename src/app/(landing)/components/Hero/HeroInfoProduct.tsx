@@ -83,14 +83,14 @@ export default function HeroInfoProduct({ currentProduct }: PropsType) {
                 )}
             >
                 <Button
-                    className="px-[20px] py-[25px] gap-[12px] cursor-pointer transition-colors"
+                    className="px-[20px] py-[25px] gap-[12px] bg-theme-main hover:bg-theme-main/95 cursor-pointer transition-colors"
                     size="lg"
                 >
                     <MdOutlineShoppingBag className="!size-5" />
                     Mua ngay
                 </Button>
 
-                <Button className="px-[20px] py-[25px] gap-[12px] bg-theme-main hover:bg-theme-main/95 cursor-pointer transition-colors">
+                <Button className="px-[20px] py-[25px] gap-[12px] cursor-pointer transition-colors">
                     <FiShoppingCart className="!size-5" />
                     Thêm vào giỏ hàng
                 </Button>

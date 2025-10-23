@@ -1,5 +1,6 @@
 "use client"
 
+import Badge from "@/components/Badge";
 import Price from "@/components/Price";
 
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,11 @@ import { ShoppingCart } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-export default function PaymentSummary() {
+interface PropsType {
+    isEdit?: boolean
+}
+
+export default function PaymentSummary({ isEdit = true }: PropsType) {
     return (
         <div
             className={cn(
@@ -79,16 +84,20 @@ export default function PaymentSummary() {
                     <p className="text-[16px] font-semibold text-darkBold">Tổng hoá đơn</p>
                     <Price
                         priceClassName={cn(
-                            "!text-[14px] font-medium",
-                            "md:!text-[15px]"
+                            "!text-[15px] font-semibold",
+                            "md:!text-[16px]"
                         )}
                     />
                 </div>
 
-                <p className="text-[12px] font-medium text-zinc-600 tracking-wide">Có thể dùng các phiếu giảm giá trong phần nhập thông tin thanh toán.</p>
+                <p className="text-[12px] font-medium text-zinc-600 tracking-wide">Tiến hành bước thanh toán cuối cùng để hoàn thành đơn hàng.</p>
             </div>
 
-            <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Thanh toán</Button>
+            {
+                isEdit ?
+                    <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Thanh toán</Button> :
+                    <Badge>Chưa thanh toán</Badge>
+            }
         </div>
     )
 }

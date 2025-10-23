@@ -13,7 +13,7 @@ export default function Page() {
     return (
         <section
             className={cn(
-                "space-y-[20px]",
+                "w-full space-y-[20px]",
                 "sm:space-y-[40px]"
             )}
         >
@@ -35,24 +35,24 @@ export default function Page() {
                     )}
                 />
 
-                <h1 className="header-basic">Thanh toán</h1>
+                <h1 className="header-basic">Chi tiết đơn hàng</h1>
             </header>
 
             <div
                 className={cn(
                     "flex flex-col items-start gap-[40px]",
-                    "xl:flex-row xl:gap-[20px]"
+                    "xl:flex-row sm:gap-[20px]"
                 )}
             >
                 <div className="space-y-[40px] w-full">
-                    <PaymentAddress />
+                    <PaymentAddress isEdit={false} />
                     <PaymentTable />
-                    <PaymentCoupon />
-                    <PaymentMessage />
-                    <PaymentMethod />
+                    <PaymentCoupon isEdit={false} />
+                    <PaymentMessage isEdit={false} />
+                    <PaymentMethod isEdit={false} />
                 </div>
 
-                <PaymentSummary />
+                <PaymentSummary isEdit={false} />
             </div>
         </section>
     )

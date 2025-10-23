@@ -10,7 +10,7 @@ export default function Page() {
                 <p className="desc-basic">Theo dõi và quản lý các đơn hàng của bạn. Sau khi đã đóng gói xong, đơn hàng sẽ không thể huỷ nữa.</p>
             </header>
 
-            <div className="space-y-[20px]">
+            <div className="space-y-[30px]">
                 <Order />
                 <Order />
                 <Order />

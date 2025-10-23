@@ -2,7 +2,11 @@
 
 import { Textarea } from "@/components/ui/textarea";
 
-export default function PaymentMessage() {
+interface PropsType {
+    isEdit?: boolean
+}
+
+export default function PaymentMessage({ isEdit = true }: PropsType) {
     return (
         <div className="space-y-[20px]">
             <header>
@@ -13,6 +17,7 @@ export default function PaymentMessage() {
             <Textarea
                 placeholder="Gửi lời nhắn của bạn vào đây . . ."
                 className="resize-none shadow-none h-[80px] py-[12px]"
+                disabled={isEdit ? false : true}
             />
         </div>
     )

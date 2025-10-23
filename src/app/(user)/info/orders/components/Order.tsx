@@ -3,6 +3,7 @@
 import Price from "@/components/Price";
 import OrderProduct from "@/components/OrderProduct";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
@@ -97,43 +98,41 @@ export default function Order() {
                     />
                 </div>
 
-                <div
-                    className={cn(
-                        "space-y-[5px] text-[14px] text-zinc-700 font-medium",
-                        "md:flex md:items-center md:justify-between md:space-y-0"
-                    )}
-                >
-                    <p>Phí vận chuyển</p>
-                    <p className="text-darkBold">Miễn phí</p>
-                </div>
-            </div>
-
-            <div className="p-[15px] space-y-[15px]">
                 <div className="md:flex items-center justify-between space-y-[5px] md:space-y-0">
                     <p className="text-[16px] font-semibold text-darkBold">Tổng hoá đơn</p>
 
                     <Price
                         priceClassName={cn(
-                            "!text-[14px] font-medium",
-                            "md:!text-[15px]"
+                            "!text-[15px] font-semibold",
+                            "md:!text-[16px]"
                         )}
                     />
                 </div>
+            </div>
 
-                <div
-                    className={cn(
-                        "space-y-[5px] text-[14px] text-zinc-700 font-medium",
-                        "md:flex md:items-center md:justify-between md:space-y-0"
-                    )}
-                >
-                    <p>Trạng thái</p>
-                    <Badge>Chưa thanh toán</Badge>
-                </div>
-
+            <div
+                className={cn(
+                    "flex flex-col gap-[15px] p-[15px] bg-neutral-50",
+                    "sm:flex-row sm:justify-between"
+                )}
+            >
                 <div className="flex gap-[5px]">
-                    <Button className="bg-theme-main hover:bg-theme-main/95">Chi tiết đơn hàng</Button>
-                    <Button className="bg-transparent hover:bg-zinc-100 text-zinc-800">Huỷ đơn hàng</Button>
+                    <Button
+                        className={cn(
+                            "flex-1 bg-theme-main hover:bg-theme-main/95",
+                            "sm:flex-none"
+                        )}
+                        asChild
+                    >
+                        <Link href="/info/orders/123">
+                            Chi tiết đơn
+                        </Link>
+                    </Button>
+
+                    <Button className="shrink-0 bg-transparent hover:bg-zinc-100 text-zinc-800">Huỷ đơn</Button>
                 </div>
+
+                <Badge>Chưa thanh toán</Badge>
             </div>
         </div>
     )

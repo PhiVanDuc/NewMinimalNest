@@ -5,13 +5,18 @@ import Image from "next/image";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { FaShippingFast } from "react-icons/fa";
 
-export default function PaymentMethod() {
+interface PropsType {
+    isEdit?: boolean
+}
+
+export default function PaymentMethod({ isEdit = true }: PropsType) {
     return (
         <div className="space-y-[20px]">
             <h2 className="text-[16px] md:text-[18px] font-semibold">Phương thức thanh toán</h2>
 
             <RadioGroup
                 className="rounded-[10px] border border-zinc-200"
+                disabled={isEdit ? false : true}
             >
                 <label className="border-b border-zinc-200 flex items-center gap-[20px] p-[20px] cursor-pointer">
                     <RadioGroupItem value="cod" />

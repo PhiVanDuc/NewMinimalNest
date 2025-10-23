@@ -13,7 +13,11 @@ import { RiCoupon5Fill } from "react-icons/ri";
 
 import { cn } from "@/lib/utils";
 
-export default function PaymentCoupon() {
+interface PropsType {
+    isEdit?: boolean
+}
+
+export default function PaymentCoupon({ isEdit = true }: PropsType) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     return (
@@ -38,13 +42,17 @@ export default function PaymentCoupon() {
                         </div>
                     </div>
 
-                    <Button
-                        className="shrink-0 bg-zinc-100 hover:bg-zinc-200 text-zinc-700"
-                        onClick={() => { setIsOpenDialog(true); }}
-                    >
-                        <IoReloadOutline />
-                        <span className="hidden sm:inline-block">Đổi phiếu giảm giá</span>
-                    </Button>
+                    {
+                        isEdit && (
+                            <Button
+                                className="shrink-0 bg-zinc-100 hover:bg-zinc-200 text-zinc-700"
+                                onClick={() => { setIsOpenDialog(true); }}
+                            >
+                                <IoReloadOutline />
+                                <span className="hidden sm:inline-block">Đổi phiếu giảm giá</span>
+                            </Button>
+                        )
+                    }
                 </div>
             </div>
 

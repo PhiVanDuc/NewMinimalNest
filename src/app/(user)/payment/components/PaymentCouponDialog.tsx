@@ -26,7 +26,7 @@ export default function PaymentCouponDialog({ isOpen, setIsOpen }: PropsType) {
             onOpenChange={setIsOpen}
         >
             <DialogContent
-                className="flex flex-col px-0 max-h-[85dvh] border-zinc-200"
+                className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-200"
             >
                 <DialogHeader className="px-[20px]">
                     <DialogTitle className="text-zinc-700">Chọn phiếu giảm giá</DialogTitle>
@@ -34,7 +34,7 @@ export default function PaymentCouponDialog({ isOpen, setIsOpen }: PropsType) {
                 </DialogHeader>
 
                 <div className="flex-1 px-[20px] space-y-[10px] overflow-y-auto">
-                    <p className="desc-basic">Đủ điều kiện</p>
+                    <p className="desc-basic">Các phiếu giảm giá có thể sử dụng</p>
 
                     <div className="space-y-[10px]">
                         {

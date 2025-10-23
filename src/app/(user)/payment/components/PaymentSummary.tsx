@@ -13,7 +13,7 @@ export default function PaymentSummary() {
     return (
         <div
             className={cn(
-                "shrink-0 w-full rounded-[10px] p-[20px] border border-zinc-300 space-y-[20px] bg-white",
+                "shrink-0 w-full rounded-[10px] p-[20px] border border-zinc-200 space-y-[20px] bg-white",
                 "xl:sticky xl:top-[100px] xl:w-[370px]"
             )}
         >

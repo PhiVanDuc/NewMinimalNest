@@ -1,6 +1,6 @@
 import NavbarMobile from "@/components/layouts/user/NavbarMobile";
 import NavbarDesktop from "@/components/layouts/user/NavbarDesktop";
-import NavbarMobileSidebar from "@/components/layouts/user/NavbarMobileSidebar";
+import NavbarDrawer from "@/components/layouts/user/NavbarDrawer";
 
 export default function Navbar() {
     // Fetch data nếu cần
@@ -9,7 +9,7 @@ export default function Navbar() {
         <>
             <NavbarMobile />
             <NavbarDesktop />
-            <NavbarMobileSidebar />
+            <NavbarDrawer />
         </>
     )
 }

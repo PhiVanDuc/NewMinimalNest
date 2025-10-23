@@ -34,7 +34,7 @@ const navList = [
     }
 ];
 
-export default function NavbarMobileSidebar() {
+export default function NavbarDrawer() {
     const dispatch = useDispatch();
     const cart = useSelector((state: ReduxStateType) => state.cart);
 
@@ -115,6 +115,7 @@ export default function NavbarMobileSidebar() {
                         <Link
                             href="/cart"
                             className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors"
+                            onClick={handleClose}
                         >
                             Giỏ hàng
                         </Link>

@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export default function ProductPrice() {
     return (
         <div className="space-y-[12px]">
-            <div className="flex items-center gap-[15px] px-[15px] py-[5px] w-fit rounded-full border border-zinc-300 bg-zinc-50 text-zinc-700">
+            <div className="flex items-center gap-[15px] px-[15px] py-[5px] w-fit rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700">
                 <FaCircleInfo className="text-[18px]" />
                 <p className="text-[14px] font-medium">Còn hàng</p>
             </div>

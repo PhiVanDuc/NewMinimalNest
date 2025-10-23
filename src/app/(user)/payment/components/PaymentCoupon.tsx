@@ -1,11 +1,21 @@
 "use client"
 
+import { useState } from "react";
+
 import Badge from "@/components/Badge";
 import { Button } from "@/components/ui/button";
 
+import dynamic from "next/dynamic";
+const PaymentCouponDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentCouponDialog"));
+
 import { IoReloadOutline } from "react-icons/io5";
+import { RiCoupon5Fill } from "react-icons/ri";
+
+import { cn } from "@/lib/utils";
 
 export default function PaymentCoupon() {
+    const [isOpenDialog, setIsOpenDialog] = useState(false);
+
     return (
         <div className='space-y-[20px]'>
             <header>
@@ -28,12 +38,37 @@ export default function PaymentCoupon() {
                         </div>
                     </div>
 
-                    <Button className="shrink-0 bg-zinc-100 hover:bg-zinc-200 text-zinc-700">
+                    <Button
+                        className="shrink-0 bg-zinc-100 hover:bg-zinc-200 text-zinc-700"
+                        onClick={() => { setIsOpenDialog(true); }}
+                    >
                         <IoReloadOutline />
-                        <span className="hidden sm:inline-block">Đổi phiếu</span>
+                        <span className="hidden sm:inline-block">Đổi phiếu giảm giá</span>
                     </Button>
                 </div>
             </div>
+
+            {/* <div className="p-[15px] bg-zinc-100 rounded-[10px] space-y-[15px]">
+                <div className="space-y-[2px]">
+                    <p
+                        className={cn(
+                            "text-[14px] font-medium truncate-1",
+                            "sm:text-[15px]"
+                        )}
+                    >
+                        Chưa chọn phiếu giảm giá
+                    </p>
+
+                    <p className="desc-basic">Đừng bỏ lỡ ưu đãi! Chọn ngay phiếu giảm giá để nhận khuyến mãi tốt nhất.</p>
+                </div>
+
+                <Button>
+                    <RiCoupon5Fill />
+                    Chọn phiếu giảm giá
+                </Button>
+            </div> */}
+
+            {isOpenDialog && <PaymentCouponDialog isOpen={isOpenDialog} setIsOpen={setIsOpenDialog} />}
         </div>
     )
 }

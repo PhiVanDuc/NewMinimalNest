@@ -13,7 +13,7 @@ export default function CartSummary() {
     return (
         <div
             className={cn(
-                "shrink-0 w-full rounded-[10px] p-[20px] border border-zinc-300 space-y-[20px] bg-white",
+                "shrink-0 w-full rounded-[10px] p-[20px] border border-zinc-200 space-y-[20px] bg-white",
                 "xl:sticky xl:top-[100px] xl:w-[370px]"
             )}
         >
@@ -73,7 +73,7 @@ export default function CartSummary() {
                 <p className="text-[12px] font-medium text-zinc-600 tracking-wide">Có thể dùng các phiếu giảm giá trong phần nhập thông tin thanh toán.</p>
             </div>
 
-            <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Thanh toán</Button>
+            <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Tạo đơn</Button>
         </div>
     )
 }

@@ -8,8 +8,9 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 const PaymentAddressDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentAddressDialog"), { ssr: false });
 
-import { IoReloadOutline } from "react-icons/io5";
+import { FaBook } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
+import { IoReloadOutline } from "react-icons/io5";
 
 import { cn } from "@/lib/utils";
 
@@ -68,7 +69,10 @@ export default function PaymentAddress() {
                 </div>
 
                 <Button asChild>
-                    <Link href="/profile/book-address">Sổ địa chỉ</Link>
+                    <Link href="/profile/book-address">
+                        <FaBook />
+                        Sổ địa chỉ
+                    </Link>
                 </Button>
             </div> */}
 

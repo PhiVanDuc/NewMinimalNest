@@ -88,7 +88,7 @@ export default function PaymentSummary() {
                 <p className="text-[12px] font-medium text-zinc-600 tracking-wide">Có thể dùng các phiếu giảm giá trong phần nhập thông tin thanh toán.</p>
             </div>
 
-            <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Hoàn tất thanh toán</Button>
+            <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Thanh toán</Button>
         </div>
     )
 }

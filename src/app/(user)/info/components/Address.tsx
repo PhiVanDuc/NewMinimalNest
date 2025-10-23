@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 
-import AddressFormDialog from "@/app/(user)/info/components/AddressFormDialog";
+import dynamic from "next/dynamic";
+const AddressFormDialog = dynamic(() => import("@/app/(user)/info/components/AddressFormDialog"), { ssr: false });
+
 import { Button } from "@/components/ui/button";
 
 import { FiEdit2 } from "react-icons/fi";
@@ -46,11 +48,16 @@ export default function Address() {
                 </Button>
             </div>
 
-            <AddressFormDialog
-                isOpen={isOpenDialog}
-                setIsOpen={setIsOpenDialog}
-                action="edit"
-            />
+            {
+                isOpenDialog &&
+                (
+                    <AddressFormDialog
+                        isOpen={isOpenDialog}
+                        setIsOpen={setIsOpenDialog}
+                        action="edit"
+                    />
+                )
+            }
         </div>
     )
 }

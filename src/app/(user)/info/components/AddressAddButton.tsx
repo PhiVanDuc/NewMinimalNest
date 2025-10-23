@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 
-import AddressFormDialog from "@/app/(user)/info/components/AddressFormDialog";
+import dynamic from "next/dynamic";
+const AddressFormDialog = dynamic(() => import("@/app/(user)/info/components/AddressFormDialog"), { ssr: false });
+
 import { Plus } from "lucide-react";
 
 export default function AddressAddButton() {
@@ -21,11 +23,16 @@ export default function AddressAddButton() {
                 <span className="desc-basic">Thêm địa chỉ</span>
             </button>
 
-            <AddressFormDialog
-                isOpen={isOpenDialog}
-                setIsOpen={setIsOpenDialog}
-                action="add"
-            />
+            {
+                isOpenDialog &&
+                (
+                    <AddressFormDialog
+                        isOpen={isOpenDialog}
+                        setIsOpen={setIsOpenDialog}
+                        action="add"
+                    />
+                )
+            }
         </>
     )
 }

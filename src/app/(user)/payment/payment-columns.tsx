@@ -35,8 +35,7 @@ const paymentColumns: ColumnDef<number>[] = [
                             <p
                                 className={cn(
                                     "text-[14px] text-zinc-700 font-medium capitalize",
-                                    "md:text-[15px]",
-                                    "xl:text-[16px]"
+                                    "md:text-[15px]"
                                 )}
                             >
                                 Bàn làm việc Ikea

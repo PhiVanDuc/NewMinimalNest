@@ -19,9 +19,18 @@ import { FaStar } from "react-icons/fa6";
 
 import { v7 } from "uuid";
 import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import orderReviewSchema from "@/schema/order-review";
+
+interface FormDataType {
+    id: string,
+    rate: number,
+    comment: string
+}
 
 export default function OrderProductReviewForm() {
     const form = useForm({
+        resolver: zodResolver(orderReviewSchema),
         defaultValues: {
             id: v7(),
             rate: 0,
@@ -31,7 +40,9 @@ export default function OrderProductReviewForm() {
 
     const rateWatch = form.watch("rate");
 
-    const handleSubmit = () => { }
+    const handleSubmit = (data: FormDataType) => {
+        console.log(data);
+    }
 
     return (
         <Form {...form}>
@@ -48,31 +59,41 @@ export default function OrderProductReviewForm() {
                         "sm:pl-[40px]"
                     )}
                 >
-                    <div className="space-y-[8px]">
-                        <label className="inline-block text-[14px] font-medium text-zinc-700">Đánh giá</label>
+                    <FormField
+                        control={form.control}
+                        name="rate"
+                        render={() => {
+                            return (
+                                <FormItem>
+                                    <FormLabel className="text-zinc-700">Đánh giá</FormLabel>
 
-                        <div className="flex items-center gap-[8px]">
-                            <ul className='flex items-center gap-[5px] text-[18px] text-amber-500'>
-                                {
-                                    [1, 2, 3, 4, 5].map((star) => {
-                                        return (
-                                            <li key={star}>
-                                                <FaStar
-                                                    onClick={() => form.setValue("rate", star)}
-                                                    className={cn(
-                                                        "transition-colors cursor-pointer",
-                                                        star <= rateWatch ? "text-amber-500" : "text-zinc-300"
-                                                    )}
-                                                />
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
+                                    <div className="flex items-center gap-[8px]">
+                                        <ul className='flex items-center gap-[5px] text-[18px] text-amber-500'>
+                                            {
+                                                [1, 2, 3, 4, 5].map((star) => {
+                                                    return (
+                                                        <li key={star}>
+                                                            <FaStar
+                                                                onClick={() => form.setValue("rate", star, { shouldValidate: true })}
+                                                                className={cn(
+                                                                    "transition-colors cursor-pointer",
+                                                                    star <= rateWatch ? "text-amber-500" : "text-zinc-300"
+                                                                )}
+                                                            />
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
 
-                            <p className="text-[15px] text-zinc-600 font-medium leading-tight">({rateWatch} sao)</p>
-                        </div>
-                    </div>
+                                        <p className="text-[15px] text-zinc-600 font-medium leading-tight">({rateWatch} sao)</p>
+                                    </div>
+
+                                    <FormMessage />
+                                </FormItem>
+                            )
+                        }}
+                    />
 
                     <FormField
                         control={form.control}

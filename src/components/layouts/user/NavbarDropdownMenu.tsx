@@ -9,12 +9,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { FiUser } from "react-icons/fi";
+import { PiMedalFill } from "react-icons/pi";
 import { IoIosLogOut } from "react-icons/io";
 
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 
 import type { ReduxStateType } from "@/store/store";
+import ranks from "@/consts/ranks";
 
 interface PropsType {
     side?: "top" | "right" | "bottom" | "left",
@@ -38,8 +40,21 @@ export default function NavbarDropdownMenu({ side = "bottom", align = "end" }: P
             side={side}
             align={align}
             sideOffset={10}
-            className="border-zinc-200"
+            className="border-zinc-200 text-zinc-800"
         >
+            <DropdownMenuItem
+                className="flex flex-col items-center gap-[10px] px-[20px] cursor-pointer"
+            >
+                <PiMedalFill
+                    className="!size-[20px]"
+                    style={{
+                        color: ranks.kimcuong.color
+                    }}
+                />
+
+                {ranks.kimcuong.name}
+            </DropdownMenuItem>
+
             <DropdownMenuItem
                 className="cursor-pointer"
                 asChild

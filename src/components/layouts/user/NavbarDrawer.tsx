@@ -8,13 +8,19 @@ import Drawer from "@/components/Drawer";
 import DrawerPartTitle from "@/components/DrawerPartTitle";
 import NavbarDropdownMenu from "@/components/layouts/user/NavbarDropdownMenu";
 
+import {
+    DropdownMenu,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+
+import { PiMedalFill } from "react-icons/pi";
 import { TiLocationArrow } from "react-icons/ti";
 
+import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 
 import type { ReduxStateType } from "@/store/store";
-import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const navList = [
     {
@@ -135,12 +141,26 @@ export default function NavbarDrawer() {
 
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <button className="flex items-center gap-[12px] w-full px-[15px] py-[12px] rounded-[10px] bg-zinc-100 cursor-pointer">
+                            <button className="relative flex items-center gap-[12px] w-full px-[15px] py-[12px] pr-[65px] rounded-[10px] bg-zinc-100 cursor-pointer">
                                 <div className="shrink-0 w-[40px] aspect-square rounded-full bg-zinc-300" />
 
-                                <div className="text-start leading-tight space-y-[4px]">
+                                <div className="w-full text-start leading-tight space-y-[4px] overflow-hidden">
                                     <p className="text-[14px] text-zinc-700 font-medium capitalize truncate-1">Tên người dùng</p>
                                     <p className="text-[14px] text-zinc-600 truncate-1">example@gmail.com</p>
+                                </div>
+
+                                <div
+                                    className="absolute top-1/2 -translate-y-1/2 right-[15px] flex items-center justify-center size-[35px] rounded-full bg-white"
+                                    style={{
+                                        border: `2px solid ${ranks.kimcuong.color}`
+                                    }}
+                                >
+                                    <PiMedalFill
+                                        size={18}
+                                        style={{
+                                            color: ranks.kimcuong.color
+                                        }}
+                                    />
                                 </div>
                             </button>
                         </DropdownMenuTrigger>

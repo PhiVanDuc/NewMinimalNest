@@ -1,7 +1,7 @@
 import ProductImage from "@/app/(user)/products/[productId]/components/ProductImage";
 import ProductInfo from "@/app/(user)/products/[productId]/components/ProductInfo";
 import ProductRelated from "@/app/(user)/products/[productId]/components/ProductRelated";
-import ProductComment from "@/app/(user)/products/[productId]/components/ProductComment";
+import ProductReview from "@/app/(user)/products/[productId]/components/ProductReview";
 
 import { cn } from "@/lib/utils";
 
@@ -21,7 +21,7 @@ export default function Page() {
             </div>
 
             <ProductRelated />
-            <ProductComment />
+            <ProductReview />
         </div>
     )
 }

@@ -5,14 +5,14 @@ import { FaStar } from "react-icons/fa6";
 import { cn } from '@/lib/utils';
 import { Button } from "@/components/ui/button";
 
-export default function ProductComment() {
+export default function ProductReview() {
     return (
         <section className='space-y-[40px]'>
             <h2 className="header-basic">
-                Nhận xét
+                Đánh giá
             </h2>
 
-            <div
+            <ul
                 className={cn(
                     "grid grid-cols-1 gap-[20px]",
                     "md:grid-cols-2"
@@ -21,7 +21,7 @@ export default function ProductComment() {
                 {
                     Array.from({ length: 4 }).map((_, index) => {
                         return (
-                            <div
+                            <li
                                 key={index}
                                 className='p-[15px] rounded-[10px] border border-zinc-200'
                             >
@@ -61,11 +61,11 @@ export default function ProductComment() {
                                 </p>
 
                                 <div className="w-[50px] aspect-square rounded-full bg-zinc-300" />
-                            </div>
+                            </li>
                         )
                     })
                 }
-            </div>
+            </ul>
 
             <Button>Xem thêm . . .</Button>
         </section>

@@ -3,9 +3,18 @@
 import Price from "@/components/Price";
 import { cn } from "@/lib/utils";
 
-export default function OrderProduct() {
+interface PropsType {
+    className?: string
+}
+
+export default function OrderProduct({ className = "" }: PropsType) {
     return (
-        <div className="flex items-stretch gap-[15px] p-[15px] rounded-[10px] hover:bg-zinc-100 transition-colors cursor-pointer">
+        <div
+            className={cn(
+                "flex items-stretch gap-[15px] p-[15px] rounded-[10px] hover:bg-zinc-100 transition-colors cursor-pointer",
+                className
+            )}
+        >
             <div
                 className={cn(
                     "shrink-0 size-[60px] rounded-[10px] bg-zinc-300",

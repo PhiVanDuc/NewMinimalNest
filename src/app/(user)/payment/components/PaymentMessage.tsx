@@ -16,7 +16,6 @@ export default function PaymentMessage({ isEdit = true }: PropsType) {
 
             <Textarea
                 placeholder="Gửi lời nhắn của bạn vào đây . . ."
-                className="resize-none shadow-none h-[80px] py-[12px]"
                 disabled={isEdit ? false : true}
             />
         </div>

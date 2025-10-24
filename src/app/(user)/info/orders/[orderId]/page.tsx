@@ -5,6 +5,7 @@ import PaymentTable from "@/app/(user)/payment/components/PaymentTable";
 import PaymentCoupon from "@/app/(user)/payment/components/PaymentCoupon";
 import PaymentMessage from "@/app/(user)/payment/components/PaymentMessage";
 import PaymentMethod from "@/app/(user)/payment/components/PaymentMethod";
+import OrderProductReview from "@/app/(user)/info/orders/[orderId]/components/OrderProductReview";
 import PaymentSummary from "@/app/(user)/payment/components/PaymentSummary";
 
 import { cn } from "@/lib/utils";
@@ -50,6 +51,7 @@ export default function Page() {
                     <PaymentCoupon isEdit={false} />
                     <PaymentMessage isEdit={false} />
                     <PaymentMethod isEdit={false} />
+                    <OrderProductReview />
                 </div>
 
                 <PaymentSummary isEdit={false} />

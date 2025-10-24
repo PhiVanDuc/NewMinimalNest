@@ -29,6 +29,16 @@ export default function InfoOption() {
                         pathname === "/info" ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
                     )}
                 >
+                    Cá nhân
+                </Link>
+
+                <Link
+                    href="/info/book-address"
+                    className={cn(
+                        "px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
+                        pathname.startsWith("/info/book-address") ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
+                    )}
+                >
                     Sổ địa chỉ
                 </Link>
 

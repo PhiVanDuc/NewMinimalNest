@@ -130,7 +130,6 @@ export default function AddressFormDialog({ isOpen, setIsOpen, action }: PropsTy
                                                 <Textarea
                                                     placeholder="Nhập địa chỉ . . ."
                                                     {...field}
-                                                    className="resize-none shadow-none h-[80px] py-[12px]"
                                                 />
                                             </FormControl>
 

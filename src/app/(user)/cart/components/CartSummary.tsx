@@ -1,7 +1,8 @@
 "use client"
 
-import Price from "@/components/Price";
+import { useRouter } from "next/navigation";
 
+import Price from "@/components/Price";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
@@ -10,6 +11,12 @@ import { ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function CartSummary() {
+    const router = useRouter();
+
+    const handleProceedPayment = () => {
+        router.push("/payment");
+    }
+
     return (
         <div
             className={cn(
@@ -73,7 +80,12 @@ export default function CartSummary() {
                 <p className="text-[12px] font-medium text-zinc-600 tracking-wide">Có thể dùng các phiếu giảm giá trong phần nhập thông tin thanh toán.</p>
             </div>
 
-            <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Tạo đơn</Button>
+            <Button
+                className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95"
+                onClick={handleProceedPayment}
+            >
+                Tiến hành thanh toán
+            </Button>
         </div>
     )
 }

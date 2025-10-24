@@ -36,13 +36,13 @@ export default function FeaturedProduct() {
                 </Button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[20px]">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[20px]">
                 {
                     Array.from({ length: 4 }).map((_, index) => {
-                        return <Product key={index} />
+                        return <li key={index}><Product /></li>
                     })
                 }
-            </div>
+            </ul>
         </section>
     )
 }

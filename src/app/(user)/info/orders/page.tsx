@@ -1,6 +1,6 @@
 "use client"
 
-import Order from "@/app/(user)/info/orders/components/Order";
+import Order from "@/app/(user)/info/orders/Order";
 
 export default function Page() {
     return (
@@ -10,11 +10,11 @@ export default function Page() {
                 <p className="desc-basic">Theo dõi và quản lý các đơn hàng của bạn. Sau khi đã đóng gói xong, đơn hàng sẽ không thể huỷ nữa.</p>
             </header>
 
-            <div className="space-y-[30px]">
-                <Order />
-                <Order />
-                <Order />
-            </div>
+            <ul className="space-y-[30px]">
+                <li><Order /></li>
+                <li><Order /></li>
+                <li><Order /></li>
+            </ul>
         </div>
     )
 }

@@ -42,7 +42,12 @@ export default function OrderProductReviewForm() {
             >
                 <OrderProduct className="p-0 hover:bg-transparent cursor-auto" />
 
-                <div className="p-[15px] rounded-[10px] border border-zinc-200 space-y-[20px]">
+                <div
+                    className={cn(
+                        "pl-[20px] space-y-[20px]",
+                        "sm:pl-[40px]"
+                    )}
+                >
                     <div className="space-y-[8px]">
                         <label className="inline-block text-[14px] font-medium text-zinc-700">Đánh giá</label>
 

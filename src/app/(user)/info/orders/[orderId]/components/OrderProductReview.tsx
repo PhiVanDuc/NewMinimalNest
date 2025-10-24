@@ -13,7 +13,7 @@ export default function OrderProductReview() {
             <ul className="space-y-[40px]">
                 {
                     Array.from({ length: 2 }).map((_, index) => {
-                        return <OrderProductReviewForm key={index} />
+                        return <li key={index}><OrderProductReviewForm /></li>
                     })
                 }
             </ul>

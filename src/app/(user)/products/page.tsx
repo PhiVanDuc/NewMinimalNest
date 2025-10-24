@@ -1,4 +1,4 @@
-import Banner from "@/app/(user)/products/components/Banner/Banner";
+import Banner from "@/app/(user)/products/components/Banner/Banner"
 import FilterOpenButton from "@/app/(user)/products/components/Filter/FilterOpenButton";
 import ProductList from "@/app/(user)/products/components/ProductList/ProductList";
 import BreadcrumbCustom from "@/components/BreadcrumbCustom";

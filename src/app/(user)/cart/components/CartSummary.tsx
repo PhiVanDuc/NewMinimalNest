@@ -44,7 +44,7 @@ export default function CartSummary() {
                         "md:flex md:items-center md:justify-between md:space-y-0"
                     )}
                 >
-                    <p>Tổng tiền hàng</p>
+                    <p>Tổng tạm</p>
                     <Price
                         priceClassName={cn(
                             "!text-[14px] font-medium",
@@ -60,7 +60,14 @@ export default function CartSummary() {
                     )}
                 >
                     <p>Phí vận chuyển</p>
-                    <p className="text-darkBold">Miễn phí</p>
+                    <p
+                        className={cn(
+                            "text-[14px] text-zinc-700 font-medium",
+                            "md:text-[15px]"
+                        )}
+                    >
+                        Miễn phí
+                    </p>
                 </div>
             </div>
 
@@ -68,7 +75,7 @@ export default function CartSummary() {
 
             <div className="space-y-[5px]">
                 <div className="md:flex items-center justify-between space-y-[5px] md:space-y-0">
-                    <p className="text-[16px] font-semibold text-darkBold">Tổng tạm</p>
+                    <p className="text-[16px] font-semibold text-darkBold">Tổng giỏ hàng</p>
                     <Price
                         priceClassName={cn(
                             "!text-[14px] font-medium",

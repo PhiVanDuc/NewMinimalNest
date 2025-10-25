@@ -40,8 +40,8 @@ const navList = [
     },
     {
         id: 3,
-        name: "Giới thiệu",
-        href: "/about"
+        name: "Hoàn trả",
+        href: "/return-request"
     }
 ];
 
@@ -114,14 +114,23 @@ export default function NavbarDesktop() {
                     translateDown="translate-x-[-1.5px] translate-y-[-3px]"
                 />
 
-                <Link
-                    href="/"
-                    className="navigate-button-bold flex items-center gap-[10px] px-[20px] py-[9px] text-[14px] text-white font-semibold rounded-full bg-zinc-800 cursor-pointer"
-                >
-                    Trang chủ
+                <div className="flex items-center gap-[10px]">
+                    <Link
+                        href="/"
+                        className="navigate-button-bold flex items-center gap-[10px] px-[20px] py-[9px] text-[14px] text-white font-semibold rounded-full bg-zinc-800 cursor-pointer"
+                    >
+                        Trang chủ
 
-                    <TiLocationArrow size={18} className="translate-y-[-0.5px]" />
-                </Link>
+                        <TiLocationArrow size={18} className="translate-y-[-0.5px]" />
+                    </Link>
+
+                    <Link
+                        href="/admin"
+                        className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-600 hover:text-white font-semibold rounded-full bg-transparent hover:bg-zinc-800 cursor-pointer"
+                    >
+                        Trang quản trị
+                    </Link>
+                </div>
             </div>
 
             <ul className="flex items-center gap-[10px]">

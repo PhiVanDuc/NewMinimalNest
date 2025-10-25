@@ -35,8 +35,8 @@ const navList = [
     },
     {
         id: 3,
-        name: "Giới thiệu",
-        href: "/about"
+        name: "Hoàn trả",
+        href: "/return-request"
     }
 ];
 
@@ -76,14 +76,24 @@ export default function NavbarDrawer() {
                         title="Chung"
                     />
 
-                    <Link
-                        href="/"
-                        className="flex items-center justify-between px-[15px] py-[12px] w-full rounded-[10px] bg-zinc-800 text-[14px] text-white font-medium"
-                        onClick={handleClose}
-                    >
-                        <span>Trang chủ</span>
-                        <TiLocationArrow size={20} className="translate-y-[-0.5px]" />
-                    </Link>
+                    <div className="space-y-[5px]">
+                        <Link
+                            href="/"
+                            className="flex items-center justify-between px-[15px] py-[12px] w-full rounded-[10px] bg-zinc-800 text-[14px] text-white font-medium"
+                            onClick={handleClose}
+                        >
+                            <span>Trang chủ</span>
+                            <TiLocationArrow size={20} className="translate-y-[-0.5px]" />
+                        </Link>
+
+                        <Link
+                            href="/admin"
+                            className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-800 text-[14px] text-zinc-600 hover:text-white font-medium transition-colors"
+                            onClick={handleClose}
+                        >
+                            Trang quản trị
+                        </Link>
+                    </div>
                 </div>
 
                 <div className="space-y-[10px]">

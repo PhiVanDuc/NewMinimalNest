@@ -1,4 +1,4 @@
-"use client"
+"use cient"
 
 import Price from "@/components/Price";
 import OrderProduct from "@/components/OrderProduct";
@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Badge from "@/components/Badge";
 
-export default function Order() {
+export default function ReturnOrder() {
     return (
         <div className="rounded-[10px] border border-zinc-200 overflow-hidden">
             <div className="flex flex-wrap items-start justify-between gap-[10px] p-[15px] border-b border-zinc-200">
@@ -20,7 +20,7 @@ export default function Order() {
                             "md:text-[14px]"
                         )}
                     >
-                        Mã đơn hàng
+                        Mã đơn hoàn trả
                     </p>
 
                     <p
@@ -108,7 +108,7 @@ export default function Order() {
                 </div>
 
                 <div className="md:flex items-center justify-between space-y-[5px] md:space-y-0">
-                    <p className="text-[16px] font-semibold text-darkBold">Tổng hoá đơn</p>
+                    <p className="text-[16px] font-semibold text-darkBold">Tổng đơn hoàn trả</p>
 
                     <Price
                         priceClassName={cn(
@@ -133,7 +133,7 @@ export default function Order() {
                         )}
                         asChild
                     >
-                        <Link href="/info/orders/123">
+                        <Link href="/info/return-orders/123">
                             Chi tiết đơn
                         </Link>
                     </Button>

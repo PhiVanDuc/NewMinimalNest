@@ -2,6 +2,8 @@
 
 import { useForm } from "react-hook-form";
 
+import Header from "@/components/Header";
+
 import {
     Form,
     FormField,
@@ -30,10 +32,10 @@ export default function InfoGeneralForm() {
 
     return (
         <div className="space-y-[25px]">
-            <header>
+            <Header isBreadcrumb={false}>
                 <h1 className="sub-header-basic">Thông tin chung</h1>
                 <p className="desc-basic">Cập nhật thông tin chung của bạn. Tên người dùng có thể thay đổi, nhưng email sẽ được giữ cố định.</p>
-            </header>
+            </Header>
 
             <Form {...form}>
                 <form

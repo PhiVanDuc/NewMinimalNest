@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import ProductImageMore from "@/app/(user)/products/[productId]/components/ProductImageMore";
+import ProductImageMore from "@/app/(user)/products/[slugProduct]/components/ProductImageMore";
 
 import { Button } from "@/components/ui/button";
 import { TbLayoutGridFilled } from "react-icons/tb";

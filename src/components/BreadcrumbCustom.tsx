@@ -16,7 +16,14 @@ import { Fragment } from "react";
 
 const list = {
     "products": "Sản phẩm",
-    "search": "Tìm kiếm"
+    "search": "Tìm kiếm",
+    "cart": "Giỏ hàng",
+    "payment": "Thanh toán",
+    "info": "Thông tin",
+    "book-address": "Sổ địa chỉ",
+    "orders": "Đơn hàng",
+    "return-orders": "Đơn hoàn trả",
+    "return-request": "Hoàn trả"
 }
 
 export default function BreadcrumbCustom() {

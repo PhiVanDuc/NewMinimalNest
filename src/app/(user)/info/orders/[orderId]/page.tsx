@@ -1,5 +1,7 @@
 "use client"
 
+import BreadcrumbCustom from "@/components/BreadcrumbCustom";
+
 import PaymentAddress from "@/app/(user)/payment/components/PaymentAddress";
 import PaymentTable from "@/app/(user)/payment/components/PaymentTable";
 import PaymentCoupon from "@/app/(user)/payment/components/PaymentCoupon";
@@ -18,25 +20,29 @@ export default function Page() {
                 "sm:space-y-[40px]"
             )}
         >
-            <header className="flex items-center gap-[15px]">
-                <p
-                    className={cn(
-                        "hidden text-[16px] font-semibold",
-                        "sm:block",
-                        "md:text-[18px]"
-                    )}
-                >
-                    Minimal Nest
-                </p>
+            <header className="space-y-[40px]">
+                <BreadcrumbCustom />
 
-                <span
-                    className={cn(
-                        "hidden self-stretch my-[4px] w-[3px] rounded-full bg-theme-main",
-                        "sm:block"
-                    )}
-                />
+                <div className="flex items-center gap-[15px]">
+                    <p
+                        className={cn(
+                            "hidden text-[16px] font-semibold",
+                            "sm:block",
+                            "md:text-[18px]"
+                        )}
+                    >
+                        Minimal Nest
+                    </p>
 
-                <h1 className="header-basic">Chi tiết đơn hàng</h1>
+                    <span
+                        className={cn(
+                            "hidden self-stretch my-[4px] w-[3px] rounded-full bg-theme-main",
+                            "sm:block"
+                        )}
+                    />
+
+                    <h1 className="header-basic">Chi tiết đơn hàng</h1>
+                </div>
             </header>
 
             <div

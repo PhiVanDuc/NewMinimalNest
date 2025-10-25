@@ -53,10 +53,10 @@ export default function InfoOption() {
                 </Link>
 
                 <Link
-                    href="/info/returns"
+                    href="/info/return-orders"
                     className={cn(
                         "px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
-                        pathname.startsWith("/info/returns") ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
+                        pathname.startsWith("/info/return-orders") ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
                     )}
                 >
                     Đơn hoàn trả

@@ -42,7 +42,7 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
                         "md:flex md:items-center md:justify-between md:space-y-0"
                     )}
                 >
-                    <p>Tổng tiền hàng</p>
+                    <p>Tổng tạm</p>
                     <Price
                         priceClassName={cn(
                             "!text-[14px] font-medium",
@@ -73,7 +73,14 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
                     )}
                 >
                     <p>Phí vận chuyển</p>
-                    <p className="text-darkBold">Miễn phí</p>
+                    <p
+                        className={cn(
+                            "text-[14px] text-zinc-700 font-medium",
+                            "md:text-[15px]"
+                        )}
+                    >
+                        Miễn phí
+                    </p>
                 </div>
             </div>
 

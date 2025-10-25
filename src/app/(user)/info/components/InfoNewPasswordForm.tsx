@@ -2,6 +2,8 @@
 
 import { useForm } from "react-hook-form";
 
+import Header from "@/components/Header";
+
 import {
     Form,
     FormField,
@@ -30,10 +32,10 @@ export default function InfoNewPasswordForm() {
 
     return (
         <div className="space-y-[25px]">
-            <header>
+            <Header isBreadcrumb={false}>
                 <h2 className="sub-header-basic">Mật khẩu</h2>
                 <p className="desc-basic">Thay đổi mật khẩu để giữ an toàn cho tài khoản của bạn.</p>
-            </header>
+            </Header>
 
             <Form {...form}>
                 <form

@@ -1,7 +1,6 @@
-import FilterOpenButton from "../components/Filter/FilterOpenButton";
-import ProductList from "../components/ProductList/ProductList";
-
-import { cn } from "@/lib/utils";
+import Header from "@/components/Header";
+import ProductList from "@/app/(user)/products/components/ProductList/ProductList";
+import FilterOpenButton from "@/app/(user)/products/components/Filter/FilterOpenButton";
 
 interface PropsType {
     searchParams: Promise<{ page?: string }>
@@ -11,25 +10,10 @@ export default async function Page({ searchParams }: PropsType) {
 
     return (
         <div className="space-y-[50px]">
-            <header className="space-y-[8px]">
-                <h1
-                    className={cn(
-                        "text-[22px] font-semibold",
-                        "md:text-[26px]"
-                    )}
-                >
-                    Tìm Kiếm
-                </h1>
-
-                <p
-                    className={cn(
-                        "text-[14px] text-zinc-600",
-                        "md:text-[16px]"
-                    )}
-                >
-                    Có <span className="text-theme-main font-medium">250</span> sản phẩm được tìm thấy.
-                </p>
-            </header>
+            <Header>
+                <h1 className="header-basic">Tìm Kiếm</h1>
+                <p className="desc-basic">Có <span className="text-theme-main font-medium">250</span> sản phẩm được tìm thấy.</p>
+            </Header>
 
             <div className="space-y-[20px]">
                 <FilterOpenButton />

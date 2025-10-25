@@ -2,7 +2,7 @@ const infoOptionPaths = [
     "/info",
     "/info/book-address",
     "/info/orders",
-    "/info/returns"
+    "/info/return-orders"
 ];
 
 export default infoOptionPaths;

@@ -12,7 +12,7 @@ interface PropsType {
 export default function PaymentMethod({ isEdit = true }: PropsType) {
     return (
         <div className="space-y-[20px]">
-            <h2 className="text-[16px] md:text-[18px] font-semibold">Phương thức thanh toán</h2>
+            <h2 className="sub-header-basic">Phương thức thanh toán</h2>
 
             <RadioGroup
                 className="rounded-[10px] border border-zinc-200"

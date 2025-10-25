@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import OrderProduct from "@/components/OrderProduct";
+import BasicProduct from "@/components/BasicProduct";
 
 import {
     Form,
@@ -51,7 +51,7 @@ export default function OrderProductReviewForm() {
                 onSubmit={form.handleSubmit(handleSubmit)}
                 className="space-y-[20px]"
             >
-                <OrderProduct className="p-0 hover:bg-transparent cursor-auto" />
+                <BasicProduct className="p-0 hover:bg-transparent cursor-auto" />
 
                 <div
                     className={cn(

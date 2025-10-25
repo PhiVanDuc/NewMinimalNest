@@ -33,7 +33,7 @@ export default function InfoGeneralForm() {
     return (
         <div className="space-y-[25px]">
             <Header isBreadcrumb={false}>
-                <h1 className="sub-header-basic">Thông tin chung</h1>
+                <h1 className="header-basic">Thông tin chung</h1>
                 <p className="desc-basic">Cập nhật thông tin chung của bạn. Tên người dùng có thể thay đổi, nhưng email sẽ được giữ cố định.</p>
             </Header>
 

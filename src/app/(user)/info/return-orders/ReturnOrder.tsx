@@ -1,7 +1,7 @@
 "use cient"
 
 import Price from "@/components/Price";
-import OrderProduct from "@/components/OrderProduct";
+import BasicProduct from "@/components/BasicProduct";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -55,8 +55,8 @@ export default function ReturnOrder() {
             </div>
 
             <div className="p-[15px] space-y-[10px] border-b border-zinc-200">
-                <OrderProduct />
-                <OrderProduct />
+                <BasicProduct />
+                <BasicProduct />
             </div>
 
             <div className="p-[15px] space-y-[15px] border-b border-zinc-200">

@@ -18,26 +18,30 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
+import { IoMdImages } from "react-icons/io";
 import { PiTrashSimpleBold } from "react-icons/pi";
 import { FiEdit2, FiMinus, FiPlus } from "react-icons/fi";
 
 import { v7 } from "uuid";
 import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import returnRequestSchema from "@/schema/return-request-schema";
 import positiveIntegerValidator from "@/utils/positive-integer-validator";
 
-interface ReturnProduct {
+interface ReturnProductType {
     id: string,
-    evidenceImages: string[],
+    evidenceImages: (File | string)[],
     returnQuantity: string,
     returnReason: string
 }
 
 interface FormDataType {
-    returnProducts: ReturnProduct[]
+    returnProducts: ReturnProductType[]
 }
 
 export default function Page() {
     const form = useForm<FormDataType>({
+        resolver: zodResolver(returnRequestSchema),
         defaultValues: {
             returnProducts: []
         }
@@ -57,6 +61,16 @@ export default function Page() {
             returnReason: ""
         });
     }
+
+    const handleChooseImages = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        const imgs = event.target.files;
+        if (!imgs) return;
+
+        const current = form.getValues(`returnProducts.${index}.evidenceImages`);
+        const updated = [...current, ...Array.from(imgs)];
+
+        form.setValue(`returnProducts.${index}.evidenceImages`, updated);
+    };
 
     const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const target = e.target;
@@ -164,13 +178,36 @@ export default function Page() {
 
                                                                     <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-[10px]">
                                                                         {
-                                                                            Array.from({ length: 4 }).map((_, index) => {
-                                                                                return <div key={index} className="w-full aspect-square rounded-[10px] bg-zinc-300" />
+                                                                            form.watch(`returnProducts.${index}.evidenceImages`).map((img, i) => {
+                                                                                const src = typeof img === "string" ? img : URL.createObjectURL(img);
+
+                                                                                return (
+                                                                                    <div key={i} className="relative">
+                                                                                        <img
+                                                                                            src={src}
+                                                                                            alt={`evidence-${i}`}
+                                                                                            className="w-full aspect-square object-cover object-center rounded-[10px]"
+                                                                                        />
+                                                                                    </div>
+                                                                                )
                                                                             })
                                                                         }
-                                                                    </div>
 
-                                                                    <FormMessage />
+                                                                        <label
+                                                                            className="group flex flex-col items-center justify-center w-full aspect-square rounded-[10px] bg-transparent hover:bg-zinc-100 border border-zinc-300 transition-colors cursor-pointer"
+                                                                        >
+                                                                            <input
+                                                                                type="file"
+                                                                                multiple
+                                                                                accept="image/*"
+                                                                                hidden
+                                                                                onChange={(e) => { handleChooseImages(e, index) }}
+                                                                            />
+                                                                            <div className="flex items-center justify-center rounded-full size-[50px] bg-zinc-100 group-hover:bg-white text-zinc-600">
+                                                                                <IoMdImages size={30} />
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
                                                                 </FormItem>
                                                             )
                                                         }}
@@ -216,8 +253,6 @@ export default function Page() {
                                                                             <FiPlus className="text-[16px]" />
                                                                         </button>
                                                                     </div>
-
-                                                                    <FormMessage />
                                                                 </FormItem>
                                                             )
                                                         }}
@@ -237,6 +272,8 @@ export default function Page() {
                                                                             {...field}
                                                                         />
                                                                     </FormControl>
+
+                                                                    <FormMessage />
                                                                 </FormItem>
                                                             )
                                                         }}
@@ -244,8 +281,8 @@ export default function Page() {
 
                                                     <Button
                                                         type="button"
+                                                        variant="ghost"
                                                         onClick={() => { handleDeleteReturnProduct(index) }}
-                                                        className="bg-red-600 hover:bg-red-600/95"
                                                     >
                                                         <PiTrashSimpleBold />
                                                         Xoá yêu cầu

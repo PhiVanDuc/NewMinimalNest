@@ -18,10 +18,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
-import { FiMinus, FiPlus } from "react-icons/fi";
+import { PiTrashSimpleBold } from "react-icons/pi";
+import { FiEdit2, FiMinus, FiPlus } from "react-icons/fi";
 
 import { v7 } from "uuid";
 import { cn } from "@/lib/utils";
+import positiveIntegerValidator from "@/utils/positive-integer-validator";
 
 interface ReturnProduct {
     id: string,
@@ -56,6 +58,24 @@ export default function Page() {
         });
     }
 
+    const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        const target = e.target;
+        let value = target.value;
+
+        if (value) {
+            const isValid = positiveIntegerValidator(value);
+
+            if (!isValid) value = "1";
+            else if (Number(value) > 2) value = "2";
+        }
+
+        form.setValue(`returnProducts.${index}.returnQuantity`, value);
+    }
+
+    const handleBlurQuantity = (e: React.FocusEvent<HTMLInputElement>, index: number) => {
+        if (e.target.value === "") form.setValue(`returnProducts.${index}.returnQuantity`, "1");
+    }
+
     const handleDecrease = (returnQuantity: string, index: number) => {
         const num = Number(returnQuantity) - 1;
         form.setValue(`returnProducts.${index}.returnQuantity`, num < 1 ? "1" : String(num));
@@ -64,12 +84,6 @@ export default function Page() {
     const handleIncrease = (returnQuantity: string, index: number) => {
         const num = Number(returnQuantity) + 1;
         form.setValue(`returnProducts.${index}.returnQuantity`, num > 2 ? "2" : String(num));
-    }
-
-    const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
-    }
-
-    const handleBlurQuantity = (e: React.FocusEvent<HTMLInputElement>) => {
     }
 
     const handleDeleteReturnProduct = (index: number) => {
@@ -82,11 +96,11 @@ export default function Page() {
         <div className="space-y-[40px]">
             <Header>
                 <h1 className="header-basic">Tạo đơn hoàn trả</h1>
-                <p className="desc-basic">Chọn sản phẩm bạn muốn hoàn trả và gửi yêu cầu.</p>
+                <p className="desc-basic">Chọn các sản phẩm trong đơn hàng mà bạn muốn hoàn trả.</p>
             </Header>
 
             <div className="space-y-[40px]">
-                <ul className="p-[15px] rounded-[10px] space-y-[10px] border border-zinc-200">
+                <ul className="p-[15px] rounded-[10px] space-y-[10px] border border-zinc-300">
                     {
                         Array.from({ length: 2 }).map((_, index) => {
                             return (
@@ -104,7 +118,7 @@ export default function Page() {
 
             <Header isBreadcrumb={false}>
                 <h2 className="sub-header-basic">Lý do hoàn trả</h2>
-                <p className="desc-basic">Kiểm tra lại thông tin, nhập lý do và gửi yêu cầu hoàn trả.</p>
+                <p className="desc-basic">Kiểm tra lại thông tin, cung cấp ảnh, số lượng và lý do hoàn trả.</p>
             </Header>
 
             {
@@ -135,13 +149,11 @@ export default function Page() {
                                         return (
                                             <div
                                                 key={field._id}
-                                                className="rounded-[10px] border border-zinc-200"
+                                                className="space-y-[10px]"
                                             >
-                                                <div className="p-[15px] border-b border-zinc-200">
-                                                    <BasicProduct />
-                                                </div>
+                                                <BasicProduct />
 
-                                                <div className="p-[15px] space-y-[20px]">
+                                                <div className="p-[15px] space-y-[20px] rounded-[10px] border border-zinc-300">
                                                     <FormField
                                                         control={form.control}
                                                         name={`returnProducts.${index}.evidenceImages`}
@@ -176,7 +188,7 @@ export default function Page() {
 
                                                                     <div
                                                                         className={cn(
-                                                                            "flex items-center gap-[10px] w-full p-[3px] rounded-full border border-zinc-200",
+                                                                            "flex items-center gap-[10px] w-full p-[3px] rounded-full border border-zinc-300",
                                                                             "sm:w-fit"
                                                                         )}
                                                                     >
@@ -189,8 +201,8 @@ export default function Page() {
 
                                                                         <Input
                                                                             value={returnQuantity}
-                                                                            onChange={handleChangeQuantity}
-                                                                            onBlur={handleBlurQuantity}
+                                                                            onChange={(e) => { handleChangeQuantity(e, index) }}
+                                                                            onBlur={(e) => { handleBlurQuantity(e, index) }}
                                                                             className={cn(
                                                                                 "w-full h-fit p-0 text-center text-[14px] focus-visible:ring-transparent border-none shadow-none",
                                                                                 "sm:w-[60px]"
@@ -230,18 +242,26 @@ export default function Page() {
                                                         }}
                                                     />
 
-                                                    <div className="flex gap-[5px]">
-                                                        <Button
-                                                            onClick={() => { handleDeleteReturnProduct(index) }}
-                                                        >
-                                                            Xoá yêu cầu
-                                                        </Button>
-                                                    </div>
+                                                    <Button
+                                                        type="button"
+                                                        onClick={() => { handleDeleteReturnProduct(index) }}
+                                                        className="bg-red-600 hover:bg-red-600/95"
+                                                    >
+                                                        <PiTrashSimpleBold />
+                                                        Xoá yêu cầu
+                                                    </Button>
                                                 </div>
                                             </div>
                                         )
                                     })
                                 }
+
+                                <div className="flex justify-end">
+                                    <Button>
+                                        <FiEdit2 />
+                                        Tạo đơn hoàn trả
+                                    </Button>
+                                </div>
                             </form>
                         </Form>
                     )

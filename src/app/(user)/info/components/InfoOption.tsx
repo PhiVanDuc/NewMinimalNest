@@ -12,7 +12,7 @@ export default function InfoOption() {
     return (
         <div
             className={cn(
-                "shrink-0 w-full h-fit p-[20px] rounded-[10px] border border-zinc-200",
+                "shrink-0 w-full h-fit p-[20px] rounded-[10px] border border-zinc-300",
                 "xl:sticky xl:top-[100px] xl:w-[340px]"
             )}
         >

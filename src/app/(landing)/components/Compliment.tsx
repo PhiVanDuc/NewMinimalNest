@@ -75,7 +75,7 @@ export default function Compliment() {
                     </ul>
 
                     <Button
-                        className="px-[20px] py-[25px] gap-[12px] bg-theme-main hover:bg-theme-main/95 cursor-pointer transition-colors"
+                        className="btn-lg bg-theme-main hover:bg-theme-main/95"
                         asChild
                     >
                         <Link href="/products">

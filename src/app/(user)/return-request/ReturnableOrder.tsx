@@ -1,18 +1,17 @@
 "use client"
 
-import Price from "@/components/Price";
+import Link from "next/link";
 import BasicProduct from "@/components/BasicProduct";
 
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { FiEdit2 } from "react-icons/fi";
 
 import { cn } from "@/lib/utils";
-import Badge from "@/components/Badge";
 
 export default function Order() {
     return (
-        <div className="rounded-[10px] border border-zinc-200 overflow-hidden">
-            <div className="flex flex-wrap items-start justify-between gap-[10px] p-[15px] border-b border-zinc-200">
+        <div className="rounded-[10px] border border-zinc-300 overflow-hidden">
+            <div className="flex flex-wrap items-start justify-between gap-[10px] p-[15px] border-b border-zinc-300">
                 <div className="space-y-[2px]">
                     <p
                         className={cn(
@@ -54,7 +53,7 @@ export default function Order() {
                 </div>
             </div>
 
-            <div className="p-[15px] space-y-[10px] border-b border-zinc-200">
+            <div className="p-[15px] space-y-[10px] border-b border-zinc-300">
                 <BasicProduct />
                 <BasicProduct />
             </div>
@@ -67,12 +66,13 @@ export default function Order() {
             >
                 <Button
                     className={cn(
-                        "flex-1 bg-theme-main hover:bg-theme-main/95",
+                        "flex-1",
                         "sm:flex-none"
                     )}
                     asChild
                 >
                     <Link href="/return-request/123">
+                        <FiEdit2 />
                         Tạo đơn hoàn trả
                     </Link>
                 </Button>

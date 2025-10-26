@@ -51,7 +51,7 @@ export default function AddressFormDialog({ isOpen, setIsOpen, action }: PropsTy
             onOpenChange={setIsOpen}
         >
             <DialogContent
-                className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-200"
+                className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-300"
             >
                 <DialogHeader className="px-[20px]">
                     <DialogTitle className="text-zinc-700">
@@ -140,7 +140,7 @@ export default function AddressFormDialog({ isOpen, setIsOpen, action }: PropsTy
                             />
 
                             <Button className="w-full bg-theme-main hover:bg-theme-main/95">
-                                {action === "add" ? "Thêm địa chỉ" : "Chỉnh sửa địa chỉ"}
+                                {action === "add" ? "Thêm địa chỉ" : "Cập nhật địa chỉ"}
                             </Button>
                         </form>
                     </Form>

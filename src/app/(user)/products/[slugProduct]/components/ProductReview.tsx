@@ -1,6 +1,7 @@
 "use client"
 
 import { FaStar } from "react-icons/fa6";
+import { IoIosMore } from "react-icons/io";
 
 import { cn } from '@/lib/utils';
 import { Button } from "@/components/ui/button";
@@ -23,7 +24,7 @@ export default function ProductReview() {
                         return (
                             <li
                                 key={index}
-                                className='p-[15px] rounded-[10px] border border-zinc-200'
+                                className='p-[15px] rounded-[10px] border border-zinc-300'
                             >
                                 <p className='text-[17px] font-medium capitalize mb-[8px]'>Tên người mua</p>
 
@@ -67,7 +68,10 @@ export default function ProductReview() {
                 }
             </ul>
 
-            <Button>Xem thêm . . .</Button>
+            <Button>
+                <IoIosMore />
+                Xem thêm
+            </Button>
         </section>
     )
 }

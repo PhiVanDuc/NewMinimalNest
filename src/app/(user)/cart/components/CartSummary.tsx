@@ -6,6 +6,7 @@ import Price from "@/components/Price";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
+import { MdPayment } from "react-icons/md";
 import { ShoppingCart } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -20,7 +21,7 @@ export default function CartSummary() {
     return (
         <div
             className={cn(
-                "shrink-0 w-full rounded-[10px] p-[20px] border border-zinc-200 space-y-[20px] bg-white",
+                "shrink-0 w-full rounded-[10px] p-[20px] border border-zinc-300 space-y-[20px] bg-white",
                 "xl:sticky xl:top-[100px] xl:w-[370px]"
             )}
         >
@@ -91,6 +92,7 @@ export default function CartSummary() {
                 className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95"
                 onClick={handleProceedPayment}
             >
+                <MdPayment />
                 Tiến hành thanh toán
             </Button>
         </div>

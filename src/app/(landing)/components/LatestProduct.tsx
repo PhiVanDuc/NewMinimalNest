@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Product from "@/components/Product";
 
+import { TbLayoutGridFilled } from "react-icons/tb";
 import { cn } from "@/lib/utils";
 
 export default function LatestProduct() {
@@ -30,6 +31,7 @@ export default function LatestProduct() {
                     asChild
                 >
                     <Link href="/products/search?statuses=moi">
+                        <TbLayoutGridFilled />
                         Xem tất cả sản phẩm
                     </Link>
                 </Button>

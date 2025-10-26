@@ -3,18 +3,11 @@
 import Price from "@/components/Price";
 import Badge from "@/components/Badge";
 
-import { FaCircleInfo } from "react-icons/fa6";
-
 import { cn } from "@/lib/utils";
 
 export default function ProductPrice() {
     return (
         <div className="space-y-[12px]">
-            <div className="flex items-center gap-[15px] px-[15px] py-[5px] w-fit rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700">
-                <FaCircleInfo className="text-[18px]" />
-                <p className="text-[14px] font-medium">Còn hàng</p>
-            </div>
-
             <div className="flex items-center justify-between">
                 <div
                     className={cn(
@@ -45,7 +38,7 @@ export default function ProductPrice() {
                 </div>
 
                 <Badge>
-                    - 10%
+                    <p>- 10%</p>
                 </Badge>
             </div>
         </div>

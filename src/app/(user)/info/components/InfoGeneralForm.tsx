@@ -16,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+import { IoReloadOutline } from "react-icons/io5";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import infoGeneralSchema from "@/schema/info-general-schema";
 
@@ -89,7 +91,10 @@ export default function InfoGeneralForm() {
                     />
 
                     <div className="flex justify-end">
-                        <Button className="bg-theme-main hover:bg-theme-main/95">Cập nhật</Button>
+                        <Button className="bg-theme-main hover:bg-theme-main/95">
+                            <IoReloadOutline />
+                            Cập nhật thông tin
+                        </Button>
                     </div>
                 </form>
             </Form>

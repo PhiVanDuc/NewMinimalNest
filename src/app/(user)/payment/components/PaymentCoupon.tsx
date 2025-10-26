@@ -33,7 +33,7 @@ export default function PaymentCoupon({ isEdit = true }: PropsType) {
                 <div className="flex items-start justify-between w-full">
                     <div className="space-y-[12px]">
                         <Badge>
-                            Khách hàng mới
+                            <p>Khách hàng mới</p>
                         </Badge>
 
                         <div>
@@ -49,7 +49,7 @@ export default function PaymentCoupon({ isEdit = true }: PropsType) {
                                 onClick={() => { setIsOpenDialog(true); }}
                             >
                                 <IoReloadOutline />
-                                <span className="hidden sm:inline-block">Đổi phiếu giảm giá</span>
+                                <span className="hidden sm:inline-block">Thay đổi phiếu giảm giá</span>
                             </Button>
                         )
                     }

@@ -242,6 +242,10 @@
     @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
 }
 
+@utility btn-lg {
+    @apply !px-[20px] !py-[25px];
+}
+
 @utility truncate-1 {
     display: -webkit-box;
     -webkit-line-clamp: 1;

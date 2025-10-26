@@ -16,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+import { IoReloadOutline } from "react-icons/io5";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { infoNewPassword } from "@/schema/info-general-schema";
 
@@ -34,7 +36,7 @@ export default function InfoNewPasswordForm() {
         <div className="space-y-[25px]">
             <Header isBreadcrumb={false}>
                 <h2 className="sub-header-basic">Mật khẩu</h2>
-                <p className="desc-basic">Thay đổi mật khẩu để giữ an toàn cho tài khoản của bạn.</p>
+                <p className="desc-basic">Cập nhật mật khẩu để giữ an toàn cho tài khoản của bạn.</p>
             </Header>
 
             <Form {...form}>
@@ -90,7 +92,10 @@ export default function InfoNewPasswordForm() {
                     />
 
                     <div className="flex justify-end">
-                        <Button className="bg-theme-main hover:bg-theme-main/95">Thay đổi</Button>
+                        <Button className="bg-theme-main hover:bg-theme-main/95">
+                            <IoReloadOutline />
+                            Thay đổi mật khẩu
+                        </Button>
                     </div>
                 </form>
             </Form>

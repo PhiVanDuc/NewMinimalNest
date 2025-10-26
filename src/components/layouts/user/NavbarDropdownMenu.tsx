@@ -40,7 +40,7 @@ export default function NavbarDropdownMenu({ side = "bottom", align = "end" }: P
             side={side}
             align={align}
             sideOffset={10}
-            className="border-zinc-200 text-zinc-800"
+            className="border-zinc-300 text-zinc-800"
         >
             <DropdownMenuItem
                 className="flex flex-col items-center gap-[10px] px-[20px] cursor-pointer"

@@ -63,7 +63,7 @@ export default function NavbarDesktop() {
                 const currentScroll = window.scrollY;
 
                 if (navbarRef.current) {
-                    if (currentScroll <= 100 && currentScroll >= 0) {
+                    if (currentScroll <= 50 && currentScroll >= 0) {
                         if (displayStatusRef.current !== "top") {
                             navbarRef.current.classList.add("navbar-desktop-top");
                             navbarRef.current.classList.remove("navbar-desktop-on");

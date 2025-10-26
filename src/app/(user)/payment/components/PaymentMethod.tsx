@@ -15,10 +15,10 @@ export default function PaymentMethod({ isEdit = true }: PropsType) {
             <h2 className="sub-header-basic">Phương thức thanh toán</h2>
 
             <RadioGroup
-                className="rounded-[10px] border border-zinc-200"
+                className="rounded-[10px] border border-zinc-300"
                 disabled={isEdit ? false : true}
             >
-                <label className="border-b border-zinc-200 flex items-center gap-[20px] p-[20px] cursor-pointer">
+                <label className="border-b border-zinc-300 flex items-center gap-[20px] p-[20px] cursor-pointer">
                     <RadioGroupItem value="cod" />
 
                     <div className="flex items-center gap-[10px]">

@@ -26,7 +26,7 @@ export default function PaymentCouponDialog({ isOpen, setIsOpen }: PropsType) {
             onOpenChange={setIsOpen}
         >
             <DialogContent
-                className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-200"
+                className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-300"
             >
                 <DialogHeader className="px-[20px]">
                     <DialogTitle className="text-zinc-700">Chọn phiếu giảm giá</DialogTitle>
@@ -42,7 +42,7 @@ export default function PaymentCouponDialog({ isOpen, setIsOpen }: PropsType) {
                                 return (
                                     <div
                                         key={index}
-                                        className="p-[15px] bg-zinc-50 hover:bg-zinc-100 rounded-[10px] border border-transparent hover:border-zinc-200 transition-colors cursor-pointer"
+                                        className="p-[15px] bg-zinc-50 hover:bg-zinc-100 rounded-[10px] border border-transparent hover:border-zinc-300 transition-colors cursor-pointer"
                                         onClick={() => { setIsOpen(false); }}
                                     >
                                         <div className="space-y-[10px]">
@@ -52,7 +52,7 @@ export default function PaymentCouponDialog({ isOpen, setIsOpen }: PropsType) {
                                                 </p>
 
                                                 <Badge className="sm:!text-[12px]">
-                                                    Khách hàng mới
+                                                    <p>Khách hàng mới</p>
                                                 </Badge>
                                             </div>
 

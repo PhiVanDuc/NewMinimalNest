@@ -39,7 +39,7 @@ export default function ProductImage() {
             />
 
             <Button
-                className="absolute bottom-[15px] right-[15px] flex items-center bg-theme-main hover:bg-theme-main/95 transition-colors cursor-pointer"
+                className="absolute bottom-[15px] right-[15px] flex items-center transition-colors cursor-pointer"
                 onClick={() => { setisOpenDrawer(true) }}
             >
                 <TbLayoutGridFilled className="!size-5 translate-y-[-1px]" />

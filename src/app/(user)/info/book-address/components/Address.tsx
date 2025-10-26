@@ -7,7 +7,7 @@ const AddressFormDialog = dynamic(() => import("@/app/(user)/info/book-address/c
 
 import { Button } from "@/components/ui/button";
 
-import { FiEdit2 } from "react-icons/fi";
+import { IoReloadOutline } from "react-icons/io5";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
 import { cn } from "@/lib/utils";
@@ -16,7 +16,7 @@ export default function Address() {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     return (
-        <div className="flex flex-col gap-[15px] rounded-[10px] border border-zinc-200">
+        <div className="flex flex-col gap-[15px] rounded-[10px] border border-zinc-300">
             <div className="flex-1 space-y-[12px] p-[15px] pb-0">
                 <p
                     className={cn(
@@ -34,17 +34,17 @@ export default function Address() {
             </div>
 
             <div className="flex justify-end gap-[5px] p-[15px] pt-0">
-                <Button className="bg-transparent hover:bg-zinc-100 text-zinc-800">
-                    <PiTrashSimpleBold />
-                    Xoá
-                </Button>
-
                 <Button
                     className="bg-theme-main hover:bg-theme-main/95"
                     onClick={() => { setIsOpenDialog(true); }}
                 >
-                    <FiEdit2 />
-                    Chỉnh sửa
+                    <IoReloadOutline />
+                    Cập nhật địa chỉ
+                </Button>
+
+                <Button className="bg-transparent hover:bg-zinc-100 text-zinc-800">
+                    <PiTrashSimpleBold />
+                    Xoá
                 </Button>
             </div>
 

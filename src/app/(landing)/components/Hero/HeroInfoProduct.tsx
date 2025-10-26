@@ -82,15 +82,12 @@ export default function HeroInfoProduct({ currentProduct }: PropsType) {
                     "lg:flex"
                 )}
             >
-                <Button
-                    className="px-[20px] py-[25px] gap-[12px] bg-theme-main hover:bg-theme-main/95 cursor-pointer transition-colors"
-                    size="lg"
-                >
+                <Button className="btn-lg">
                     <MdOutlineShoppingBag className="!size-5" />
                     Mua ngay
                 </Button>
 
-                <Button className="px-[20px] py-[25px] gap-[12px] cursor-pointer transition-colors">
+                <Button className="btn-lg bg-theme-main hover:bg-theme-main/95">
                     <FiShoppingCart className="!size-5" />
                     Thêm vào giỏ hàng
                 </Button>

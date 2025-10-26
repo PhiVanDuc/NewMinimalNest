@@ -1,18 +1,19 @@
 "use cient"
 
 import Price from "@/components/Price";
+import Badge from "@/components/Badge";
 import BasicProduct from "@/components/BasicProduct";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+import { FaEye } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
-import Badge from "@/components/Badge";
 
 export default function ReturnOrder() {
     return (
-        <div className="rounded-[10px] border border-zinc-200 overflow-hidden">
-            <div className="flex flex-wrap items-start justify-between gap-[10px] p-[15px] border-b border-zinc-200">
+        <div className="rounded-[10px] border border-zinc-300 overflow-hidden">
+            <div className="flex flex-wrap items-start justify-between gap-[10px] p-[15px] border-b border-zinc-300">
                 <div className="space-y-[2px]">
                     <p
                         className={cn(
@@ -54,12 +55,12 @@ export default function ReturnOrder() {
                 </div>
             </div>
 
-            <div className="p-[15px] space-y-[10px] border-b border-zinc-200">
+            <div className="p-[15px] space-y-[10px] border-b border-zinc-300">
                 <BasicProduct />
                 <BasicProduct />
             </div>
 
-            <div className="p-[15px] space-y-[15px] border-b border-zinc-200">
+            <div className="p-[15px] space-y-[15px] border-b border-zinc-300">
                 <div
                     className={cn(
                         "space-y-[5px] text-[14px] text-zinc-700 font-medium",
@@ -134,14 +135,17 @@ export default function ReturnOrder() {
                         asChild
                     >
                         <Link href="/info/return-orders/123">
-                            Chi tiết đơn
+                            <FaEye />
+                            Xem chi tiết
                         </Link>
                     </Button>
 
                     <Button className="shrink-0 bg-transparent hover:bg-zinc-100 text-zinc-800">Huỷ đơn</Button>
                 </div>
 
-                <Badge>Chưa thanh toán</Badge>
+                <Badge>
+                    <p>Chưa thanh toán</p>
+                </Badge>
             </div>
         </div>
     )

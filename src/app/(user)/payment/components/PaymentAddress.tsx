@@ -55,7 +55,7 @@ export default function PaymentAddress({ isEdit = true }: PropsType) {
                                 onClick={() => { setIsOpenDialog(true); }}
                             >
                                 <IoReloadOutline />
-                                <span className="hidden sm:inline-block">Đổi địa chỉ</span>
+                                <span className="hidden sm:inline-block">Thay đổi địa chỉ</span>
                             </Button>
                         )
                     }

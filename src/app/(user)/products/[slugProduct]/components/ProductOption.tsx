@@ -77,7 +77,7 @@ export default function ProductOption() {
 
                 <div
                     className={cn(
-                        "flex items-center gap-[10px] w-full p-[3px] rounded-full border border-zinc-200",
+                        "flex items-center gap-[10px] w-full p-[3px] rounded-full border border-zinc-300",
                         "sm:w-fit"
                     )}
                 >

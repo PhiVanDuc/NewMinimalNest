@@ -2,8 +2,8 @@
 
 import ProductPrice from "@/app/(user)/products/[slugProduct]/components/ProductPrice";
 import ProductHeader from "@/app/(user)/products/[slugProduct]/components/ProductHeader";
-import ProductOption from "@/app/(user)/products/[slugProduct]/components/ProductOption";
-import ProductButtonAction from "@/app/(user)/products/[slugProduct]/components/ProductButtonAction";
+import ProductOptionList from "@/app/(user)/products/[slugProduct]/components/ProductOptionList";
+import ProductActionButtonList from "@/app/(user)/products/[slugProduct]/components/ProductActionButtonList";
 import ProductDetailInfo from "@/app/(user)/products/[slugProduct]/components/ProductDetailInfo";
 
 import { cn } from "@/lib/utils";
@@ -18,8 +18,8 @@ export default function ProductInfo() {
         >
             <ProductHeader />
             <ProductPrice />
-            <ProductOption />
-            <ProductButtonAction />
+            <ProductOptionList />
+            <ProductActionButtonList />
             <ProductDetailInfo />
         </section>
     )

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import BasicProduct from "@/components/BasicProduct";
+import ProductSummary from "@/components/ProductSummary";
 
 import { Button } from "@/components/ui/button";
 import { FiEdit2 } from "react-icons/fi";
@@ -54,8 +54,8 @@ export default function Order() {
             </div>
 
             <div className="p-[15px] space-y-[10px] border-b border-zinc-300">
-                <BasicProduct />
-                <BasicProduct />
+                <ProductSummary />
+                <ProductSummary />
             </div>
 
             <div

@@ -1,7 +1,7 @@
 "use client"
 
 import { useDispatch, useSelector } from "react-redux";
-import DrawerPartTitle from "@/components/DrawerPartTitle";
+import DrawerSectionTitle from "@/components/DrawerSectionTitle";
 
 import {
     Accordion,
@@ -64,7 +64,7 @@ export default function FilterList() {
     return (
         <div className="flex-1 space-y-[25px] px-[20px] overflow-y-auto">
             <label className="block space-y-[10px]">
-                <DrawerPartTitle
+                <DrawerSectionTitle
                     title="Tên sản phẩm"
                 />
 
@@ -77,7 +77,7 @@ export default function FilterList() {
             </label>
 
             <div className="space-y-[10px]">
-                <DrawerPartTitle
+                <DrawerSectionTitle
                     title="Đặc điểm"
                 />
 

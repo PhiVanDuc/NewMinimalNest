@@ -33,7 +33,7 @@ interface PropsType {
     action: "add" | "edit"
 }
 
-export default function AddressFormDialog({ isOpen, setIsOpen, action }: PropsType) {
+export default function AddressDialogAddForm({ isOpen, setIsOpen, action }: PropsType) {
     const form = useForm({
         resolver: zodResolver(addressSchema),
         defaultValues: {

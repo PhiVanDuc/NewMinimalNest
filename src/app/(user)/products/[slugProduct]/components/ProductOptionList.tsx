@@ -7,8 +7,9 @@ import { FiMinus, FiPlus } from "react-icons/fi";
 
 import { cn } from "@/lib/utils";
 import positiveIntegerValidator from "@/utils/positive-integer-validator";
+import Quantity from "@/components/Quantity";
 
-export default function ProductOption() {
+export default function ProductOptionList() {
     const [quantity, setQuantity] = useState("1");
 
     const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,36 +76,13 @@ export default function ProductOption() {
                     Số lượng
                 </p>
 
-                <div
-                    className={cn(
-                        "flex items-center gap-[10px] w-full p-[3px] rounded-full border border-zinc-300",
-                        "sm:w-fit"
-                    )}
-                >
-                    <button
-                        className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
-                        onClick={handleDecrease}
-                    >
-                        <FiMinus className="text-[16px]" />
-                    </button>
-
-                    <Input
-                        value={quantity}
-                        onChange={handleChangeQuantity}
-                        onBlur={handleBlurQuantity}
-                        className={cn(
-                            "w-full h-fit p-0 text-center text-[14px] focus-visible:ring-transparent border-none shadow-none",
-                            "sm:w-[60px]"
-                        )}
-                    />
-
-                    <button
-                        className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
-                        onClick={handleIncrease}
-                    >
-                        <FiPlus className="text-[16px]" />
-                    </button>
-                </div>
+                <Quantity
+                    value={quantity}
+                    handleDecrease={handleDecrease}
+                    handleChangeQuantity={handleChangeQuantity}
+                    handleBlurQuantity={handleBlurQuantity}
+                    handleIncrease={handleIncrease}
+                />
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import ProductList from "@/app/(user)/products/components/ProductList/ProductList";
-import FilterOpenButton from "@/app/(user)/products/components/Filter/FilterOpenButton";
+import FilterButtonOpen from "@/app/(user)/products/components/Filter/FilterButtonOpen";
 
 interface PropsType {
     searchParams: Promise<{ page?: string }>
@@ -16,7 +16,7 @@ export default async function Page({ searchParams }: PropsType) {
             </Header>
 
             <div className="space-y-[20px]">
-                <FilterOpenButton />
+                <FilterButtonOpen />
                 <ProductList searchParams={parseSearchParams} />
             </div>
         </div>

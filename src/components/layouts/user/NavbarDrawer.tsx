@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Logo from "./Logo";
 import Link from "next/link";
 import Drawer from "@/components/Drawer";
-import DrawerPartTitle from "@/components/DrawerPartTitle";
+import DrawerSectionTitle from "@/components/DrawerSectionTitle";
 import NavbarDropdownMenu from "@/components/layouts/user/NavbarDropdownMenu";
 
 import {
@@ -72,7 +72,7 @@ export default function NavbarDrawer() {
 
             <div className="flex-1 space-y-[25px] px-[20px]">
                 <div className="space-y-[10px]">
-                    <DrawerPartTitle
+                    <DrawerSectionTitle
                         title="Chung"
                     />
 
@@ -97,7 +97,7 @@ export default function NavbarDrawer() {
                 </div>
 
                 <div className="space-y-[10px]">
-                    <DrawerPartTitle
+                    <DrawerSectionTitle
                         title="Điều hướng"
                     />
 
@@ -122,7 +122,7 @@ export default function NavbarDrawer() {
             </div>
 
             <div className="space-y-[10px] px-[20px]">
-                <DrawerPartTitle
+                <DrawerSectionTitle
                     title="Người dùng"
                 />
 

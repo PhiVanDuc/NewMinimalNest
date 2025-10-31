@@ -2,7 +2,7 @@
 
 import OrderProductReviewForm from "@/app/(user)/info/orders/[orderId]/components/OrderProductReviewForm";
 
-export default function OrderProductReview() {
+export default function OrderProductReviewList() {
     return (
         <div className='space-y-[20px]'>
             <header>

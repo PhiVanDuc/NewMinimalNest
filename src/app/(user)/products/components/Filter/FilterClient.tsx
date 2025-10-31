@@ -2,7 +2,7 @@
 
 import Drawer from "@/components/Drawer";
 import FilterList from "@/app/(user)/products/components/Filter/FilterList";
-import FilterButtonAction from "@/app/(user)/products/components/Filter/FilterButtonAction";
+import FilterActionButtonList from "@/app/(user)/products/components/Filter/FilterActionButtonList";
 
 import drawerIds from "@/consts/drawer-ids";
 
@@ -13,7 +13,7 @@ export default function FilterClient() {
             className="gap-[25px]"
         >
             <FilterList />
-            <FilterButtonAction />
+            <FilterActionButtonList />
         </Drawer>
     )
 }

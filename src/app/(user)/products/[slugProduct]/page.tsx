@@ -1,8 +1,8 @@
-import BreadcrumbCustom from "@/components/BreadcrumbCustom";
+import CustomBreadcrumb from "@/components/CustomBreadcrumb";
 import ProductInfo from "@/app/(user)/products/[slugProduct]/components/ProductInfo";
 import ProductImage from "@/app/(user)/products/[slugProduct]/components/ProductImage";
-import ProductReview from "@/app/(user)/products/[slugProduct]/components/ProductReview";
-import ProductRelated from "@/app/(user)/products/[slugProduct]/components/ProductRelated";
+import ProductReviewList from "@/app/(user)/products/[slugProduct]/components/ProductReviewList";
+import ProductRelatedList from "@/app/(user)/products/[slugProduct]/components/ProductRelatedList";
 
 import { cn } from "@/lib/utils";
 
@@ -12,7 +12,7 @@ export default function Page() {
     return (
         <div className="space-y-[60px]">
             <div className="space-y-[40px]">
-                <BreadcrumbCustom />
+                <CustomBreadcrumb />
 
                 <div
                     className={cn(
@@ -25,8 +25,8 @@ export default function Page() {
                 </div>
             </div>
 
-            <ProductRelated />
-            <ProductReview />
+            <ProductRelatedList />
+            <ProductReviewList />
         </div>
     )
 }

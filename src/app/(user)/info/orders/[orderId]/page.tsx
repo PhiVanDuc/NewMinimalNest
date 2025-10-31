@@ -1,13 +1,13 @@
 "use client"
 
-import BreadcrumbCustom from "@/components/BreadcrumbCustom";
+import CustomBreadcrumb from "@/components/CustomBreadcrumb";
 
 import PaymentAddress from "@/app/(user)/payment/components/PaymentAddress";
 import PaymentTable from "@/app/(user)/payment/components/PaymentTable";
 import PaymentCoupon from "@/app/(user)/payment/components/PaymentCoupon";
 import PaymentMessage from "@/app/(user)/payment/components/PaymentMessage";
 import PaymentMethod from "@/app/(user)/payment/components/PaymentMethod";
-import OrderProductReview from "@/app/(user)/info/orders/[orderId]/components/OrderProductReview";
+import OrderProductReviewList from "@/app/(user)/info/orders/[orderId]/components/OrderProductReviewList";
 import PaymentSummary from "@/app/(user)/payment/components/PaymentSummary";
 
 import { cn } from "@/lib/utils";
@@ -21,7 +21,7 @@ export default function Page() {
             )}
         >
             <header className="space-y-[40px]">
-                <BreadcrumbCustom />
+                <CustomBreadcrumb />
 
                 <div className="flex items-center gap-[15px]">
                     <p
@@ -57,7 +57,7 @@ export default function Page() {
                     <PaymentCoupon isEdit={false} />
                     <PaymentMessage isEdit={false} />
                     <PaymentMethod isEdit={false} />
-                    <OrderProductReview />
+                    <OrderProductReviewList />
                 </div>
 
                 <PaymentSummary isEdit={false} />

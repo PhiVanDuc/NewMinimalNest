@@ -17,7 +17,7 @@ interface PropsType {
     }
 }
 
-export default function HeroInfoProduct({ currentProduct }: PropsType) {
+export default function HeroProduct({ currentProduct }: PropsType) {
     return (
         <div
             className={cn(

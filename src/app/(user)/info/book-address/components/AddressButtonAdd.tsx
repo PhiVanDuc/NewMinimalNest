@@ -3,11 +3,11 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const AddressFormDialog = dynamic(() => import("@/app/(user)/info/book-address/components/AddressFormDialog"), { ssr: false });
+const AddressDialogAddForm = dynamic(() => import("@/app/(user)/info/book-address/components/AddressDialogAddForm"), { ssr: false });
 
 import { Plus } from "lucide-react";
 
-export default function AddressAddButton() {
+export default function AddressButtonAdd() {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     return (
@@ -26,7 +26,7 @@ export default function AddressAddButton() {
             {
                 isOpenDialog &&
                 (
-                    <AddressFormDialog
+                    <AddressDialogAddForm
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
                         action="add"

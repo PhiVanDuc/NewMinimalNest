@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const AddressFormDialog = dynamic(() => import("@/app/(user)/info/book-address/components/AddressFormDialog"), { ssr: false });
+const AddressFormDialog = dynamic(() => import("@/app/(user)/info/book-address/components/AddressDialogAddForm"), { ssr: false });
 
 import { Button } from "@/components/ui/button";
 

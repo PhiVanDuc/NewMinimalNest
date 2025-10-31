@@ -2,7 +2,7 @@
 
 import Header from "@/components/Header";
 import Address from "@/app/(user)/info/book-address/components/Address";
-import AddressAddButton from "@/app/(user)/info/book-address/components/AddressAddButton";
+import AddressButtonAdd from "@/app/(user)/info/book-address/components/AddressButtonAdd";
 
 export default function Page() {
     return (
@@ -14,7 +14,7 @@ export default function Page() {
 
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-[20px]">
                 <li><Address /></li>
-                <li><AddressAddButton /></li>
+                <li><AddressButtonAdd /></li>
             </ul>
         </div>
     )

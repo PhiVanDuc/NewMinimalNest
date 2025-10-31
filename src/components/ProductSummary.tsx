@@ -7,7 +7,7 @@ interface PropsType {
     className?: string
 }
 
-export default function BasicProduct({ className = "" }: PropsType) {
+export default function ProductSummary({ className = "" }: PropsType) {
     return (
         <div
             className={cn(

@@ -4,14 +4,14 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Search } from "lucide-react";
-import DrawerPartTitle from "@/components/DrawerPartTitle";
+import DrawerSectionTitle from "@/components/DrawerSectionTitle";
 
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 
 import { ReduxStateType } from "@/store/store";
 
-export default function FilterButtonAction() {
+export default function FilterActionButtonList() {
     const router = useRouter();
 
     const dispatch = useDispatch();
@@ -66,7 +66,7 @@ export default function FilterButtonAction() {
 
     return (
         <div className="space-y-[10px] px-[20px]">
-            <DrawerPartTitle
+            <DrawerSectionTitle
                 title="Hành động"
             />
 

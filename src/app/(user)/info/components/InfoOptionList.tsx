@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
-export default function InfoOption() {
+export default function InfoOptionList() {
     const pathname = usePathname();
 
     return (

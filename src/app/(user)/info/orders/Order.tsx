@@ -2,7 +2,7 @@
 
 import Price from "@/components/Price";
 import Badge from "@/components/Badge";
-import BasicProduct from "@/components/BasicProduct";
+import ProductSummary from "@/components/ProductSummary";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -56,8 +56,8 @@ export default function Order() {
             </div>
 
             <div className="p-[15px] space-y-[10px] border-b border-zinc-300">
-                <BasicProduct />
-                <BasicProduct />
+                <ProductSummary />
+                <ProductSummary />
             </div>
 
             <div className="p-[15px] space-y-[15px] border-b border-zinc-300">

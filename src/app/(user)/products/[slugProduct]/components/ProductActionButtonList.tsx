@@ -7,7 +7,7 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 
 import { cn } from "@/lib/utils";
 
-export default function ProductButtonAction() {
+export default function ProductActionButtonList() {
     return (
         <div
             className={cn(

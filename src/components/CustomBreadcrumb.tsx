@@ -26,7 +26,7 @@ const list = {
     "return-request": "Hoàn trả"
 }
 
-export default function BreadcrumbCustom() {
+export default function CustomBreadcrumb() {
     const pathname = usePathname();
     const splitPathname = pathname.split("/").filter(Boolean);
 
@@ -73,6 +73,5 @@ export default function BreadcrumbCustom() {
                 }
             </BreadcrumbList>
         </Breadcrumb>
-
     )
 }

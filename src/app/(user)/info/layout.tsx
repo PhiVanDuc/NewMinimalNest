@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname } from "next/navigation";
-import InfoOption from "@/app/(user)/info/components/InfoOption";
+import InfoOptionList from "@/app/(user)/info/components/InfoOptionList";
 
 import { cn } from "@/lib/utils";
 import infoOptionPaths from "@/consts/info-option-paths";
@@ -22,7 +22,7 @@ export default function Layout({ children }: Readonly<PropsType>) {
                 "xl:flex-row"
             )}
         >
-            {showInfoOption && <InfoOption />}
+            {showInfoOption && <InfoOptionList />}
             {children}
         </div>
     )

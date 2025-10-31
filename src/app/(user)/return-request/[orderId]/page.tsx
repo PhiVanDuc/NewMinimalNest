@@ -3,7 +3,8 @@
 import { useFieldArray, useForm } from "react-hook-form";
 
 import Header from "@/components/Header";
-import BasicProduct from "@/components/BasicProduct";
+import Quantity from "@/components/Quantity";
+import ProductSummary from "@/components/ProductSummary";
 
 import {
     Form,
@@ -14,13 +15,12 @@ import {
     FormMessage
 } from "@/components/ui/form";
 
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 import { IoMdImages } from "react-icons/io";
 import { PiTrashSimpleBold } from "react-icons/pi";
-import { FiEdit2, FiMinus, FiPlus } from "react-icons/fi";
+import { FiEdit2 } from "react-icons/fi";
 
 import { v7 } from "uuid";
 import { cn } from "@/lib/utils";
@@ -70,6 +70,12 @@ export default function Page() {
         const updated = [...current, ...Array.from(imgs)];
 
         form.setValue(`returnProducts.${index}.evidenceImages`, updated);
+    };
+
+    const handleDeleteImage = (productIndex: number, indexeEvidenceImage: number) => {
+        const images = form.getValues(`returnProducts.${productIndex}.evidenceImages`);
+        const updated = images.filter((_, i) => i !== indexeEvidenceImage);
+        form.setValue(`returnProducts.${productIndex}.evidenceImages`, updated);
     };
 
     const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
@@ -122,7 +128,7 @@ export default function Page() {
                                     key={index}
                                     onClick={() => { handleChooseReturnProduct() }}
                                 >
-                                    <BasicProduct />
+                                    <ProductSummary />
                                 </li>
                             )
                         })
@@ -165,7 +171,7 @@ export default function Page() {
                                                 key={field._id}
                                                 className="space-y-[10px]"
                                             >
-                                                <BasicProduct />
+                                                <ProductSummary />
 
                                                 <div className="p-[15px] space-y-[20px] rounded-[10px] border border-zinc-300">
                                                     <FormField
@@ -176,18 +182,29 @@ export default function Page() {
                                                                 <FormItem>
                                                                     <FormLabel>Ảnh bằng chứng</FormLabel>
 
-                                                                    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-[10px]">
+                                                                    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-[10px]">
                                                                         {
-                                                                            form.watch(`returnProducts.${index}.evidenceImages`).map((img, i) => {
+                                                                            form.watch(`returnProducts.${index}.evidenceImages`).map((img, indexeEvidenceImage) => {
                                                                                 const src = typeof img === "string" ? img : URL.createObjectURL(img);
 
                                                                                 return (
-                                                                                    <div key={i} className="relative">
+                                                                                    <div
+                                                                                        key={indexeEvidenceImage}
+                                                                                        className="group relative cursor-pointer"
+                                                                                    >
                                                                                         <img
                                                                                             src={src}
-                                                                                            alt={`evidence-${i}`}
+                                                                                            alt={`evidence-${indexeEvidenceImage}`}
                                                                                             className="w-full aspect-square object-cover object-center rounded-[10px]"
                                                                                         />
+
+                                                                                        <Button
+                                                                                            type="button"
+                                                                                            onClick={() => handleDeleteImage(index, indexeEvidenceImage)}
+                                                                                            className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute top-[5px] right-[5px] transition-all"
+                                                                                        >
+                                                                                            <PiTrashSimpleBold />
+                                                                                        </Button>
                                                                                     </div>
                                                                                 )
                                                                             })
@@ -223,36 +240,13 @@ export default function Page() {
                                                                 <FormItem>
                                                                     <FormLabel>Số lượng</FormLabel>
 
-                                                                    <div
-                                                                        className={cn(
-                                                                            "flex items-center gap-[10px] w-full p-[3px] rounded-full border border-zinc-300",
-                                                                            "sm:w-fit"
-                                                                        )}
-                                                                    >
-                                                                        <button
-                                                                            className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
-                                                                            onClick={() => { handleDecrease(field.returnQuantity, index) }}
-                                                                        >
-                                                                            <FiMinus className="text-[16px]" />
-                                                                        </button>
-
-                                                                        <Input
-                                                                            value={returnQuantity}
-                                                                            onChange={(e) => { handleChangeQuantity(e, index) }}
-                                                                            onBlur={(e) => { handleBlurQuantity(e, index) }}
-                                                                            className={cn(
-                                                                                "w-full h-fit p-0 text-center text-[14px] focus-visible:ring-transparent border-none shadow-none",
-                                                                                "sm:w-[60px]"
-                                                                            )}
-                                                                        />
-
-                                                                        <button
-                                                                            className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
-                                                                            onClick={() => { handleIncrease(field.returnQuantity, index) }}
-                                                                        >
-                                                                            <FiPlus className="text-[16px]" />
-                                                                        </button>
-                                                                    </div>
+                                                                    <Quantity
+                                                                        value={returnQuantity}
+                                                                        handleDecrease={() => handleDecrease(returnQuantity, index)}
+                                                                        handleChangeQuantity={(e) => handleChangeQuantity(e, index)}
+                                                                        handleBlurQuantity={(e) => handleBlurQuantity(e, index)}
+                                                                        handleIncrease={() => handleIncrease(returnQuantity, index)}
+                                                                    />
                                                                 </FormItem>
                                                             )
                                                         }}

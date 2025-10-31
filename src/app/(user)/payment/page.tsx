@@ -1,6 +1,6 @@
 "use client"
 
-import BreadcrumbCustom from "@/components/BreadcrumbCustom";
+import CustomBreadcrumb from "@/components/CustomBreadcrumb";
 
 import PaymentAddress from "@/app/(user)/payment/components/PaymentAddress";
 import PaymentTable from "@/app/(user)/payment/components/PaymentTable";
@@ -20,7 +20,7 @@ export default function Page() {
             )}
         >
             <header className="space-y-[40px]">
-                <BreadcrumbCustom />
+                <CustomBreadcrumb />
 
                 <div className="flex items-center gap-[15px]">
                     <p

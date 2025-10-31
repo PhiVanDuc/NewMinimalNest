@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import Header from "@/components/Header";
 import CouponList from "@/app/(user)/coupons/CouponList";
 
@@ -13,7 +15,7 @@ export default async function Page() {
                 <p className="desc-basic">Khám phá các phiếu giảm giá hiện có và tận dụng ưu đãi từ <span className="font-medium text-theme-main">Minimal Nest</span>.</p>
             </Header>
 
-            <CouponList />
+            <Suspense fallback={null}><CouponList /></Suspense>
         </div>
     )
 }

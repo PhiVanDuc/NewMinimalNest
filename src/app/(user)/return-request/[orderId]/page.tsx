@@ -2,6 +2,7 @@
 
 import { useFieldArray, useForm } from "react-hook-form";
 
+import Image from "next/image";
 import Header from "@/components/Header";
 import Quantity from "@/components/Quantity";
 import ProductSummary from "@/components/ProductSummary";
@@ -192,9 +193,11 @@ export default function Page() {
                                                                                         key={indexeEvidenceImage}
                                                                                         className="group relative cursor-pointer"
                                                                                     >
-                                                                                        <img
+                                                                                        <Image
                                                                                             src={src}
                                                                                             alt={`evidence-${indexeEvidenceImage}`}
+                                                                                            width={800}
+                                                                                            height={800}
                                                                                             className="w-full aspect-square object-cover object-center rounded-[10px]"
                                                                                         />
 

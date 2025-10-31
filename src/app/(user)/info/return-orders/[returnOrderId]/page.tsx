@@ -125,14 +125,10 @@ export default function Page() {
                                                                     <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-[10px]">
                                                                         {
                                                                             form.watch(`returnProducts.${index}.evidenceImages`).map((img, indexeEvidenceImage) => {
-                                                                                const src = typeof img === "string" ? img : URL.createObjectURL(img);
-
                                                                                 return (
-                                                                                    <img
+                                                                                    <div
                                                                                         key={indexeEvidenceImage}
-                                                                                        src={src}
-                                                                                        alt={`evidence-${indexeEvidenceImage}`}
-                                                                                        className="w-full aspect-square object-cover object-center rounded-[10px] cursor-pointer"
+                                                                                        className="w-full aspect-square rounded-[10px] bg-zinc-300 cursor-pointer"
                                                                                     />
                                                                                 )
                                                                             })

@@ -1,8 +1,8 @@
 import CustomBreadcrumb from "@/components/CustomBreadcrumb";
-import ProductInfo from "@/app/(user)/products/[slugProduct]/components/ProductInfo";
-import ProductImage from "@/app/(user)/products/[slugProduct]/components/ProductImage";
-import ProductReviewList from "@/app/(user)/products/[slugProduct]/components/ProductReviewList";
-import ProductRelatedList from "@/app/(user)/products/[slugProduct]/components/ProductRelatedList";
+import ProductInfo from "@/app/(user)/products/[productSlug]/components/ProductInfo";
+import ProductImage from "@/app/(user)/products/[productSlug]/components/ProductImage";
+import ProductReviewList from "@/app/(user)/products/[productSlug]/components/ProductReviewList";
+import ProductRelatedList from "@/app/(user)/products/[productSlug]/components/ProductRelatedList";
 
 import { cn } from "@/lib/utils";
 

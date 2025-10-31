@@ -19,7 +19,7 @@ interface PropsType {
 
 export default function Pagination({ page, totalPage, listRef }: PropsType) {
     const router = useRouter();
-    const [pageValue, setPageValue] = useState(!positiveIntegerValidator(page) ? "1" : page);
+    const [pageValue, setPageValue] = useState(!positiveIntegerValidator(page) || Number(page) > Number(totalPage) ? "1" : page);
 
     const navigatePage = (value: string) => {
         const params = new URLSearchParams(window.location.search);

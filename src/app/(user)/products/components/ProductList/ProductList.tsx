@@ -15,5 +15,7 @@ export default function ProductList({ searchParams }: PropsType) {
 
     // Fetch data nếu cần
 
+    // Xử lý check page < || > totalPage
+
     return <Suspense fallback={null}><ProductListClient /></Suspense>
 }

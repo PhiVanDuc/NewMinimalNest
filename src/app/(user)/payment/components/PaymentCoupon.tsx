@@ -6,7 +6,7 @@ import Badge from "@/components/Badge";
 import { Button } from "@/components/ui/button";
 
 import dynamic from "next/dynamic";
-const PaymentCouponDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentCouponDialog"));
+const PaymentCouponListDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentCouponListDialog"));
 
 import { IoReloadOutline } from "react-icons/io5";
 import { RiCoupon5Fill } from "react-icons/ri";
@@ -32,14 +32,17 @@ export default function PaymentCoupon({ isEdit = true }: PropsType) {
 
                 <div className="flex items-start justify-between w-full">
                     <div className="space-y-[12px]">
-                        <Badge>
-                            <p>Khách hàng mới</p>
-                        </Badge>
+                        <div className="space-y-[2px]">
+                            <p className="text-[14px] text-zinc-700 font-medium capitalize truncate-1">
+                                Tên phiếu giảm giá
+                            </p>
 
-                        <div>
-                            <p className="header-basic text-theme-main">- 10%</p>
-                            <p className="desc-basic truncate-2">Mô tả chi tiết về phiếu giảm giá . . .</p>
+                            <Badge className="sm:!text-[12px]">
+                                <p>Khách hàng mới</p>
+                            </Badge>
                         </div>
+
+                        <p className="header-basic text-theme-main">- 10%</p>
                     </div>
 
                     {
@@ -76,7 +79,7 @@ export default function PaymentCoupon({ isEdit = true }: PropsType) {
                 </Button>
             </div> */}
 
-            {isOpenDialog && <PaymentCouponDialog isOpen={isOpenDialog} setIsOpen={setIsOpenDialog} />}
+            {isOpenDialog && <PaymentCouponListDialog isOpen={isOpenDialog} setIsOpen={setIsOpenDialog} />}
         </div>
     )
 }

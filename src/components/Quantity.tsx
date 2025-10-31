@@ -7,10 +7,11 @@ import { cn } from "@/lib/utils";
 
 interface PropsType {
     value: string,
-    handleDecrease: () => void,
-    handleChangeQuantity: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    handleBlurQuantity: (e: React.FocusEvent<HTMLInputElement>) => void,
-    handleIncrease: () => void
+    handleDecrease?: () => void,
+    handleChangeQuantity?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    handleBlurQuantity?: (e: React.FocusEvent<HTMLInputElement>) => void,
+    handleIncrease?: () => void,
+    disabled?: boolean
 }
 
 export default function Quantity(
@@ -19,7 +20,8 @@ export default function Quantity(
         handleDecrease,
         handleChangeQuantity,
         handleBlurQuantity,
-        handleIncrease
+        handleIncrease,
+        disabled = false
     }: PropsType
 ) {
     return (
@@ -32,7 +34,7 @@ export default function Quantity(
             <button
                 type="button"
                 className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
-                onClick={() => { handleDecrease() }}
+                onClick={() => { if (handleDecrease) handleDecrease() }}
             >
                 <FiMinus className="text-[16px]" />
             </button>
@@ -45,12 +47,13 @@ export default function Quantity(
                     "w-full h-fit p-0 text-center text-[14px] focus-visible:ring-transparent border-none shadow-none",
                     "sm:w-[60px]"
                 )}
+                disabled={disabled}
             />
 
             <button
                 type="button"
                 className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
-                onClick={() => { handleIncrease() }}
+                onClick={() => { if (handleIncrease) handleIncrease() }}
             >
                 <FiPlus className="text-[16px]" />
             </button>

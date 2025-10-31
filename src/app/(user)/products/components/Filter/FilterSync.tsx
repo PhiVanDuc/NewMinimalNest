@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import filterProductSlice from "@/store/slices/filterProduct";
 import { categories, statuses, colors, priceRanges } from "@/consts/filter";
+import positiveIntegerValidator from "@/utils/positive-integer-validator";
 
 import type { itemType, colorType, priceRangeType } from "@/store/slices/filterProduct";
 
@@ -34,18 +35,23 @@ export default function FilterSync() {
     useEffect(() => {
         const tempSlugs:
             {
+                page: string,
                 productName: string,
                 categories: itemType[],
                 statuses: itemType[],
                 colors: colorType[],
                 priceRange: priceRangeType | null
             } = {
+            page: "",
             productName: "",
             categories: [],
             statuses: [],
             colors: [],
             priceRange: null
         }
+
+        const page = searchParams.get("page");
+        if (page && positiveIntegerValidator(page)) tempSlugs.page = page;
 
         const productName = searchParams.get("productName");
         if (productName) {
@@ -70,6 +76,7 @@ export default function FilterSync() {
 
         const params = new URLSearchParams();
 
+        if (tempSlugs.page) params.set("page", tempSlugs.page);
         if (tempSlugs.productName) params.set("productName", tempSlugs.productName);
         if (tempSlugs.categories.length) params.set("categories", tempSlugs.categories.map(category => category.slug).join(","));
         if (tempSlugs.statuses.length) params.set("statuses", tempSlugs.statuses.map(status => status.slug).join(","));

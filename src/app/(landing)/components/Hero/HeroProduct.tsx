@@ -23,7 +23,7 @@ interface PropsType {
 
 export default function HeroProduct({ currentProduct }: PropsType) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
-    const [action, setAction] = useState("buyNow");
+    const [action, setAction] = useState<"buyNow" | "addToCart">("buyNow");
 
     const handleOpenDialog = (action: "buyNow" | "addToCart") => {
         setIsOpenDialog(true);

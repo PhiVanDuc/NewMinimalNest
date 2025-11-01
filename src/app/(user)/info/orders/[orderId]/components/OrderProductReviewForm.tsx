@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 
 import { FaStar } from "react-icons/fa6";
+import { FaRegCommentAlt } from "react-icons/fa";
 
 import { v7 } from "uuid";
 import { cn } from "@/lib/utils";
@@ -116,7 +117,10 @@ export default function OrderProductReviewForm() {
                         }}
                     />
 
-                    <Button className="w-full bg-theme-main hover:bg-theme-main/95">Nhận xét</Button>
+                    <Button className="w-full bg-theme-main hover:bg-theme-main/95">
+                        <FaRegCommentAlt />
+                        Nhận xét
+                    </Button>
                 </div>
             </form>
         </Form>

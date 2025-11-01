@@ -98,14 +98,12 @@ export default function ReturnOrder() {
                     )}
                 >
                     <p>Phí vận chuyển</p>
-                    <p
-                        className={cn(
-                            "text-[14px] text-zinc-700 font-medium",
-                            "md:text-[15px]"
+                    <Price
+                        priceClassName={cn(
+                            "!text-[14px] font-medium",
+                            "md:!text-[15px]"
                         )}
-                    >
-                        Miễn phí
-                    </p>
+                    />
                 </div>
 
                 <div className="md:flex items-center justify-between space-y-[5px] md:space-y-0">

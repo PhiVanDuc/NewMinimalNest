@@ -21,47 +21,55 @@ export default function InfoOptionList() {
                 <p className="desc-basic">Lựa chọn các mục dưới để xem thông tin.</p>
             </header>
 
-            <div className="flex flex-col space-y-[5px]">
-                <Link
-                    href="/info"
-                    className={cn(
-                        "px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
-                        pathname === "/info" ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
-                    )}
-                >
-                    Cá nhân
-                </Link>
+            <ul className="flex flex-col space-y-[5px]">
+                <li>
+                    <Link
+                        href="/info"
+                        className={cn(
+                            "block px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
+                            pathname === "/info" ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
+                        )}
+                    >
+                        Cá nhân
+                    </Link>
+                </li>
 
-                <Link
-                    href="/info/book-address"
-                    className={cn(
-                        "px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
-                        pathname.startsWith("/info/book-address") ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
-                    )}
-                >
-                    Sổ địa chỉ
-                </Link>
+                <li>
+                    <Link
+                        href="/info/book-address"
+                        className={cn(
+                            "block px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
+                            pathname.startsWith("/info/book-address") ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
+                        )}
+                    >
+                        Sổ địa chỉ
+                    </Link>
+                </li>
 
-                <Link
-                    href="/info/orders"
-                    className={cn(
-                        "px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
-                        pathname.startsWith("/info/orders") ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
-                    )}
-                >
-                    Đơn hàng
-                </Link>
+                <li>
+                    <Link
+                        href="/info/orders"
+                        className={cn(
+                            "block px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
+                            pathname.startsWith("/info/orders") ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
+                        )}
+                    >
+                        Đơn hàng
+                    </Link>
+                </li>
 
-                <Link
-                    href="/info/return-orders"
-                    className={cn(
-                        "px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
-                        pathname.startsWith("/info/return-orders") ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
-                    )}
-                >
-                    Đơn hoàn trả
-                </Link>
-            </div>
+                <li>
+                    <Link
+                        href="/info/return-orders"
+                        className={cn(
+                            "block px-[15px] py-[12px] rounded-[10px] hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors duration-300",
+                            pathname.startsWith("/info/return-orders") ? "bg-zinc-800 hover:bg-zinc-800/95 text-white" : ""
+                        )}
+                    >
+                        Đơn hoàn trả
+                    </Link>
+                </li>
+            </ul>
         </div>
     )
 }

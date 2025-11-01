@@ -23,6 +23,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { FaPlus } from "react-icons/fa6";
+import { IoReloadOutline } from "react-icons/io5";
 
 import addressSchema from "@/schema/address-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,9 +52,7 @@ export default function AddressDialogAddForm({ isOpen, setIsOpen, action }: Prop
             open={isOpen}
             onOpenChange={setIsOpen}
         >
-            <DialogContent
-                className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-300"
-            >
+            <DialogContent className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-300">
                 <DialogHeader className="px-[20px]">
                     <DialogTitle className="text-zinc-700">
                         {action === "add" ? "Thêm địa chỉ" : "Chỉnh sửa địa chỉ"}
@@ -140,7 +140,21 @@ export default function AddressDialogAddForm({ isOpen, setIsOpen, action }: Prop
                             />
 
                             <Button className="w-full bg-theme-main hover:bg-theme-main/95">
-                                {action === "add" ? "Thêm địa chỉ" : "Cập nhật địa chỉ"}
+                                {
+                                    action === "add" ?
+                                        (
+                                            <>
+                                                <FaPlus />
+                                                Thêm địa chỉ
+                                            </>
+                                        ) :
+                                        (
+                                            <>
+                                                <IoReloadOutline />
+                                                Cập nhật địa chỉ
+                                            </>
+                                        )
+                                }
                             </Button>
                         </form>
                     </Form>

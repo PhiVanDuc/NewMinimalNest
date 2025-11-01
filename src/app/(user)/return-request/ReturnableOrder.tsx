@@ -4,7 +4,7 @@ import Link from "next/link";
 import ProductSummary from "@/components/ProductSummary";
 
 import { Button } from "@/components/ui/button";
-import { FiEdit2 } from "react-icons/fi";
+import { IoIosSend } from "react-icons/io";
 
 import { cn } from "@/lib/utils";
 
@@ -72,8 +72,8 @@ export default function Order() {
                     asChild
                 >
                     <Link href="/return-request/123">
-                        <FiEdit2 />
-                        Tạo đơn hoàn trả
+                        <IoIosSend />
+                        Yêu cầu hoàn trả
                     </Link>
                 </Button>
             </div>

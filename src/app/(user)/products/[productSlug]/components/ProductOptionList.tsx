@@ -1,13 +1,10 @@
 "use client"
 
 import { useState } from "react";
-
-import { Input } from "@/components/ui/input";
-import { FiMinus, FiPlus } from "react-icons/fi";
+import Quantity from "@/components/Quantity";
 
 import { cn } from "@/lib/utils";
 import positiveIntegerValidator from "@/utils/positive-integer-validator";
-import Quantity from "@/components/Quantity";
 
 export default function ProductOptionList() {
     const [quantity, setQuantity] = useState("1");

@@ -10,7 +10,7 @@ export default function Coupon({ isDesc = true }: PropsType) {
     return (
         <div className="relative">
             <span
-                className="absolute bg-orange-800 size-[30px] right-[-8px] top-[35px] cursor-pointer"
+                className="absolute bg-black size-[30px] right-[-8px] top-[35px] cursor-pointer"
                 style={{
                     clipPath: "polygon(0 0, 100% 0, 100% 0, 0% 100%)"
                 }}
@@ -35,7 +35,7 @@ export default function Coupon({ isDesc = true }: PropsType) {
                 </div>
             </div>
 
-            <p className="absolute top-[10px] right-[-8px] px-[8px] py-[4px] bg-orange-600 rounded-tl-full rounded-bl-full text-[12px] text-white font-medium cursor-pointer">+99 phiếu</p>
+            <p className="absolute top-[10px] right-[-8px] px-[8px] py-[4px] bg-zinc-800 rounded-tl-full rounded-bl-full text-[12px] text-white font-medium cursor-pointer">+99 phiếu</p>
         </div>
     )
 }

@@ -6,7 +6,7 @@ import Price from "@/components/Price";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
-import { MdPayment } from "react-icons/md";
+import { IoIosSend } from "react-icons/io";
 import { ShoppingCart } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ interface PropsType {
     isEdit?: boolean
 }
 
-export default function PaymentSummary({ isEdit = true }: PropsType) {
+export default function ReturnRequestSummary({ isEdit = true }: PropsType) {
     return (
         <div
             className={cn(
@@ -31,7 +31,7 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
                             "sm:text-[18px]"
                         )}
                     >
-                        Thông tin thanh toán
+                        Thông tin hoàn trả
                     </h2>
 
                     <ShoppingCart size={20} />
@@ -58,7 +58,7 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
                         "md:flex md:items-center md:justify-between md:space-y-0"
                     )}
                 >
-                    <p>Giảm giá</p>
+                    <p>Giảm giá đã dùng</p>
                     <Price
                         priceClassName={cn(
                             "!text-[14px] font-medium",
@@ -87,7 +87,7 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
 
             <div className="space-y-[5px]">
                 <div className="md:flex items-center justify-between space-y-[5px] md:space-y-0">
-                    <p className="text-[16px] font-semibold text-darkBold">Tổng hoá đơn</p>
+                    <p className="text-[16px] font-semibold text-darkBold">Tổng hoàn trả</p>
                     <Price
                         priceClassName={cn(
                             "!text-[15px] font-semibold",
@@ -103,13 +103,13 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
                 isEdit ?
                     (
                         <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">
-                            <MdPayment />
-                            Thanh toán
+                            <IoIosSend />
+                            Yêu cầu hoàn trả
                         </Button>
                     ) :
                     (
                         <Badge>
-                            <p>Chưa thanh toán</p>
+                            <p>Đang duyệt yêu cầu</p>
                         </Badge>
                     )
             }

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Quantity from "@/components/Quantity";
 import ProductSummary from "@/components/ProductSummary";
+import ReturnRequestSummary from "./ReturnRequestSummary";
 
 import {
     Form,
@@ -163,139 +164,139 @@ export default function Page() {
                             <form
                                 autoComplete="off"
                                 onSubmit={form.handleSubmit(handleSubmit)}
-                                className="space-y-[20px]"
+                                // className="space-y-[20px]"
+                                className={cn(
+                                    "flex flex-col items-start gap-[40px]",
+                                    "xl:flex-row xl:gap-[20px]"
+                                )}
                             >
-                                {
-                                    fieldArray.fields.map((field, index) => {
-                                        return (
-                                            <div
-                                                key={field._id}
-                                                className="space-y-[10px]"
-                                            >
-                                                <ProductSummary />
+                                <div className="space-y-[40px] w-full">
+                                    {
+                                        fieldArray.fields.map((field, index) => {
+                                            return (
+                                                <div
+                                                    key={field._id}
+                                                    className="space-y-[10px]"
+                                                >
+                                                    <ProductSummary />
 
-                                                <div className="p-[15px] space-y-[20px] rounded-[10px] border border-zinc-300">
-                                                    <FormField
-                                                        control={form.control}
-                                                        name={`returnProducts.${index}.evidenceImages`}
-                                                        render={() => {
-                                                            return (
-                                                                <FormItem>
-                                                                    <FormLabel>Ảnh bằng chứng</FormLabel>
+                                                    <div className="p-[15px] space-y-[20px] rounded-[10px] border border-zinc-300">
+                                                        <FormField
+                                                            control={form.control}
+                                                            name={`returnProducts.${index}.evidenceImages`}
+                                                            render={() => {
+                                                                return (
+                                                                    <FormItem>
+                                                                        <FormLabel>Ảnh bằng chứng</FormLabel>
 
-                                                                    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-[10px]">
-                                                                        {
-                                                                            form.watch(`returnProducts.${index}.evidenceImages`).map((img, indexeEvidenceImage) => {
-                                                                                const src = typeof img === "string" ? img : URL.createObjectURL(img);
+                                                                        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-[10px]">
+                                                                            {
+                                                                                form.watch(`returnProducts.${index}.evidenceImages`).map((img, indexeEvidenceImage) => {
+                                                                                    const src = typeof img === "string" ? img : URL.createObjectURL(img);
 
-                                                                                return (
-                                                                                    <div
-                                                                                        key={indexeEvidenceImage}
-                                                                                        className="group relative cursor-pointer"
-                                                                                    >
-                                                                                        <Image
-                                                                                            src={src}
-                                                                                            alt={`evidence-${indexeEvidenceImage}`}
-                                                                                            width={800}
-                                                                                            height={800}
-                                                                                            className="w-full aspect-square object-cover object-center rounded-[10px]"
-                                                                                        />
-
-                                                                                        <Button
-                                                                                            type="button"
-                                                                                            onClick={() => handleDeleteImage(index, indexeEvidenceImage)}
-                                                                                            className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute top-[5px] right-[5px] transition-all"
+                                                                                    return (
+                                                                                        <div
+                                                                                            key={indexeEvidenceImage}
+                                                                                            className="group relative cursor-pointer"
                                                                                         >
-                                                                                            <PiTrashSimpleBold />
-                                                                                        </Button>
-                                                                                    </div>
-                                                                                )
-                                                                            })
-                                                                        }
+                                                                                            <Image
+                                                                                                src={src}
+                                                                                                alt={`evidence-${indexeEvidenceImage}`}
+                                                                                                width={800}
+                                                                                                height={800}
+                                                                                                className="w-full aspect-square object-cover object-center rounded-[10px]"
+                                                                                            />
 
-                                                                        <label
-                                                                            className="group flex flex-col items-center justify-center w-full aspect-square rounded-[10px] bg-transparent hover:bg-zinc-100 border border-zinc-300 transition-colors cursor-pointer"
-                                                                        >
-                                                                            <input
-                                                                                type="file"
-                                                                                multiple
-                                                                                accept="image/*"
-                                                                                hidden
-                                                                                onChange={(e) => { handleChooseImages(e, index) }}
-                                                                            />
-                                                                            <div className="flex items-center justify-center rounded-full size-[50px] bg-zinc-100 group-hover:bg-white text-zinc-600">
-                                                                                <IoMdImages size={30} />
-                                                                            </div>
-                                                                        </label>
-                                                                    </div>
-                                                                </FormItem>
-                                                            )
-                                                        }}
-                                                    />
+                                                                                            <Button
+                                                                                                type="button"
+                                                                                                onClick={() => handleDeleteImage(index, indexeEvidenceImage)}
+                                                                                                className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute top-[5px] right-[5px] transition-all"
+                                                                                            >
+                                                                                                <PiTrashSimpleBold />
+                                                                                            </Button>
+                                                                                        </div>
+                                                                                    )
+                                                                                })
+                                                                            }
 
-                                                    <FormField
-                                                        control={form.control}
-                                                        name={`returnProducts.${index}.returnQuantity`}
-                                                        render={() => {
-                                                            const returnQuantity = form.watch(`returnProducts.${index}.returnQuantity`);
+                                                                            <label
+                                                                                className="group flex flex-col items-center justify-center w-full aspect-square rounded-[10px] bg-transparent hover:bg-zinc-100 border border-zinc-300 transition-colors cursor-pointer"
+                                                                            >
+                                                                                <input
+                                                                                    type="file"
+                                                                                    multiple
+                                                                                    accept="image/*"
+                                                                                    hidden
+                                                                                    onChange={(e) => { handleChooseImages(e, index) }}
+                                                                                />
+                                                                                <div className="flex items-center justify-center rounded-full size-[50px] bg-zinc-100 group-hover:bg-white text-zinc-600">
+                                                                                    <IoMdImages size={30} />
+                                                                                </div>
+                                                                            </label>
+                                                                        </div>
+                                                                    </FormItem>
+                                                                )
+                                                            }}
+                                                        />
 
-                                                            return (
-                                                                <FormItem>
-                                                                    <FormLabel>Số lượng</FormLabel>
+                                                        <FormField
+                                                            control={form.control}
+                                                            name={`returnProducts.${index}.returnQuantity`}
+                                                            render={() => {
+                                                                const returnQuantity = form.watch(`returnProducts.${index}.returnQuantity`);
 
-                                                                    <Quantity
-                                                                        value={returnQuantity}
-                                                                        handleDecrease={() => handleDecrease(returnQuantity, index)}
-                                                                        handleChangeQuantity={(e) => handleChangeQuantity(e, index)}
-                                                                        handleBlurQuantity={(e) => handleBlurQuantity(e, index)}
-                                                                        handleIncrease={() => handleIncrease(returnQuantity, index)}
-                                                                    />
-                                                                </FormItem>
-                                                            )
-                                                        }}
-                                                    />
+                                                                return (
+                                                                    <FormItem>
+                                                                        <FormLabel>Số lượng</FormLabel>
 
-                                                    <FormField
-                                                        control={form.control}
-                                                        name={`returnProducts.${index}.returnReason`}
-                                                        render={({ field }) => {
-                                                            return (
-                                                                <FormItem>
-                                                                    <FormLabel>Lý do</FormLabel>
-
-                                                                    <FormControl>
-                                                                        <Textarea
-                                                                            placeholder="Nhập lý do hoàn trả sản phẩm . . ."
-                                                                            {...field}
+                                                                        <Quantity
+                                                                            value={returnQuantity}
+                                                                            handleDecrease={() => handleDecrease(returnQuantity, index)}
+                                                                            handleChangeQuantity={(e) => handleChangeQuantity(e, index)}
+                                                                            handleBlurQuantity={(e) => handleBlurQuantity(e, index)}
+                                                                            handleIncrease={() => handleIncrease(returnQuantity, index)}
                                                                         />
-                                                                    </FormControl>
+                                                                    </FormItem>
+                                                                )
+                                                            }}
+                                                        />
 
-                                                                    <FormMessage />
-                                                                </FormItem>
-                                                            )
-                                                        }}
-                                                    />
+                                                        <FormField
+                                                            control={form.control}
+                                                            name={`returnProducts.${index}.returnReason`}
+                                                            render={({ field }) => {
+                                                                return (
+                                                                    <FormItem>
+                                                                        <FormLabel>Lý do</FormLabel>
 
-                                                    <Button
-                                                        type="button"
-                                                        variant="ghost"
-                                                        onClick={() => { handleDeleteReturnProduct(index) }}
-                                                    >
-                                                        <PiTrashSimpleBold />
-                                                        Xoá yêu cầu
-                                                    </Button>
+                                                                        <FormControl>
+                                                                            <Textarea
+                                                                                placeholder="Nhập lý do hoàn trả sản phẩm . . ."
+                                                                                {...field}
+                                                                            />
+                                                                        </FormControl>
+
+                                                                        <FormMessage />
+                                                                    </FormItem>
+                                                                )
+                                                            }}
+                                                        />
+
+                                                        <Button
+                                                            type="button"
+                                                            onClick={() => { handleDeleteReturnProduct(index) }}
+                                                        >
+                                                            <PiTrashSimpleBold />
+                                                            Xoá yêu cầu
+                                                        </Button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )
-                                    })
-                                }
-
-                                <div className="flex justify-end">
-                                    <Button>
-                                        <FiEdit2 />
-                                        Tạo đơn hoàn trả
-                                    </Button>
+                                            )
+                                        })
+                                    }
                                 </div>
+
+                                <ReturnRequestSummary />
                             </form>
                         </Form>
                     )

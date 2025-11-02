@@ -15,7 +15,7 @@ export default function Logo({
         )}>
             <div
                 className={cn(
-                    "logo-right aspect-square bg-blue-50",
+                    "logo-right aspect-square bg-white",
                     translateTop
                 )}
                 style={{
@@ -26,7 +26,7 @@ export default function Logo({
 
             <div
                 className={cn(
-                    "logo-left aspect-square bg-blue-50",
+                    "logo-left aspect-square bg-white",
                     translateDown
                 )}
                 style={{

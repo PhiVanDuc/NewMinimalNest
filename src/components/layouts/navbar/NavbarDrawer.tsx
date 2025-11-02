@@ -1,5 +1,6 @@
 "use client"
 
+import { usePathname } from "next/navigation";
 import { useDispatch } from "react-redux";
 
 import Logo from "./Logo";
@@ -7,7 +8,7 @@ import Link from "next/link";
 import Drawer from "@/components/Drawer";
 import DrawerSectionTitle from "@/components/DrawerSectionTitle";
 import NavbarDropdownMenu from "@/components/layouts/navbar/NavbarDropdownMenu";
-import NavbarDrawerCart from "@/components/layouts/navbar/user/NavbarDrawerCart";
+import NavbarUserDrawerCart from "@/components/layouts/navbar/user/NavbarUserDrawerCart";
 
 import {
     DropdownMenu,
@@ -15,28 +16,33 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { PiMedalFill } from "react-icons/pi";
-import { TiLocationArrow } from "react-icons/ti";
 
+import { cn } from "@/lib/utils";
 import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 
 interface PropsType {
-    variant: "user" | "admin",
-    navList: {
+    drawerNavList: {
         id: string,
-        name: string,
-        href: string
+        title: string,
+        list: {
+            id: string,
+            name: string,
+            href: string,
+            icon?: React.ReactNode | undefined
+        }[]
     }[]
 }
 
-export default function NavbarDrawer({ variant, navList }: PropsType) {
+export default function NavbarDrawer({ drawerNavList }: PropsType) {
     const dispatch = useDispatch();
+    const pathname = usePathname();
 
     const handleClose = () => {
         dispatch(
             drawerSlice.actions.close(drawerIds.navbar)
-        )
+        );
     }
 
     return (
@@ -59,64 +65,66 @@ export default function NavbarDrawer({ variant, navList }: PropsType) {
                 </button>
             </div>
 
-            <div className="flex-1 space-y-[25px] px-[20px]">
-                <div className="space-y-[10px]">
-                    <DrawerSectionTitle
-                        title="Chung"
-                    />
+            <div className="flex-1 space-y-[25px] px-[20px] overflow-y-auto">
+                {
+                    drawerNavList.map(group => {
+                        return (
+                            <div
+                                key={group.id}
+                                className="space-y-[10px]"
+                            >
+                                <DrawerSectionTitle
+                                    title={group.title}
+                                />
 
-                    <div className="space-y-[5px]">
-                        <Link
-                            href="/"
-                            className="flex items-center justify-between px-[15px] py-[12px] w-full rounded-[10px] bg-zinc-800 text-[14px] text-white font-medium"
-                            onClick={handleClose}
-                        >
-                            <span>Trang chủ</span>
-                            <TiLocationArrow size={20} className="translate-y-[-0.5px]" />
-                        </Link>
+                                <ul className="space-y-[5px]">
+                                    {
+                                        group.list.map(item => {
+                                            const itemHref = item.href === "/"
+                                                ? "/home"
+                                                : item.href === "/admin"
+                                                    ? "/admin/statistical" :
+                                                    item.href
 
-                        {
-                            variant === "user" &&
-                            (
-                                <Link
-                                    href="/admin"
-                                    className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-800 text-[14px] text-zinc-600 hover:text-white font-medium transition-colors"
-                                    onClick={handleClose}
-                                >
-                                    Trang quản trị
-                                </Link>
-                            )
-                        }
-                    </div>
-                </div>
+                                            const identifyHref = pathname === "/"
+                                                ? "/home"
+                                                : pathname === "/admin"
+                                                    ? "/admin/statistical" :
+                                                    pathname
 
-                <div className="space-y-[10px]">
-                    <DrawerSectionTitle
-                        title="Điều hướng"
-                    />
+                                            if (itemHref === "/cart") {
+                                                return (
+                                                    <NavbarUserDrawerCart
+                                                        key={item.id}
+                                                        itemHref={itemHref}
+                                                        identifyHref={identifyHref}
+                                                        handleClose={handleClose}
+                                                    />
+                                                )
+                                            }
 
-                    <ul className="space-y-[5px]">
-                        {
-                            navList.map(item => {
-                                return (
-                                    <li key={item.id}>
-                                        <Link
-                                            href={item.href}
-                                            className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-800 text-[14px] text-zinc-600 hover:text-white font-medium transition-colors"
-                                            onClick={handleClose}
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                )
-                            })
-                        }
-
-                        {
-                            variant === "user" && <NavbarDrawerCart handleClose={handleClose} />
-                        }
-                    </ul>
-                </div>
+                                            return (
+                                                <li key={item.id}>
+                                                    <Link
+                                                        href={item.href}
+                                                        className={cn(
+                                                            "flex items-center gap-[15px] px-[15px] py-[12px] w-full rounded-[10px] text-[14px] text-zinc-600 font-medium transition-colors",
+                                                            identifyHref.startsWith(itemHref) ? "text-white bg-zinc-800 hover:bg-zinc-800/95" : "text-zinc-600 hover:text-white bg-white hover:bg-zinc-800"
+                                                        )}
+                                                        onClick={handleClose}
+                                                    >
+                                                        {item?.icon && item.icon}
+                                                        {item.name}
+                                                    </Link>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </div>
+                        )
+                    })
+                }
             </div>
 
             <div className="space-y-[10px] px-[20px]">

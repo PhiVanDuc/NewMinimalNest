@@ -1,8 +1,8 @@
-import NavbarDrawer from "../NavbarDrawer";
 import Navbar from "@/components/layouts/navbar/Navbar";
-import NavbarUserClient from "@/components/layouts/navbar//user/NavbarUserClient";
+import NavbarDrawer from "@/components/layouts/navbar/NavbarDrawer";
+import NavbarUserClient from "@/components/layouts/navbar/user/NavbarUserClient";
 
-import { userNavList } from "@/consts/navbar";
+import { userDrawerNavList } from "@/consts/navbar";
 
 export default function NavbarUser() {
     // Fetch data nếu cần
@@ -13,10 +13,7 @@ export default function NavbarUser() {
                 <NavbarUserClient />
             </Navbar>
 
-            <NavbarDrawer
-                variant="user"
-                navList={userNavList}
-            />
+            <NavbarDrawer drawerNavList={userDrawerNavList} />
         </>
     )
 }

@@ -4,20 +4,26 @@ import { useSelector } from "react-redux";
 
 import Link from "next/link";
 
+import { cn } from "@/lib/utils";
 import type { ReduxStateType } from "@/store/store";
 
 interface PropsType {
+    itemHref: string,
+    identifyHref: string,
     handleClose: (e: React.MouseEvent<HTMLElement>) => void
 }
 
-export default function NavbarDrawerCart({ handleClose }: PropsType) {
+export default function NavbarDrawerCart({ itemHref, identifyHref, handleClose }: PropsType) {
     const cart = useSelector((state: ReduxStateType) => state.cart);
 
     return (
-        <div className="relative">
+        <li className="relative">
             <Link
-                href="/cart"
-                className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-800 text-[14px] text-zinc-600 hover:text-white font-medium transition-colors"
+                href={itemHref}
+                className={cn(
+                    "inline-block px-[15px] py-[12px] w-full rounded-[10px] text-[14px] text-zinc-600 font-medium transition-colors",
+                    identifyHref.startsWith(itemHref) ? "text-white bg-zinc-800 hover:bg-zinc-800/95" : "text-zinc-600 hover:text-white bg-white hover:bg-zinc-800"
+                )}
                 onClick={handleClose}
             >
                 Giỏ hàng
@@ -34,6 +40,6 @@ export default function NavbarDrawerCart({ handleClose }: PropsType) {
                     </Link>
                 )
             }
-        </div>
+        </li>
     )
 }

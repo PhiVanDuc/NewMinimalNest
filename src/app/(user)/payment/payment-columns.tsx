@@ -32,12 +32,7 @@ const paymentColumns: ColumnDef<number>[] = [
                                 "md:space-y-[2px]"
                             )}
                         >
-                            <p
-                                className={cn(
-                                    "text-[14px] text-zinc-700 font-medium capitalize",
-                                    "md:text-[15px]"
-                                )}
-                            >
+                            <p className="header-table-row">
                                 Bàn làm việc Ikea
                             </p>
 

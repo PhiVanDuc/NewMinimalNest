@@ -24,7 +24,9 @@ const list = {
     "book-address": "Sổ địa chỉ",
     "orders": "Đơn hàng",
     "return-orders": "Đơn hoàn trả",
-    "return-request": "Hoàn trả"
+    "return-request": "Hoàn trả",
+    "admin": "Trang quản trị",
+    "accounts": "Tài khoản"
 }
 
 export default function CustomBreadcrumb() {

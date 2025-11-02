@@ -69,7 +69,7 @@ export default function Navbar({ children, isScroll = true, className = "" }: Pr
         <nav
             ref={navbarRef}
             className={cn(
-                "navbar-desktop-top fixed top-[15px] left-[15px] right-[15px] px-[25px] py-[15px] flex items-center justify-between rounded-[15px] translate-y-[0%] opacity-100 transition-all duration-500 ease-in-out z-20",
+                "navbar-desktop-top fixed top-[15px] left-[20px] right-[20px] px-[25px] py-[15px] flex items-center justify-between rounded-[15px] translate-y-[0%] opacity-100 transition-all duration-500 ease-in-out z-20",
                 className
             )}
         >

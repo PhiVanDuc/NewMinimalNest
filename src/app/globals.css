@@ -218,6 +218,10 @@
     @apply px-[20px] md:px-[40px] xl:px-[80px] 2xl:px-[160px];
 }
 
+@utility admin-container-horizontal {
+    @apply px-[20px] md:px-[40px] xl:px-[80px];
+}
+
 @utility container-top {
     @apply pt-[100px] md:pt-[120px]
 }
@@ -234,8 +238,20 @@
     @apply text-[18px] font-semibold capitalize md:text-[22px];
 }
 
+@utility header-table-row {
+    @apply text-[14px] md:text-[15px] text-zinc-700 font-medium capitalize
+}
+
+@utility content-table-row {
+    @apply text-[14px] md:text-[15px] text-zinc-700;
+}
+
 @utility desc-basic {
     @apply text-[14px] text-zinc-600 md:text-[15px];
+}
+
+@utility desc-table-row {
+    @apply text-[14px] text-zinc-600 truncate-1;
 }
 
 @utility position-center {

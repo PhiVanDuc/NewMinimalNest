@@ -1,12 +1,13 @@
 "use client"
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Logo from "./Logo";
 import Link from "next/link";
 import Drawer from "@/components/Drawer";
 import DrawerSectionTitle from "@/components/DrawerSectionTitle";
-import NavbarDropdownMenu from "@/components/layouts/user/NavbarDropdownMenu";
+import NavbarDropdownMenu from "@/components/layouts/navbar/NavbarDropdownMenu";
+import NavbarDrawerCart from "@/components/layouts/navbar/user/NavbarDrawerCart";
 
 import {
     DropdownMenu,
@@ -20,29 +21,17 @@ import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 
-import type { ReduxStateType } from "@/store/store";
+interface PropsType {
+    variant: "user" | "admin",
+    navList: {
+        id: string,
+        name: string,
+        href: string
+    }[]
+}
 
-const navList = [
-    {
-        id: 1,
-        name: "Sản phẩm",
-        href: "/products"
-    },
-    {
-        id: 2,
-        name: "Phiếu giảm giá",
-        href: "/coupons"
-    },
-    {
-        id: 3,
-        name: "Hoàn trả",
-        href: "/return-request"
-    }
-];
-
-export default function NavbarDrawer() {
+export default function NavbarDrawer({ variant, navList }: PropsType) {
     const dispatch = useDispatch();
-    const cart = useSelector((state: ReduxStateType) => state.cart);
 
     const handleClose = () => {
         dispatch(
@@ -86,13 +75,18 @@ export default function NavbarDrawer() {
                             <TiLocationArrow size={20} className="translate-y-[-0.5px]" />
                         </Link>
 
-                        <Link
-                            href="/admin"
-                            className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-800 text-[14px] text-zinc-600 hover:text-white font-medium transition-colors"
-                            onClick={handleClose}
-                        >
-                            Trang quản trị
-                        </Link>
+                        {
+                            variant === "user" &&
+                            (
+                                <Link
+                                    href="/admin"
+                                    className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-800 text-[14px] text-zinc-600 hover:text-white font-medium transition-colors"
+                                    onClick={handleClose}
+                                >
+                                    Trang quản trị
+                                </Link>
+                            )
+                        }
                     </div>
                 </div>
 
@@ -117,6 +111,10 @@ export default function NavbarDrawer() {
                                 )
                             })
                         }
+
+                        {
+                            variant === "user" && <NavbarDrawerCart handleClose={handleClose} />
+                        }
                     </ul>
                 </div>
             </div>
@@ -126,58 +124,34 @@ export default function NavbarDrawer() {
                     title="Người dùng"
                 />
 
-                <div className="flex flex-col gap-[5px]">
-                    <div className="relative">
-                        <Link
-                            href="/cart"
-                            className="inline-block px-[15px] py-[12px] w-full rounded-[10px] bg-white hover:bg-zinc-100 text-[14px] text-zinc-600 font-medium transition-colors"
-                            onClick={handleClose}
-                        >
-                            Giỏ hàng
-                        </Link>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <button className="relative flex items-center gap-[12px] w-full px-[15px] py-[12px] pr-[65px] rounded-[10px] bg-zinc-100 cursor-pointer">
+                            <div className="shrink-0 w-[40px] aspect-square rounded-full bg-zinc-300" />
 
-                        {
-                            cart.length > 0 &&
-                            (
-                                <Link
-                                    href="/cart"
-                                    className="absolute inline-block top-1/2 right-[15px] -translate-y-1/2 w-fit px-[8px] py-[4px] bg-orange-700 rounded-full text-[10px] text-white font-medium"
-                                >
-                                    {cart.length > 99 ? "+99" : cart.length}
-                                </Link>
-                            )
-                        }
-                    </div>
+                            <div className="w-full text-start leading-tight space-y-[4px] overflow-hidden">
+                                <p className="text-[14px] text-zinc-700 font-medium capitalize truncate-1">Tên người dùng</p>
+                                <p className="text-[14px] text-zinc-600 truncate-1">example@gmail.com</p>
+                            </div>
 
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <button className="relative flex items-center gap-[12px] w-full px-[15px] py-[12px] pr-[65px] rounded-[10px] bg-zinc-100 cursor-pointer">
-                                <div className="shrink-0 w-[40px] aspect-square rounded-full bg-zinc-300" />
-
-                                <div className="w-full text-start leading-tight space-y-[4px] overflow-hidden">
-                                    <p className="text-[14px] text-zinc-700 font-medium capitalize truncate-1">Tên người dùng</p>
-                                    <p className="text-[14px] text-zinc-600 truncate-1">example@gmail.com</p>
-                                </div>
-
-                                <div
-                                    className="absolute top-1/2 -translate-y-1/2 right-[15px] flex items-center justify-center size-[35px] rounded-full bg-white"
+                            <div
+                                className="absolute top-1/2 -translate-y-1/2 right-[15px] flex items-center justify-center size-[35px] rounded-full bg-white"
+                                style={{
+                                    border: `2px solid ${ranks.kimcuong.color}`
+                                }}
+                            >
+                                <PiMedalFill
+                                    size={18}
                                     style={{
-                                        border: `2px solid ${ranks.kimcuong.color}`
+                                        color: ranks.kimcuong.color
                                     }}
-                                >
-                                    <PiMedalFill
-                                        size={18}
-                                        style={{
-                                            color: ranks.kimcuong.color
-                                        }}
-                                    />
-                                </div>
-                            </button>
-                        </DropdownMenuTrigger>
+                                />
+                            </div>
+                        </button>
+                    </DropdownMenuTrigger>
 
-                        <NavbarDropdownMenu align="start" />
-                    </DropdownMenu>
-                </div>
+                    <NavbarDropdownMenu align="start" />
+                </DropdownMenu>
             </div>
         </Drawer>
     )

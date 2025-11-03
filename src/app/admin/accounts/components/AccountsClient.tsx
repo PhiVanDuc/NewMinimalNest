@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Header from "@/components/Header";
@@ -8,8 +9,14 @@ import Pagination from "@/components/Pagination";
 import AccountsFilter from "@/app/admin/accounts/components/AccountsFilter";
 
 import accountColumns from "@/app/admin/accounts/account-columns";
+
 export default function AccountsClient() {
     const searchParams = useSearchParams();
+
+    const [filters, setFilters] = useState({
+        username: "",
+        rank: ""
+    });
 
     return (
         <div className="space-y-[40px]">
@@ -19,7 +26,11 @@ export default function AccountsClient() {
             </Header>
 
             <div className="space-y-[10px]">
-                <AccountsFilter />
+                <AccountsFilter
+                    filters={filters}
+                    setFilters={setFilters}
+                />
+
                 <DataTable
                     data={[1]}
                     columns={accountColumns}

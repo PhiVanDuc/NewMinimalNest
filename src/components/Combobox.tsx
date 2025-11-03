@@ -33,13 +33,12 @@ interface PropsType {
     emptyPlaceholder?: string,
     optionList: OptionItem[],
     value?: string,
-    onChange?: (v: string) => void
+    onChange?: (value: string) => void
 }
 
 export default function Combobox({
     className,
     buttonPlaceholder,
-    searchPlaceholder,
     emptyPlaceholder,
     optionList,
     value: propValue,

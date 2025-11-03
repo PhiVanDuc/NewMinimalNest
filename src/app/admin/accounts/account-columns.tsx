@@ -1,11 +1,7 @@
 "use client"
 
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import AccountsRoleColumn from "@/app/admin/accounts/components/AccountsRoleColumn";
 
 import { PiMedalFill } from "react-icons/pi";
 import { HiDotsVertical } from "react-icons/hi";
@@ -13,7 +9,6 @@ import { IoReloadOutline } from "react-icons/io5";
 
 import { ColumnDef } from "@tanstack/react-table";
 import ranks from "@/consts/ranks";
-import Link from "next/link";
 
 const headerClassName = "text-[14px] text-zinc-700 font-medium";
 
@@ -36,18 +31,18 @@ const accountsColumns: ColumnDef<number>[] = [
     },
     {
         accessorKey: "rank",
-        header: () => <h3 className={headerClassName}>Loại khách hàng</h3>,
+        header: () => <h3 className={headerClassName}>Thứ hạng</h3>,
         cell: () => {
             return (
                 <div className="flex items-center gap-[10px]">
                     <PiMedalFill
                         size={25}
                         style={{
-                            color: ranks.dong.color
+                            color: ranks["khach-super-vip"].color
                         }}
                     />
 
-                    <p className="content-table-row">{ranks.dong.label}</p>
+                    <p className="content-table-row">{ranks["khach-super-vip"].label}</p>
                 </div>
             )
         }
@@ -57,7 +52,7 @@ const accountsColumns: ColumnDef<number>[] = [
         header: () => <h3 className={headerClassName}>Vai trò</h3>,
         cell: () => {
             return (
-                <p className="content-table-row">Khách hàng</p>
+                <AccountsRoleColumn />
             )
         }
     },
@@ -70,35 +65,35 @@ const accountsColumns: ColumnDef<number>[] = [
             )
         }
     },
-    {
-        accessorKey: "actions",
-        header: () => <h3 className={headerClassName + " text-center"}>Hành động</h3>,
-        cell: () => {
-            return (
-                <div className="flex justify-center">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <button className="size-[35px] flex items-center justify-center rounded-full hover:bg-zinc-200 cursor-pointer">
-                                <HiDotsVertical
-                                    size={18}
-                                    className="text-zinc-700"
-                                />
-                            </button>
-                        </DropdownMenuTrigger>
+    // {
+    //     accessorKey: "actions",
+    //     header: () => <h3 className={headerClassName + " text-center"}>Hành động</h3>,
+    //     cell: () => {
+    //         return (
+    //             <div className="flex justify-center">
+    //                 <DropdownMenu>
+    //                     <DropdownMenuTrigger asChild>
+    //                         <button className="size-[35px] flex items-center justify-center rounded-full hover:bg-zinc-200 cursor-pointer">
+    //                             <HiDotsVertical
+    //                                 size={18}
+    //                                 className="text-zinc-700"
+    //                             />
+    //                         </button>
+    //                     </DropdownMenuTrigger>
 
-                        <DropdownMenuContent>
-                            <DropdownMenuItem asChild>
-                                <Link href="/admin/accounts/account-id">
-                                    <IoReloadOutline />
-                                    Cập nhật
-                                </Link>
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-            )
-        }
-    }
+    //                     <DropdownMenuContent>
+    //                         <DropdownMenuItem asChild>
+    //                             <Link href="/admin/accounts/account-id">
+    //                                 <IoReloadOutline />
+    //                                 Cập nhật
+    //                             </Link>
+    //                         </DropdownMenuItem>
+    //                     </DropdownMenuContent>
+    //                 </DropdownMenu>
+    //             </div>
+    //         )
+    //     }
+    // }
 ];
 
 export default accountsColumns;

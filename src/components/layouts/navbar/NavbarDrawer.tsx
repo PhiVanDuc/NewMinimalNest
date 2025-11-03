@@ -145,13 +145,13 @@ export default function NavbarDrawer({ drawerNavList }: PropsType) {
                             <div
                                 className="absolute top-1/2 -translate-y-1/2 right-[15px] flex items-center justify-center size-[35px] rounded-full bg-white"
                                 style={{
-                                    border: `2px solid ${ranks.kimcuong.color}`
+                                    border: `2px solid ${ranks["khach-super-vip"].color}`
                                 }}
                             >
                                 <PiMedalFill
                                     size={18}
                                     style={{
-                                        color: ranks.kimcuong.color
+                                        color: ranks["khach-super-vip"].color
                                     }}
                                 />
                             </div>

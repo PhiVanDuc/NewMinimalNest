@@ -1,30 +1,64 @@
 "use client"
 
+import type { Dispatch, SetStateAction } from "react";
+
 import Combobox from "@/components/Combobox";
-
 import { Input } from "@/components/ui/input";
-import { SearchIcon } from "lucide-react";
-import { arrayRanks } from "@/consts/ranks";
 
-export default function AccountsFilter() {
+import { SearchIcon } from "lucide-react";
+import ranks from "@/consts/ranks";
+
+type FiltersType = {
+    username: string,
+    rank: string
+}
+
+interface PropsType {
+    filters: FiltersType,
+    setFilters: Dispatch<SetStateAction<FiltersType>>
+}
+
+export default function AccountsFilter({ filters, setFilters }: PropsType) {
+    const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFilters((state) => {
+            return {
+                ...state,
+                username: e.target.value
+            }
+        });
+    }
+
+    const handleChangeRole = (value: string) => {
+        setFilters((state) => {
+            return {
+                ...state,
+                rank: value
+            }
+        });
+    }
+
     return (
         <div className="flex items-center justify-between gap-[10px]">
             <div className="flex gap-[10px]">
                 <Input
+                    value={filters.username}
                     placeholder="Lọc tên người dùng . . ."
                     className="w-[300px]"
+                    onChange={handleChangeUsername}
                 />
 
                 <Combobox
-                    buttonPlaceholder="Lọc vai trò"
-                    searchPlaceholder="Tìm kiếm vai trò . . ."
-                    emptyPlaceholder="Danh sách vai trò rỗng."
-                    optionList={arrayRanks.map(rank => {
+                    buttonPlaceholder="Lọc thứ hạng"
+                    searchPlaceholder="Tìm kiếm thứ hạng . . ."
+                    emptyPlaceholder="Danh sách thứ hạng rỗng."
+                    optionList={Object.values(ranks).map(rank => {
                         return {
                             label: rank.label,
                             value: rank.value
                         }
                     })}
+                    value={filters.rank}
+                    onChange={handleChangeRole}
                 />
             </div>
 

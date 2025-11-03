@@ -48,11 +48,11 @@ export default function NavbarDropdownMenu({ side = "bottom", align = "end" }: P
                 <PiMedalFill
                     className="!size-[20px]"
                     style={{
-                        color: ranks.kimcuong.color
+                        color: ranks["khach-super-vip"].color
                     }}
                 />
 
-                {ranks.kimcuong.label}
+                {ranks["khach-super-vip"].label}
             </DropdownMenuItem>
 
             <DropdownMenuItem

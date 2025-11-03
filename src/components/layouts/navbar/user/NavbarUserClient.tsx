@@ -124,7 +124,7 @@ export default function NavbarUserClient() {
                         <DropdownMenuTrigger
                             className="relative flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors"
                             style={{
-                                outline: `3px solid ${ranks.kimcuong.color}`,
+                                outline: `3px solid ${ranks["khach-super-vip"].color}`,
                                 outlineOffset: "3px"
                             }}
                         >
@@ -134,7 +134,7 @@ export default function NavbarUserClient() {
                                 <PiMedalFill
                                     size={24}
                                     style={{
-                                        color: ranks.kimcuong.color
+                                        color: ranks["khach-super-vip"].color
                                     }}
                                 />
                             </div>

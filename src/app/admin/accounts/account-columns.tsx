@@ -47,7 +47,7 @@ const accountsColumns: ColumnDef<number>[] = [
                         }}
                     />
 
-                    <p className="content-table-row">{ranks.dong.name}</p>
+                    <p className="content-table-row">{ranks.dong.label}</p>
                 </div>
             )
         }

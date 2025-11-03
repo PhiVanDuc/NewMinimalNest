@@ -36,7 +36,7 @@ export default function CustomBreadcrumb() {
     const listBreadcrumb = useMemo(() => {
         return splitPathname.map((item, index) => {
             return {
-                name: list[item as keyof typeof list] || item,
+                label: list[item as keyof typeof list] || item,
                 href: "/" + splitPathname.slice(0, index + 1).join("/")
             }
         })
@@ -60,9 +60,9 @@ export default function CustomBreadcrumb() {
                                 <BreadcrumbItem>
                                     {
                                         isLast ? (
-                                            <BreadcrumbPage className="text-theme-main font-medium">{item.name}</BreadcrumbPage>
+                                            <BreadcrumbPage className="text-theme-main font-medium">{item.label}</BreadcrumbPage>
                                         ) : (
-                                            <BreadcrumbLink href={item.href} className="hover:text-zinc-800">{item.name}</BreadcrumbLink>
+                                            <BreadcrumbLink href={item.href} className="hover:text-zinc-800">{item.label}</BreadcrumbLink>
                                         )
                                     }
                                 </BreadcrumbItem>

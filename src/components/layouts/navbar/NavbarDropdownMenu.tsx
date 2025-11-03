@@ -52,7 +52,7 @@ export default function NavbarDropdownMenu({ side = "bottom", align = "end" }: P
                     }}
                 />
 
-                {ranks.kimcuong.name}
+                {ranks.kimcuong.label}
             </DropdownMenuItem>
 
             <DropdownMenuItem

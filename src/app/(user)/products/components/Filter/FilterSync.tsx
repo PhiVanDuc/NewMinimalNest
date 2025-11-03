@@ -16,7 +16,7 @@ export default function FilterSync() {
 
     const dispatch = useDispatch();
 
-    function setArrayAction<PayloadType extends { slug: string }>(
+    function setArrayAction<PayloadType extends { value: string }>(
         param: string,
         array: PayloadType[],
         action: (payload: PayloadType[]) => { type: string; payload: PayloadType[] }
@@ -25,7 +25,7 @@ export default function FilterSync() {
         let payload: PayloadType[] = [];
 
         if (slugs) {
-            payload = array.filter(item => slugs.includes(item.slug));
+            payload = array.filter(item => slugs.includes(item.value));
             dispatch(action(payload));
         }
 
@@ -63,7 +63,7 @@ export default function FilterSync() {
 
         const priceRangeSlug = searchParams.get("priceRange");
         if (priceRangeSlug) {
-            const payload = priceRanges.find(priceRange => priceRange.slug === priceRangeSlug);
+            const payload = priceRanges.find(priceRange => priceRange.value === priceRangeSlug);
             if (payload) {
                 tempSlugs.priceRange = payload;
                 dispatch(filterProductSlice.actions.setPriceRange(payload));
@@ -78,10 +78,10 @@ export default function FilterSync() {
 
         if (tempSlugs.page) params.set("page", tempSlugs.page);
         if (tempSlugs.productName) params.set("productName", tempSlugs.productName);
-        if (tempSlugs.categories.length) params.set("categories", tempSlugs.categories.map(category => category.slug).join(","));
-        if (tempSlugs.statuses.length) params.set("statuses", tempSlugs.statuses.map(status => status.slug).join(","));
-        if (tempSlugs.colors.length) params.set("colors", tempSlugs.colors.map(color => color.slug).join(","));
-        if (tempSlugs.priceRange && "slug" in tempSlugs.priceRange) params.set("priceRange", tempSlugs.priceRange.slug);
+        if (tempSlugs.categories.length) params.set("categories", tempSlugs.categories.map(category => category.value).join(","));
+        if (tempSlugs.statuses.length) params.set("statuses", tempSlugs.statuses.map(status => status.value).join(","));
+        if (tempSlugs.colors.length) params.set("colors", tempSlugs.colors.map(color => color.value).join(","));
+        if (tempSlugs.priceRange && "slug" in tempSlugs.priceRange) params.set("priceRange", tempSlugs.priceRange.value);
 
         let query = params.toString();
         query = query.replace(/%2C/g, ",");

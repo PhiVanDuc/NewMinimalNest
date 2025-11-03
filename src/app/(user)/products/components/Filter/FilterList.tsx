@@ -94,7 +94,7 @@ export default function FilterList() {
                             <ul className="space-y-[5px]">
                                 {
                                     categories.map(category => {
-                                        const isSelect = filter.categories.find(categoryF => categoryF.slug === category.slug)
+                                        const isSelect = filter.categories.find(categoryF => categoryF.value === category.value)
 
                                         return (
                                             <li key={category.id}>
@@ -110,7 +110,7 @@ export default function FilterList() {
                                                         })
                                                     }}
                                                 >
-                                                    {category.name}
+                                                    {category.label}
                                                 </button>
                                             </li>
                                         )
@@ -128,7 +128,7 @@ export default function FilterList() {
                             <ul className="space-y-[5px]">
                                 {
                                     statuses.map(status => {
-                                        const isSelect = filter.statuses.find(s => s.slug === status.slug);
+                                        const isSelect = filter.statuses.find(s => s.value === status.value);
 
                                         return (
                                             <li key={status.id}>
@@ -144,7 +144,7 @@ export default function FilterList() {
                                                         })
                                                     }}
                                                 >
-                                                    {status.name}
+                                                    {status.label}
                                                 </button>
                                             </li>
                                         )
@@ -162,7 +162,7 @@ export default function FilterList() {
                             <ul className="space-y-[5px]">
                                 {
                                     colors.map(color => {
-                                        const isSelect = filter.colors.find(c => c.slug === color.slug);
+                                        const isSelect = filter.colors.find(c => c.value === color.value);
 
                                         return (
                                             <li key={color.id}>
@@ -186,7 +186,7 @@ export default function FilterList() {
                                                             }}
                                                         />
 
-                                                        <p>{color.name}</p>
+                                                        <p>{color.label}</p>
                                                     </div>
                                                 </button>
                                             </li>
@@ -221,7 +221,7 @@ export default function FilterList() {
                                                         })
                                                     }}
                                                 >
-                                                    {price.name}
+                                                    {price.label}
                                                 </button>
                                             </li>
                                         )

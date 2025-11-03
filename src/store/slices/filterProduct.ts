@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface itemType {
     id: string,
-    name: string,
-    slug: string
+    label: string,
+    value: string
 }
 
 interface colorType extends itemType {
@@ -53,7 +53,7 @@ const filterProductSlice = createSlice({
         },
         toggleCategory: (state, action: PayloadAction<itemType>) => {
             const index = state.categories.findIndex(
-                category => category.slug === action.payload.slug
+                category => category.value === action.payload.value
             );
 
             if (index === -1) state.categories.push(action.payload);
@@ -61,7 +61,7 @@ const filterProductSlice = createSlice({
         },
         toggleStatus: (state, action: PayloadAction<itemType>) => {
             const index = state.statuses.findIndex(
-                status => status.slug === action.payload.slug
+                status => status.value === action.payload.value
             );
 
             if (index === -1) state.statuses.push(action.payload);
@@ -69,7 +69,7 @@ const filterProductSlice = createSlice({
         },
         toggleColor: (state, action: PayloadAction<colorType>) => {
             const index = state.colors.findIndex(
-                color => color.slug === action.payload.slug
+                color => color.value === action.payload.value
             );
 
             if (index === -1) state.colors.push(action.payload);

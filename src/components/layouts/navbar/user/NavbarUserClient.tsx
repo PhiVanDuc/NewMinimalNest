@@ -80,7 +80,7 @@ export default function NavbarUserClient() {
                                     href={item.href}
                                     className="navigate-button px-[20px] py-[9px] text-[14px] text-zinc-600 hover:text-white font-semibold rounded-full bg-transparent hover:bg-zinc-800 cursor-pointer"
                                 >
-                                    {item.name}
+                                    {item.label}
                                 </Link>
                             </li>
                         )
@@ -121,25 +121,23 @@ export default function NavbarUserClient() {
                     "lg:block"
                 )}>
                     <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <button
-                                className="relative flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors"
-                                style={{
-                                    outline: `3px solid ${ranks.kimcuong.color}`,
-                                    outlineOffset: "3px"
-                                }}
-                            >
-                                <FiUser size={20} />
+                        <DropdownMenuTrigger
+                            className="relative flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors"
+                            style={{
+                                outline: `3px solid ${ranks.kimcuong.color}`,
+                                outlineOffset: "3px"
+                            }}
+                        >
+                            <FiUser size={20} />
 
-                                <div className="absolute -bottom-[30px] flex items-center justify-center size-[40px] rounded-full bg-white">
-                                    <PiMedalFill
-                                        size={24}
-                                        style={{
-                                            color: ranks.kimcuong.color
-                                        }}
-                                    />
-                                </div>
-                            </button>
+                            <div className="absolute -bottom-[30px] flex items-center justify-center size-[40px] rounded-full bg-white">
+                                <PiMedalFill
+                                    size={24}
+                                    style={{
+                                        color: ranks.kimcuong.color
+                                    }}
+                                />
+                            </div>
                         </DropdownMenuTrigger>
 
                         <NavbarDropdownMenu />

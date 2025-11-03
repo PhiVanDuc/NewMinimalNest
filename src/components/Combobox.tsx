@@ -1,9 +1,117 @@
 "use client"
 
+import { useState } from "react";
 
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandItem,
+    CommandList
+} from "@/components/ui/command";
 
-export default function Combobox() {
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger
+} from "@/components/ui/popover";
+
+import { Button } from "@/components/ui/button";
+import { LuChevronsUpDown } from "react-icons/lu";
+
+import { cn } from "@/lib/utils";
+
+type OptionItem = {
+    label: string,
+    value: string
+}
+
+interface PropsType {
+    className?: string,
+    buttonPlaceholder?: string,
+    searchPlaceholder?: string,
+    emptyPlaceholder?: string,
+    optionList: OptionItem[],
+    value?: string,
+    onChange?: (v: string) => void
+}
+
+export default function Combobox({
+    className,
+    buttonPlaceholder,
+    searchPlaceholder,
+    emptyPlaceholder,
+    optionList,
+    value: propValue,
+    onChange
+}: PropsType) {
+    const [open, setOpen] = useState(false);
+    const [internalValue, setInternalValue] = useState("");
+
+    const value = propValue || internalValue;
+
+    const handleSelect = (currentValue: string) => {
+        const nextValue = currentValue === value ? "" : currentValue
+
+        if (onChange) onChange(nextValue)
+        else setInternalValue(nextValue)
+
+        setOpen(false)
+    }
+
     return (
-        <div>Combobox</div>
+        <Popover
+            open={open}
+            onOpenChange={setOpen}
+        >
+            <PopoverTrigger asChild>
+                <Button
+                    className={cn(
+                        "gap-[25px] py-[22px] bg-transparent hover:bg-transparent border border-input text-[14px] text-muted-foreground font-normal",
+                        className
+                    )}
+                >
+                    {
+                        value
+                            ? optionList.find(optionItem => optionItem.value === value)?.label
+                            : buttonPlaceholder || "Lựa chọn thông tin"
+                    }
+
+                    <LuChevronsUpDown />
+                </Button>
+            </PopoverTrigger>
+
+            <PopoverContent
+                className="w-[250px]"
+                align="start"
+            >
+                <Command>
+                    <CommandList>
+                        <CommandEmpty>{emptyPlaceholder || "Danh sách lựa chọn rỗng."}</CommandEmpty>
+
+                        {
+                            optionList.length > 0
+                            && (
+                                <CommandGroup>
+                                    {
+                                        optionList.map((optionItem, index) => {
+                                            return (
+                                                <CommandItem
+                                                    key={`${optionItem.value}.${index}`}
+                                                    value={optionItem.value}
+                                                    onSelect={handleSelect}
+                                                >
+                                                    {optionItem.label}
+                                                </CommandItem>
+                                            )
+                                        })
+                                    }
+                                </CommandGroup>
+                            )
+                        }
+                    </CommandList>
+                </Command>
+            </PopoverContent>
+        </Popover>
     )
 }

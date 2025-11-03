@@ -28,7 +28,7 @@ interface PropsType {
         title: string,
         list: {
             id: string,
-            name: string,
+            label: string,
             href: string,
             icon?: React.ReactNode | undefined
         }[]
@@ -114,7 +114,7 @@ export default function NavbarDrawer({ drawerNavList }: PropsType) {
                                                         onClick={handleClose}
                                                     >
                                                         {item?.icon && item.icon}
-                                                        {item.name}
+                                                        {item.label}
                                                     </Link>
                                                 </li>
                                             )

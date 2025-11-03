@@ -1,24 +1,57 @@
 const ranks = {
     moi: {
-        name: "Khách mới",
+        label: "Khách mới",
+        value: "khach-moi",
         color: undefined
     },
     dong: {
-        name: "Khách thường",
+        label: "Khách thường",
+        value: "khach-thuong",
         color: "#CE8946"
     },
     bac: {
-        name: "Khách quen",
+        label: "Khách quen",
+        value: "khach-quen",
         color: "#A9A9A9"
     },
     vang: {
-        name: "Khách VIP",
+        label: "Khách VIP",
+        value: "khach-vip",
         color: "#EFBF04"
     },
     kimcuong: {
-        name: "Khách Super VIP",
+        label: "Khách Super VIP",
+        value: "khach-super-vip",
         color: "#1E90FF"
     }
 }
+
+export const arrayRanks = [
+    {
+        label: "Khách mới",
+        value: "khach-moi",
+        color: undefined
+    },
+    {
+        label: "Khách thường",
+        value: "khach-thuong",
+        color: "#CE8946"
+    },
+    {
+        label: "Khách quen",
+        value: "khach-quen",
+        color: "#A9A9A9"
+    },
+    {
+        label: "Khách VIP",
+        value: "khach-vip",
+        color: "#EFBF04"
+    },
+    {
+        label: "Khách Super VIP",
+        value: "khach-super-vip",
+        color: "#1E90FF"
+    }
+]
 
 export default ranks;

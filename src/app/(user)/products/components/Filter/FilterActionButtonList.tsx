@@ -33,25 +33,25 @@ export default function FilterActionButtonList() {
         if (filter.categories.length > 0) {
             params.set(
                 "categories",
-                filter.categories.map((c) => c.slug).join(",")
+                filter.categories.map((c) => c.value).join(",")
             );
         }
 
         if (filter.statuses.length > 0) {
             params.set(
                 "statuses",
-                filter.statuses.map((s) => s.slug).join(",")
+                filter.statuses.map((s) => s.value).join(",")
             );
         }
 
         if (filter.colors.length > 0) {
             params.set(
                 "colors",
-                filter.colors.map((c) => c.slug).join(",")
+                filter.colors.map((c) => c.value).join(",")
             );
         }
 
-        if (filter.priceRange) params.set("priceRange", filter.priceRange.slug);
+        if (filter.priceRange) params.set("priceRange", filter.priceRange.value);
 
         let query = params.toString();
         query = query.replace(/%2C/g, ",");

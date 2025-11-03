@@ -10,17 +10,17 @@ import { MdOutlineInventory2 } from "react-icons/md";
 export const userNavList = [
     {
         id: "1",
-        name: "Sản phẩm",
+        label: "Sản phẩm",
         href: "/products"
     },
     {
         id: "2",
-        name: "Phiếu giảm giá",
+        label: "Phiếu giảm giá",
         href: "/coupons"
     },
     {
         id: "3",
-        name: "Hoàn trả",
+        label: "Hoàn trả",
         href: "/return-request"
     }
 ];
@@ -32,12 +32,12 @@ export const userDrawerNavList = [
         list: [
             {
                 id: "1.1",
-                name: "Trang chủ",
+                label: "Trang chủ",
                 href: "/"
             },
             {
                 id: "1.2",
-                name: "Trang quản trị",
+                label: "Trang quản trị",
                 href: "/admin"
             }
         ]
@@ -48,22 +48,22 @@ export const userDrawerNavList = [
         list: [
             {
                 id: "2.1",
-                name: "Sản phẩm",
+                label: "Sản phẩm",
                 href: "/products"
             },
             {
                 id: "2.2",
-                name: "Phiếu giảm giá",
+                label: "Phiếu giảm giá",
                 href: "/coupons"
             },
             {
                 id: "2.3",
-                name: "Hoàn trả",
+                label: "Hoàn trả",
                 href: "/return-request"
             },
             {
                 id: "2.4",
-                name: "Giỏ hàng",
+                label: "Giỏ hàng",
                 href: "/cart"
             }
         ]
@@ -77,13 +77,13 @@ export const adminDrawerNavList = [
         list: [
             {
                 id: "1.1",
-                name: "Thống kê",
+                label: "Thống kê",
                 href: "/admin",
                 icon: <IoAnalytics size={20} />
             },
             {
                 id: "1.2",
-                name: "Tài khoản",
+                label: "Tài khoản",
                 href: "/admin/accounts",
                 icon: <FiUser size={20} />
             }
@@ -95,31 +95,31 @@ export const adminDrawerNavList = [
         list: [
             {
                 id: "2.1",
-                name: "Danh mục",
+                label: "Danh mục",
                 href: "/admin/categories",
                 icon: <TbCategory2 size={20} />
             },
             {
                 id: "2.2",
-                name: "Màu sắc",
+                label: "Màu sắc",
                 href: "/admin/colors",
                 icon: <TbColorFilter size={20} />
             },
             {
                 id: "2.3",
-                name: "Sản phẩm",
+                label: "Sản phẩm",
                 href: "/admin/products",
                 icon: <AiOutlineInbox size={20} />
             },
             {
                 id: "2.4",
-                name: "Nhóm sản phẩm",
+                label: "Nhóm sản phẩm",
                 href: "/admin/product-groups",
                 icon: <LiaObjectUngroup size={20} />
             },
             {
                 id: "2.5",
-                name: "Tồn kho",
+                label: "Tồn kho",
                 href: "/admin/inventory",
                 icon: <MdOutlineInventory2 size={20} />
             }
@@ -131,19 +131,19 @@ export const adminDrawerNavList = [
         list: [
             {
                 id: "3.1",
-                name: "Banner quảng cáo",
+                label: "Banner quảng cáo",
                 href: "/admin/banners",
                 icon: <PiFlagBannerFold size={20} />
             },
             {
                 id: "3.2",
-                name: "Giảm giá",
+                label: "Giảm giá",
                 href: "/admin/discounts",
                 icon: <RiDiscountPercentLine size={20} />
             },
             {
                 id: "3.3",
-                name: "Phiếu giảm giá",
+                label: "Phiếu giảm giá",
                 href: "/admin/coupons",
                 icon: <RiCoupon4Line size={20} />
             }
@@ -155,13 +155,13 @@ export const adminDrawerNavList = [
         list: [
             {
                 id: "4.1",
-                name: "Đơn hàng",
+                label: "Đơn hàng",
                 href: "/admin/orders",
                 icon: <RiBillLine size={20} />
             },
             {
                 id: "4.2",
-                name: "Đơn hoàn trả",
+                label: "Đơn hoàn trả",
                 href: "/admin/return-orders",
                 icon: <RiBillLine size={20} />
             }

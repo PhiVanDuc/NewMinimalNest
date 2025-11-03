@@ -81,7 +81,7 @@ export default function FilterSync() {
         if (tempSlugs.categories.length) params.set("categories", tempSlugs.categories.map(category => category.value).join(","));
         if (tempSlugs.statuses.length) params.set("statuses", tempSlugs.statuses.map(status => status.value).join(","));
         if (tempSlugs.colors.length) params.set("colors", tempSlugs.colors.map(color => color.value).join(","));
-        if (tempSlugs.priceRange && "slug" in tempSlugs.priceRange) params.set("priceRange", tempSlugs.priceRange.value);
+        if (tempSlugs.priceRange && "value" in tempSlugs.priceRange) params.set("priceRange", tempSlugs.priceRange.value);
 
         let query = params.toString();
         query = query.replace(/%2C/g, ",");

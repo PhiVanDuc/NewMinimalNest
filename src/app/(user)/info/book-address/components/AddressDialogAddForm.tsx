@@ -86,7 +86,6 @@ export default function AddressDialogAddForm({ isOpen, setIsOpen, action }: Prop
                                                 <Input
                                                     placeholder="Nhập tên người nhận . . ."
                                                     {...field}
-                                                    className="py-[22px]"
                                                 />
                                             </FormControl>
 
@@ -108,7 +107,6 @@ export default function AddressDialogAddForm({ isOpen, setIsOpen, action }: Prop
                                                 <Input
                                                     placeholder="Nhập số điện thoại . . ."
                                                     {...field}
-                                                    className="py-[22px]"
                                                 />
                                             </FormControl>
 

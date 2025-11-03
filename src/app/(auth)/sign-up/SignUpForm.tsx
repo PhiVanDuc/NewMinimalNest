@@ -50,7 +50,6 @@ export default function SignUpForm() {
                                     <Input
                                         placeholder="Nhập tên người dùng . . ."
                                         {...field}
-                                        className="py-[22px]"
                                     />
                                 </FormControl>
 
@@ -72,7 +71,6 @@ export default function SignUpForm() {
                                     <Input
                                         placeholder="Nhập email . . ."
                                         {...field}
-                                        className="py-[22px]"
                                     />
                                 </FormControl>
 
@@ -95,7 +93,6 @@ export default function SignUpForm() {
                                         type="password"
                                         placeholder="Nhập mật khẩu . . ."
                                         {...field}
-                                        className="py-[22px]"
                                     />
                                 </FormControl>
 
@@ -118,7 +115,6 @@ export default function SignUpForm() {
                                         type="password"
                                         placeholder="Nhập lại mật khẩu . . ."
                                         {...field}
-                                        className="py-[22px]"
                                     />
                                 </FormControl>
 

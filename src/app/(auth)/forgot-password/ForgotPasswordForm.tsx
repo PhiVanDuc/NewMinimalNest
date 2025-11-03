@@ -52,7 +52,6 @@ export default function ForgotPasswordForm() {
                                     <Input
                                         placeholder="Nhập email . . ."
                                         {...field}
-                                        className="py-[22px]"
                                     />
                                 </FormControl>
 
@@ -75,7 +74,6 @@ export default function ForgotPasswordForm() {
                                         <Input
                                             placeholder="Nhập mã OTP . . ."
                                             {...field}
-                                            className="py-[22px]"
                                         />
                                     </FormControl>
 
@@ -106,7 +104,6 @@ export default function ForgotPasswordForm() {
                                         type="password"
                                         placeholder="Nhập mật khẩu . . ."
                                         {...field}
-                                        className="py-[22px]"
                                     />
                                 </FormControl>
 
@@ -129,7 +126,6 @@ export default function ForgotPasswordForm() {
                                         type="password"
                                         placeholder="Nhập lại mật khẩu . . ."
                                         {...field}
-                                        className="py-[22px]"
                                     />
                                 </FormControl>
 

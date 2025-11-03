@@ -57,7 +57,6 @@ export default function InfoGeneralForm() {
                                         <Input
                                             {...field}
                                             placeholder="Tên người dùng . . ."
-                                            className="py-[22px]"
                                         />
                                     </FormControl>
 
@@ -79,7 +78,6 @@ export default function InfoGeneralForm() {
                                         <Input
                                             {...field}
                                             placeholder="Email . . ."
-                                            className="py-[22px]"
                                             disabled={true}
                                         />
                                     </FormControl>

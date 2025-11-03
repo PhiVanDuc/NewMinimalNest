@@ -58,7 +58,6 @@ export default function InfoNewPasswordForm() {
                                             type="password"
                                             {...field}
                                             placeholder="Nhập mật khẩu mới . . ."
-                                            className="py-[22px]"
                                         />
                                     </FormControl>
 
@@ -81,7 +80,6 @@ export default function InfoNewPasswordForm() {
                                             type="password"
                                             {...field}
                                             placeholder="Nhập lại mật khẩu . . ."
-                                            className="py-[22px]"
                                         />
                                     </FormControl>
 

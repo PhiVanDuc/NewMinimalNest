@@ -14,7 +14,7 @@ import positiveIntegerValidator from "@/utils/positive-integer-validator";
 interface PropsType {
     page: string,
     totalPage: string,
-    listRef: React.RefObject<null | HTMLElement>
+    listRef?: React.RefObject<null | HTMLElement>
 }
 
 export default function Pagination({ page, totalPage, listRef }: PropsType) {
@@ -27,9 +27,14 @@ export default function Pagination({ page, totalPage, listRef }: PropsType) {
         router.replace(`?${params.toString()}`, { scroll: false });
 
         setTimeout(() => {
-            if (listRef.current) {
-                const top = listRef.current.offsetTop - 100;
-                window.scrollTo({ top: top > 0 ? top : 0, behavior: "smooth" });
+            if (listRef) {
+                if (listRef.current) {
+                    const top = listRef.current.offsetTop - 100;
+                    window.scrollTo({ top: top > 0 ? top : 0, behavior: "smooth" });
+                }
+            }
+            else {
+                window.scrollTo({ top: 0, behavior: "smooth" })
             }
         }, 50);
     }
@@ -84,7 +89,7 @@ export default function Pagination({ page, totalPage, listRef }: PropsType) {
                     value={pageValue}
                     onChange={handleChangePageValue}
                     onKeyUp={handleNavigateEnter}
-                    className="h-[30px] w-[50px] border-2 text-white focus-visible:border-white focus-visible:ring-white/40"
+                    className="h-[30px] w-[50px] py-[4px] border-2 text-white focus-visible:border-white focus-visible:ring-white/40"
                 />
 
                 <p

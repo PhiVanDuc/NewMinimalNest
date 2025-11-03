@@ -51,7 +51,6 @@ export default function SignInForm() {
                                     <Input
                                         placeholder="Nhập email . . ."
                                         {...field}
-                                        className="py-[22px]"
                                     />
                                 </FormControl>
 
@@ -74,7 +73,6 @@ export default function SignInForm() {
                                         type="password"
                                         placeholder="Nhập mật khẩu . . ."
                                         {...field}
-                                        className="py-[22px]"
                                     />
                                 </FormControl>
 

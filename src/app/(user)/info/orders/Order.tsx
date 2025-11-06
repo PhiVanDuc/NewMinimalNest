@@ -132,7 +132,7 @@ export default function Order() {
                         )}
                         asChild
                     >
-                        <Link href="/info/orders/123">
+                        <Link href="/info/orders/order-id">
                             <FaEye />
                             Xem chi tiết
                         </Link>

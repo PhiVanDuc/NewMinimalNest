@@ -7,8 +7,6 @@ import { TbLayoutGridFilled } from "react-icons/tb";
 import { cn } from "@/lib/utils";
 
 export default function LatestProduct() {
-    // Fetch data nếu cần
-
     return (
         <div className="space-y-[60px]">
             <div

@@ -8,7 +8,7 @@ import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
 import AccountsFilter from "@/app/admin/accounts/components/AccountsFilter";
 
-import accountColumns from "@/app/admin/accounts/account-columns";
+import accountsColumns from "@/app/admin/accounts/accounts-columns";
 
 export default function AccountsClient() {
     const searchParams = useSearchParams();
@@ -33,7 +33,7 @@ export default function AccountsClient() {
 
                 <DataTable
                     data={[1]}
-                    columns={accountColumns}
+                    columns={accountsColumns}
                 />
             </div>
 

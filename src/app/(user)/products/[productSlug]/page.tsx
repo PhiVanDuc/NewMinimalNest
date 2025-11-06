@@ -7,8 +7,6 @@ import ProductRelatedList from "@/app/(user)/products/[productSlug]/components/P
 import { cn } from "@/lib/utils";
 
 export default function Page() {
-    // Fetch data nếu cần
-
     return (
         <div className="space-y-[60px]">
             <div className="space-y-[40px]">

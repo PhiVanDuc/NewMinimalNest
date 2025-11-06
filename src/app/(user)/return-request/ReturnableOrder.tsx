@@ -71,7 +71,7 @@ export default function Order() {
                     )}
                     asChild
                 >
-                    <Link href="/return-request/123">
+                    <Link href="/return-request/order-id">
                         <IoIosSend />
                         Yêu cầu hoàn trả
                     </Link>

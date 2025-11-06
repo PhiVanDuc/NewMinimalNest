@@ -132,7 +132,7 @@ export default function ReturnOrder() {
                         )}
                         asChild
                     >
-                        <Link href="/info/return-orders/123">
+                        <Link href="/info/return-orders/return-order-id">
                             <FaEye />
                             Xem chi tiết
                         </Link>

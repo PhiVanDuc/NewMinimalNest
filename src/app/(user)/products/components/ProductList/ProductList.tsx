@@ -13,9 +13,5 @@ export default function ProductList({ searchParams }: PropsType) {
     const page = searchParams.page;
     if (page && !positiveIntegerValidator(page)) redirect("/products");
 
-    // Fetch data nếu cần
-
-    // Xử lý check page < || > totalPage
-
     return <Suspense fallback={null}><ProductListClient /></Suspense>
 }

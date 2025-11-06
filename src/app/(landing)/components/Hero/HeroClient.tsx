@@ -46,7 +46,7 @@ export default function HeroClient() {
                 )}
             >
                 <Link
-                    href="/products/slug-product"
+                    href="/products/product-slug"
                     className={cn(
                         "text-[10px] text-white font-semibold uppercase px-[15px] py-[8px] rounded-full bg-theme-main cursor-pointer",
                         "lg:text-[12px]"

@@ -122,16 +122,24 @@ export default function Page() {
                                                                 <FormItem>
                                                                     <FormLabel>Ảnh bằng chứng</FormLabel>
 
-                                                                    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-[10px]">
+                                                                    <div className={cn(
+                                                                        form.watch(`returnProducts.${index}.evidenceImages`).length > 0 &&
+                                                                        "grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-[10px]"
+                                                                    )}>
                                                                         {
-                                                                            form.watch(`returnProducts.${index}.evidenceImages`).map((img, indexeEvidenceImage) => {
-                                                                                return (
-                                                                                    <div
-                                                                                        key={indexeEvidenceImage}
-                                                                                        className="w-full aspect-square rounded-[10px] bg-zinc-300 cursor-pointer"
-                                                                                    />
-                                                                                )
-                                                                            })
+                                                                            form.watch(`returnProducts.${index}.evidenceImages`).length === 0 ?
+                                                                                (
+                                                                                    <p className="desc-basic w-full">Không cung cấp ảnh bằng chứng.</p>
+                                                                                ) :
+                                                                                form.watch(`returnProducts.${index}.evidenceImages`).map((img, indexeEvidenceImage) => {
+                                                                                    return (
+                                                                                        <div
+                                                                                            key={indexeEvidenceImage}
+                                                                                            className="w-full aspect-square rounded-[10px] bg-zinc-300 cursor-pointer"
+                                                                                        />
+                                                                                    )
+                                                                                })
+
                                                                         }
                                                                     </div>
                                                                 </FormItem>

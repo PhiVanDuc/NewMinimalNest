@@ -3,11 +3,7 @@ import { Suspense } from "react";
 import Header from "@/components/Header";
 import CouponList from "@/app/(user)/coupons/CouponList";
 
-export default async function Page() {
-    // Fetch data nếu cần
-
-    // Xử lý check page < || > totalPage
-
+export default function Page() {
     return (
         <div className="space-y-[40px]">
             <Header>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const AddressDialogAddForm = dynamic(() => import("@/app/(user)/info/book-address/components/AddressDialogAddForm"), { ssr: false });
+const AddressDialogAddForm = dynamic(() => import("@/app/(user)/info/book-address/components/AddressDialogAddForm"));
 
 import { Plus } from "lucide-react";
 

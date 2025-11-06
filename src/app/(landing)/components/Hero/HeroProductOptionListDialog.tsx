@@ -66,10 +66,10 @@ export default function HeroProductOptionListDialog({ isOpen, setIsOpen, action 
             open={isOpen}
             onOpenChange={setIsOpen}
         >
-            <DialogContent className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-300">
-                <DialogHeader className="px-[20px]">
-                    <DialogTitle className="text-zinc-700">Tuỳ chọn</DialogTitle>
-                    <DialogDescription className="!desc-basic">
+            <DialogContent className="max-h-[85dvh]">
+                <DialogHeader>
+                    <DialogTitle>Tuỳ chọn</DialogTitle>
+                    <DialogDescription>
                         <span>Vui lòng chọn màu sắc và số lượng sản phẩm mà bạn muốn </span>
                         <span>{action === "buyNow" ? "mua ngay." : "thêm vào giỏ hàng."}</span>
                     </DialogDescription>

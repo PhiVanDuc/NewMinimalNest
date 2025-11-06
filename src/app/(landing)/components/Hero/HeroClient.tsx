@@ -21,7 +21,7 @@ export default function HeroClient() {
     })
 
     return (
-        <section className={cn(
+        <div className={cn(
             "relative flex flex-col items-center h-dvh container-horizontal bg-zinc-100",
             "lg:flex-row lg:gap-[40px]"
         )}>
@@ -84,6 +84,6 @@ export default function HeroClient() {
                 currentProduct={currentProduct}
                 setCurrentProduct={setCurrentProduct}
             />
-        </section>
+        </div>
     )
 }

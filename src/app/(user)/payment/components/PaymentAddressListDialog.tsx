@@ -24,11 +24,11 @@ export default function PaymentAddressListDialog({ isOpen, setIsOpen }: PropsTyp
             onOpenChange={setIsOpen}
         >
             <DialogContent
-                className="flex flex-col px-0 max-h-[85dvh] border-zinc-300"
+                className="max-h-[85dvh]"
             >
-                <DialogHeader className="px-[20px]">
-                    <DialogTitle className="text-zinc-700">Đổi địa chỉ</DialogTitle>
-                    <DialogDescription className="!desc-basic">Vui lòng chọn địa chỉ bạn muốn sử dụng cho thanh toán.</DialogDescription>
+                <DialogHeader>
+                    <DialogTitle>Đổi địa chỉ</DialogTitle>
+                    <DialogDescription>Vui lòng chọn địa chỉ bạn muốn sử dụng cho thanh toán.</DialogDescription>
                 </DialogHeader>
 
                 <div className="flex-1 px-[20px] space-y-[10px] overflow-y-auto">

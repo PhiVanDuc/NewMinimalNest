@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import AccountsClient from "./components/AccountsClient";
+import CategoriesClient from "./components/CategoriesClient";
 
 export default function Page() {
     return (
         <Suspense fallback={null}>
-            <AccountsClient />
+            <CategoriesClient />
         </Suspense>
     )
 }

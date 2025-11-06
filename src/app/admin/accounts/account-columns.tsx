@@ -1,11 +1,7 @@
 "use client"
 
-import Link from "next/link";
 import AccountsRoleColumn from "@/app/admin/accounts/components/AccountsRoleColumn";
-
 import { PiMedalFill } from "react-icons/pi";
-import { HiDotsVertical } from "react-icons/hi";
-import { IoReloadOutline } from "react-icons/io5";
 
 import { ColumnDef } from "@tanstack/react-table";
 import ranks from "@/consts/ranks";
@@ -64,36 +60,7 @@ const accountsColumns: ColumnDef<number>[] = [
                 <p className="content-table-row">20 Tháng 10 2024</p>
             )
         }
-    },
-    // {
-    //     accessorKey: "actions",
-    //     header: () => <h3 className={headerClassName + " text-center"}>Hành động</h3>,
-    //     cell: () => {
-    //         return (
-    //             <div className="flex justify-center">
-    //                 <DropdownMenu>
-    //                     <DropdownMenuTrigger asChild>
-    //                         <button className="size-[35px] flex items-center justify-center rounded-full hover:bg-zinc-200 cursor-pointer">
-    //                             <HiDotsVertical
-    //                                 size={18}
-    //                                 className="text-zinc-700"
-    //                             />
-    //                         </button>
-    //                     </DropdownMenuTrigger>
-
-    //                     <DropdownMenuContent>
-    //                         <DropdownMenuItem asChild>
-    //                             <Link href="/admin/accounts/account-id">
-    //                                 <IoReloadOutline />
-    //                                 Cập nhật
-    //                             </Link>
-    //                         </DropdownMenuItem>
-    //                     </DropdownMenuContent>
-    //                 </DropdownMenu>
-    //             </div>
-    //         )
-    //     }
-    // }
+    }
 ];
 
 export default accountsColumns;

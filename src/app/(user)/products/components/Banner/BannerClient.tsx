@@ -55,7 +55,7 @@ export default function BannerClient() {
     };
 
     return (
-        <section
+        <div
             className={cn(
                 "relative w-full aspect-square rounded-[10px] overflow-hidden",
                 "sm:aspect-video",
@@ -119,6 +119,6 @@ export default function BannerClient() {
                     <FaChevronRight className="text-[14px] md:text-[16px]" />
                 </button>
             </div>
-        </section>
+        </div>
     )
 }

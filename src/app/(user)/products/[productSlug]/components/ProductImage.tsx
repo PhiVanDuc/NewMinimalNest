@@ -13,7 +13,7 @@ export default function ProductImage() {
     const [isOpenDrawer, setisOpenDrawer] = useState(false);
 
     return (
-        <section
+        <div
             className={cn(
                 "relative w-full aspect-square",
                 "xl:w-[50%]"
@@ -50,6 +50,6 @@ export default function ProductImage() {
                 isOpen={isOpenDrawer}
                 setIsOpen={setisOpenDrawer}
             />
-        </section>
+        </div>
     )
 }

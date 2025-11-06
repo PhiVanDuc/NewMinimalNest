@@ -11,7 +11,7 @@ export default function ProductListClient() {
     const searchParams = useSearchParams();
 
     return (
-        <section className="space-y-[40px]">
+        <div className="space-y-[40px]">
             <ul
                 ref={productListRef}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[20px]"
@@ -28,6 +28,6 @@ export default function ProductListClient() {
                 totalPage="10"
                 listRef={productListRef}
             />
-        </section>
+        </div>
     )
 }

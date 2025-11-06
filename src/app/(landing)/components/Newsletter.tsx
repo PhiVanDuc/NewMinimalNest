@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export default function Newsletter() {
     return (
-        <section className="space-y-[60px]">
+        <div className="space-y-[60px]">
             <header className="flex flex-col items-center space-y-[8px] text-center">
                 <h2 className="header-basic">
                     Newsletter
@@ -35,6 +35,6 @@ export default function Newsletter() {
                     </button>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }

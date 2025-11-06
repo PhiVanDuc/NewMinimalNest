@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 export default function ProductReviewList() {
     return (
-        <section className='space-y-[40px]'>
+        <div className='space-y-[40px]'>
             <h2 className="header-basic">
                 Đánh giá
             </h2>
@@ -72,6 +72,6 @@ export default function ProductReviewList() {
                 <IoIosMore />
                 Xem thêm
             </Button>
-        </section>
+        </div>
     )
 }

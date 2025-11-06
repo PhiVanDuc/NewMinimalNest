@@ -10,7 +10,7 @@ export default function FeaturedProduct() {
     // Fetch dữ liệu nếu cần
 
     return (
-        <section className="space-y-[40px]">
+        <div className="space-y-[40px]">
             <div
                 className={cn(
                     "flex flex-col items-center justify-between gap-[40px]",
@@ -45,6 +45,6 @@ export default function FeaturedProduct() {
                     })
                 }
             </ul>
-        </section>
+        </div>
     )
 }

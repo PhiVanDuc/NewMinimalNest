@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 export default function ProductInfo() {
     return (
-        <section
+        <div
             className={cn(
                 "w-full space-y-[30px]",
                 "xl:w-[50%]"
@@ -21,6 +21,6 @@ export default function ProductInfo() {
             <ProductOptionList />
             <ProductActionButtonList />
             <ProductDetailInfo />
-        </section>
+        </div>
     )
 }

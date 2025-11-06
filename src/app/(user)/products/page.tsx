@@ -1,7 +1,7 @@
 import Banner from "@/app/(user)/products/components/Banner/Banner"
 import FilterButtonOpen from "@/app/(user)/products/components/Filter/FilterButtonOpen";
 import ProductList from "@/app/(user)/products/components/ProductList/ProductList";
-import CustomBreadcrumb from "@/components/CustomBreadcrumb";
+import BreadcrumbCustom from "@/components/BreadcrumbCustom";
 
 interface PropsType {
     searchParams: Promise<{ page?: string }>
@@ -14,7 +14,7 @@ export default async function Page({ searchParams }: PropsType) {
         <div className="space-y-[80px]">
             <div className="space-y-[20px]">
                 <Banner />
-                <CustomBreadcrumb />
+                <BreadcrumbCustom />
             </div>
 
             <div className="space-y-[20px]">

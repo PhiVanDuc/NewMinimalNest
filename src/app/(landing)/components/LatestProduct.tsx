@@ -10,7 +10,7 @@ export default function LatestProduct() {
     // Fetch data nếu cần
 
     return (
-        <section className="space-y-[60px]">
+        <div className="space-y-[60px]">
             <div
                 className={cn(
                     "flex flex-col items-center justify-between gap-[40px]",
@@ -44,6 +44,6 @@ export default function LatestProduct() {
                     })
                 }
             </ul>
-        </section>
+        </div>
     )
 }

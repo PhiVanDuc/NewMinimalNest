@@ -16,7 +16,7 @@ const standards = [
 
 export default function Compliment() {
     return (
-        <section
+        <div
             className={cn(
                 "relative flex flex-col items-start justify-between gap-[40px]",
                 "xl:flex-row xl:gap-[100px]"
@@ -132,6 +132,6 @@ export default function Compliment() {
                     <p>Chúng tôi cam kết sự thoải mái cho bạn.</p>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }

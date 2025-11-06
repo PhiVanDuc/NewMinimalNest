@@ -51,7 +51,7 @@ const policies = [
 
 export default function Policy() {
     return (
-        <section className="space-y-[80px]">
+        <div className="space-y-[80px]">
             <header className="flex flex-col items-center space-y-[8px] text-center">
                 <h2 className="header-basic">
                     Chính Sách
@@ -106,6 +106,6 @@ export default function Policy() {
                     })
                 }
             </div>
-        </section>
+        </div>
     )
 }

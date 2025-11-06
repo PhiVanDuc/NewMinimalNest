@@ -52,13 +52,13 @@ export default function AddressDialogAddForm({ isOpen, setIsOpen, action }: Prop
             open={isOpen}
             onOpenChange={setIsOpen}
         >
-            <DialogContent className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-300">
-                <DialogHeader className="px-[20px]">
-                    <DialogTitle className="text-zinc-700">
+            <DialogContent className="max-h-[85dvh]">
+                <DialogHeader>
+                    <DialogTitle>
                         {action === "add" ? "Thêm địa chỉ" : "Chỉnh sửa địa chỉ"}
                     </DialogTitle>
 
-                    <DialogDescription className="!desc-basic">
+                    <DialogDescription>
                         {
                             action === "add"
                                 ? "Thêm địa chỉ nhận hàng để sử dụng trong các đơn mua sắp tới."

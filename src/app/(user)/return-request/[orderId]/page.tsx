@@ -22,7 +22,6 @@ import { Textarea } from "@/components/ui/textarea";
 
 import { IoMdImages } from "react-icons/io";
 import { PiTrashSimpleBold } from "react-icons/pi";
-import { FiEdit2 } from "react-icons/fi";
 
 import { v7 } from "uuid";
 import { cn } from "@/lib/utils";

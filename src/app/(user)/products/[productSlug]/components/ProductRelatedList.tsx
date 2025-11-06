@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 export default function ProductRelatedList() {
     return (
-        <section className='space-y-[30px]'>
+        <div className='space-y-[30px]'>
             <h2 className="header-basic">
                 Sản phẩm liên quan
             </h2>
@@ -64,6 +64,6 @@ export default function ProductRelatedList() {
                     </CarouselItem>
                 </CarouselContent>
             </Carousel>
-        </section>
+        </div>
     )
 }

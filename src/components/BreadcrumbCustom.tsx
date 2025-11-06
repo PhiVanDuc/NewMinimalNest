@@ -18,18 +18,19 @@ const list = {
     "products": "Sản phẩm",
     "search": "Tìm kiếm",
     "coupons": "Phiếu giảm giá",
+    "return-request": "Hoàn trả",
     "cart": "Giỏ hàng",
     "payment": "Thanh toán",
     "info": "Thông tin",
     "book-address": "Sổ địa chỉ",
     "orders": "Đơn hàng",
     "return-orders": "Đơn hoàn trả",
-    "return-request": "Hoàn trả",
     "admin": "Trang quản trị",
-    "accounts": "Tài khoản"
+    "accounts": "Tài khoản",
+    "categories": "Danh mục"
 }
 
-export default function CustomBreadcrumb() {
+export default function BreadcrumbCustom() {
     const pathname = usePathname();
     const splitPathname = pathname.split("/").filter(Boolean);
 

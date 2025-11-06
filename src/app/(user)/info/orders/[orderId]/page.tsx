@@ -1,6 +1,6 @@
 "use client"
 
-import CustomBreadcrumb from "@/components/CustomBreadcrumb";
+import BreadcrumbCustom from "@/components/BreadcrumbCustom";
 
 import PaymentAddress from "@/app/(user)/payment/components/PaymentAddress";
 import PaymentTable from "@/app/(user)/payment/components/PaymentTable";
@@ -14,14 +14,14 @@ import { cn } from "@/lib/utils";
 
 export default function Page() {
     return (
-        <section
+        <div
             className={cn(
                 "w-full space-y-[20px]",
                 "sm:space-y-[40px]"
             )}
         >
             <header className="space-y-[40px]">
-                <CustomBreadcrumb />
+                <BreadcrumbCustom />
 
                 <div className="flex items-center gap-[15px]">
                     <p
@@ -62,6 +62,6 @@ export default function Page() {
 
                 <PaymentSummary isEdit={false} />
             </div>
-        </section>
+        </div>
     )
 }

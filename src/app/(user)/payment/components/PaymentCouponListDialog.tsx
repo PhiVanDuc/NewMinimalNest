@@ -22,12 +22,10 @@ export default function PaymentCouponListDialog({ isOpen, setIsOpen }: PropsType
             open={isOpen}
             onOpenChange={setIsOpen}
         >
-            <DialogContent
-                className="flex flex-col gap-[30px] px-0 max-h-[85dvh] border-zinc-300"
-            >
-                <DialogHeader className="px-[20px]">
-                    <DialogTitle className="text-zinc-700">Chọn phiếu giảm giá</DialogTitle>
-                    <DialogDescription className="!desc-basic">Vui lòng chọn phiếu giảm giá bạn muốn sử dụng cho đơn hàng này.</DialogDescription>
+            <DialogContent className="max-h-[85dvh]">
+                <DialogHeader>
+                    <DialogTitle>Chọn phiếu giảm giá</DialogTitle>
+                    <DialogDescription>Vui lòng chọn phiếu giảm giá bạn muốn sử dụng cho đơn hàng này.</DialogDescription>
                 </DialogHeader>
 
                 <div className="flex-1 px-[20px] space-y-[10px] overflow-y-auto">

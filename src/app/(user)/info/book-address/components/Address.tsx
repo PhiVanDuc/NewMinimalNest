@@ -7,7 +7,6 @@ const AddressFormDialog = dynamic(() => import("@/app/(user)/info/book-address/c
 const DialogDeleteConfirm = dynamic(() => import("@/components/DialogDeleteConfirm"));
 
 import { Button } from "@/components/ui/button";
-
 import { IoReloadOutline } from "react-icons/io5";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
@@ -72,6 +71,7 @@ export default function Address() {
                     <DialogDeleteConfirm
                         isOpen={isOpenDialogDeleteConfirm}
                         setIsOpen={setIsOpenDialogDeleteConfirm}
+                        object="địa chỉ"
                     />
                 )
             }

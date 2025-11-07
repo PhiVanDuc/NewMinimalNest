@@ -14,7 +14,7 @@ export default function AccountsClient() {
     const searchParams = useSearchParams();
 
     const [filters, setFilters] = useState({
-        username: "",
+        name: "",
         rank: ""
     });
 

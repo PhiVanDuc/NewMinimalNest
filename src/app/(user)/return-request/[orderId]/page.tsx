@@ -97,12 +97,12 @@ export default function Page() {
         if (e.target.value === "") form.setValue(`returnProducts.${index}.returnQuantity`, "1");
     }
 
-    const handleDecrease = (returnQuantity: string, index: number) => {
+    const handleClickDecrease = (returnQuantity: string, index: number) => {
         const num = Number(returnQuantity) - 1;
         form.setValue(`returnProducts.${index}.returnQuantity`, num < 1 ? "1" : String(num));
     }
 
-    const handleIncrease = (returnQuantity: string, index: number) => {
+    const handleClickIncrease = (returnQuantity: string, index: number) => {
         const num = Number(returnQuantity) + 1;
         form.setValue(`returnProducts.${index}.returnQuantity`, num > 2 ? "2" : String(num));
     }
@@ -250,10 +250,10 @@ export default function Page() {
 
                                                                         <Quantity
                                                                             value={returnQuantity}
-                                                                            handleDecrease={() => handleDecrease(returnQuantity, index)}
+                                                                            handleClickDecrease={() => handleClickDecrease(returnQuantity, index)}
                                                                             handleChangeQuantity={(e) => handleChangeQuantity(e, index)}
                                                                             handleBlurQuantity={(e) => handleBlurQuantity(e, index)}
-                                                                            handleIncrease={() => handleIncrease(returnQuantity, index)}
+                                                                            handleClickIncrease={() => handleClickIncrease(returnQuantity, index)}
                                                                         />
                                                                     </FormItem>
                                                                 )

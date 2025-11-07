@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const HeroProductOptionListDialog = dynamic(() => import("@/app/(landing)/components/Hero/HeroProductOptionListDialog"), { ssr: false });
+const HeroProductOptionListDialog = dynamic(() => import("@/app/(landing)/components/Hero/HeroProductOptionListDialog"));
 
 import { Button } from "@/components/ui/button";
 import { FiShoppingCart } from "react-icons/fi";

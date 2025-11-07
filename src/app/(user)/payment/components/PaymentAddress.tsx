@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import dynamic from "next/dynamic";
-const PaymentAddressListDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentAddressListDialog"), { ssr: false });
+const PaymentAddressListDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentAddressListDialog"));
 
 import { FaBook } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";

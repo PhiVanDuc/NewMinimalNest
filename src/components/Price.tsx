@@ -20,20 +20,13 @@ export default function Price({ className, isIcon = true, iconClassName, priceCl
         >
             {
                 isIcon ?
-                    <IoMdPricetag
-                        className={cn(
-                            "text-[16px]",
-                            "sm:text-[18px]",
-                            iconClassName
-                        )}
-                    /> :
+                    <IoMdPricetag className={cn("text-[18px]", iconClassName)} /> :
                     null
             }
 
             <p
                 className={cn(
-                    "text-[12px] text-zinc-700",
-                    "sm:text-[13px]",
+                    "text-zinc-700",
                     priceClassName
                 )}
             >

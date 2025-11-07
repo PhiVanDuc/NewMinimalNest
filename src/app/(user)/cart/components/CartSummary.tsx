@@ -48,8 +48,8 @@ export default function CartSummary() {
                     <p>Tổng tạm</p>
                     <Price
                         priceClassName={cn(
-                            "!text-[14px] font-medium",
-                            "md:!text-[15px]"
+                            "text-[14px] font-medium",
+                            "md:text-[15px]"
                         )}
                     />
                 </div>
@@ -79,8 +79,8 @@ export default function CartSummary() {
                     <p className="text-[16px] font-semibold text-darkBold">Tổng giỏ hàng</p>
                     <Price
                         priceClassName={cn(
-                            "!text-[14px] font-medium",
-                            "md:!text-[15px]"
+                            "text-[14px] font-medium",
+                            "md:text-[15px]"
                         )}
                     />
                 </div>

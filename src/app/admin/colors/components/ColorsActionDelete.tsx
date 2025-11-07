@@ -8,7 +8,7 @@ const DialogDeleteConfirm = dynamic(() => import("@/components/DialogDeleteConfi
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
-export default function CategoriesActionDelete() {
+export default function ColorsActionDelete() {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     return (
@@ -26,7 +26,7 @@ export default function CategoriesActionDelete() {
                     <DialogDeleteConfirm
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
-                        object="danh mục"
+                        object="màu sắc"
                     />
                 )
             }

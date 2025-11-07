@@ -27,7 +27,9 @@ const list = {
     "return-orders": "Đơn hoàn trả",
     "admin": "Trang quản trị",
     "accounts": "Tài khoản",
-    "categories": "Danh mục"
+    "categories": "Danh mục",
+    "colors": "Màu sắc",
+    "add": "Thêm",
 }
 
 export default function BreadcrumbCustom() {

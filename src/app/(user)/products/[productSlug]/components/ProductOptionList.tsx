@@ -27,14 +27,14 @@ export default function ProductOptionList() {
         if (e.target.value === "") setQuantity("1");
     }
 
-    const handleDecrease = () => {
+    const handleClickDecrease = () => {
         setQuantity(prev => {
             const num = Number(prev) - 1;
             return num < 1 ? "1" : String(num);
         });
     };
 
-    const handleIncrease = () => {
+    const handleClickIncrease = () => {
         setQuantity(prev => {
             const num = Number(prev) + 1;
             return num > 99 ? "99" : String(num);
@@ -75,10 +75,10 @@ export default function ProductOptionList() {
 
                 <Quantity
                     value={quantity}
-                    handleDecrease={handleDecrease}
+                    handleClickDecrease={handleClickDecrease}
                     handleChangeQuantity={handleChangeQuantity}
                     handleBlurQuantity={handleBlurQuantity}
-                    handleIncrease={handleIncrease}
+                    handleClickIncrease={handleClickIncrease}
                 />
             </div>
         </div>

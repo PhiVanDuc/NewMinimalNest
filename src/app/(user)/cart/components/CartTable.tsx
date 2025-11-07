@@ -22,7 +22,7 @@ export default function CartTable() {
             <p className="desc-basic">Bạn có <span className="px-[10px] py-[5px] rounded-[8px] bg-theme-main text-white text-[14px] font-medium">3 sản phẩm</span> trong giỏ hàng</p>
 
             <DataTable
-                data={cart.map(() => 1)}
+                data={[1, 2]} // cart.map(() => 1)
                 columns={cartColumns}
             />
         </div>

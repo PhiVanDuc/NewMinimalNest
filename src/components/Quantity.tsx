@@ -7,20 +7,20 @@ import { cn } from "@/lib/utils";
 
 interface PropsType {
     value: string,
-    handleDecrease?: () => void,
+    handleClickDecrease?: (e: React.MouseEvent<HTMLButtonElement>) => void,
     handleChangeQuantity?: (e: React.ChangeEvent<HTMLInputElement>) => void,
     handleBlurQuantity?: (e: React.FocusEvent<HTMLInputElement>) => void,
-    handleIncrease?: () => void,
+    handleClickIncrease?: (e: React.MouseEvent<HTMLButtonElement>) => void,
     disabled?: boolean
 }
 
 export default function Quantity(
     {
         value,
-        handleDecrease,
+        handleClickDecrease,
         handleChangeQuantity,
         handleBlurQuantity,
-        handleIncrease,
+        handleClickIncrease,
         disabled = false
     }: PropsType
 ) {
@@ -34,7 +34,7 @@ export default function Quantity(
             <button
                 type="button"
                 className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
-                onClick={() => { if (handleDecrease) handleDecrease() }}
+                onClick={handleClickDecrease}
             >
                 <FiMinus className="text-[16px]" />
             </button>
@@ -53,7 +53,7 @@ export default function Quantity(
             <button
                 type="button"
                 className="shrink-0 flex items-center justify-center w-[35px] aspect-square rounded-full text-[14px] text-zinc-700 bg-white hover:bg-zinc-100 transition-colors cursor-pointer"
-                onClick={() => { if (handleIncrease) handleIncrease() }}
+                onClick={handleClickIncrease}
             >
                 <FiPlus className="text-[16px]" />
             </button>

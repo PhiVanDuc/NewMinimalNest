@@ -10,7 +10,7 @@ import { SearchIcon } from "lucide-react";
 import ranks from "@/consts/ranks";
 
 type FiltersType = {
-    username: string,
+    name: string,
     rank: string
 }
 
@@ -26,7 +26,7 @@ export default function AccountsFilter({ filters, setFilters }: PropsType) {
         setFilters((state) => {
             return {
                 ...state,
-                username: e.target.value
+                name: e.target.value
             }
         });
     }
@@ -48,7 +48,7 @@ export default function AccountsFilter({ filters, setFilters }: PropsType) {
         <div className="flex items-center justify-between gap-[10px]">
             <div className="flex gap-[10px]">
                 <Input
-                    value={filters.username}
+                    value={filters.name}
                     placeholder="Lọc tên người dùng . . ."
                     className="w-[300px]"
                     onChange={handleChangeUsername}

@@ -15,14 +15,12 @@ import { PiTrashSimpleBold } from "react-icons/pi";
 
 interface PropsType {
     isOpen: boolean,
-    setIsOpen: Dispatch<SetStateAction<boolean>>
+    setIsOpen: Dispatch<SetStateAction<boolean>>,
+    handleClickDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void,
+    object?: string
 }
 
-export default function DialogDeleteConfirm({ isOpen, setIsOpen }: PropsType) {
-    const handleClickDelete = () => {
-        setIsOpen(false);
-    }
-
+export default function DialogDeleteConfirm({ isOpen, setIsOpen, handleClickDelete, object }: PropsType) {
     return (
         <Dialog
             open={isOpen}
@@ -30,8 +28,8 @@ export default function DialogDeleteConfirm({ isOpen, setIsOpen }: PropsType) {
         >
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Xác nhận xoá</DialogTitle>
-                    <DialogDescription>Vui lòng kiểm tra và xác nhận lại bạn có thực sự muốn xoá hay không?</DialogDescription>
+                    <DialogTitle>Xác nhận xoá {object && object}</DialogTitle>
+                    <DialogDescription>Vui lòng kiểm tra và xác nhận lại bạn có thực sự muốn xoá {object && object} hay không?</DialogDescription>
                 </DialogHeader>
 
                 <div className="flex justify-end gap-[5px] px-[20px]">

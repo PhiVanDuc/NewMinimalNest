@@ -70,8 +70,8 @@ export default function ReturnOrder() {
                     <p>Tổng tạm</p>
                     <Price
                         priceClassName={cn(
-                            "!text-[14px] font-medium",
-                            "md:!text-[15px]"
+                            "text-[14px] font-medium",
+                            "md:text-[15px]"
                         )}
                     />
                 </div>
@@ -85,8 +85,8 @@ export default function ReturnOrder() {
                     <p>Giảm giá</p>
                     <Price
                         priceClassName={cn(
-                            "!text-[14px] font-medium",
-                            "md:!text-[15px]"
+                            "text-[14px] font-medium",
+                            "md:text-[15px]"
                         )}
                     />
                 </div>
@@ -100,8 +100,8 @@ export default function ReturnOrder() {
                     <p>Phí vận chuyển</p>
                     <Price
                         priceClassName={cn(
-                            "!text-[14px] font-medium",
-                            "md:!text-[15px]"
+                            "text-[14px] font-medium",
+                            "md:text-[15px]"
                         )}
                     />
                 </div>
@@ -111,8 +111,8 @@ export default function ReturnOrder() {
 
                     <Price
                         priceClassName={cn(
-                            "!text-[15px] font-semibold",
-                            "md:!text-[16px]"
+                            "text-[15px] font-semibold",
+                            "md:text-[16px]"
                         )}
                     />
                 </div>

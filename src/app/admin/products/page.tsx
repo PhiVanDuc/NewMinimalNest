@@ -1,12 +1,12 @@
 "use client"
 
 import { Suspense } from "react";
-import ColorsClient from "./components/ColorsClient";
+import ProductsClient from "@/app/admin/products/components/ProductsClient";
 
 export default function Page() {
     return (
         <Suspense fallback={null}>
-            <ColorsClient />
+            <ProductsClient />
         </Suspense>
     )
 }

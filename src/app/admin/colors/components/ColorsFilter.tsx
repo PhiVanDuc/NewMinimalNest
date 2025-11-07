@@ -6,16 +6,16 @@ import type { Dispatch, SetStateAction } from "react";
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
-type CategoriesType = {
+type ColorsType = {
     name: string
 }
 
 interface PropsType {
-    filters: CategoriesType,
-    setFilters: Dispatch<SetStateAction<CategoriesType>>
+    filters: ColorsType,
+    setFilters: Dispatch<SetStateAction<ColorsType>>
 }
 
-export default function CategoriesFilter({ filters, setFilters }: PropsType) {
+export default function ColorsFilter({ filters, setFilters }: PropsType) {
     const router = useRouter();
 
     const handleChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ export default function CategoriesFilter({ filters, setFilters }: PropsType) {
         <div className="flex items-center justify-between gap-[10px]">
             <Input
                 value={filters.name}
-                placeholder="Lọc tên danh mục . . ."
+                placeholder="Lọc tên màu sắc . . ."
                 className="w-[300px]"
                 onChange={handleChangeCategoryName}
             />

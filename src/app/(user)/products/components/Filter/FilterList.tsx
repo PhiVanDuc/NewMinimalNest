@@ -182,7 +182,7 @@ export default function FilterList() {
                                                         <span
                                                             className="w-[20px] aspect-square rounded-full outline-[2px] outline-offset-2 outline-zinc-100"
                                                             style={{
-                                                                background: color.color
+                                                                background: color.colorCode
                                                             }}
                                                         />
 

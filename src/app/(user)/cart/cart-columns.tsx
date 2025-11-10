@@ -61,14 +61,9 @@ const cartColumns: ColumnDef<number>[] = [
 
                             <Price
                                 className={cn(
-                                    "text-[13px] gap-[5px]",
-                                    "md:text-[14px] md:gap-[8px]",
-                                    "xl:text-[16px]"
-                                )}
-                                priceClassName={cn(
-                                    "text-[12px] font-medium",
-                                    "md:text-[13px]",
-                                    "xl:text-[14px]"
+                                    "text-[12px]",
+                                    "sm:text-[13px]",
+                                    "md:text-[14px]"
                                 )}
                             />
                         </div>
@@ -101,7 +96,12 @@ const cartColumns: ColumnDef<number>[] = [
         cell: () => {
             return (
                 <div className="space-y-[8px]">
-                    <Price priceClassName="text-[14px] font-medium" />
+                    <Price
+                        className={cn(
+                            "text-[14px]",
+                            "md:text-[15px]"
+                        )}
+                    />
 
                     <p className="flex items-center gap-[5px] text-[14px]">
                         <span className="text-zinc-600">Số lượng</span>

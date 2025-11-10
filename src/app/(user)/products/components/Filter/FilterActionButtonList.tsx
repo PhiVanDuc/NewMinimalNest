@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Search } from "lucide-react";
+import { IoFilter } from "react-icons/io5";
 import DrawerSectionTitle from "@/components/DrawerSectionTitle";
 
 import drawerIds from "@/consts/drawer-ids";
@@ -57,7 +57,7 @@ export default function FilterActionButtonList() {
         query = query.replace(/%2C/g, ",");
 
         if (query) {
-            const href = `/products/search?${query}`;
+            const href = `/products/filter?${query}`;
             router.push(href);
 
             handleClose();
@@ -75,9 +75,9 @@ export default function FilterActionButtonList() {
                     className="flex items-center justify-between gap-[10px] px-[20px] py-[9px] w-full text-[14px] text-white font-semibold rounded-[6px] bg-zinc-800 cursor-pointer"
                     onClick={handleSearch}
                 >
-                    Tìm kiếm
+                    Lọc sản phẩm
 
-                    <Search size={18} className="translate-y-[-0.5px]" />
+                    <IoFilter size={18} className="translate-y-[-0.5px]" />
                 </button>
 
                 <button

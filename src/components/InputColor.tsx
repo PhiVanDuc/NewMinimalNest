@@ -13,7 +13,7 @@ import { UseFormReturn } from "react-hook-form";
 interface PropsType {
     form: UseFormReturn<{
         name: string,
-        hex: string
+        colorCode: string
     }>;
 }
 
@@ -21,14 +21,14 @@ export default function InputColor({ form }: PropsType) {
     return (
         <FormField
             control={form.control}
-            name="hex"
+            name="colorCode"
             render={({ field }) => {
                 return (
                     <FormItem className="relative self-stretch">
                         <FormLabel
                             className="block w-[60px] h-full rounded-[10px] outline-[2px] outline-offset-[2px] outline-zinc-200 cursor-pointer"
                             style={{
-                                backgroundColor: form.watch("hex")
+                                backgroundColor: form.watch("colorCode")
                             }}
                         />
 

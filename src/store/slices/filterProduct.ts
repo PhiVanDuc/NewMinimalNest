@@ -7,7 +7,7 @@ interface itemType {
 }
 
 interface colorType extends itemType {
-    color: string
+    colorCode: string
 }
 
 interface priceRangeType extends itemType {

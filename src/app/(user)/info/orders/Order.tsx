@@ -69,7 +69,7 @@ export default function Order() {
                 >
                     <p>Tổng tạm</p>
                     <Price
-                        priceClassName={cn(
+                        className={cn(
                             "text-[14px] font-medium",
                             "md:text-[15px]"
                         )}
@@ -84,8 +84,8 @@ export default function Order() {
                 >
                     <p>Giảm giá</p>
                     <Price
-                        priceClassName={cn(
-                            "text-[14px] font-medium",
+                        className={cn(
+                            "text-[14px]",
                             "md:text-[15px]"
                         )}
                     />
@@ -99,8 +99,8 @@ export default function Order() {
                 >
                     <p>Phí vận chuyển</p>
                     <Price
-                        priceClassName={cn(
-                            "text-[14px] font-medium",
+                        className={cn(
+                            "text-[14px]",
                             "md:text-[15px]"
                         )}
                     />
@@ -110,7 +110,7 @@ export default function Order() {
                     <p className="text-[16px] font-semibold text-darkBold">Tổng hoá đơn</p>
 
                     <Price
-                        priceClassName={cn(
+                        className={cn(
                             "text-[15px] font-semibold",
                             "md:text-[16px]"
                         )}
@@ -121,7 +121,7 @@ export default function Order() {
             <div
                 className={cn(
                     "flex flex-col gap-[15px] p-[15px] bg-neutral-50",
-                    "sm:flex-row sm:justify-between"
+                    "sm:flex-row sm:items-center sm:justify-between"
                 )}
             >
                 <div className="flex gap-[5px]">

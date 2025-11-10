@@ -6,7 +6,7 @@ import Badge from "@/components/Badge";
 import { Button } from "@/components/ui/button";
 
 import dynamic from "next/dynamic";
-const PaymentCouponListDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentCouponListDialog"));
+const PaymentCouponListDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentCouponListDialog"), { ssr: false });
 
 import { IoReloadOutline } from "react-icons/io5";
 import { RiCoupon5Fill } from "react-icons/ri";

@@ -44,12 +44,7 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
                     )}
                 >
                     <p>Tổng tạm</p>
-                    <Price
-                        priceClassName={cn(
-                            "text-[14px] font-medium",
-                            "md:text-[15px]"
-                        )}
-                    />
+                    <Price className="text-[14px]" />
                 </div>
 
                 <div
@@ -59,12 +54,7 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
                     )}
                 >
                     <p>Giảm giá</p>
-                    <Price
-                        priceClassName={cn(
-                            "text-[14px] font-medium",
-                            "md:text-[15px]"
-                        )}
-                    />
+                    <Price className="text-[14px]" />
                 </div>
 
                 <div
@@ -74,12 +64,7 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
                     )}
                 >
                     <p>Phí vận chuyển</p>
-                    <Price
-                        priceClassName={cn(
-                            "text-[14px] font-medium",
-                            "md:text-[15px]"
-                        )}
-                    />
+                    <Price className="text-[14px]" />
                 </div>
             </div>
 
@@ -89,7 +74,7 @@ export default function PaymentSummary({ isEdit = true }: PropsType) {
                 <div className="md:flex items-center justify-between space-y-[5px] md:space-y-0">
                     <p className="text-[16px] font-semibold text-darkBold">Tổng hoá đơn</p>
                     <Price
-                        priceClassName={cn(
+                        className={cn(
                             "text-[15px] font-semibold",
                             "md:text-[16px]"
                         )}

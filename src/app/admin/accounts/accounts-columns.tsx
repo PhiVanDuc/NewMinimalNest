@@ -34,7 +34,7 @@ const accountsColumns: ColumnDef<number>[] = [
                     <PiMedalFill
                         size={25}
                         style={{
-                            color: ranks["khach-super-vip"].color
+                            color: ranks["khach-super-vip"].colorCode
                         }}
                     />
 

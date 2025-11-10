@@ -10,13 +10,9 @@ export default function Product() {
         <Link href="/products/product-slug">
             <article className="w-full rounded-[10px] cursor-pointer">
                 <figure className="group relative w-full aspect-square rounded-[10px] bg-zinc-300">
-                    <div className="absolute right-[15px] top-[15px] flex items-center gap-[10px] px-[10px] py-[8px] rounded-full bg-zinc-800">
+                    <div className="absolute right-[15px] top-[15px] flex items-center gap-[10px] px-[15px] py-[8px] rounded-full bg-zinc-800">
                         <Price
                             className={cn(
-                                "text-[16px] text-white",
-                                "sm:text-[18px]"
-                            )}
-                            priceClassName={cn(
                                 "text-[12px] text-white",
                                 "sm:text-[13px]"
                             )}

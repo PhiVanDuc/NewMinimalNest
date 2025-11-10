@@ -6,19 +6,19 @@ import type { Dispatch, SetStateAction } from "react";
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
-type ColorsType = {
+type ProductsType = {
     name: string
 }
 
 interface PropsType {
-    filters: ColorsType,
-    setFilters: Dispatch<SetStateAction<ColorsType>>
+    filters: ProductsType,
+    setFilters: Dispatch<SetStateAction<ProductsType>>
 }
 
-export default function ColorsFilter({ filters, setFilters }: PropsType) {
+export default function ProductsFilter({ filters, setFilters }: PropsType) {
     const router = useRouter();
 
-    const handleChangeColorName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeProductName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilters(() => {
             return { name: e.target.value }
         });
@@ -32,9 +32,9 @@ export default function ColorsFilter({ filters, setFilters }: PropsType) {
         <div className="flex items-center justify-between gap-[10px]">
             <Input
                 value={filters.name}
-                placeholder="Lọc tên màu sắc . . ."
+                placeholder="Lọc tên sản phẩm . . ."
                 className="w-[300px]"
-                onChange={handleChangeColorName}
+                onChange={handleChangeProductName}
             />
 
             <button

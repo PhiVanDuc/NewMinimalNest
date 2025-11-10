@@ -50,14 +50,9 @@ export default function ProductSummary({ className = "" }: PropsType) {
 
                     <Price
                         className={cn(
-                            "text-[13px] gap-[5px]",
-                            "md:text-[14px] md:gap-[8px]",
-                            "xl:text-[16px]"
-                        )}
-                        priceClassName={cn(
-                            "text-[12px] font-medium",
-                            "md:text-[13px]",
-                            "xl:text-[14px]"
+                            "text-[12px]",
+                            "sm:text-[13px]",
+                            "md:text-[14px]"
                         )}
                     />
                 </div>

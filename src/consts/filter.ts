@@ -14,12 +14,12 @@ export const statuses = [
 ];
 
 export const colors = [
-    { id: "1", label: "Đỏ san hô", value: "do-san-ho", color: "#FF6B6B" },
-    { id: "2", label: "Xanh dương sáng", value: "xanh-duong-sang", color: "#4D96FF" },
-    { id: "3", label: "Xanh lá mint", value: "xanh-la-mint", color: "#6BCB77" },
-    { id: "4", label: "Vàng cam", value: "vang-cam", color: "#FFD166" },
-    { id: "5", label: "Tím pastel", value: "tim-pastel", color: "#9D4EDD" },
-    { id: "6", label: "Xám tro", value: "xam-tro", color: "#6E6E6E" }
+    { id: "1", label: "Đỏ san hô", value: "do-san-ho", colorCode: "#FF6B6B" },
+    { id: "2", label: "Xanh dương sáng", value: "xanh-duong-sang", colorCode: "#4D96FF" },
+    { id: "3", label: "Xanh lá mint", value: "xanh-la-mint", colorCode: "#6BCB77" },
+    { id: "4", label: "Vàng cam", value: "vang-cam", colorCode: "#FFD166" },
+    { id: "5", label: "Tím pastel", value: "tim-pastel", colorCode: "#9D4EDD" },
+    { id: "6", label: "Xám tro", value: "xam-tro", colorCode: "#6E6E6E" }
 ];
 
 export const priceRanges = [

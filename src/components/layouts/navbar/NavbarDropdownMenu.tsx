@@ -48,7 +48,7 @@ export default function NavbarDropdownMenu({ side = "bottom", align = "end" }: P
                 <PiMedalFill
                     className="!size-[20px]"
                     style={{
-                        color: ranks["khach-super-vip"].color
+                        color: ranks["khach-super-vip"].colorCode
                     }}
                 />
 

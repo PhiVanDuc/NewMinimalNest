@@ -11,8 +11,8 @@ export default async function Page({ searchParams }: PropsType) {
     return (
         <div className="space-y-[50px]">
             <Header>
-                <h1 className="header-basic">Tìm Kiếm</h1>
-                <p className="desc-basic">Có <span className="text-theme-main font-medium">250</span> sản phẩm được tìm thấy.</p>
+                <h1 className="header-basic">Kết quả</h1>
+                <p className="desc-basic">Tìm thấy <span className="text-theme-main font-medium">250</span> sản phẩm phù hợp.</p>
             </Header>
 
             <div className="space-y-[20px]">

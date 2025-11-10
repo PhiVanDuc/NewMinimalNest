@@ -33,7 +33,8 @@ interface PropsType {
     emptyPlaceholder?: string,
     optionList: OptionItem[],
     value?: string,
-    onChange?: (value: string) => void
+    onChange?: (value: string) => void,
+    disabled?: boolean
 }
 
 export default function Combobox({
@@ -42,7 +43,8 @@ export default function Combobox({
     emptyPlaceholder,
     optionList,
     value: propValue,
-    onChange
+    onChange,
+    disabled
 }: PropsType) {
     const [open, setOpen] = useState(false);
     const [internalValue, setInternalValue] = useState("");
@@ -63,10 +65,13 @@ export default function Combobox({
             open={open}
             onOpenChange={setOpen}
         >
-            <PopoverTrigger asChild>
+            <PopoverTrigger
+                disabled={disabled}
+                asChild
+            >
                 <Button
                     className={cn(
-                        "gap-[25px] py-[22px] bg-transparent hover:bg-transparent border border-input text-[14px] text-muted-foreground font-normal",
+                        "gap-[25px] py-[20px] bg-white hover:bg-white border border-input text-[14px] text-muted-foreground font-normal",
                         className
                     )}
                 >

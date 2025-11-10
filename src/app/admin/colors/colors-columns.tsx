@@ -61,13 +61,11 @@ const colorsColumns: ColumnDef<number>[] = [
             return (
                 <div className="flex justify-center">
                     <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <button className="size-[35px] flex items-center justify-center rounded-full hover:bg-zinc-200 cursor-pointer">
-                                <HiDotsVertical
-                                    size={18}
-                                    className="text-zinc-700"
-                                />
-                            </button>
+                        <DropdownMenuTrigger className="size-[35px] flex items-center justify-center rounded-full hover:bg-zinc-200 cursor-pointer">
+                            <HiDotsVertical
+                                size={18}
+                                className="text-zinc-700"
+                            />
                         </DropdownMenuTrigger>
 
                         <DropdownMenuContent>

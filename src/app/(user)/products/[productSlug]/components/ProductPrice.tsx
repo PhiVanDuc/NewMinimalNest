@@ -16,25 +16,14 @@ export default function ProductPrice() {
                     )}
                 >
                     <Price
-                        iconClassName={cn(
-                            "hidden",
-                            "min-[400px]:block min-[400px]:text-[20px]",
-                            "sm:text-[25px] sm:translate-y-0"
-                        )}
-                        priceClassName={cn(
-                            "text-[18px] font-semibold",
-                            "sm:text-[22px]"
+                        className={cn(
+                            "text-[18px] font-bold",
+                            "md:text-[22px]",
+                            "xl:text-[26px]"
                         )}
                     />
 
-                    <Price
-                        iconClassName={cn(
-                            "hidden text-zinc-400",
-                            "min-[400px]:block min-[400px]:text-[20px]",
-                            "sm:text-[25px] sm:translate-y-0"
-                        )}
-                        priceClassName="!text-[18px] text-zinc-600 font-medium opacity-60 line-through"
-                    />
+                    <Price className="text-[18px] text-zinc-600 font-medium opacity-60 line-through" />
                 </div>
 
                 <Badge>

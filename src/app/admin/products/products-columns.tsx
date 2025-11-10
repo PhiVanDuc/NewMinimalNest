@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link";
-import Badge from "@/components/Badge";
 import Price from "@/components/Price";
 
 import {
@@ -15,6 +14,8 @@ import { HiDotsVertical } from "react-icons/hi";
 import { IoReloadOutline } from "react-icons/io5";
 
 import { ColumnDef } from "@tanstack/react-table";
+import ProductsActionDelete from "./components/ProductsActionDelete";
+import Badge from "@/components/Badge";
 
 const headerClassName = "text-[14px] text-zinc-700 font-medium";
 
@@ -33,10 +34,7 @@ const productsColumns: ColumnDef<number>[] = [
                                 Bàn làm việc Ikea
                             </p>
 
-                            <Price
-                                className="text-[14px] gap-[8px]"
-                                priceClassName="text-[14px] font-medium"
-                            />
+                            <Price className="text-[14px]" />
                         </div>
 
                         <div className="flex flex-wrap items-center space-x-[-5px]">
@@ -55,16 +53,16 @@ const productsColumns: ColumnDef<number>[] = [
         header: () => <h3 className={headerClassName}>Danh mục</h3>,
         cell: () => {
             return (
-                <div className="flex flex-wrap gap-[8px]">
-                    <Badge className="bg-transparent text-zinc-700 border border-zinc-300">
+                <div className="flex flex-wrap gap-[6px]">
+                    <Badge variant="outline">
                         <p>Sofa</p>
                     </Badge>
 
-                    <Badge className="bg-transparent text-zinc-700 border border-zinc-300">
-                        <p>Ghế tựa</p>
+                    <Badge variant="outline">
+                        <p>Ghế bành</p>
                     </Badge>
 
-                    <Badge className="bg-transparent text-zinc-700 border border-zinc-300">
+                    <Badge variant="outline">
                         <p>Phòng khách</p>
                     </Badge>
                 </div>
@@ -76,10 +74,7 @@ const productsColumns: ColumnDef<number>[] = [
         header: () => <h3 className={headerClassName}>Giảm giá</h3>,
         cell: () => {
             return (
-                <Price
-                    className="text-[15px] gap-[8px]"
-                    priceClassName="text-[15px] font-medium"
-                />
+                <Price className="text-[15px]" />
             )
         }
     },
@@ -88,19 +83,7 @@ const productsColumns: ColumnDef<number>[] = [
         header: () => <h3 className={headerClassName}>Giá bán</h3>,
         cell: () => {
             return (
-                <Price
-                    className="text-[15px] gap-[8px]"
-                    priceClassName="text-[15px] font-medium"
-                />
-            )
-        }
-    },
-    {
-        accessorKey: "display",
-        header: () => <h3 className={headerClassName}>Hiển thị</h3>,
-        cell: () => {
-            return (
-                <div></div>
+                <Price className="text-[15px]" />
             )
         }
     },
@@ -111,22 +94,22 @@ const productsColumns: ColumnDef<number>[] = [
             return (
                 <div className="flex justify-center">
                     <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <button className="size-[35px] flex items-center justify-center rounded-full hover:bg-zinc-200 cursor-pointer">
-                                <HiDotsVertical
-                                    size={18}
-                                    className="text-zinc-700"
-                                />
-                            </button>
+                        <DropdownMenuTrigger className="size-[35px] flex items-center justify-center rounded-full hover:bg-zinc-200 cursor-pointer">
+                            <HiDotsVertical
+                                size={18}
+                                className="text-zinc-700"
+                            />
                         </DropdownMenuTrigger>
 
                         <DropdownMenuContent>
                             <DropdownMenuItem asChild>
-                                <Link href="/admin/colors/color-slug">
+                                <Link href="/admin/products/product-slug">
                                     <IoReloadOutline />
                                     Cập nhật
                                 </Link>
                             </DropdownMenuItem>
+
+                            <ProductsActionDelete />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

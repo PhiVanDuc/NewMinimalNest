@@ -6,13 +6,13 @@ import { useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
+import ProductsFilter from "@/app/admin/products/components/ProductsFilter";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
 import { FiPlus } from "react-icons/fi";
 
-import productsColumns from "../products-columns";
+import productsColumns from "@/app/admin/products/products-columns";
 
 export default function ProductsClient() {
     const searchParams = useSearchParams();
@@ -41,6 +41,10 @@ export default function ProductsClient() {
             </div>
 
             <div className="space-y-[10px]">
+                <ProductsFilter
+                    filters={filters}
+                    setFilters={setFilters}
+                />
 
                 <DataTable
                     data={[1, 2, 3, 4]}

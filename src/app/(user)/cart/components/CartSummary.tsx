@@ -46,12 +46,7 @@ export default function CartSummary() {
                     )}
                 >
                     <p>Tổng tạm</p>
-                    <Price
-                        priceClassName={cn(
-                            "text-[14px] font-medium",
-                            "md:text-[15px]"
-                        )}
-                    />
+                    <Price className="text-[14px]" />
                 </div>
 
                 <div
@@ -61,14 +56,7 @@ export default function CartSummary() {
                     )}
                 >
                     <p>Phí vận chuyển</p>
-                    <p
-                        className={cn(
-                            "text-[14px] text-zinc-700 font-medium",
-                            "md:text-[15px]"
-                        )}
-                    >
-                        Miễn phí
-                    </p>
+                    <Price className="text-[14px]" />
                 </div>
             </div>
 
@@ -78,9 +66,9 @@ export default function CartSummary() {
                 <div className="md:flex items-center justify-between space-y-[5px] md:space-y-0">
                     <p className="text-[16px] font-semibold text-darkBold">Tổng giỏ hàng</p>
                     <Price
-                        priceClassName={cn(
-                            "text-[14px] font-medium",
-                            "md:text-[15px]"
+                        className={cn(
+                            "text-[15px] font-semibold",
+                            "md:text-[16px]"
                         )}
                     />
                 </div>

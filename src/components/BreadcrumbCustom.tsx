@@ -16,7 +16,7 @@ import { Fragment } from "react";
 
 const list = {
     "products": "Sản phẩm",
-    "search": "Tìm kiếm",
+    "filter": "Kết quả lọc",
     "coupons": "Phiếu giảm giá",
     "return-request": "Hoàn trả",
     "cart": "Giỏ hàng",

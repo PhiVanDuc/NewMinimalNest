@@ -3,8 +3,8 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const AddressFormDialog = dynamic(() => import("@/app/(user)/info/book-address/components/AddressDialogAddForm"));
-const DialogDeleteConfirm = dynamic(() => import("@/components/DialogDeleteConfirm"));
+const AddressFormDialog = dynamic(() => import("@/app/(user)/info/book-address/components/AddressDialogAddForm"), { ssr: false });
+const DialogDeleteConfirm = dynamic(() => import("@/components/DialogDeleteConfirm"), { ssr: false });
 
 import { Button } from "@/components/ui/button";
 import { IoReloadOutline } from "react-icons/io5";

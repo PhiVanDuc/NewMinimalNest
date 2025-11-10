@@ -36,7 +36,7 @@ export default function Page() {
         resolver: zodResolver(colorSchema),
         defaultValues: {
             name: "",
-            hex: "#000000"
+            colorCode: "#000000"
         }
     });
 
@@ -80,15 +80,15 @@ export default function Page() {
 
                         <FormField
                             control={form.control}
-                            name="hex"
+                            name="colorCode"
                             render={({ field }) => {
                                 return (
                                     <FormItem className="w-full">
-                                        <FormLabel>Mã màu hex</FormLabel>
+                                        <FormLabel>Mã màu</FormLabel>
 
                                         <FormControl>
                                             <Input
-                                                placeholder="Chọn hoặc nhập mã màu hex . . ."
+                                                placeholder="Chọn hoặc nhập mã màu sắc . . ."
                                                 {...field}
                                             />
                                         </FormControl>

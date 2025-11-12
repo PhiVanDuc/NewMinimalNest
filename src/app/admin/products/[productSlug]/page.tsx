@@ -5,7 +5,9 @@ import { useForm } from "react-hook-form";
 import Header from "@/components/Header";
 import ProductEditGeneral from "@/app/admin/products/[productSlug]/components/ProductEditGeneral";
 import ProductEditDiscount from "@/app/admin/products/[productSlug]/components/ProductEditDiscount";
-import ProductEditCategory from "@/app/admin/products/[productSlug]/components/ProductEditCategory";
+import ProductEditListColor from "@/app/admin/products/[productSlug]/components/ProductEditListColor";
+import ProductEditListImage from "@/app/admin/products/[productSlug]/components/ProductEditListImage";
+import ProductEditListCategory from "@/app/admin/products/[productSlug]/components/ProductEditListCategory";
 
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
@@ -21,10 +23,11 @@ export interface FormValuesType {
     price: string,
     categories: { name: string, slug: string }[]
     colors: { name: string, slug: string, colorCode: string }[]
-    color: { name: string, slug: string, colorCode: string }
+    color: { name: string, slug: string, colorCode: string } | undefined,
     images: {
-        color: { name: string, slug: string, colorCode: string }
-        images: (File | string)[]
+        colorSlug: string;
+        type: "main" | "sub" | "normal";
+        image: File | string;
     }[]
 }
 
@@ -38,11 +41,16 @@ export default function Page() {
             discountType: "percent",
             discount: "",
             price: "",
-            categories: []
+            categories: [],
+            colors: [],
+            color: undefined,
+            images: []
         }
     });
 
-    const handleSubmit = () => { }
+    const handleSubmit = (data: FormValuesType) => {
+        console.log(data);
+    }
 
     return (
         <div className="space-y-[40px]">
@@ -54,7 +62,7 @@ export default function Page() {
             <Form {...form}>
                 <form
                     autoComplete="off"
-                    className="flex items-stretch gap-[20px]"
+                    className="flex items-stretch gap-[40px]"
                     onSubmit={form.handleSubmit(handleSubmit)}
                 >
                     <div className="space-y-[40px] w-[70%]">
@@ -65,7 +73,8 @@ export default function Page() {
                             <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
 
                             <div className="space-y-[20px]">
-                                <ProductEditCategory form={form} />
+                                <ProductEditListCategory form={form} />
+                                <ProductEditListColor form={form} />
                             </div>
                         </div>
 
@@ -75,8 +84,7 @@ export default function Page() {
                         </Button>
                     </div>
 
-                    {/* <AdminProductAddImage form={form} /> */}
-                    <p>Demo Layout Card</p>
+                    <ProductEditListImage form={form} />
                 </form>
             </Form>
         </div>

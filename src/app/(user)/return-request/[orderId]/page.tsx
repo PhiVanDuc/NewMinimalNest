@@ -48,14 +48,14 @@ export default function Page() {
         }
     })
 
-    const fieldArray = useFieldArray({
+    const field = useFieldArray({
         control: form.control,
         name: "returnProducts",
         keyName: "_id"
     })
 
     const handleChooseReturnProduct = () => {
-        fieldArray.append({
+        field.append({
             id: v7(),
             evidenceImages: [],
             returnQuantity: "1",
@@ -63,19 +63,19 @@ export default function Page() {
         });
     }
 
-    const handleChooseImages = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
-        const imgs = event.target.files;
-        if (!imgs) return;
+    const handleChooseImages = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        const images = e.target.files;
+        if (!images) return;
 
         const current = form.getValues(`returnProducts.${index}.evidenceImages`);
-        const updated = [...current, ...Array.from(imgs)];
+        const updated = [...current, ...Array.from(images)];
 
         form.setValue(`returnProducts.${index}.evidenceImages`, updated);
     };
 
-    const handleDeleteImage = (productIndex: number, indexeEvidenceImage: number) => {
+    const handleDeleteImage = (productIndex: number, indexEvidenceImage: number) => {
         const images = form.getValues(`returnProducts.${productIndex}.evidenceImages`);
-        const updated = images.filter((_, i) => i !== indexeEvidenceImage);
+        const updated = images.filter((_, i) => i !== indexEvidenceImage);
         form.setValue(`returnProducts.${productIndex}.evidenceImages`, updated);
     };
 
@@ -108,7 +108,7 @@ export default function Page() {
     }
 
     const handleDeleteReturnProduct = (index: number) => {
-        fieldArray.remove(index)
+        field.remove(index)
     }
 
     const handleSubmit = () => { }
@@ -143,7 +143,7 @@ export default function Page() {
             </Header>
 
             {
-                fieldArray.fields.length === 0 ?
+                field.fields.length === 0 ?
                     (
                         <div className="p-[15px] bg-zinc-100 rounded-[10px] space-y-[2px]">
                             <p
@@ -171,7 +171,7 @@ export default function Page() {
                             >
                                 <div className="space-y-[40px] w-full">
                                     {
-                                        fieldArray.fields.map((field, index) => {
+                                        field.fields.map((field, index) => {
                                             return (
                                                 <div
                                                     key={field._id}
@@ -190,17 +190,17 @@ export default function Page() {
 
                                                                         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-[10px]">
                                                                             {
-                                                                                form.watch(`returnProducts.${index}.evidenceImages`).map((img, indexeEvidenceImage) => {
+                                                                                form.watch(`returnProducts.${index}.evidenceImages`).map((img, indexEvidenceImage) => {
                                                                                     const src = typeof img === "string" ? img : URL.createObjectURL(img);
 
                                                                                     return (
                                                                                         <div
-                                                                                            key={indexeEvidenceImage}
+                                                                                            key={indexEvidenceImage}
                                                                                             className="group relative cursor-pointer"
                                                                                         >
                                                                                             <Image
                                                                                                 src={src}
-                                                                                                alt={`evidence-${indexeEvidenceImage}`}
+                                                                                                alt={`evidence-${indexEvidenceImage}`}
                                                                                                 width={800}
                                                                                                 height={800}
                                                                                                 className="w-full aspect-square object-cover object-center rounded-[10px]"
@@ -208,7 +208,7 @@ export default function Page() {
 
                                                                                             <Button
                                                                                                 type="button"
-                                                                                                onClick={() => handleDeleteImage(index, indexeEvidenceImage)}
+                                                                                                onClick={() => handleDeleteImage(index, indexEvidenceImage)}
                                                                                                 className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute top-[5px] right-[5px] transition-all"
                                                                                             >
                                                                                                 <PiTrashSimpleBold />

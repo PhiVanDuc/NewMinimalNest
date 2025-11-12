@@ -4,19 +4,19 @@ import { useState } from "react";
 import { useWatch } from "react-hook-form";
 
 import dynamic from "next/dynamic";
-const ProductEditCategoryDialog = dynamic(() => import("@/app/admin/products/[productSlug]/components/ProductEditCategoryDialog"), { ssr: false });
+const ProductEditListCategoryDialog = dynamic(() => import("@/app/admin/products/[productSlug]/components/ProductEditListCategoryDialog"), { ssr: false });
 
 import Badge from "@/components/Badge";
 import { FaPlus } from "react-icons/fa6";
 
-import { type UseFormReturn } from "react-hook-form";
+import type { UseFormReturn } from "react-hook-form";
 import type { FormValuesType } from "@/app/admin/products/[productSlug]/page";
 
 interface PropsType {
     form: UseFormReturn<FormValuesType>
 }
 
-export default function ProductEditCategory({ form }: PropsType) {
+export default function ProductEditListCategory({ form }: PropsType) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     const watchCategories = useWatch({
@@ -58,7 +58,7 @@ export default function ProductEditCategory({ form }: PropsType) {
 
             {
                 isOpenDialog && (
-                    <ProductEditCategoryDialog
+                    <ProductEditListCategoryDialog
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
                         form={form}

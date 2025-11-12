@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { useFieldArray } from "react-hook-form";
+import { useFieldArray, useWatch } from "react-hook-form";
 
 import Badge from "@/components/Badge";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,7 @@ import { categories as filterCategories } from "@/consts/filter";
 import type { UseFormReturn } from "react-hook-form";
 import type { Dispatch, SetStateAction } from "react";
 import type { FormValuesType } from "@/app/admin/products/[productSlug]/page";
+
 import { cn } from "@/lib/utils";
 
 interface PropsType {
@@ -27,40 +28,40 @@ interface PropsType {
     form: UseFormReturn<FormValuesType>
 }
 
-export default function ProductEditCategoryDialog({ isOpen, setIsOpen, form }: PropsType) {
-    const [categories] = useState(() =>
-        filterCategories.map(category => ({
-            name: category.label,
-            slug: category.value
-        }))
-    );
-
+export default function ProductEditListCategoryDialog({ isOpen, setIsOpen, form }: PropsType) {
     const [categoryName, setCategoryName] = useState("");
     const [debouncedCategoryName, setDebouncedCategoryName] = useState("");
 
     useEffect(() => {
-        const handler = setTimeout(() => {
-            setDebouncedCategoryName(categoryName);
-        }, 500);
-
+        const handler = setTimeout(() => { setDebouncedCategoryName(categoryName) }, 500);
         return () => clearTimeout(handler);
     }, [categoryName]);
 
-    const field = useFieldArray({
+    const watchCategories = useWatch({
+        control: form.control,
+        name: "categories"
+    });
+
+    const fieldCategories = useFieldArray({
         control: form.control,
         name: "categories",
         keyName: "_id"
     });
+
+    const categories = filterCategories.map(category => ({
+        name: category.label,
+        slug: category.value
+    }))
 
     const filteredCategories = categories.filter(category =>
         category.name.toLowerCase().includes(debouncedCategoryName.toLowerCase())
     );
 
     const handleClickChooseCategory = (category: { name: string, slug: string }) => {
-        const index = field.fields.findIndex(item => item.slug === category.slug);
+        const index = watchCategories.findIndex(wCategory => wCategory.slug === category.slug);
 
-        if (index !== -1) field.remove(index);
-        else field.append(category);
+        if (index !== -1) fieldCategories.remove(index);
+        else fieldCategories.append(category);
     }
 
     return (
@@ -89,16 +90,16 @@ export default function ProductEditCategoryDialog({ isOpen, setIsOpen, form }: P
                                         <p className="desc-basic">Danh mục không tồn tại!</p>
                                     </div>
                                 ) :
-                                filteredCategories.map((category, index) => {
-                                    const existing = field.fields.find(element => category.slug === element.slug);
+                                filteredCategories.map(category => {
+                                    const isActive = watchCategories.find(wCategory => wCategory.slug === category.slug);
 
                                     return (
                                         <Badge
-                                            key={index}
+                                            key={category.slug}
                                             variant="outline"
                                             className={cn(
                                                 "transition-colors cursor-pointer",
-                                                existing ? "bg-zinc-100 border-zinc-100" : "bg-white hover:bg-zinc-100 hover:border-zinc-100"
+                                                isActive ? "bg-zinc-100 border-zinc-100" : "bg-white hover:bg-zinc-100 hover:border-zinc-100"
                                             )}
                                             onClick={() => { handleClickChooseCategory(category) }}
                                         >

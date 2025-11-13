@@ -1,23 +1,33 @@
 "use client"
 
-import { useMemo } from "react";
 import { useFieldArray, useWatch } from "react-hook-form";
 
 import Image from "next/image";
 import Header from "@/components/Header";
 
-import { IoMdImages } from "react-icons/io";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+
+import {
+    IoMdImages,
+    IoMdMore
+} from "react-icons/io";
 
 import type { UseFormReturn } from "react-hook-form";
 import type { FormValuesType } from "@/app/admin/products/[productSlug]/page";
 
 import { cn } from "@/lib/utils";
+import Badge from "@/components/Badge";
 
 interface PropsType {
     form: UseFormReturn<FormValuesType>
 }
 
-export default function ProductEditListImage({ form }: PropsType) {
+export default function ProductAddImageList({ form }: PropsType) {
     const watchImages = useWatch({
         control: form.control,
         name: "images"
@@ -47,30 +57,32 @@ export default function ProductEditListImage({ form }: PropsType) {
         if (!images) return;
         if (!watchColor) return;
 
+        const currentImages = [...sortedSameImage];
+
         Array.from(images).forEach(image => {
-            let passCondition = false;
             let type: "main" | "sub" | "normal" = "normal";
 
-            if (!sortedSameImage.some(image => image.type === "main") && !passCondition) {
-                type = "main";
-                passCondition = true;
-            }
-            else if ((sortedSameImage.filter(image => image.type === "sub").length < 2) && !passCondition) {
-                type = "sub";
-            }
+            const hasMain = currentImages.some(img => img.type === "main");
+            const subCount = currentImages.filter(img => img.type === "sub").length;
 
-            fieldImages.append({
+            if (!hasMain) type = "main";
+            else if (subCount < 2) type = "sub";
+
+            const newImage = {
                 colorSlug: watchColor.slug,
                 type,
-                image
-            });
+                image: image
+            };
+
+            currentImages.push(newImage);
+            fieldImages.append(newImage);
         });
 
         e.target.value = "";
     };
 
     return (
-        <div className="p-[20px] space-y-[40px] w-[30%] rounded-[10px] border border-zinc-300">
+        <div className="space-y-[40px] p-[20px] w-[35%] rounded-[10px] border border-zinc-300">
             <Header isBreadcrumb={false}>
                 <h2 className="sub-header-basic">Cung cấp ảnh</h2>
                 <p className="desc-basic">Vui lòng chọn màu sắc để cung cấp ảnh cho sản phẩm.</p>
@@ -142,6 +154,50 @@ export default function ProductEditListImage({ form }: PropsType) {
                                                     height={800}
                                                     className="w-full aspect-square object-cover object-center rounded-[10px]"
                                                 />
+
+                                                <div
+                                                    className={cn(
+                                                        "absolute top-[10px] left-[10px] right-[10px] flex items-center",
+                                                        image.type !== "main" && image.type !== "sub" ? "justify-end" : "justify-between"
+                                                    )}
+                                                >
+                                                    {
+                                                        (image.type === "main" || image.type === "sub") &&
+                                                        (
+                                                            <Badge
+                                                                className={cn(
+                                                                    "text-white",
+                                                                    image.type === "main" ? "bg-theme-main" :
+                                                                        image.type === "sub" && "bg-zinc-800"
+
+                                                                )}
+                                                            >
+                                                                <p>
+                                                                    {
+                                                                        image.type === "main" ? "Ảnh chính" :
+                                                                            image.type === "sub" && "Ảnh phụ"
+                                                                    }
+                                                                </p>
+                                                            </Badge>
+                                                        )
+                                                    }
+
+                                                    <DropdownMenu>
+                                                        <DropdownMenuTrigger
+                                                            data-slot="dropdown-menu-content"
+                                                            className="opacity-0 invisible group-hover:opacity-100 group-hover:visible data-[state=open]:opacity-100 data-[state=open]:visible flex items-center justify-center size-[40px] rounded-full bg-zinc-800 text-white transition-all cursor-pointer"
+                                                        >
+                                                            <IoMdMore size={20} />
+                                                        </DropdownMenuTrigger>
+
+                                                        <DropdownMenuContent align="end">
+                                                            <DropdownMenuItem>Ảnh chính</DropdownMenuItem>
+                                                            <DropdownMenuItem>Ảnh phụ</DropdownMenuItem>
+                                                            <DropdownMenuItem>Ảnh thường</DropdownMenuItem>
+                                                            <DropdownMenuItem>Xóa ảnh</DropdownMenuItem>
+                                                        </DropdownMenuContent>
+                                                    </DropdownMenu>
+                                                </div>
                                             </div>
                                         )
                                     })

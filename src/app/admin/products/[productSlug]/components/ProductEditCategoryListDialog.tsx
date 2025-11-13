@@ -28,7 +28,7 @@ interface PropsType {
     form: UseFormReturn<FormValuesType>
 }
 
-export default function ProductEditListCategoryDialog({ isOpen, setIsOpen, form }: PropsType) {
+export default function ProductEditCategoryListDialog({ isOpen, setIsOpen, form }: PropsType) {
     const [categoryName, setCategoryName] = useState("");
     const [debouncedCategoryName, setDebouncedCategoryName] = useState("");
 

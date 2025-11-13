@@ -13,7 +13,7 @@ interface PropsType {
     form: UseFormReturn<FormValuesType>
 }
 
-export default function ProductEditListColor({ form }: PropsType) {
+export default function ProductEditColorList({ form }: PropsType) {
     const colors = filterColors.map(color => ({
         name: color.label,
         slug: color.value,

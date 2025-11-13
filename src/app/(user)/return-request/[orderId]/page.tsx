@@ -200,7 +200,7 @@ export default function Page() {
                                                                                         >
                                                                                             <Image
                                                                                                 src={src}
-                                                                                                alt={`evidence-${indexEvidenceImage}`}
+                                                                                                alt={`Evidence Image ${indexEvidenceImage}`}
                                                                                                 width={800}
                                                                                                 height={800}
                                                                                                 className="w-full aspect-square object-cover object-center rounded-[10px]"
@@ -228,8 +228,9 @@ export default function Page() {
                                                                                     hidden
                                                                                     onChange={(e) => { handleChooseImages(e, index) }}
                                                                                 />
-                                                                                <div className="flex items-center justify-center rounded-full size-[50px] bg-zinc-100 group-hover:bg-white text-zinc-600">
-                                                                                    <IoMdImages size={30} />
+
+                                                                                <div className="flex items-center justify-center rounded-full size-[45px] bg-zinc-100 group-hover:bg-white text-zinc-600">
+                                                                                    <IoMdImages size={25} />
                                                                                 </div>
                                                                             </label>
                                                                         </div>

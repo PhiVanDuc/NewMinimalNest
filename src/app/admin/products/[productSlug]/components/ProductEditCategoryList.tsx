@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useWatch } from "react-hook-form";
 
 import dynamic from "next/dynamic";
-const ProductEditListCategoryDialog = dynamic(() => import("@/app/admin/products/[productSlug]/components/ProductEditListCategoryDialog"), { ssr: false });
+const ProductEditCategoryListDialog = dynamic(() => import("@/app/admin/products/[productSlug]/components/ProductEditCategoryListDialog"), { ssr: false });
 
 import Badge from "@/components/Badge";
 import { FaPlus } from "react-icons/fa6";
@@ -16,7 +16,7 @@ interface PropsType {
     form: UseFormReturn<FormValuesType>
 }
 
-export default function ProductEditListCategory({ form }: PropsType) {
+export default function ProductEditCategoryList({ form }: PropsType) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     const watchCategories = useWatch({
@@ -58,7 +58,7 @@ export default function ProductEditListCategory({ form }: PropsType) {
 
             {
                 isOpenDialog && (
-                    <ProductEditListCategoryDialog
+                    <ProductEditCategoryListDialog
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
                         form={form}

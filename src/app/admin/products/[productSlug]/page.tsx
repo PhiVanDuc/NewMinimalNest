@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import Header from "@/components/Header";
 import ProductEditGeneral from "@/app/admin/products/[productSlug]/components/ProductEditGeneral";
 import ProductEditDiscount from "@/app/admin/products/[productSlug]/components/ProductEditDiscount";
-import ProductEditListColor from "@/app/admin/products/[productSlug]/components/ProductEditListColor";
-import ProductEditListImage from "@/app/admin/products/[productSlug]/components/ProductEditListImage";
-import ProductEditListCategory from "@/app/admin/products/[productSlug]/components/ProductEditListCategory";
+import ProductEditColorList from "@/app/admin/products/[productSlug]/components/ProductEditColorList";
+import ProductEditImageList from "@/app/admin/products/[productSlug]/components/ProductEditImageList";
+import ProductEditCategoryList from "@/app/admin/products/[productSlug]/components/ProductEditCategoryList";
 
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
@@ -62,10 +62,10 @@ export default function Page() {
             <Form {...form}>
                 <form
                     autoComplete="off"
-                    className="flex items-stretch gap-[40px]"
+                    className="flex gap-[40px]"
                     onSubmit={form.handleSubmit(handleSubmit)}
                 >
-                    <div className="space-y-[40px] w-[70%]">
+                    <div className="space-y-[40px] w-[65%]">
                         <ProductEditGeneral form={form} />
                         <ProductEditDiscount form={form} />
 
@@ -73,8 +73,8 @@ export default function Page() {
                             <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
 
                             <div className="space-y-[20px]">
-                                <ProductEditListCategory form={form} />
-                                <ProductEditListColor form={form} />
+                                <ProductEditCategoryList form={form} />
+                                <ProductEditColorList form={form} />
                             </div>
                         </div>
 
@@ -84,7 +84,7 @@ export default function Page() {
                         </Button>
                     </div>
 
-                    <ProductEditListImage form={form} />
+                    <ProductEditImageList form={form} />
                 </form>
             </Form>
         </div>

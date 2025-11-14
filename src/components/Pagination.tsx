@@ -9,7 +9,8 @@ import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils";
-import positiveIntegerValidator from "@/utils/positive-integer-validator";
+import isPositiveIntegerString from "@/utils/is-positive-integer-string";
+import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
 interface PropsType {
     page: string,
@@ -19,7 +20,25 @@ interface PropsType {
 
 export default function Pagination({ page, totalPage, listRef }: PropsType) {
     const router = useRouter();
-    const [pageValue, setPageValue] = useState(!positiveIntegerValidator(page) || Number(page) > Number(totalPage) ? totalPage : page);
+    const [pageValue, setPageValue] = useState((!isPositiveIntegerString(page) || Number(page) > Number(totalPage)) ? totalPage : page);
+
+    const handleChangePageValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const positivePageValueString = toPositiveIntegerString(e.target.value);
+        const positiveTotalPageString = toPositiveIntegerString(totalPage);
+
+        if (!positivePageValueString) setPageValue("");
+        if (positivePageValueString.length > 16) setPageValue("1");
+
+        const positivePageValue = Number(positivePageValueString);
+        const positiveTotalPage = Number(toPositiveIntegerString(totalPage));
+
+        if (positivePageValue > positiveTotalPage) setPageValue(positiveTotalPageString);
+        else setPageValue(positivePageValueString);
+    }
+
+    const handleBlurInput = () => {
+        if (pageValue === "") setPageValue("1");
+    }
 
     const navigatePage = (value: string) => {
         const params = new URLSearchParams(window.location.search);
@@ -27,50 +46,28 @@ export default function Pagination({ page, totalPage, listRef }: PropsType) {
         router.replace(`?${params.toString()}`, { scroll: false });
 
         setTimeout(() => {
-            if (listRef) {
-                if (listRef.current) {
-                    const top = listRef.current.offsetTop - 100;
-                    window.scrollTo({ top: top > 0 ? top : 0, behavior: "smooth" });
-                }
+            if (listRef && listRef.current) {
+                const top = listRef.current.offsetTop - 100;
+                window.scrollTo({ top: top > 0 ? top : 0, behavior: "smooth" });
             }
-            else {
-                window.scrollTo({ top: 0, behavior: "smooth" })
-            }
+            else window.scrollTo({ top: 0, behavior: "smooth" });
         }, 50);
     }
 
-    const handleChangePageValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const target = e.target;
-        let value = target.value;
-
-        if (value) {
-            const isValid = positiveIntegerValidator(value);
-
-            if (!isValid) value = "1";
-            else if (Number(value) > Number(totalPage)) value = totalPage;
-        }
-
-        setPageValue(value);
-    }
-
-    const handleNavigateEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handlePressNavigate = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key !== "Enter") return;
-
-        // Fetch data
-
         navigatePage(pageValue);
     }
 
-    const handleNavigate = (direction: "prev" | "next") => {
-        let newPage = Number(pageValue);
+    const handleClickNavigate = (direction: "prev" | "next") => {
+        let positivePageValue = Number(pageValue);
+        const positiveTotalPage = Number(toPositiveIntegerString(totalPage));
 
-        if (direction === "prev" && newPage > 1) newPage -= 1;
-        else if (direction === "next" && newPage < Number(totalPage)) newPage += 1;
+        if (direction === "prev" && positivePageValue > 1) positivePageValue -= 1;
+        else if (direction === "next" && positivePageValue < positiveTotalPage) positivePageValue += 1;
 
-        // Fetch data
-
-        setPageValue(`${newPage}`);
-        navigatePage(`${newPage}`);
+        setPageValue(`${positivePageValue}`);
+        navigatePage(`${positivePageValue}`);
     }
 
     return (
@@ -88,7 +85,8 @@ export default function Pagination({ page, totalPage, listRef }: PropsType) {
                 <Input
                     value={pageValue}
                     onChange={handleChangePageValue}
-                    onKeyUp={handleNavigateEnter}
+                    onBlur={handleBlurInput}
+                    onKeyUp={handlePressNavigate}
                     className="h-[30px] w-[50px] py-[4px] border-2 text-white focus-visible:border-white focus-visible:ring-white/40"
                 />
 
@@ -105,7 +103,7 @@ export default function Pagination({ page, totalPage, listRef }: PropsType) {
             <div className="flex gap-[8px] w-fit">
                 <button
                     className="shrink-0 flex items-center justify-center w-[40px] aspect-square rounded-full bg-theme-main text-white cursor-pointer"
-                    onClick={() => { handleNavigate("prev") }}
+                    onClick={() => { handleClickNavigate("prev") }}
                     disabled={pageValue === "1"}
                 >
                     <FaChevronLeft
@@ -118,7 +116,7 @@ export default function Pagination({ page, totalPage, listRef }: PropsType) {
 
                 <button
                     className="shrink-0 flex items-center justify-center w-[40px] aspect-square rounded-full bg-theme-main text-white cursor-pointer"
-                    onClick={() => { handleNavigate("next") }}
+                    onClick={() => { handleClickNavigate("next") }}
                     disabled={pageValue === totalPage}
                 >
                     <FaChevronRight

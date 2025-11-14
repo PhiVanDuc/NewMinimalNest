@@ -5,10 +5,10 @@ const orderReviewSchema = z.object({
         .string(),
     rate: z
         .number()
-        .min(1, { error: "Vui lòng không để trống đánh giá sao!" }),
+        .min(1, { error: "Vui lòng đánh giá sao!" }),
     comment: z
         .string()
-        .min(1, { error: "Vui lòng không để trống trường nhận xét!" })
+        .min(1, { error: "Vui lòng nhập nhận xét!" })
 });
 
 export default orderReviewSchema;

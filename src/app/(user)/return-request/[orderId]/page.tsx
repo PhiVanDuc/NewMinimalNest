@@ -27,7 +27,7 @@ import { v7 } from "uuid";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import returnRequestSchema from "@/schema/return-request-schema";
-import positiveIntegerValidator from "@/utils/positive-integer-validator";
+import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
 interface ReturnProductType {
     id: string,
@@ -80,31 +80,25 @@ export default function Page() {
     };
 
     const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-        const target = e.target;
-        let value = target.value;
+        const positiveReturnQuantityString = toPositiveIntegerString(e.target.value);
+        if (!positiveReturnQuantityString) form.setValue(`returnProducts.${index}.returnQuantity`, "");
 
-        if (value) {
-            const isValid = positiveIntegerValidator(value);
-
-            if (!isValid) value = "1";
-            else if (Number(value) > 2) value = "2";
-        }
-
-        form.setValue(`returnProducts.${index}.returnQuantity`, value);
+        const positiveReturnQuantity = Number(positiveReturnQuantityString);
+        if (positiveReturnQuantity > 99) form.setValue(`returnProducts.${index}.returnQuantity`, "99");
+        else form.setValue(`returnProducts.${index}.returnQuantity`, positiveReturnQuantityString);
     }
 
     const handleBlurQuantity = (e: React.FocusEvent<HTMLInputElement>, index: number) => {
         if (e.target.value === "") form.setValue(`returnProducts.${index}.returnQuantity`, "1");
     }
 
-    const handleClickDecrease = (returnQuantity: string, index: number) => {
-        const num = Number(returnQuantity) - 1;
-        form.setValue(`returnProducts.${index}.returnQuantity`, num < 1 ? "1" : String(num));
-    }
+    const handleClickAdjustment = (direction: "decrease" | "increase", returnQuantity: string, index: number) => {
+        let positiveReturnQuantity = Number(returnQuantity);
 
-    const handleClickIncrease = (returnQuantity: string, index: number) => {
-        const num = Number(returnQuantity) + 1;
-        form.setValue(`returnProducts.${index}.returnQuantity`, num > 2 ? "2" : String(num));
+        if (direction === "decrease" && positiveReturnQuantity > 1) positiveReturnQuantity -= 1;
+        else if (direction === "increase" && positiveReturnQuantity < 99) positiveReturnQuantity += 1;
+
+        form.setValue(`returnProducts.${index}.returnQuantity`, positiveReturnQuantity.toString());
     }
 
     const handleDeleteReturnProduct = (index: number) => {
@@ -163,7 +157,6 @@ export default function Page() {
                             <form
                                 autoComplete="off"
                                 onSubmit={form.handleSubmit(handleSubmit)}
-                                // className="space-y-[20px]"
                                 className={cn(
                                     "flex flex-col items-start gap-[40px]",
                                     "xl:flex-row xl:gap-[20px]"
@@ -251,10 +244,10 @@ export default function Page() {
 
                                                                         <Quantity
                                                                             value={returnQuantity}
-                                                                            handleClickDecrease={() => handleClickDecrease(returnQuantity, index)}
-                                                                            handleChangeQuantity={(e) => handleChangeQuantity(e, index)}
                                                                             handleBlurQuantity={(e) => handleBlurQuantity(e, index)}
-                                                                            handleClickIncrease={() => handleClickIncrease(returnQuantity, index)}
+                                                                            handleChangeQuantity={(e) => handleChangeQuantity(e, index)}
+                                                                            handleClickDecrease={() => handleClickAdjustment("decrease", returnQuantity, index)}
+                                                                            handleClickIncrease={() => handleClickAdjustment("increase", returnQuantity, index)}
                                                                         />
                                                                     </FormItem>
                                                                 )

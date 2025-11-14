@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 
 interface PropsType {
     value: string,
-    handleClickDecrease?: (e: React.MouseEvent<HTMLButtonElement>) => void,
-    handleChangeQuantity?: (e: React.ChangeEvent<HTMLInputElement>) => void,
     handleBlurQuantity?: (e: React.FocusEvent<HTMLInputElement>) => void,
+    handleChangeQuantity?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    handleClickDecrease?: (e: React.MouseEvent<HTMLButtonElement>) => void,
     handleClickIncrease?: (e: React.MouseEvent<HTMLButtonElement>) => void,
     disabled?: boolean
 }
@@ -17,9 +17,9 @@ interface PropsType {
 export default function Quantity(
     {
         value,
-        handleClickDecrease,
-        handleChangeQuantity,
         handleBlurQuantity,
+        handleChangeQuantity,
+        handleClickDecrease,
         handleClickIncrease,
         disabled = false
     }: PropsType

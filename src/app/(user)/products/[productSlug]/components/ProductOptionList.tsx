@@ -4,42 +4,32 @@ import { useState } from "react";
 import Quantity from "@/components/Quantity";
 
 import { cn } from "@/lib/utils";
-import positiveIntegerValidator from "@/utils/positive-integer-validator";
+import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
 export default function ProductOptionList() {
     const [quantity, setQuantity] = useState("1");
 
     const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const target = e.target;
-        let value = target.value;
+        const positiveQuantityString = toPositiveIntegerString(e.target.value);
+        if (!positiveQuantityString) setQuantity("");
 
-        if (value) {
-            const isValid = positiveIntegerValidator(value);
-
-            if (!isValid) value = "1";
-            else if (Number(value) > 99) value = "99";
-        }
-
-        setQuantity(value);
+        const positiveQuantity = Number(positiveQuantityString);
+        if (positiveQuantity > 99) setQuantity("99");
+        else setQuantity(positiveQuantityString);
     }
 
-    const handleBlurQuantity = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (e.target.value === "") setQuantity("1");
+    const handleBlurQuantity = () => {
+        if (quantity === "") setQuantity("1");
     }
 
-    const handleClickDecrease = () => {
-        setQuantity(prev => {
-            const num = Number(prev) - 1;
-            return num < 1 ? "1" : String(num);
-        });
-    };
+    const handleClickAdjustment = (direction: "decrease" | "increase") => {
+        let positiveQuantity = Number(quantity);
 
-    const handleClickIncrease = () => {
-        setQuantity(prev => {
-            const num = Number(prev) + 1;
-            return num > 99 ? "99" : String(num);
-        });
-    };
+        if (direction === "decrease" && positiveQuantity > 1) positiveQuantity -= 1;
+        else if (direction === "increase" && positiveQuantity < 99) positiveQuantity += 1;
+
+        setQuantity(positiveQuantity.toString());
+    }
 
     return (
         <div className="space-y-[20px]">
@@ -75,10 +65,10 @@ export default function ProductOptionList() {
 
                 <Quantity
                     value={quantity}
-                    handleClickDecrease={handleClickDecrease}
-                    handleChangeQuantity={handleChangeQuantity}
                     handleBlurQuantity={handleBlurQuantity}
-                    handleClickIncrease={handleClickIncrease}
+                    handleChangeQuantity={handleChangeQuantity}
+                    handleClickDecrease={() => { handleClickAdjustment("decrease") }}
+                    handleClickIncrease={() => { handleClickAdjustment("increase") }}
                 />
             </div>
         </div>

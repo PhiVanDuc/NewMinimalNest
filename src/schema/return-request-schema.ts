@@ -14,13 +14,13 @@ const returnProductSchema = z.object({
         .string(),
     returnReason: z
         .string()
-        .min(1, "Vui lòng không để trống trường lý do!")
+        .min(1, { error: "Vui lòng nhập lý do!" })
 });
 
 const returnRequestSchema = z.object({
     returnProducts: z
         .array(returnProductSchema)
-        .min(1, "Phải chọn ít nhất một sản phẩm hoàn trả!")
+        .min(1, { error: "Vui lòng chọn ít nhất một sản phẩm hoàn trả!" })
 });
 
 export default returnRequestSchema;

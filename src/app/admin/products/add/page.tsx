@@ -13,6 +13,9 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { FaPlus } from "react-icons/fa6";
 
+import productSchema from "@/schema/product-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 export interface FormValuesType {
     name: string,
     desc: string,
@@ -21,18 +24,19 @@ export interface FormValuesType {
     discountType: "percent" | "amount",
     discount: string,
     price: string,
-    categories: { name: string, slug: string }[]
-    colors: { name: string, slug: string, colorCode: string }[]
-    color: { name: string, slug: string, colorCode: string } | undefined,
-    images: {
-        colorSlug: string;
-        type: "main" | "sub" | "normal";
-        image: File | string;
-    }[]
+    // categories: { name: string, slug: string }[]
+    // colors: { name: string, slug: string, colorCode: string }[]
+    // color: { name: string, slug: string, colorCode: string } | undefined,
+    // images: {
+    //     colorSlug: string;
+    //     type: "main" | "sub" | "normal";
+    //     image: File | string;
+    // }[]
 }
 
 export default function Page() {
     const form = useForm<FormValuesType>({
+        resolver: zodResolver(productSchema),
         defaultValues: {
             name: "",
             desc: "",
@@ -41,10 +45,10 @@ export default function Page() {
             discountType: "percent",
             discount: "",
             price: "",
-            categories: [],
-            colors: [],
-            color: undefined,
-            images: []
+            // categories: [],
+            // colors: [],
+            // color: undefined,
+            // images: []
         }
     });
 
@@ -73,8 +77,8 @@ export default function Page() {
                             <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
 
                             <div className="space-y-[20px]">
-                                <ProductAddCategoryList form={form} />
-                                <ProductAddColorList form={form} />
+                                {/* <ProductAddCategoryList form={form} />
+                                <ProductAddColorList form={form} /> */}
                             </div>
                         </div>
 
@@ -84,7 +88,7 @@ export default function Page() {
                         </Button>
                     </div>
 
-                    <ProductAddImageList form={form} />
+                    {/* <ProductAddImageList form={form} /> */}
                 </form>
             </Form>
         </div>

@@ -5,8 +5,8 @@ import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import filterProductSlice from "@/store/slices/filterProduct";
+import isPositiveIntegerString from "@/utils/is-positive-integer-string";
 import { categories, statuses, colors, priceRanges } from "@/consts/filter";
-import positiveIntegerValidator from "@/utils/positive-integer-validator";
 
 import type { itemType, colorType, priceRangeType } from "@/store/slices/filterProduct";
 
@@ -51,7 +51,7 @@ export default function FilterSync() {
         }
 
         const page = searchParams.get("page");
-        if (page && positiveIntegerValidator(page)) tempSlugs.page = page;
+        if (page && isPositiveIntegerString(page)) tempSlugs.page = page;
 
         const productName = searchParams.get("productName");
         if (productName) {

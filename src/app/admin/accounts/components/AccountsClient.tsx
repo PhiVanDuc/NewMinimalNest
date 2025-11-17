@@ -13,7 +13,7 @@ import accountsColumns from "@/app/admin/accounts/accounts-columns";
 export default function AccountsClient() {
     const searchParams = useSearchParams();
 
-    const [filters, setFilters] = useState({
+    const [filter, setFilter] = useState({
         name: "",
         rank: ""
     });
@@ -22,13 +22,13 @@ export default function AccountsClient() {
         <div className="space-y-[40px]">
             <Header>
                 <h1 className="header-basic">Quản lý tài khoản</h1>
-                <p className="desc-basic">Quản lý, xem và phân quyền tài khoản người dùng tại đây.</p>
+                <p className="desc-basic">Xem danh sách và phân quyền tài khoản người dùng tại đây.</p>
             </Header>
 
             <div className="space-y-[10px]">
                 <AccountsFilter
-                    filters={filters}
-                    setFilters={setFilters}
+                    filter={filter}
+                    setFilter={setFilter}
                 />
 
                 <DataTable

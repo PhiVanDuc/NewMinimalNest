@@ -7,20 +7,20 @@ import { SearchIcon } from "lucide-react";
 
 import type { Dispatch, SetStateAction } from "react";
 
-type ColorsType = {
+type ColorsFilterType = {
     name: string
 }
 
 interface PropsType {
-    filters: ColorsType,
-    setFilters: Dispatch<SetStateAction<ColorsType>>
+    filter: ColorsFilterType,
+    setFilter: Dispatch<SetStateAction<ColorsFilterType>>
 }
 
-export default function ColorsFilter({ filters, setFilters }: PropsType) {
+export default function ColorsFilter({ filter, setFilter }: PropsType) {
     const router = useRouter();
 
-    const handleChangeColorName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilters(() => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFilter(() => {
             return { name: e.target.value }
         });
     }
@@ -32,10 +32,10 @@ export default function ColorsFilter({ filters, setFilters }: PropsType) {
     return (
         <div className="flex items-center justify-between gap-[10px]">
             <Input
-                value={filters.name}
+                value={filter.name}
                 placeholder="Lọc tên màu sắc . . ."
                 className="w-[300px]"
-                onChange={handleChangeColorName}
+                onChange={handleChange}
             />
 
             <button

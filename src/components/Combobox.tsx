@@ -71,7 +71,7 @@ export default function Combobox({
             >
                 <Button
                     className={cn(
-                        "gap-[25px] py-[20px] bg-white hover:bg-white border border-input text-[14px] text-muted-foreground font-normal",
+                        "gap-[25px] py-[22px] bg-white hover:bg-white border border-input text-[14px] text-muted-foreground font-normal",
                         className
                     )}
                 >

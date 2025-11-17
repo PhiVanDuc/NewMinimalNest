@@ -17,7 +17,7 @@ import colorsColumns from "@/app/admin/colors/colors-columns";
 export default function ColorsClient() {
     const searchParams = useSearchParams();
 
-    const [filters, setFilters] = useState({
+    const [filter, setFilter] = useState({
         name: ""
     });
 
@@ -26,7 +26,7 @@ export default function ColorsClient() {
             <div className="flex items-center justify-between">
                 <Header>
                     <h1 className="header-basic">Quản lý màu sắc</h1>
-                    <p className="desc-basic">Quản lý, xem, cập nhật và xoá màu sắc tại đây.</p>
+                    <p className="desc-basic">Xem danh sách, thêm, cập nhật và xoá màu sắc tại đây.</p>
                 </Header>
 
                 <Button
@@ -42,8 +42,8 @@ export default function ColorsClient() {
 
             <div className="space-y-[10px]">
                 <ColorsFilter
-                    filters={filters}
-                    setFilters={setFilters}
+                    filter={filter}
+                    setFilter={setFilter}
                 />
 
                 <DataTable

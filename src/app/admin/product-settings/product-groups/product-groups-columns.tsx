@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import ColorsActionDelete from "@/app/admin/colors/components/ColorsActionDelete";
+import ProductGroupsActionDelete from "@/app/admin/product-settings/product-groups/components/ProductGroupsActionDelete";
 
 import {
     DropdownMenu,
@@ -17,31 +17,22 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 const headerClassName = "text-[14px] text-zinc-700 font-medium";
 
-const colorsColumns: ColumnDef<number>[] = [
+const productGroupsColumns: ColumnDef<number>[] = [
     {
-        accessorKey: "color",
-        header: () => <h3 className={headerClassName}>Màu sắc</h3>,
+        accessorKey: "product",
+        header: () => <h3 className={headerClassName}>Nhóm sản phẩm</h3>,
         cell: () => {
             return (
-                <div className="flex items-center gap-[15px]">
-                    <span
-                        className="w-[20px] aspect-square rounded-full outline-[2px] outline-offset-2 outline-zinc-100"
-                        style={{
-                            background: "#ccc"
-                        }}
-                    />
-
-                    <p className="header-table-row">Màu xám</p>
-                </div>
+                <p className="header-table-row">Tên sản phẩm muốn nhóm</p>
             )
         }
     },
     {
-        accessorKey: "productCount",
-        header: () => <h3 className={headerClassName}>Đếm sản phẩm</h3>,
+        accessorKey: "categories",
+        header: () => <h3 className={headerClassName + " text-center"}>Số lượng sản phẩm</h3>,
         cell: () => {
             return (
-                <p className="content-table-row">100 sản phẩm</p>
+                <p className="content-table-row text-center">5 sản phẩm</p>
             )
         }
     },
@@ -61,13 +52,13 @@ const colorsColumns: ColumnDef<number>[] = [
 
                         <DropdownMenuContent>
                             <DropdownMenuItem asChild>
-                                <Link href="/admin/colors/color-slug">
+                                <Link href="/admin/product-settings/product-groups/product-groups-id">
                                     <IoReloadOutline />
                                     Cập nhật
                                 </Link>
                             </DropdownMenuItem>
 
-                            <ColorsActionDelete />
+                            <ProductGroupsActionDelete />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
@@ -76,4 +67,4 @@ const colorsColumns: ColumnDef<number>[] = [
     }
 ];
 
-export default colorsColumns;
+export default productGroupsColumns;

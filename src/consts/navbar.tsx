@@ -2,9 +2,8 @@ import { IoAnalytics } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
 import { PiFlagBannerFold } from "react-icons/pi";
 import { RiDiscountPercentLine, RiCoupon4Line, RiBillLine } from "react-icons/ri";
-import { TbCategory2, TbColorFilter } from "react-icons/tb";
+import { TbCategory2, TbColorFilter, TbSettings2 } from "react-icons/tb";
 import { AiOutlineInbox } from "react-icons/ai";
-import { LiaObjectUngroup } from "react-icons/lia";
 import { MdOutlineInventory2 } from "react-icons/md";
 
 export const userNavList = [
@@ -113,9 +112,9 @@ export const adminDrawerNavList = [
             },
             {
                 id: "2.4",
-                label: "Nhóm sản phẩm",
-                href: "/admin/product-groups",
-                icon: <LiaObjectUngroup size={20} />
+                label: "Cài đặt sản phẩm",
+                href: "/admin/product-settings",
+                icon: <TbSettings2 size={20} />
             },
             {
                 id: "2.5",

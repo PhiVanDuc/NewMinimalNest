@@ -7,19 +7,19 @@ import { SearchIcon } from "lucide-react";
 
 import type { Dispatch, SetStateAction } from "react";
 
-type ProductsFilterType = {
+type ProductGroupsFilterType = {
     name: string
 }
 
 interface PropsType {
-    filter: ProductsFilterType,
-    setFilter: Dispatch<SetStateAction<ProductsFilterType>>
+    filter: ProductGroupsFilterType,
+    setFilter: Dispatch<SetStateAction<ProductGroupsFilterType>>
 }
 
-export default function ProductsFilter({ filter, setFilter }: PropsType) {
+export default function ProductGroupsFilter({ filter, setFilter }: PropsType) {
     const router = useRouter();
 
-    const handleChangeProductName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilter(() => {
             return { name: e.target.value }
         });
@@ -33,9 +33,9 @@ export default function ProductsFilter({ filter, setFilter }: PropsType) {
         <div className="flex items-center justify-between gap-[10px]">
             <Input
                 value={filter.name}
-                placeholder="Lọc tên sản phẩm . . ."
+                placeholder="Lọc tên nhóm sản phẩm . . ."
                 className="w-[300px]"
-                onChange={handleChangeProductName}
+                onChange={handleChange}
             />
 
             <button

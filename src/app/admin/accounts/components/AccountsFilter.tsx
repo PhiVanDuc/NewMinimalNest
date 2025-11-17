@@ -10,21 +10,21 @@ import ranks from "@/consts/ranks";
 
 import type { Dispatch, SetStateAction } from "react";
 
-type FiltersType = {
+type AccountsFilterType = {
     name: string,
     rank: string
 }
 
 interface PropsType {
-    filters: FiltersType,
-    setFilters: Dispatch<SetStateAction<FiltersType>>
+    filter: AccountsFilterType,
+    setFilter: Dispatch<SetStateAction<AccountsFilterType>>
 }
 
-export default function AccountsFilter({ filters, setFilters }: PropsType) {
+export default function AccountsFilter({ filter, setFilter }: PropsType) {
     const router = useRouter();
 
     const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilters((state) => {
+        setFilter((state) => {
             return {
                 ...state,
                 name: e.target.value
@@ -33,7 +33,7 @@ export default function AccountsFilter({ filters, setFilters }: PropsType) {
     }
 
     const handleChangeRole = (value: string) => {
-        setFilters((state) => {
+        setFilter((state) => {
             return {
                 ...state,
                 rank: value
@@ -49,7 +49,7 @@ export default function AccountsFilter({ filters, setFilters }: PropsType) {
         <div className="flex items-center justify-between gap-[10px]">
             <div className="flex gap-[10px]">
                 <Input
-                    value={filters.name}
+                    value={filter.name}
                     placeholder="Lọc tên người dùng . . ."
                     className="w-[300px]"
                     onChange={handleChangeUsername}
@@ -65,7 +65,7 @@ export default function AccountsFilter({ filters, setFilters }: PropsType) {
                             value: rank.value
                         }
                     })}
-                    value={filters.rank}
+                    value={filter.rank}
                     onChange={handleChangeRole}
                 />
             </div>

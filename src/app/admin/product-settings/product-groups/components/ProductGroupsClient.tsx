@@ -7,16 +7,17 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
+import ProductGroupsFilter from "@/app/admin/product-settings/product-groups/components/ProductGroupsFilter";
 
 import { Button } from "@/components/ui/button";
 import { FiPlus } from "react-icons/fi";
 
-import productGroupsColumns from "@/app/admin/product-groups/product-groups-columns";
+import productGroupsColumns from "@/app/admin/product-settings/product-groups/product-groups-columns";
 
 export default function ProductGroupsClient() {
     const searchParams = useSearchParams();
 
-    const [filters, setFilters] = useState({
+    const [filter, setFilter] = useState({
         name: ""
     });
 
@@ -32,7 +33,7 @@ export default function ProductGroupsClient() {
                     className="bg-theme-main hover:bg-theme-main/95"
                     asChild
                 >
-                    <Link href="/admin/products/add">
+                    <Link href="/admin/product-settings/product-groups/add">
                         <FiPlus />
                         Thêm nhóm sản phẩm
                     </Link>
@@ -40,6 +41,10 @@ export default function ProductGroupsClient() {
             </div>
 
             <div className="space-y-[10px]">
+                <ProductGroupsFilter
+                    filter={filter}
+                    setFilter={setFilter}
+                />
 
                 <DataTable
                     data={[1, 2, 3, 4]}

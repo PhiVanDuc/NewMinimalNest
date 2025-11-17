@@ -17,7 +17,7 @@ import productsColumns from "@/app/admin/products/products-columns";
 export default function ProductsClient() {
     const searchParams = useSearchParams();
 
-    const [filters, setFilters] = useState({
+    const [filter, setFilter] = useState({
         name: ""
     });
 
@@ -26,7 +26,7 @@ export default function ProductsClient() {
             <div className="flex items-center justify-between">
                 <Header>
                     <h1 className="header-basic">Quản lý sản phẩm</h1>
-                    <p className="desc-basic">Quản lý, xem, cập nhật và xoá sản phẩm tại đây.</p>
+                    <p className="desc-basic">Xem danh sách, thêm, cập nhật và xoá sản phẩm tại đây.</p>
                 </Header>
 
                 <Button
@@ -42,8 +42,8 @@ export default function ProductsClient() {
 
             <div className="space-y-[10px]">
                 <ProductsFilter
-                    filters={filters}
-                    setFilters={setFilters}
+                    filter={filter}
+                    setFilter={setFilter}
                 />
 
                 <DataTable

@@ -36,14 +36,14 @@ export default function ProductAddGeneral({ form }: PropsType) {
 
     const handleChangeCostPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
         const costPrice = toPositiveIntegerString(e.target.value);
-        form.setValue("costPrice", toStandardPositiveIntegerString(costPrice));
+        form.setValue("costPrice", toStandardPositiveIntegerString(costPrice), { shouldValidate: true });
     }
 
     const handleChangeInterestPercent = (e: React.ChangeEvent<HTMLInputElement>) => {
         const interestPercent = toPositiveIntegerString(e.target.value);
 
-        if (Number(interestPercent) > 100) form.setValue("interestPercent", "100");
-        else form.setValue("interestPercent", interestPercent);
+        if (Number(interestPercent) > 100) form.setValue("interestPercent", "100", { shouldValidate: true });
+        else form.setValue("interestPercent", interestPercent, { shouldValidate: true });
     }
 
     return (
@@ -93,7 +93,7 @@ export default function ProductAddGeneral({ form }: PropsType) {
                     }}
                 />
 
-                <div className="flex gap-[10px]">
+                <div className="flex items-start gap-[10px]">
                     <FormField
                         control={form.control}
                         name="costPrice"

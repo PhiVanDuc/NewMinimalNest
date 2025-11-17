@@ -17,7 +17,7 @@ import categoriesColumns from "@/app/admin/categories/categories-columns";
 export default function CategoriesClient() {
     const searchParams = useSearchParams();
 
-    const [filters, setFilters] = useState({
+    const [filter, setFilter] = useState({
         name: ""
     });
 
@@ -26,7 +26,7 @@ export default function CategoriesClient() {
             <div className="flex items-center justify-between">
                 <Header>
                     <h1 className="header-basic">Quản lý danh mục</h1>
-                    <p className="desc-basic">Quản lý, xem, cập nhật và xoá danh mục tại đây.</p>
+                    <p className="desc-basic">Xem danh sách, thêm, cập nhật và xoá danh mục tại đây.</p>
                 </Header>
 
                 <Button
@@ -42,8 +42,8 @@ export default function CategoriesClient() {
 
             <div className="space-y-[10px]">
                 <CategoriesFilter
-                    filters={filters}
-                    setFilters={setFilters}
+                    filter={filter}
+                    setFilter={setFilter}
                 />
 
                 <DataTable

@@ -7,20 +7,20 @@ import { SearchIcon } from "lucide-react";
 
 import type { Dispatch, SetStateAction } from "react";
 
-type CategoriesType = {
+type CategoriesFilterType = {
     name: string
 }
 
 interface PropsType {
-    filters: CategoriesType,
-    setFilters: Dispatch<SetStateAction<CategoriesType>>
+    filter: CategoriesFilterType,
+    setFilter: Dispatch<SetStateAction<CategoriesFilterType>>
 }
 
-export default function CategoriesFilter({ filters, setFilters }: PropsType) {
+export default function CategoriesFilter({ filter, setFilter }: PropsType) {
     const router = useRouter();
 
-    const handleChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilters(() => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFilter(() => {
             return { name: e.target.value }
         });
     }
@@ -32,10 +32,10 @@ export default function CategoriesFilter({ filters, setFilters }: PropsType) {
     return (
         <div className="flex items-center justify-between gap-[10px]">
             <Input
-                value={filters.name}
+                value={filter.name}
                 placeholder="Lọc tên danh mục . . ."
                 className="w-[300px]"
-                onChange={handleChangeCategoryName}
+                onChange={handleChange}
             />
 
             <button

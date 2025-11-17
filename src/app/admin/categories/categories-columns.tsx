@@ -37,15 +37,6 @@ const categoriesColumns: ColumnDef<number>[] = [
         }
     },
     {
-        accessorKey: "dateCreated",
-        header: () => <h3 className={headerClassName}>Ngày tạo</h3>,
-        cell: () => {
-            return (
-                <p className="content-table-row">20 Tháng 10 2024</p>
-            )
-        }
-    },
-    {
         accessorKey: "actions",
         header: () => <h3 className={headerClassName + " text-center"}>Hành động</h3>,
         cell: () => {

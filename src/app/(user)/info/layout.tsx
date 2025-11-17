@@ -1,6 +1,7 @@
 "use client"
 
 import { usePathname } from "next/navigation";
+
 import InfoOptionList from "@/app/(user)/info/components/InfoOptionList";
 
 import { cn } from "@/lib/utils";

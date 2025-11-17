@@ -1,6 +1,5 @@
 "use client"
 
-import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 
 import {
@@ -28,6 +27,8 @@ import { IoReloadOutline } from "react-icons/io5";
 
 import addressSchema from "@/schema/address-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import type { Dispatch, SetStateAction } from "react";
 
 interface PropsType {
     isOpen: boolean,

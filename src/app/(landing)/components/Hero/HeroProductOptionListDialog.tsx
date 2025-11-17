@@ -1,13 +1,8 @@
 "use client"
 
 import { useState } from "react";
-import { Dispatch, SetStateAction } from "react";
 
 import Quantity from "@/components/Quantity";
-
-import { Button } from "@/components/ui/button";
-import { MdOutlineShoppingBag } from "react-icons/md";
-import { FiShoppingCart } from "react-icons/fi";
 
 import {
     Dialog,
@@ -17,8 +12,14 @@ import {
     DialogTitle
 } from "@/components/ui/dialog";
 
+import { Button } from "@/components/ui/button";
+import { MdOutlineShoppingBag } from "react-icons/md";
+import { FiShoppingCart } from "react-icons/fi";
+
 import { cn } from "@/lib/utils";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
+
+import type { Dispatch, SetStateAction } from "react";
 
 interface PropsType {
     isOpen: boolean,

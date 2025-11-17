@@ -3,12 +3,12 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import Link from "next/link";
 import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
 import ProductsFilter from "@/app/admin/products/components/ProductsFilter";
 
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FiPlus } from "react-icons/fi";
 

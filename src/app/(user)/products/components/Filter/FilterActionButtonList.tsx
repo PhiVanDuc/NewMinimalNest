@@ -3,13 +3,14 @@
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
-import { IoFilter } from "react-icons/io5";
 import DrawerSectionTitle from "@/components/DrawerSectionTitle";
+
+import { IoFilter } from "react-icons/io5";
 
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 
-import { ReduxStateType } from "@/store/store";
+import type { ReduxStateType } from "@/store/store";
 
 export default function FilterActionButtonList() {
     const router = useRouter();

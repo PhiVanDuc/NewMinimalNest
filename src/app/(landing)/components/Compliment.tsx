@@ -1,10 +1,9 @@
 import Link from "next/link";
-
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
-import { FiShoppingCart } from "react-icons/fi";
+import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import { FiShoppingCart } from "react-icons/fi";
 
 import { cn } from "@/lib/utils";
 

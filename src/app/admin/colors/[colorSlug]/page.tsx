@@ -13,6 +13,8 @@ const InputColor = dynamic(
     }
 );
 
+import Header from "@/components/Header";
+
 import {
     Form,
     FormField,
@@ -22,10 +24,8 @@ import {
     FormMessage
 } from "@/components/ui/form";
 
-import Header from "@/components/Header";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
 import { IoReloadOutline } from "react-icons/io5";
 
 import colorSchema from "@/schema/color-schema";

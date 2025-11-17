@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Price from "@/components/Price";
 import Badge from "@/components/Badge";
-import ProductsActionDelete from "@/app/admin/products/components/ProductsActionDelete";
 
 import {
     DropdownMenu,
@@ -19,7 +18,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 const headerClassName = "text-[14px] text-zinc-700 font-medium";
 
-const productsColumns: ColumnDef<number>[] = [
+const productGroupsColumns: ColumnDef<number>[] = [
     {
         accessorKey: "product",
         header: () => <h3 className={headerClassName}>Sản phẩm</h3>,
@@ -109,7 +108,6 @@ const productsColumns: ColumnDef<number>[] = [
                                 </Link>
                             </DropdownMenuItem>
 
-                            <ProductsActionDelete />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
@@ -118,4 +116,4 @@ const productsColumns: ColumnDef<number>[] = [
     }
 ];
 
-export default productsColumns;
+export default productGroupsColumns;

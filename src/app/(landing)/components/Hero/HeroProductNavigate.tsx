@@ -1,6 +1,6 @@
 "use client"
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { useGSAP } from "@gsap/react";
 
 import Image from "next/image";
@@ -10,6 +10,8 @@ import { FaChevronDown } from "react-icons/fa6";
 
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
+
+import type { Dispatch, SetStateAction } from "react";
 
 interface PropsType {
     currentProduct: {

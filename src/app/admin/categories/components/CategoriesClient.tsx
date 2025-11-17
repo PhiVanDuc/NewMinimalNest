@@ -3,14 +3,13 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import Link from "next/link";
 import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
 import CategoriesFilter from "@/app/admin/categories/components/CategoriesFilter";
 
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
 import { FiPlus } from "react-icons/fi";
 
 import categoriesColumns from "@/app/admin/categories/categories-columns";

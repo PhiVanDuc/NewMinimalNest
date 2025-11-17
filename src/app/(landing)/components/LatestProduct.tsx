@@ -1,9 +1,9 @@
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
 import Product from "@/components/Product";
 
+import { Button } from "@/components/ui/button";
 import { TbLayoutGridFilled } from "react-icons/tb";
+
 import { cn } from "@/lib/utils";
 
 export default function LatestProduct() {

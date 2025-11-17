@@ -7,14 +7,13 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
-import ColorsFilter from "@/app/admin/colors/components/ColorsFilter";
 
 import { Button } from "@/components/ui/button";
 import { FiPlus } from "react-icons/fi";
 
-import colorsColumns from "@/app/admin/colors/colors-columns";
+import productGroupsColumns from "@/app/admin/product-groups/product-groups-columns";
 
-export default function ColorsClient() {
+export default function ProductGroupsClient() {
     const searchParams = useSearchParams();
 
     const [filters, setFilters] = useState({
@@ -25,30 +24,26 @@ export default function ColorsClient() {
         <div className="space-y-[40px]">
             <div className="flex items-center justify-between">
                 <Header>
-                    <h1 className="header-basic">Quản lý màu sắc</h1>
-                    <p className="desc-basic">Quản lý, xem, cập nhật và xoá màu sắc tại đây.</p>
+                    <h1 className="header-basic">Quản lý nhóm sản phẩm</h1>
+                    <p className="desc-basic">Quản lý, xem, cập nhật và xoá nhóm sản phẩm tại đây.</p>
                 </Header>
 
                 <Button
                     className="bg-theme-main hover:bg-theme-main/95"
                     asChild
                 >
-                    <Link href="/admin/colors/add">
+                    <Link href="/admin/products/add">
                         <FiPlus />
-                        Thêm màu sắc
+                        Thêm nhóm sản phẩm
                     </Link>
                 </Button>
             </div>
 
             <div className="space-y-[10px]">
-                <ColorsFilter
-                    filters={filters}
-                    setFilters={setFilters}
-                />
 
                 <DataTable
                     data={[1, 2, 3, 4]}
-                    columns={colorsColumns}
+                    columns={productGroupsColumns}
                 />
             </div>
 

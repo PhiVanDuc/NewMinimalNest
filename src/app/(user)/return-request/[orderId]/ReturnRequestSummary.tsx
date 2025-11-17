@@ -5,7 +5,6 @@ import Price from "@/components/Price";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
 import { IoIosSend } from "react-icons/io";
 import { ShoppingCart } from "lucide-react";
 

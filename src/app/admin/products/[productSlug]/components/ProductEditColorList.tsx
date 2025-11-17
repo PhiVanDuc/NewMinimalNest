@@ -1,13 +1,19 @@
 "use client"
 
 import { useWatch, useFieldArray } from "react-hook-form";
+
+import {
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage
+} from "@/components/ui/form";
+
+import { cn } from "@/lib/utils";
 import { colors as filterColors } from "@/consts/filter";
 
 import type { UseFormReturn } from "react-hook-form";
 import type { FormValuesType } from "@/app/admin/products/add/page";
-
-import { cn } from "@/lib/utils";
-import { FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 interface PropsType {
     form: UseFormReturn<FormValuesType>

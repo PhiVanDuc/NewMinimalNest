@@ -3,6 +3,8 @@
 import { useEffect, useMemo } from "react";
 import { useWatch } from "react-hook-form";
 
+import Combobox from "@/components/Combobox";
+
 import {
     FormField,
     FormItem,
@@ -12,7 +14,6 @@ import {
     FormDescription
 } from "@/components/ui/form";
 
-import Combobox from "@/components/Combobox";
 import { Input } from "@/components/ui/input";
 
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";

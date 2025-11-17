@@ -1,10 +1,10 @@
 "use client"
 
+import { Button } from "@/components/ui/button";
 import { FaStar } from "react-icons/fa6";
 import { IoIosMore } from "react-icons/io";
 
 import { cn } from '@/lib/utils';
-import { Button } from "@/components/ui/button";
 
 export default function ProductReviewList() {
     return (

@@ -1,10 +1,11 @@
 "use client"
 
 import { useRouter } from "next/navigation";
-import type { Dispatch, SetStateAction } from "react";
 
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
+
+import type { Dispatch, SetStateAction } from "react";
 
 type CategoriesType = {
     name: string

@@ -1,6 +1,7 @@
 "use client"
 
 import { useDispatch, useSelector } from "react-redux";
+
 import DrawerSectionTitle from "@/components/DrawerSectionTitle";
 
 import {
@@ -9,13 +10,14 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+
 import { Input } from "@/components/ui/input";
 
 import { cn } from "@/lib/utils";
 import filterProductSlice from "@/store/slices/filterProduct";
 import { categories, statuses, colors, priceRanges } from "@/consts/filter";
 
-import { ReduxStateType } from "@/store/store";
+import type { ReduxStateType } from "@/store/store";
 import type { colorType, itemType, priceRangeType } from "@/store/slices/filterProduct";
 
 type SelectFilterType =

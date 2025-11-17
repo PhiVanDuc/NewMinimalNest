@@ -1,6 +1,5 @@
 "use client"
 
-import { Dispatch, SetStateAction } from "react";
 import Coupon from "@/components/Coupon";
 
 import {
@@ -10,6 +9,8 @@ import {
     DialogHeader,
     DialogTitle
 } from "@/components/ui/dialog";
+
+import type { Dispatch, SetStateAction } from "react";
 
 interface PropsType {
     isOpen: boolean,

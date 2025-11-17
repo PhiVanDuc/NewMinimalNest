@@ -1,13 +1,14 @@
 "use client"
 
 import { useRouter } from "next/navigation";
-import type { Dispatch, SetStateAction } from "react";
 
 import Combobox from "@/components/Combobox";
 import { Input } from "@/components/ui/input";
-
 import { SearchIcon } from "lucide-react";
+
 import ranks from "@/consts/ranks";
+
+import type { Dispatch, SetStateAction } from "react";
 
 type FiltersType = {
     name: string,

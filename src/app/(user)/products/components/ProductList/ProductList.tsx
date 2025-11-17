@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-
 import ProductListClient from "@/app/(user)/products/components/ProductList/ProductListClient";
 
 import { redirect } from "next/navigation";

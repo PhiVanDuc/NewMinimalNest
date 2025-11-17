@@ -3,10 +3,11 @@
 import Price from "@/components/Price";
 
 import { Checkbox } from "@/components/ui/checkbox";
-import { ColumnDef } from "@tanstack/react-table";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
 import { cn } from "@/lib/utils";
+
+import type { ColumnDef } from "@tanstack/react-table";
 
 const headerClassName = "text-[14px] text-zinc-700 font-medium";
 

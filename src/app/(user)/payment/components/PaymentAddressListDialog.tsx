@@ -1,7 +1,5 @@
 "use client"
 
-import { Dispatch, SetStateAction } from "react";
-
 import {
     Dialog,
     DialogContent,
@@ -11,6 +9,8 @@ import {
 } from "@/components/ui/dialog";
 
 import { cn } from "@/lib/utils";
+
+import type { Dispatch, SetStateAction } from "react";
 
 interface PropsType {
     isOpen: boolean,

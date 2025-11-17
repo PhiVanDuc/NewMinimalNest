@@ -29,6 +29,7 @@ const list = {
     "accounts": "Tài khoản",
     "categories": "Danh mục",
     "colors": "Màu sắc",
+    "product-groups": "Nhóm sản phẩm",
     "add": "Thêm",
 }
 

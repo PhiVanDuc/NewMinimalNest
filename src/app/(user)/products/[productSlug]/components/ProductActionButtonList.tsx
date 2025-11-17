@@ -1,7 +1,6 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-
 import { FiShoppingCart } from "react-icons/fi";
 import { MdOutlineShoppingBag } from "react-icons/md";
 

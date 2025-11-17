@@ -3,6 +3,7 @@
 import { useFieldArray, useWatch } from "react-hook-form";
 
 import Image from "next/image";
+import Badge from "@/components/Badge";
 import Header from "@/components/Header";
 
 import {
@@ -18,8 +19,6 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-
-import Badge from "@/components/Badge";
 
 import {
     IoMdImages,

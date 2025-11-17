@@ -5,7 +5,6 @@ import Price from "@/components/Price";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
 import { MdPayment } from "react-icons/md";
 import { ShoppingCart } from "lucide-react";
 

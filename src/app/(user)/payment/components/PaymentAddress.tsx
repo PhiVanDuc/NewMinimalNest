@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-
 import dynamic from "next/dynamic";
 const PaymentAddressListDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentAddressListDialog"), { ssr: false });
 
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 import { FaBook } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoReloadOutline } from "react-icons/io5";

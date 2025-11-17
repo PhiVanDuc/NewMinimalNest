@@ -13,7 +13,7 @@ import {
 import { HiDotsVertical } from "react-icons/hi";
 import { IoReloadOutline } from "react-icons/io5";
 
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 
 const headerClassName = "text-[14px] text-zinc-700 font-medium";
 

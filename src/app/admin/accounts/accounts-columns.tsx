@@ -1,10 +1,12 @@
 "use client"
 
 import AccountsRoleColumn from "@/app/admin/accounts/components/AccountsRoleColumn";
+
 import { PiMedalFill } from "react-icons/pi";
 
-import { ColumnDef } from "@tanstack/react-table";
 import ranks from "@/consts/ranks";
+
+import type { ColumnDef } from "@tanstack/react-table";
 
 const headerClassName = "text-[14px] text-zinc-700 font-medium";
 

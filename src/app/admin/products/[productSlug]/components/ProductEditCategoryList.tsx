@@ -6,6 +6,8 @@ import { useWatch } from "react-hook-form";
 import dynamic from "next/dynamic";
 const ProductAddCategoryListDialog = dynamic(() => import("@/app/admin/products/add/components/ProductAddCategoryListDialog"), { ssr: false });
 
+import Badge from "@/components/Badge";
+
 import {
     FormField,
     FormItem,
@@ -13,12 +15,12 @@ import {
     FormMessage
 } from "@/components/ui/form";
 
-import Badge from "@/components/Badge";
 import { FaPlus } from "react-icons/fa6";
+
+import { cn } from "@/lib/utils";
 
 import type { UseFormReturn } from "react-hook-form";
 import type { FormValuesType } from "@/app/admin/products/add/page";
-import { cn } from "@/lib/utils";
 
 interface PropsType {
     form: UseFormReturn<FormValuesType>

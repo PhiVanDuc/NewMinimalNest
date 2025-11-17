@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useFieldArray, useWatch } from "react-hook-form";
 
 import Badge from "@/components/Badge";
-import { Input } from "@/components/ui/input";
 
 import {
     Dialog,
@@ -14,13 +13,14 @@ import {
     DialogDescription
 } from "@/components/ui/dialog";
 
+import { Input } from "@/components/ui/input";
+
+import { cn } from "@/lib/utils";
 import { categories as filterCategories } from "@/consts/filter";
 
 import type { UseFormReturn } from "react-hook-form";
 import type { Dispatch, SetStateAction } from "react";
 import type { FormValuesType } from "@/app/admin/products/add/page";
-
-import { cn } from "@/lib/utils";
 
 interface PropsType {
     isOpen: boolean,

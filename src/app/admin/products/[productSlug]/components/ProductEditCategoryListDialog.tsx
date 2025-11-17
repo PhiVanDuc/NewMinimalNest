@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useFieldArray, useWatch } from "react-hook-form";
 
 import Badge from "@/components/Badge";
-import { Input } from "@/components/ui/input";
 
 import {
     Dialog,
@@ -13,6 +12,8 @@ import {
     DialogTitle,
     DialogDescription
 } from "@/components/ui/dialog";
+
+import { Input } from "@/components/ui/input";
 
 import { categories as filterCategories } from "@/consts/filter";
 

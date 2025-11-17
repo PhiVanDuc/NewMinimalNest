@@ -1,19 +1,19 @@
 "use client"
 
-
 import { useWatch, useFieldArray } from "react-hook-form";
 import { colors as filterColors } from "@/consts/filter";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { FormValuesType } from "@/app/admin/products/[productSlug]/page";
+import type { FormValuesType } from "@/app/admin/products/add/page";
 
 import { cn } from "@/lib/utils";
+import { FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 interface PropsType {
     form: UseFormReturn<FormValuesType>
 }
 
-export default function ProductEditColorList({ form }: PropsType) {
+export default function ProductAddColorList({ form }: PropsType) {
     const colors = filterColors.map(color => ({
         name: color.label,
         slug: color.value,
@@ -73,28 +73,38 @@ export default function ProductEditColorList({ form }: PropsType) {
     }
 
     return (
-        <div className="space-y-[10px]">
-            <label className="block text-[14px] text-zinc-700 font-medium leading-none">Màu sắc</label>
+        <FormField
+            control={form.control}
+            name="colors"
+            render={() => {
+                return (
+                    <FormItem>
+                        <FormLabel>Màu sắc</FormLabel>
 
-            <div className="flex flex-wrap gap-[15px]">
-                {
-                    colors.map(color => {
-                        const isActive = watchColors.find(wColor => wColor.slug === color.slug);
+                        <div className="flex flex-wrap gap-[15px]">
+                            {
+                                colors.map(color => {
+                                    const isActive = watchColors.find(wColor => wColor.slug === color.slug);
 
-                        return (
-                            <div
-                                key={color.slug}
-                                className={cn(
-                                    "size-[25px] rounded-full outline-[3px] outline-offset-[2px] transition-colors cursor-pointer",
-                                    isActive ? "outline-zinc-200" : "outline-zinc-100 hover:outline-zinc-200"
-                                )}
-                                style={{ backgroundColor: color.colorCode }}
-                                onClick={() => { handleClickChooseColor(color) }}
-                            />
-                        )
-                    })
-                }
-            </div>
-        </div>
+                                    return (
+                                        <div
+                                            key={color.slug}
+                                            className={cn(
+                                                "size-[25px] rounded-full outline-[3px] outline-offset-[2px] transition-colors cursor-pointer",
+                                                isActive ? "outline-zinc-200" : "outline-zinc-100 hover:outline-zinc-200"
+                                            )}
+                                            style={{ backgroundColor: color.colorCode }}
+                                            onClick={() => { handleClickChooseColor(color) }}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>
+
+                        <FormMessage />
+                    </FormItem>
+                )
+            }}
+        />
     )
 }

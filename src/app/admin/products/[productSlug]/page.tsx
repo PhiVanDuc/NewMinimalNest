@@ -13,6 +13,9 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { IoReloadOutline } from "react-icons/io5";
 
+import productSchema from "@/schema/product-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 export interface FormValuesType {
     name: string,
     desc: string,
@@ -23,7 +26,7 @@ export interface FormValuesType {
     price: string,
     categories: { name: string, slug: string }[]
     colors: { name: string, slug: string, colorCode: string }[]
-    color: { name: string, slug: string, colorCode: string } | undefined,
+    color?: { name: string, slug: string, colorCode: string },
     images: {
         colorSlug: string;
         type: "main" | "sub" | "normal";
@@ -33,6 +36,7 @@ export interface FormValuesType {
 
 export default function Page() {
     const form = useForm<FormValuesType>({
+        resolver: zodResolver(productSchema),
         defaultValues: {
             name: "",
             desc: "",

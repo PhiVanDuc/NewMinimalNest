@@ -6,11 +6,19 @@ import { useWatch } from "react-hook-form";
 import dynamic from "next/dynamic";
 const ProductAddCategoryListDialog = dynamic(() => import("@/app/admin/products/add/components/ProductAddCategoryListDialog"), { ssr: false });
 
+import {
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage
+} from "@/components/ui/form";
+
 import Badge from "@/components/Badge";
 import { FaPlus } from "react-icons/fa6";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { FormValuesType } from "@/app/admin/products/[productSlug]/page";
+import type { FormValuesType } from "@/app/admin/products/add/page";
+import { cn } from "@/lib/utils";
 
 interface PropsType {
     form: UseFormReturn<FormValuesType>
@@ -26,35 +34,48 @@ export default function ProductAddCategoryList({ form }: PropsType) {
 
     return (
         <>
-            <div className="space-y-[10px]">
-                <label className="block text-[14px] text-zinc-700 font-medium leading-none">Danh mục</label>
+            <FormField
+                control={form.control}
+                name="categories"
+                render={({ fieldState }) => {
+                    return (
+                        <FormItem>
+                            <FormLabel>Danh mục</FormLabel>
 
-                <div className="flex flex-wrap gap-[6px]">
-                    {
-                        watchCategories.map((category, index) => {
-                            return (
+                            <div className="flex flex-wrap gap-[6px]">
+                                {
+                                    watchCategories.map((category, index) => {
+                                        return (
+                                            <Badge
+                                                key={index}
+                                                variant="outline"
+                                            >
+                                                <p>{category.name}</p>
+                                            </Badge>
+                                        )
+                                    })
+                                }
+
                                 <Badge
-                                    key={index}
                                     variant="outline"
+                                    className={cn(
+                                        "cursor-pointer",
+                                        fieldState.error ? "border-destructive" : ""
+                                    )}
+                                    onClick={() => { setIsOpenDialog(true) }}
                                 >
-                                    <p>{category.name}</p>
+                                    <div className="flex items-center gap-[10px]">
+                                        <FaPlus className="text-[12px]" />
+                                        <p>Lựa chọn danh mục</p>
+                                    </div>
                                 </Badge>
-                            )
-                        })
-                    }
+                            </div>
 
-                    <Badge
-                        variant="outline"
-                        className="cursor-pointer"
-                        onClick={() => { setIsOpenDialog(true) }}
-                    >
-                        <div className="flex items-center gap-[10px]">
-                            <FaPlus className="text-[12px]" />
-                            <p>Lựa chọn danh mục</p>
-                        </div>
-                    </Badge>
-                </div>
-            </div>
+                            <FormMessage />
+                        </FormItem>
+                    )
+                }}
+            />
 
             {
                 isOpenDialog && (

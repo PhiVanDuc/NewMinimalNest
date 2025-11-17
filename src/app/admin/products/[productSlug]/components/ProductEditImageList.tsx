@@ -6,11 +6,20 @@ import Image from "next/image";
 import Header from "@/components/Header";
 
 import {
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage
+} from "@/components/ui/form";
+
+import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+
+import Badge from "@/components/Badge";
 
 import {
     IoMdImages,
@@ -18,16 +27,15 @@ import {
 } from "react-icons/io";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { FormValuesType } from "@/app/admin/products/[productSlug]/page";
+import type { FormValuesType } from "@/app/admin/products/add/page";
 
 import { cn } from "@/lib/utils";
-import Badge from "@/components/Badge";
 
 interface PropsType {
     form: UseFormReturn<FormValuesType>
 }
 
-export default function ProductEditImageList({ form }: PropsType) {
+export default function ProductAddImageList({ form }: PropsType) {
     const watchImages = useWatch({
         control: form.control,
         name: "images"
@@ -97,29 +105,39 @@ export default function ProductEditImageList({ form }: PropsType) {
                     ) :
                     (
                         <div className="space-y-[40px]">
-                            <div className="space-y-[10px]">
-                                <label className="block text-[14px] text-zinc-700 font-medium leading-none">Màu sắc</label>
+                            <FormField
+                                control={form.control}
+                                name="images"
+                                render={() => {
+                                    return (
+                                        <FormItem>
+                                            <FormLabel>Màu sắc</FormLabel>
 
-                                <div className="flex flex-wrap gap-[15px]">
-                                    {
-                                        watchColors.map((color, index) => {
-                                            const isExist = watchColor?.slug === color.slug;
+                                            <div className="flex flex-wrap gap-[15px]">
+                                                {
+                                                    watchColors.map((color, index) => {
+                                                        const isExist = watchColor?.slug === color.slug;
 
-                                            return (
-                                                <div
-                                                    key={index}
-                                                    className={cn(
-                                                        "size-[25px] rounded-full outline-[3px] outline-offset-[2px] transition-colors cursor-pointer",
-                                                        isExist ? "outline-zinc-200" : "outline-zinc-100 hover:outline-zinc-200"
-                                                    )}
-                                                    style={{ backgroundColor: color.colorCode }}
-                                                    onClick={() => { form.setValue("color", color) }}
-                                                />
-                                            )
-                                        })
-                                    }
-                                </div>
-                            </div>
+                                                        return (
+                                                            <div
+                                                                key={index}
+                                                                className={cn(
+                                                                    "size-[25px] rounded-full outline-[3px] outline-offset-[2px] transition-colors cursor-pointer",
+                                                                    isExist ? "outline-zinc-200" : "outline-zinc-100 hover:outline-zinc-200"
+                                                                )}
+                                                                style={{ backgroundColor: color.colorCode }}
+                                                                onClick={() => { form.setValue("color", color) }}
+                                                            />
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )
+                                }}
+                            />
 
                             <div className="grid grid-cols-2 gap-[10px] transition-all">
                                 <label

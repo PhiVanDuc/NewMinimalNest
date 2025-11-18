@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import Coupon from "@/components/Coupon";
 import Pagination from "@/components/Pagination";
 
-export default function CouponList() {
+export default function Coupons() {
     const couponListRef = useRef(null);
     const searchParams = useSearchParams();
 

@@ -3,12 +3,12 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const DialogDeleteConfirm = dynamic(() => import("@/components/DialogDeleteConfirm"), { ssr: false, loading: () => <></> });
+const ConfirmDeleteDialog = dynamic(() => import("@/components/ConfirmDeleteDialog"), { ssr: false, loading: () => <></> });
 
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
-export default function ColorsActionDelete() {
+export default function CategoriesDeleteAction() {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     return (
@@ -23,10 +23,10 @@ export default function ColorsActionDelete() {
 
             {
                 isOpenDialog && (
-                    <DialogDeleteConfirm
+                    <ConfirmDeleteDialog
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
-                        object="màu sắc"
+                        object="danh mục"
                     />
                 )
             }

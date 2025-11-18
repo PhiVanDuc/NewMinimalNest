@@ -3,8 +3,8 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const AddressFormDialog = dynamic(() => import("@/app/(user)/info/book-address/components/AddressDialogAddForm"), { ssr: false });
-const DialogDeleteConfirm = dynamic(() => import("@/components/DialogDeleteConfirm"), { ssr: false });
+const AddressAddFormDialog = dynamic(() => import("@/app/(user)/info/book-address/components/AddressAddFormDialog"), { ssr: false });
+const ConfirmDeleteDialog = dynamic(() => import("@/components/ConfirmDeleteDialog"), { ssr: false });
 
 import { Button } from "@/components/ui/button";
 import { IoReloadOutline } from "react-icons/io5";
@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 
 export default function Address() {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
-    const [isOpenDialogDeleteConfirm, setIsOpenDialogDeleteConfirm] = useState(false);
+    const [isOpenConfirmDeleteDialog, setIsOpenConfirmDeleteDialog] = useState(false);
 
     return (
         <>
@@ -46,7 +46,7 @@ export default function Address() {
 
                     <Button
                         className="bg-transparent hover:bg-zinc-100 text-zinc-800"
-                        onClick={() => { setIsOpenDialogDeleteConfirm(true); }}
+                        onClick={() => { setIsOpenConfirmDeleteDialog(true); }}
                     >
                         <PiTrashSimpleBold />
                         Xoá
@@ -57,7 +57,7 @@ export default function Address() {
             {
                 isOpenDialog &&
                 (
-                    <AddressFormDialog
+                    <AddressAddFormDialog
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
                         action="edit"
@@ -66,11 +66,11 @@ export default function Address() {
             }
 
             {
-                isOpenDialogDeleteConfirm &&
+                isOpenConfirmDeleteDialog &&
                 (
-                    <DialogDeleteConfirm
-                        isOpen={isOpenDialogDeleteConfirm}
-                        setIsOpen={setIsOpenDialogDeleteConfirm}
+                    <ConfirmDeleteDialog
+                        isOpen={isOpenConfirmDeleteDialog}
+                        setIsOpen={setIsOpenConfirmDeleteDialog}
                         object="địa chỉ"
                     />
                 )

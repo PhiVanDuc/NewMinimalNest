@@ -1,8 +1,8 @@
 import BreadcrumbCustom from "@/components/BreadcrumbCustom";
 import ProductInfo from "@/app/(user)/products/[productSlug]/components/ProductInfo";
 import ProductImage from "@/app/(user)/products/[productSlug]/components/ProductImage";
-import ProductReviewList from "@/app/(user)/products/[productSlug]/components/ProductReviewList";
-import ProductRelatedList from "@/app/(user)/products/[productSlug]/components/ProductRelatedList";
+import ProductReviews from "@/app/(user)/products/[productSlug]/components/ProductReviews";
+import ProductRelateds from "@/app/(user)/products/[productSlug]/components/ProductRelateds";
 
 import { cn } from "@/lib/utils";
 
@@ -23,8 +23,8 @@ export default function Page() {
                 </div>
             </div>
 
-            <ProductRelatedList />
-            <ProductReviewList />
+            <ProductRelateds />
+            <ProductReviews />
         </div>
     )
 }

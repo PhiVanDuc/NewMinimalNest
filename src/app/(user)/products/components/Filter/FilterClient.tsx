@@ -1,8 +1,8 @@
 "use client"
 
 import Drawer from "@/components/Drawer";
-import FilterList from "@/app/(user)/products/components/Filter/FilterList";
-import FilterActionButtonList from "@/app/(user)/products/components/Filter/FilterActionButtonList";
+import FilterOptions from "@/app/(user)/products/components/Filter/FilterOptions";
+import FilterActionButtons from "@/app/(user)/products/components/Filter/FilterActionButtons";
 
 import drawerIds from "@/consts/drawer-ids";
 
@@ -12,8 +12,8 @@ export default function FilterClient() {
             id={drawerIds.filter}
             className="gap-[25px]"
         >
-            <FilterList />
-            <FilterActionButtonList />
+            <FilterOptions />
+            <FilterActionButtons />
         </Drawer>
     )
 }

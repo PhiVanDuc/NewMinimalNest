@@ -27,7 +27,7 @@ interface PropsType {
     action: "buyNow" | "addToCart"
 }
 
-export default function HeroProductOptionListDialog({ isOpen, setIsOpen, action }: PropsType) {
+export default function HeroProductOptionsDialog({ isOpen, setIsOpen, action }: PropsType) {
     const [quantity, setQuantity] = useState("1");
 
     const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {

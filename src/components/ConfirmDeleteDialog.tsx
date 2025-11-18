@@ -20,7 +20,7 @@ interface PropsType {
     object?: string
 }
 
-export default function DialogDeleteConfirm({ isOpen, setIsOpen, handleClickDelete, object }: PropsType) {
+export default function ConfirmDeleteDialog({ isOpen, setIsOpen, handleClickDelete, object }: PropsType) {
     return (
         <Dialog
             open={isOpen}

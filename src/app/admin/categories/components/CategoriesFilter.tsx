@@ -7,13 +7,13 @@ import { SearchIcon } from "lucide-react";
 
 import type { Dispatch, SetStateAction } from "react";
 
-type CategoriesFilterType = {
+type FilterType = {
     name: string
 }
 
 interface PropsType {
-    filter: CategoriesFilterType,
-    setFilter: Dispatch<SetStateAction<CategoriesFilterType>>
+    filter: FilterType,
+    setFilter: Dispatch<SetStateAction<FilterType>>
 }
 
 export default function CategoriesFilter({ filter, setFilter }: PropsType) {

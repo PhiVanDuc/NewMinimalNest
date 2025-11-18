@@ -6,9 +6,9 @@ import { TbLayoutGridFilled } from "react-icons/tb";
 
 import { cn } from "@/lib/utils";
 
-export default function FeaturedProduct() {
+export default function LatestProducts() {
     return (
-        <div className="space-y-[40px]">
+        <div className="space-y-[60px]">
             <div
                 className={cn(
                     "flex flex-col items-center justify-between gap-[40px]",
@@ -17,11 +17,10 @@ export default function FeaturedProduct() {
             >
                 <header className="space-y-[10px]">
                     <h2 className="header-basic">
-                        Sản Phẩm Nổi Bật
+                        Sản Phẩm Mới
                     </h2>
-
                     <p className="desc-basic max-w-[800px]">
-                        Khám phá những sản phẩm được đánh giá tốt nhất của chúng tôi mà khách hàng yêu thích. Từ thiết kế tinh tế đến chất lượng vượt trội, mang lại trải nghiệm hoàn hảo cho không gian sống của bạn.
+                        Cập nhật ngay những sản phẩm mới vừa ra mắt, kết hợp giữa thẩm mỹ hiện đại và chất lượng vượt trội, tạo nên điểm nhấn hoàn hảo cho ngôi nhà của bạn.
                     </p>
                 </header>
 
@@ -29,16 +28,16 @@ export default function FeaturedProduct() {
                     className="rounded-full cursor-pointer"
                     asChild
                 >
-                    <Link href="/products/search?statuses=noi-bat">
+                    <Link href="/products/search?statuses=moi">
                         <TbLayoutGridFilled />
                         Xem tất cả sản phẩm
                     </Link>
                 </Button>
             </div>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[20px]">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px]">
                 {
-                    Array.from({ length: 4 }).map((_, index) => {
+                    Array.from({ length: 6 }).map((_, index) => {
                         return <li key={index}><Product /></li>
                     })
                 }

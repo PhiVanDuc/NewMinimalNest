@@ -26,7 +26,7 @@ type SelectFilterType =
     | { type: "colors"; payload: colorType }
     | { type: "priceRange"; payload: priceRangeType };
 
-export default function FilterList() {
+export default function FilterOptions() {
     const dispatch = useDispatch();
     const filter = useSelector((state: ReduxStateType) => state.filterProduct);
 

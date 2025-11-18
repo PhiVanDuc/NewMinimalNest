@@ -10,7 +10,7 @@ import {
 
 import { cn } from "@/lib/utils";
 
-export default function ProductRelatedList() {
+export default function ProductRelateds() {
     return (
         <div className='space-y-[30px]'>
             <h2 className="header-basic">

@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Header from "@/components/Header";
+import ProductGroupsAddFilter from "@/app/admin/product-settings/product-groups/add/components/ProductGroupsAddFilter";
 
 import {
     Form,
@@ -15,8 +15,6 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
-import { FaEye } from "react-icons/fa6";
-import { FaEyeSlash } from "react-icons/fa6";
 
 export interface FormValuesType {
     name: string,
@@ -29,13 +27,6 @@ export default function Page() {
             name: "",
             products: []
         }
-    });
-
-    const [isShowProductPicker, setIsShowProductPicker] = useState(true);
-    const [productsFiltered, setProductsFiltered] = useState([]);
-    const [filter, setFilter] = useState({
-        name: "",
-        categories: []
     });
 
     const handleSubmit = (data: FormValuesType) => {
@@ -53,60 +44,39 @@ export default function Page() {
                 <form
                     autoComplete="off"
                     onSubmit={form.handleSubmit(handleSubmit)}
-                    className="space-y-[40px]"
+                    className="space-y-[20px]"
                 >
-                    <div className="relative pl-[24px] space-y-[20px]">
-                        <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
+                    <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => {
+                            return (
+                                <FormItem>
+                                    <FormLabel>Tên nhóm sản phẩm</FormLabel>
 
+                                    <FormControl>
+                                        <Input
+                                            placeholder="Nhập tên nhóm sản phẩm . . ."
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )
+                        }}
+                    />
 
-                    </div>
+                    <div className="flex items-start gap-[20px]">
+                        <ProductGroupsAddFilter form={form} />
 
-                    <div className="relative pl-[24px] space-y-[20px]">
-                        <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
+                        <div className="relative pl-[24px] space-y-[20px] w-full">
+                            <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
 
-                        <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => {
-                                return (
-                                    <FormItem>
-                                        <FormLabel>Tên nhóm sản phẩm</FormLabel>
-
-                                        <FormControl>
-                                            <Input
-                                                placeholder="Nhập tên nhóm sản phẩm . . ."
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )
-                            }}
-                        />
+                            <p>Nội dung</p>
+                        </div>
                     </div>
                 </form>
             </Form>
-
-            <button
-                className="fixed bottom-[20px] right-[20px] flex items-center gap-[10px] px-[20px] py-[8px] rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-[14px] text-white font-medium transition cursor-pointer"
-                onClick={() => { setIsShowProductPicker(!isShowProductPicker); }}
-            >
-                {
-                    isShowProductPicker ?
-                        (
-                            <>
-                                <FaEyeSlash className="text-[18px]" />
-                                Ẩn lựa chọn sản phẩm
-                            </>
-                        ) :
-                        (
-                            <>
-                                <FaEye className="text-[18px]" />
-                                Hiện lựa chọn sản phẩm
-                            </>
-                        )
-                }
-            </button>
         </div>
     )
 }

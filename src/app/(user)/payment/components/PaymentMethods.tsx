@@ -10,7 +10,7 @@ interface PropsType {
     isEdit?: boolean
 }
 
-export default function PaymentMethod({ isEdit = true }: PropsType) {
+export default function PaymentMethods({ isEdit = true }: PropsType) {
     return (
         <div className="space-y-[20px]">
             <h2 className="sub-header-basic">Phương thức thanh toán</h2>

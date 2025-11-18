@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import Pagination from "@/components/Pagination";
 import Product from "@/components/Product";
 
-export default function ProductListClient() {
+export default function ProductsClient() {
     const productListRef = useRef(null);
     const searchParams = useSearchParams();
 

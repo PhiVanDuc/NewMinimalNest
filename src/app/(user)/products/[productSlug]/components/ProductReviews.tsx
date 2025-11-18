@@ -6,7 +6,7 @@ import { IoIosMore } from "react-icons/io";
 
 import { cn } from '@/lib/utils';
 
-export default function ProductReviewList() {
+export default function ProductReviews() {
     return (
         <div className='space-y-[40px]'>
             <h2 className="header-basic">

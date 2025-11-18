@@ -8,7 +8,7 @@ import { IoFilter } from "react-icons/io5";
 import drawerSlice from "@/store/slices/drawerSlice";
 import drawerIds from "@/consts/drawer-ids";
 
-export default function FilterButtonOpen() {
+export default function FilterOpenButton() {
     const dispatch = useDispatch();
 
     const handleClick = () => {

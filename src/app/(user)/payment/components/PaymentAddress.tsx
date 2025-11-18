@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const PaymentAddressListDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentAddressListDialog"), { ssr: false });
+const PaymentAddressesDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentAddressesDialog"), { ssr: false });
 
 import Link from "next/link";
 
@@ -84,7 +84,7 @@ export default function PaymentAddress({ isEdit = true }: PropsType) {
                 </Button>
             </div> */}
 
-            {isOpenDialog && <PaymentAddressListDialog isOpen={isOpenDialog} setIsOpen={setIsOpenDialog} />}
+            {isOpenDialog && <PaymentAddressesDialog isOpen={isOpenDialog} setIsOpen={setIsOpenDialog} />}
         </div>
     )
 }

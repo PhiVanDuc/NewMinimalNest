@@ -7,13 +7,13 @@ import { SearchIcon } from "lucide-react";
 
 import type { Dispatch, SetStateAction } from "react";
 
-type ProductsFilterType = {
+type FilterType = {
     name: string
 }
 
 interface PropsType {
-    filter: ProductsFilterType,
-    setFilter: Dispatch<SetStateAction<ProductsFilterType>>
+    filter: FilterType,
+    setFilter: Dispatch<SetStateAction<FilterType>>
 }
 
 export default function ProductsFilter({ filter, setFilter }: PropsType) {

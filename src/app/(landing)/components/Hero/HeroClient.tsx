@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Squares from "@/components/Squares";
 import HeroProduct from "@/app/(landing)/components/Hero/HeroProduct";
-import HeroProductNavigate from "@/app/(landing)/components/Hero/HeroProductNavigate";
+import HeroNavigateProduct from "@/app/(landing)/components/Hero/HeroNavigateProduct";
 
 import { FaChevronRight } from "react-icons/fa6";
 
@@ -80,7 +80,7 @@ export default function HeroClient() {
             />
 
             {/* Điều hướng sản phẩm */}
-            <HeroProductNavigate
+            <HeroNavigateProduct
                 currentProduct={currentProduct}
                 setCurrentProduct={setCurrentProduct}
             />

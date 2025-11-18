@@ -49,7 +49,7 @@ const policies = [
     }
 ];
 
-export default function Policy() {
+export default function Policies() {
     return (
         <div className="space-y-[80px]">
             <header className="flex flex-col items-center space-y-[8px] text-center">

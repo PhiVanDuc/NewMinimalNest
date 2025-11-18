@@ -29,7 +29,7 @@ interface FormDataType {
     comment: string
 }
 
-export default function OrderProductReviewForm() {
+export default function OrderReviewProductForm() {
     const form = useForm({
         resolver: zodResolver(orderReviewSchema),
         defaultValues: {

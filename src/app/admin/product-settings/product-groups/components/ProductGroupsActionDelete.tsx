@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const DialogDeleteConfirm = dynamic(() => import("@/components/DialogDeleteConfirm"), { ssr: false, loading: () => <></> });
+const ConfirmDeleteDialog = dynamic(() => import("@/components/ConfirmDeleteDialog"), { ssr: false, loading: () => <></> });
 
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { PiTrashSimpleBold } from "react-icons/pi";
@@ -23,7 +23,7 @@ export default function ProductGroupsActionDelete() {
 
             {
                 isOpenDialog && (
-                    <DialogDeleteConfirm
+                    <ConfirmDeleteDialog
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
                         object="nhóm sản phẩm"

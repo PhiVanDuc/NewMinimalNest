@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import ColorsActionDelete from "@/app/admin/colors/components/ColorsActionDelete";
+import ColorsDeleteAction from "@/app/admin/colors/components/ColorsDeleteAction";
 
 import {
     DropdownMenu,
@@ -67,7 +67,7 @@ const colorsColumns: ColumnDef<number>[] = [
                                 </Link>
                             </DropdownMenuItem>
 
-                            <ColorsActionDelete />
+                            <ColorsDeleteAction />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

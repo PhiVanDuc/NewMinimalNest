@@ -17,7 +17,7 @@ interface PropsType {
     setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function ProductImageList({ isOpen, setIsOpen }: PropsType) {
+export default function ProductImages({ isOpen, setIsOpen }: PropsType) {
     return (
         <Drawer
             open={isOpen}

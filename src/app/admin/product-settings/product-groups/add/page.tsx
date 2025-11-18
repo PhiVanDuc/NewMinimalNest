@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Header from "@/components/Header";
+import ProductGroupsAddFilter from "@/app/admin/product-settings/product-groups/add/components/ProductGroupsAddFilter";
 
 import {
     Form,
@@ -59,7 +60,7 @@ export default function Page() {
                 <form
                     autoComplete="off"
                     onSubmit={form.handleSubmit(handleSubmit)}
-                    className="space-y-[40px]"
+                    className="space-y-[20px]"
                 >
                     <div
                         ref={filterFormRef}
@@ -113,27 +114,6 @@ export default function Page() {
                     </Button>
                 </form>
             </Form>
-
-            <button
-                className="fixed bottom-[20px] right-[20px] flex items-center gap-[10px] px-[20px] py-[8px] rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-[14px] text-white font-medium transition cursor-pointer"
-                onClick={() => { setIsShowProductPicker(!isShowProductPicker); }}
-            >
-                {
-                    isShowProductPicker ?
-                        (
-                            <>
-                                <FaEyeSlash className="text-[18px]" />
-                                Ẩn lựa chọn sản phẩm
-                            </>
-                        ) :
-                        (
-                            <>
-                                <FaEye className="text-[18px]" />
-                                Hiện lựa chọn sản phẩm
-                            </>
-                        )
-                }
-            </button>
         </div>
     )
 }

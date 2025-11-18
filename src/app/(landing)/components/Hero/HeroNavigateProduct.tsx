@@ -30,7 +30,7 @@ interface PropsType {
     }>>
 }
 
-export default function HeroProductNavigate({ currentProduct, setCurrentProduct }: PropsType) {
+export default function HeroNavigateProduct({ currentProduct, setCurrentProduct }: PropsType) {
     const [navigateDirection, setNavigateDirection] = useState<"up" | "down" | null>(null);
 
     useGSAP(() => {

@@ -1,7 +1,7 @@
-import Banner from "@/app/(user)/products/components/Banner/Banner"
-import FilterButtonOpen from "@/app/(user)/products/components/Filter/FilterButtonOpen";
-import ProductList from "@/app/(user)/products/components/ProductList/ProductList";
+import Banner from "@/app/(user)/products/components/Banner/Banner";
 import BreadcrumbCustom from "@/components/BreadcrumbCustom";
+import FilterOpenButton from "@/app/(user)/products/components/Filter/FilterOpenButton";
+import Products from "@/app/(user)/products/components/Products/Products";
 
 interface PropsType {
     searchParams: Promise<{ page?: string }>
@@ -18,8 +18,8 @@ export default async function Page({ searchParams }: PropsType) {
             </div>
 
             <div className="space-y-[20px]">
-                <FilterButtonOpen />
-                <ProductList searchParams={parseSearchParams} />
+                <FilterOpenButton />
+                <Products searchParams={parseSearchParams} />
             </div>
         </div>
     )

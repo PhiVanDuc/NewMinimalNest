@@ -17,7 +17,7 @@ interface PropsType {
     setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function PaymentCouponListDialog({ isOpen, setIsOpen }: PropsType) {
+export default function PaymentCouponsDialog({ isOpen, setIsOpen }: PropsType) {
     return (
         <Dialog
             open={isOpen}

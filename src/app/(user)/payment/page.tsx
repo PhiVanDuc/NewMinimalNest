@@ -5,7 +5,7 @@ import PaymentAddress from "@/app/(user)/payment/components/PaymentAddress";
 import PaymentTable from "@/app/(user)/payment/components/PaymentTable";
 import PaymentCoupon from "@/app/(user)/payment/components/PaymentCoupon";
 import PaymentMessage from "@/app/(user)/payment/components/PaymentMessage";
-import PaymentMethod from "@/app/(user)/payment/components/PaymentMethod";
+import PaymentMethods from "@/app/(user)/payment/components/PaymentMethods";
 import PaymentSummary from "@/app/(user)/payment/components/PaymentSummary";
 
 import { cn } from "@/lib/utils";
@@ -54,7 +54,7 @@ export default function Page() {
                     <PaymentTable />
                     <PaymentCoupon />
                     <PaymentMessage />
-                    <PaymentMethod />
+                    <PaymentMethods />
                 </div>
 
                 <PaymentSummary />

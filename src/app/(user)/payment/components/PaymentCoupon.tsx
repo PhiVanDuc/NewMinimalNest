@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const PaymentCouponListDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentCouponListDialog"), { ssr: false });
+const PaymentCouponsDialog = dynamic(() => import("@/app/(user)/payment/components/PaymentCouponsDialog"), { ssr: false });
 
 import Badge from "@/components/Badge";
 
@@ -79,7 +79,7 @@ export default function PaymentCoupon({ isEdit = true }: PropsType) {
                 </Button>
             </div> */}
 
-            {isOpenDialog && <PaymentCouponListDialog isOpen={isOpenDialog} setIsOpen={setIsOpenDialog} />}
+            {isOpenDialog && <PaymentCouponsDialog isOpen={isOpenDialog} setIsOpen={setIsOpenDialog} />}
         </div>
     )
 }

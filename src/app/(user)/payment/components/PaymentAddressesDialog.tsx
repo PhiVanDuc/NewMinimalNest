@@ -17,7 +17,7 @@ interface PropsType {
     setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function PaymentAddressListDialog({ isOpen, setIsOpen }: PropsType) {
+export default function PaymentAddressesDialog({ isOpen, setIsOpen }: PropsType) {
     return (
         <Dialog
             open={isOpen}

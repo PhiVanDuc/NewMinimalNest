@@ -10,14 +10,14 @@ import ranks from "@/consts/ranks";
 
 import type { Dispatch, SetStateAction } from "react";
 
-type AccountsFilterType = {
+type FilterType = {
     name: string,
     rank: string
 }
 
 interface PropsType {
-    filter: AccountsFilterType,
-    setFilter: Dispatch<SetStateAction<AccountsFilterType>>
+    filter: FilterType,
+    setFilter: Dispatch<SetStateAction<FilterType>>
 }
 
 export default function AccountsFilter({ filter, setFilter }: PropsType) {

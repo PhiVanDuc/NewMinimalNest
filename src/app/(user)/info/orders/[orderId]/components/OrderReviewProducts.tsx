@@ -1,8 +1,8 @@
 "use client"
 
-import OrderProductReviewForm from "@/app/(user)/info/orders/[orderId]/components/OrderProductReviewForm";
+import OrderReviewProductForm from "@/app/(user)/info/orders/[orderId]/components/OrderReviewProductForm";
 
-export default function OrderProductReviewList() {
+export default function OrderReviewProducts() {
     return (
         <div className='space-y-[20px]'>
             <header>
@@ -13,7 +13,7 @@ export default function OrderProductReviewList() {
             <ul className="space-y-[40px]">
                 {
                     Array.from({ length: 2 }).map((_, index) => {
-                        return <li key={index}><OrderProductReviewForm /></li>
+                        return <li key={index}><OrderReviewProductForm /></li>
                     })
                 }
             </ul>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Price from "@/components/Price";
 import Badge from "@/components/Badge";
-import ProductsActionDelete from "@/app/admin/products/components/ProductsActionDelete";
+import ProductsDeleteAction from "@/app/admin/products/components/ProductsDeleteAction";
 
 import {
     DropdownMenu,
@@ -109,7 +109,7 @@ const productsColumns: ColumnDef<number>[] = [
                                 </Link>
                             </DropdownMenuItem>
 
-                            <ProductsActionDelete />
+                            <ProductsDeleteAction />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

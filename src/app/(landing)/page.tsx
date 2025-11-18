@@ -1,8 +1,8 @@
 import Hero from "@/app/(landing)/components/Hero/Hero";
 import Compliment from "@/app/(landing)/components/Compliment";
-import FeaturedProduct from "@/app/(landing)/components/FeaturedProduct";
-import LatestProduct from "@/app/(landing)/components/LatestProduct";
-import Policy from "@/app/(landing)/components/Policy";
+import FeaturedProducts from "@/app/(landing)/components/FeaturedProducts";
+import LatestProducts from "@/app/(landing)/components/LatestProducts";
+import Policies from "@/app/(landing)/components/Policies";
 import Newsletter from "./components/Newsletter";
 
 import { cn } from "@/lib/utils";
@@ -22,9 +22,9 @@ export default function Page() {
                 )}
             >
                 <Compliment />
-                <FeaturedProduct />
-                <LatestProduct />
-                <Policy />
+                <FeaturedProducts />
+                <LatestProducts />
+                <Policies />
                 <Newsletter />
             </div>
         </div>

@@ -12,7 +12,7 @@ import drawerSlice from "@/store/slices/drawerSlice";
 
 import type { ReduxStateType } from "@/store/store";
 
-export default function FilterActionButtonList() {
+export default function FilterActionButtons() {
     const router = useRouter();
 
     const dispatch = useDispatch();

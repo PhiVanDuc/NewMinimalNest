@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { useFieldArray, useWatch } from "react-hook-form";
 
 import Badge from "@/components/Badge";
 
@@ -18,17 +17,17 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { categories as filterCategories } from "@/consts/filter";
 
-import type { UseFormReturn } from "react-hook-form";
 import type { Dispatch, SetStateAction } from "react";
-import type { FormValuesType } from "@/app/admin/products/add/page";
+import type { FilterType } from "@/app/admin/product-settings/product-groups/add/components/ProductGroupsAddFilter";
 
 interface PropsType {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
-    form: UseFormReturn<FormValuesType>
+    filter: FilterType,
+    setFilter: Dispatch<SetStateAction<FilterType>>
 }
 
-export default function ProductAddCategoryListDialog({ isOpen, setIsOpen, form }: PropsType) {
+export default function ProductGroupsAddFilterDialog({ isOpen, setIsOpen, filter, setFilter }: PropsType) {
     const [categoryName, setCategoryName] = useState("");
     const [debouncedCategoryName, setDebouncedCategoryName] = useState("");
 
@@ -36,17 +35,6 @@ export default function ProductAddCategoryListDialog({ isOpen, setIsOpen, form }
         const handler = setTimeout(() => { setDebouncedCategoryName(categoryName) }, 500);
         return () => clearTimeout(handler);
     }, [categoryName]);
-
-    const watchCategories = useWatch({
-        control: form.control,
-        name: "categories"
-    });
-
-    const fieldCategories = useFieldArray({
-        control: form.control,
-        name: "categories",
-        keyName: "_id"
-    });
 
     const categories = filterCategories.map(category => ({
         name: category.label,
@@ -58,10 +46,27 @@ export default function ProductAddCategoryListDialog({ isOpen, setIsOpen, form }
     );
 
     const handleClickChooseCategory = (category: { name: string, slug: string }) => {
-        const index = watchCategories.findIndex(wCategory => wCategory.slug === category.slug);
+        const index = filter.categories.findIndex(fCategory => fCategory.slug === category.slug);
 
-        if (index !== -1) fieldCategories.remove(index);
-        else fieldCategories.append(category);
+        if (index !== -1) {
+            setFilter((state) => {
+                const categories = state.categories;
+                categories.splice(index, 1);
+
+                return {
+                    ...state,
+                    categories
+                }
+            });
+        }
+        else {
+            setFilter((state) => {
+                return {
+                    ...state,
+                    categories: [...state.categories, category]
+                };
+            });
+        }
     }
 
     return (
@@ -91,7 +96,7 @@ export default function ProductAddCategoryListDialog({ isOpen, setIsOpen, form }
                                     </div>
                                 ) :
                                 filteredCategories.map(category => {
-                                    const isActive = watchCategories.find(wCategory => wCategory.slug === category.slug);
+                                    const isActive = filter.categories.find(fCategory => fCategory.slug === category.slug);
 
                                     return (
                                         <Badge

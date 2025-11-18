@@ -7,7 +7,7 @@ import Quantity from "@/components/Quantity";
 import { cn } from "@/lib/utils";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
-export default function ProductOptionList() {
+export default function ProductOptions() {
     const [quantity, setQuantity] = useState("1");
 
     const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {

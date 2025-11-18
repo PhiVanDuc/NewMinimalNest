@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import ProductImageList from "@/app/(user)/products/[productSlug]/components/ProductImageList";
+import ProductImages from "@/app/(user)/products/[productSlug]/components/ProductImages";
 
 import { Button } from "@/components/ui/button";
 import { TbLayoutGridFilled } from "react-icons/tb";
@@ -46,7 +46,7 @@ export default function ProductImage() {
                 <span className="leading-tight">Hiển thị thêm</span>
             </Button>
 
-            <ProductImageList
+            <ProductImages
                 isOpen={isOpenDrawer}
                 setIsOpen={setisOpenDrawer}
             />

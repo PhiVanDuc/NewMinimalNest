@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import CategoriesActionDelete from "@/app/admin/categories/components/CategoriesActionDelete";
+import CategoriesDeleteAction from "@/app/admin/categories/components/CategoriesDeleteAction";
 
 import {
     DropdownMenu,
@@ -58,7 +58,7 @@ const categoriesColumns: ColumnDef<number>[] = [
                                 </Link>
                             </DropdownMenuItem>
 
-                            <CategoriesActionDelete />
+                            <CategoriesDeleteAction />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

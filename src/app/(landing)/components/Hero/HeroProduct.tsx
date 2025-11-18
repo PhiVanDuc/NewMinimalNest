@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const HeroProductOptionListDialog = dynamic(() => import("@/app/(landing)/components/Hero/HeroProductOptionListDialog"));
+const HeroProductOptionsDialog = dynamic(() => import("@/app/(landing)/components/Hero/HeroProductOptionsDialog"));
 
 import { Button } from "@/components/ui/button";
 import { FiShoppingCart } from "react-icons/fi";
@@ -113,7 +113,7 @@ export default function HeroProduct({ currentProduct }: PropsType) {
                 </div>
             </div>
 
-            {isOpenDialog && <HeroProductOptionListDialog isOpen={isOpenDialog} setIsOpen={setIsOpenDialog} action={action} />}
+            {isOpenDialog && <HeroProductOptionsDialog isOpen={isOpenDialog} setIsOpen={setIsOpenDialog} action={action} />}
         </>
     )
 }

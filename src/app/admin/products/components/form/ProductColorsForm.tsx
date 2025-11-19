@@ -13,13 +13,13 @@ import { cn } from "@/lib/utils";
 import { colors as filterColors } from "@/consts/filter";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { FormValuesType } from "@/app/admin/products/add/page";
+import type { ProductFormDataType } from "@/app/admin/products/types";
 
 interface PropsType {
-    form: UseFormReturn<FormValuesType>
+    form: UseFormReturn<ProductFormDataType>
 }
 
-export default function ProductAddColorList({ form }: PropsType) {
+export default function ProductColorsForm({ form }: PropsType) {
     const colors = filterColors.map(color => ({
         name: color.label,
         slug: color.value,

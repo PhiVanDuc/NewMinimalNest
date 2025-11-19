@@ -20,22 +20,21 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 
-
 import {
     IoMdImages,
     IoMdMore
 } from "react-icons/io";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { FormValuesType } from "@/app/admin/products/add/page";
+import type { ProductFormDataType } from "@/app/admin/products/types";
 
 import { cn } from "@/lib/utils";
 
 interface PropsType {
-    form: UseFormReturn<FormValuesType>
+    form: UseFormReturn<ProductFormDataType>
 }
 
-export default function ProductAddImageList({ form }: PropsType) {
+export default function ProductImagesForm({ form }: PropsType) {
     const watchImages = useWatch({
         control: form.control,
         name: "images"

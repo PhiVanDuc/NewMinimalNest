@@ -21,7 +21,7 @@ import { LuChevronsUpDown } from "react-icons/lu";
 
 import { cn } from "@/lib/utils";
 
-type OptionItem = {
+interface OptionItemType {
     label: string,
     value: string
 }
@@ -31,7 +31,7 @@ interface PropsType {
     buttonPlaceholder?: string,
     searchPlaceholder?: string,
     emptyPlaceholder?: string,
-    optionList: OptionItem[],
+    optionList: OptionItemType[],
     value?: string,
     onChange?: (value: string) => void,
     disabled?: boolean

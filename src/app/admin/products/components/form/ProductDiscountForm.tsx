@@ -20,13 +20,13 @@ import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { FormValuesType } from "@/app/admin/products/add/page";
+import type { ProductFormDataType } from "@/app/admin/products/types";
 
 interface PropsType {
-    form: UseFormReturn<FormValuesType>
+    form: UseFormReturn<ProductFormDataType>
 }
 
-export default function ProductAddDiscount({ form }: PropsType) {
+export default function ProductDiscountForm({ form }: PropsType) {
     const watchCostPrice = useWatch({
         control: form.control,
         name: "costPrice"

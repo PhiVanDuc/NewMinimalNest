@@ -8,13 +8,13 @@ import {
 } from "@/components/ui/form";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { ProductGroupFormDataType } from "@/app/admin/product-settings/product-groups/types";
+import type { DiscountFormDataType } from "@/app/admin/product-settings/discounts/types";
 
 interface PropsType {
-    form: UseFormReturn<ProductGroupFormDataType>
+    form: UseFormReturn<DiscountFormDataType>
 }
 
-export default function ProductGroupSelectedProductForm({ form }: PropsType) {
+export default function DiscountSelectedProductForm({ form }: PropsType) {
     return (
         <FormField
             control={form.control}

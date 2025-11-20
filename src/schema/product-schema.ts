@@ -27,7 +27,7 @@ const productSchema = z.object({
                 slug: z.string()
             })
         )
-        .min(1, { error: "Vui lòng chọn ít nhất một danh mục cho sản phẩm!" }),
+        .min(1, { error: "Vui lòng chọn ít nhất 1 danh mục cho sản phẩm!" }),
     colors: z
         .array(
             z.object({
@@ -36,7 +36,7 @@ const productSchema = z.object({
                 colorCode: z.string()
             })
         )
-        .min(1, { error: "Vui lòng chọn ít nhất một màu sắc cho sản phẩm!" }),
+        .min(1, { error: "Vui lòng chọn ít nhất 1 màu sắc cho sản phẩm!" }),
     color: z
         .object({
             name: z.string(),
@@ -74,7 +74,7 @@ const productSchema = z.object({
             return result;
         },
         {
-            message: "Vui lòng cung cấp mỗi màu một ảnh chính và hai ảnh phụ cho hình ảnh!",
+            message: "Vui lòng cung cấp mỗi màu 1 ảnh chính và 2 ảnh phụ cho hình ảnh!",
             path: ["images"]
         }
     )

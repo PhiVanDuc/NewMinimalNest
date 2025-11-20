@@ -20,16 +20,16 @@ import { IoFilter } from "react-icons/io5";
 import { categories } from "@/consts/filter";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { ProductGroupFormDataType, ProductGroupFilterType } from "@/app/admin/product-settings/product-groups/types";
+import type { DiscountFormDataType, DiscountFilterType } from "@/app/admin/product-settings/discounts/types";
 
 interface PropsType {
-    form: UseFormReturn<ProductGroupFormDataType>
+    form: UseFormReturn<DiscountFormDataType>
 }
 
-export default function ProductGroupFilterForm({ form }: PropsType) {
+export default function DiscountFilterForm() {
     const [productsFiltered, setProductsFiltered] = useState([]);
     const [isOpenDialog, setIsOpenDialog] = useState(false);
-    const [filter, setFilter] = useState<ProductGroupFilterType>({
+    const [filter, setFilter] = useState<DiscountFilterType>({
         name: "",
         categories: []
     });

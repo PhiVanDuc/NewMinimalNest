@@ -37,8 +37,8 @@ const colorsColumns: ColumnDef<number>[] = [
         }
     },
     {
-        accessorKey: "productCount",
-        header: () => <h3 className={headerClassName}>Đếm sản phẩm</h3>,
+        accessorKey: "productQuantity",
+        header: () => <h3 className={headerClassName}>Số lượng sản phẩm</h3>,
         cell: () => {
             return (
                 <p className="content-table-row">100 sản phẩm</p>

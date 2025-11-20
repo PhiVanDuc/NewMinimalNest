@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link";
-import ProductGroupsActionDelete from "@/app/admin/product-settings/product-groups/components/ProductGroupsActionDelete";
 
 import {
     DropdownMenu,
@@ -10,29 +9,29 @@ import {
     DropdownMenuItem
 } from "@/components/ui/dropdown-menu";
 
+import { LuTags } from "react-icons/lu";
 import { HiDotsVertical } from "react-icons/hi";
-import { IoReloadOutline } from "react-icons/io5";
 
 import type { ColumnDef } from "@tanstack/react-table";
 
 const headerClassName = "text-[14px] text-zinc-700 font-medium";
 
-const productGroupsColumns: ColumnDef<number>[] = [
+const productStatusesColumns: ColumnDef<number>[] = [
     {
-        accessorKey: "productGroup",
-        header: () => <h3 className={headerClassName}>Nhóm sản phẩm</h3>,
+        accessorKey: "Status",
+        header: () => <h3 className={headerClassName}>Trạng thái</h3>,
         cell: () => {
             return (
-                <p className="header-table-row">Tên sản phẩm muốn nhóm</p>
+                <p className="header-table-row">Tên trạng thái</p>
             )
         }
     },
     {
         accessorKey: "productQuantity",
-        header: () => <h3 className={headerClassName}>Số lượng sản phẩm</h3>,
+        header: () => <h3 className={headerClassName + " text-center"}>Số lượng sản phẩm</h3>,
         cell: () => {
             return (
-                <p className="content-table-row">5 sản phẩm</p>
+                <p className="content-table-row text-center">5 sản phẩm</p>
             )
         }
     },
@@ -52,13 +51,11 @@ const productGroupsColumns: ColumnDef<number>[] = [
 
                         <DropdownMenuContent>
                             <DropdownMenuItem asChild>
-                                <Link href="/admin/product-settings/product-groups/product-groups-id">
-                                    <IoReloadOutline />
-                                    Cập nhật
+                                <Link href="/admin/product-settings/product-statuses/status-slug">
+                                    <LuTags />
+                                    Gán trạng thái
                                 </Link>
                             </DropdownMenuItem>
-
-                            <ProductGroupsActionDelete />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
@@ -67,4 +64,4 @@ const productGroupsColumns: ColumnDef<number>[] = [
     }
 ];
 
-export default productGroupsColumns;
+export default productStatusesColumns;

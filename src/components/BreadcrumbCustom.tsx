@@ -31,6 +31,8 @@ const list = {
     "colors": "Màu sắc",
     "product-settings": "Cài đặt sản phẩm",
     "product-groups": "Nhóm sản phẩm",
+    "discounts": "Giảm giá",
+    "product-statuses": "Trạng thái sản phẩm",
     "add": "Thêm",
 }
 

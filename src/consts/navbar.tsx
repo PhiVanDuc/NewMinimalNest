@@ -135,12 +135,6 @@ export const adminDrawerNavList = [
                 icon: <PiFlagBannerFold size={20} />
             },
             {
-                id: "3.2",
-                label: "Giảm giá",
-                href: "/admin/discounts",
-                icon: <RiDiscountPercentLine size={20} />
-            },
-            {
                 id: "3.3",
                 label: "Phiếu giảm giá",
                 href: "/admin/coupons",

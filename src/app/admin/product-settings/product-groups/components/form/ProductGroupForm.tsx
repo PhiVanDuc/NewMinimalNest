@@ -9,6 +9,9 @@ import ProductGroupSelectedProductForm from "@/app/admin/product-settings/produc
 
 import { Form } from "@/components/ui/form";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import productGroupSchema from "@/schema/product-group-schema";
+
 import type { ProductGroupDataType, ProductGroupFormDataType } from "@/app/admin/product-settings/product-groups/types";
 
 interface PropsType {
@@ -18,6 +21,7 @@ interface PropsType {
 
 export default function ProductGroupForm({ formType, data }: PropsType) {
     const form = useForm<ProductGroupFormDataType>({
+        resolver: zodResolver(productGroupSchema),
         defaultValues: {
             name: "",
             products: []
@@ -52,9 +56,15 @@ export default function ProductGroupForm({ formType, data }: PropsType) {
                     onSubmit={form.handleSubmit(handleSubmit)}
                     className="space-y-[40px]"
                 >
-                    <ProductGroupFilterForm form={form} />
-                    <ProductGroupSelectedProductForm form={form} />
-                    <ProductGroupNameForm formType={formType} form={form} />
+                    <ProductGroupNameForm
+                        formType={formType}
+                        form={form}
+                    />
+
+                    <div className="flex items-start gap-[20px]">
+                        <ProductGroupFilterForm form={form} />
+                        <ProductGroupSelectedProductForm form={form} />
+                    </div>
                 </form>
             </Form>
         </div>

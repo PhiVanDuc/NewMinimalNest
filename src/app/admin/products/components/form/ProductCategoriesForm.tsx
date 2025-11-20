@@ -103,10 +103,7 @@ export default function ProductCategoriesForm({ form }: PropsType) {
                     <BadgeSelectorDialog
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
-                        title="Lựa chọn danh mục"
-                        desc="Tìm kiếm và lựa chọn danh mục tại đây."
-                        placeholder="Lọc tên danh mục . . ."
-                        emptyPlaceholder="Danh mục không tồn tại."
+                        object="danh mục"
                         data={categories.map(category => ({ label: category.label, value: category.value }))}
                         selectedData={watchCategories.map(category => ({ label: category.name, value: category.slug }))}
                         onClickBadge={handleClickBadge}

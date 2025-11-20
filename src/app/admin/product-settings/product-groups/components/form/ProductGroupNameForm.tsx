@@ -23,7 +23,7 @@ interface PropsType {
 
 export default function ProductGroupNameForm({ formType, form }: PropsType) {
     return (
-        <div className="relative pl-[24px] space-y-[20px] w-full">
+        <div className="relative pl-[24px] space-y-[20px]">
             <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
 
             <FormField

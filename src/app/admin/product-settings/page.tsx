@@ -9,22 +9,22 @@ import { RiDiscountPercentLine } from "react-icons/ri";
 
 const settingList = [
     {
-        title: "Phân nhãn sản phẩm",
-        desc: "Gán nhãn như nổi bật, bán chạy, mới . . . cho các sản phẩm sản phẩm.",
-        href: "/admin/product-settings/product-types",
-        icon: LuTags
-    },
-    {
         title: "Nhóm sản phẩm",
         desc: "Xem danh sách, thêm, cập nhật và xoá nhóm sản phẩm tại đây.",
         href: "/admin/product-settings/product-groups",
         icon: LuLayoutGrid
     },
     {
-        title: "Giảm giá sản phẩm",
-        desc: "Thiết lập và theo dõi các chương trình giảm giá cho sản phẩm",
-        href: "/admin/product-settings/product-discounts",
+        title: "Giảm giá",
+        desc: "Xem danh sách, thêm, cập nhật và xoá giảm giá tại đây.",
+        href: "/admin/product-settings/discounts",
         icon: RiDiscountPercentLine
+    },
+    {
+        title: "Trạng thái sản phẩm",
+        desc: "Xem danh sách và gán trạng thái cho sản phẩm tại đây.",
+        href: "/admin/product-settings/product-statuses",
+        icon: LuTags
     }
 ]
 

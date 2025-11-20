@@ -26,10 +26,7 @@ interface BadgeType {
 interface PropsType {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
-    title?: string,
-    desc?: string,
-    placeholder?: string,
-    emptyPlaceholder?: string
+    object?: string,
     data: BadgeType[],
     selectedData: BadgeType[],
     onClickBadge?: (badge: BadgeType) => void
@@ -38,10 +35,7 @@ interface PropsType {
 export default function BadgeSelectorDialog({
     isOpen,
     setIsOpen,
-    title,
-    desc,
-    placeholder,
-    emptyPlaceholder,
+    object,
     data,
     selectedData,
     onClickBadge
@@ -71,18 +65,13 @@ export default function BadgeSelectorDialog({
         >
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>
-                        {title ? title : "Lựa chọn nhãn"}
-                    </DialogTitle>
-
-                    <DialogDescription>
-                        {desc ? desc : "Tìm kiếm và lựa chọn nhãn tại đây."}
-                    </DialogDescription>
+                    <DialogTitle>Lựa chọn {object ? object : "nhãn"}</DialogTitle>
+                    <DialogDescription>Tìm kiếm và lựa chọn {object ? object : "nhãn"} tại đây.</DialogDescription>
                 </DialogHeader>
 
                 <div className="px-[20px] space-y-[20px]">
                     <Input
-                        placeholder={placeholder ? placeholder : "Lọc tên nhãn . . ."}
+                        placeholder={`Lọc tên ${object ? object : "nhãn"} . . .`}
                         value={searchText}
                         onChange={e => setSearchText(e.target.value)}
                     />
@@ -92,9 +81,7 @@ export default function BadgeSelectorDialog({
                             filteredBadges.length === 0 ?
                                 (
                                     <div className="flex justify-center w-full">
-                                        <p className="desc-basic">
-                                            {emptyPlaceholder ? emptyPlaceholder : "Nhãn không tồn tại!"}
-                                        </p>
+                                        <p className="desc-basic">{object ? String(object).charAt(0).toUpperCase() + String(object).slice(1) : "nhãn"} không tồn tại!</p>
                                     </div>
                                 ) :
                                 filteredBadges.map(badge => {

@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link";
-import ProductGroupsActionDelete from "@/app/admin/product-settings/product-groups/components/ProductGroupsActionDelete";
+import Price from "@/components/Price";
+import DiscountsDeleteAction from "@/app/admin/product-settings/discounts/components/DiscountsDeleteAction";
 
 import {
     DropdownMenu,
@@ -19,11 +20,20 @@ const headerClassName = "text-[14px] text-zinc-700 font-medium";
 
 const productGroupsColumns: ColumnDef<number>[] = [
     {
-        accessorKey: "productGroup",
-        header: () => <h3 className={headerClassName}>Nhóm sản phẩm</h3>,
+        accessorKey: "event",
+        header: () => <h3 className={headerClassName}>Sự kiện giảm giá</h3>,
         cell: () => {
             return (
-                <p className="header-table-row">Tên sản phẩm muốn nhóm</p>
+                <p className="header-table-row">Tên sự kiện giảm giá</p>
+            )
+        }
+    },
+    {
+        accessorKey: "discount",
+        header: () => <h3 className={headerClassName}>Giảm giá</h3>,
+        cell: () => {
+            return (
+                <Price className="text-[15px]" />
             )
         }
     },
@@ -52,13 +62,13 @@ const productGroupsColumns: ColumnDef<number>[] = [
 
                         <DropdownMenuContent>
                             <DropdownMenuItem asChild>
-                                <Link href="/admin/product-settings/product-groups/product-groups-id">
+                                <Link href="/admin/product-settings/discounts/discount-slug">
                                     <IoReloadOutline />
                                     Cập nhật
                                 </Link>
                             </DropdownMenuItem>
 
-                            <ProductGroupsActionDelete />
+                            <DiscountsDeleteAction />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

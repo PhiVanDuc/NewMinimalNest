@@ -20,16 +20,16 @@ import { IoFilter } from "react-icons/io5";
 import { categories } from "@/consts/filter";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { ProductGroupFormDataType, ProductGroupFilterType } from "@/app/admin/product-settings/product-groups/types";
+import type { ProductStatusFormDataType, ProductStatusFilterType } from "@/app/admin/product-settings/product-statuses/type";
 
 interface PropsType {
-    form: UseFormReturn<ProductGroupFormDataType>
+    form: UseFormReturn<ProductStatusFormDataType>
 }
 
-export default function ProductGroupFilterForm({ form }: PropsType) {
+export default function ProductStatusFilterForm({ form }: PropsType) {
     const [productsFiltered, setProductsFiltered] = useState([]);
     const [isOpenDialog, setIsOpenDialog] = useState(false);
-    const [filter, setFilter] = useState<ProductGroupFilterType>({
+    const [filter, setFilter] = useState<ProductStatusFilterType>({
         name: "",
         categories: []
     });

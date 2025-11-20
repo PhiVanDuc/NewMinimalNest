@@ -47,23 +47,63 @@ export default function ProductGeneralForm({ form }: PropsType) {
     }
 
     return (
-        <div className="relative pl-[24px]">
+        <div className="relative pl-[24px] space-y-[20px]">
             <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
 
-            <div className="space-y-[20px]">
+            <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => {
+                    return (
+                        <FormItem>
+                            <FormLabel>Tên sản phẩm</FormLabel>
+
+                            <FormControl>
+                                <Input
+                                    placeholder="Nhập tên sản phẩm . . ."
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )
+                }}
+            />
+
+            <FormField
+                control={form.control}
+                name="desc"
+                render={({ field }) => {
+                    return (
+                        <FormItem>
+                            <FormLabel>Mô tả</FormLabel>
+
+                            <FormControl>
+                                <Textarea
+                                    placeholder="Nhập mô tả sản phẩm . . ."
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )
+                }}
+            />
+
+            <div className="flex items-start gap-[10px]">
                 <FormField
                     control={form.control}
-                    name="name"
-                    render={({ field }) => {
+                    name="costPrice"
+                    render={() => {
                         return (
-                            <FormItem>
-                                <FormLabel>Tên sản phẩm</FormLabel>
+                            <FormItem className="w-full">
+                                <FormLabel>Giá gốc</FormLabel>
 
                                 <FormControl>
                                     <Input
-                                        placeholder="Nhập tên sản phẩm . . ."
-                                        {...field}
-                                        className="bg-white"
+                                        value={toStandardPositiveIntegerString(watchCostPrice)}
+                                        placeholder="Nhập giá gốc sản phẩm"
+                                        onChange={handleChangeCostPrice}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -74,17 +114,17 @@ export default function ProductGeneralForm({ form }: PropsType) {
 
                 <FormField
                     control={form.control}
-                    name="desc"
-                    render={({ field }) => {
+                    name="interestPercent"
+                    render={() => {
                         return (
-                            <FormItem>
-                                <FormLabel>Mô tả</FormLabel>
+                            <FormItem className="w-full">
+                                <FormLabel>Lãi xuất %</FormLabel>
 
                                 <FormControl>
-                                    <Textarea
-                                        placeholder="Nhập mô tả sản phẩm . . ."
-                                        className="bg-white"
-                                        {...field}
+                                    <Input
+                                        value={watchInterestPercent}
+                                        placeholder="Nhập lãi xuất theo %"
+                                        onChange={handleChangeInterestPercent}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -92,52 +132,6 @@ export default function ProductGeneralForm({ form }: PropsType) {
                         )
                     }}
                 />
-
-                <div className="flex items-start gap-[10px]">
-                    <FormField
-                        control={form.control}
-                        name="costPrice"
-                        render={() => {
-                            return (
-                                <FormItem className="w-full">
-                                    <FormLabel>Giá gốc</FormLabel>
-
-                                    <FormControl>
-                                        <Input
-                                            value={toStandardPositiveIntegerString(watchCostPrice)}
-                                            placeholder="Nhập giá gốc sản phẩm"
-                                            className="bg-white"
-                                            onChange={handleChangeCostPrice}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )
-                        }}
-                    />
-
-                    <FormField
-                        control={form.control}
-                        name="interestPercent"
-                        render={() => {
-                            return (
-                                <FormItem className="w-full">
-                                    <FormLabel>Lãi xuất %</FormLabel>
-
-                                    <FormControl>
-                                        <Input
-                                            value={watchInterestPercent}
-                                            placeholder="Nhập lãi xuất theo %"
-                                            className="bg-white"
-                                            onChange={handleChangeInterestPercent}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )
-                        }}
-                    />
-                </div>
             </div>
         </div>
     )

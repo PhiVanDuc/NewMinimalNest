@@ -74,13 +74,11 @@ export default function ProductForm({ formType, data }: PropsType) {
                         <ProductGeneralForm form={form} />
                         <ProductDiscountForm form={form} />
 
-                        <div className="relative pl-[24px]">
+                        <div className="relative pl-[24px] space-y-[20px]">
                             <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
 
-                            <div className="space-y-[20px]">
-                                <ProductCategoriesForm form={form} />
-                                <ProductColorsForm form={form} />
-                            </div>
+                            <ProductCategoriesForm form={form} />
+                            <ProductColorsForm form={form} />
                         </div>
 
                         {

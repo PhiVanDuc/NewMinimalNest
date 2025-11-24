@@ -2,7 +2,7 @@ const inventoryStatuses = {
     "qua-nhieu": {
         label: "Quá nhiều",
         value: "qua-nhieu",
-        color: "#f44336"
+        color: "#9c27b0"
     },
     "ly-tuong": {
         label: "Lý tưởng",
@@ -17,7 +17,7 @@ const inventoryStatuses = {
     "ban-vuot": {
         label: "Bán vượt",
         value: "ban-vuot",
-        color: "#9c27b0"
+        color: "#f44336"
     }
 }
 

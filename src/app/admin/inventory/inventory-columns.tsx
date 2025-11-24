@@ -1,5 +1,13 @@
 import Badge from "@/components/Badge";
-import InventoryActionColumn from "@/app/admin/inventory/components/InventoryActionColumn";
+import InventoryUpdateAction from "@/app/admin/inventory/components/InventoryUpdateAction";
+
+import {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuContent
+} from "@/components/ui/dropdown-menu";
+
+import { HiDotsVertical } from "react-icons/hi";
 
 import inventoryStatuses from "@/consts/inventory-statuses";
 
@@ -83,7 +91,20 @@ const inventoryColumns: ColumnDef<number>[] = [
         header: () => <h3 className={headerClassName + " text-center"}>Hành động</h3>,
         cell: () => {
             return (
-                <InventoryActionColumn />
+                <div className="flex justify-center">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger className="size-[35px] flex items-center justify-center rounded-full hover:bg-zinc-200 cursor-pointer">
+                            <HiDotsVertical
+                                size={18}
+                                className="text-zinc-700"
+                            />
+                        </DropdownMenuTrigger>
+
+                        <DropdownMenuContent>
+                            <InventoryUpdateAction />
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             )
         }
     }

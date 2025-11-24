@@ -34,6 +34,7 @@ const list = {
     "discounts": "Giảm giá",
     "product-statuses": "Trạng thái sản phẩm",
     "inventory": "Tồn kho",
+    "template-excel": "Mẫu Excel",
     "add": "Thêm"
 }
 

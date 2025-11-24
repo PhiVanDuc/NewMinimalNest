@@ -33,10 +33,11 @@ const list = {
     "product-groups": "Nhóm sản phẩm",
     "discounts": "Giảm giá",
     "product-statuses": "Trạng thái sản phẩm",
-    "add": "Thêm",
+    "inventory": "Tồn kho",
+    "add": "Thêm"
 }
 
-export default function BreadcrumbCustom() {
+export default function BreadcrumbBase() {
     const pathname = usePathname();
     const splitPathname = pathname.split("/").filter(Boolean);
 

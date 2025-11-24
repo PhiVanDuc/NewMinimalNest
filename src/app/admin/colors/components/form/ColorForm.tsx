@@ -3,8 +3,8 @@
 import { useForm } from "react-hook-form";
 
 import dynamic from "next/dynamic";
-const InputColor = dynamic(
-    () => import("@/components/InputColor"),
+const ColorInput = dynamic(
+    () => import("@/app/admin/colors/components/form/ColorInput"),
     {
         ssr: false,
         loading: () => (
@@ -95,7 +95,7 @@ export default function ColorForm({ formType, data }: PropsType) {
                     />
 
                     <div className="flex items-stretch gap-[20px]">
-                        <InputColor form={form} />
+                        <ColorInput form={form} />
 
                         <FormField
                             control={form.control}

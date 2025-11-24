@@ -2,14 +2,11 @@
 
 import { cn } from "@/lib/utils";
 
-interface PropsType {
-    readonly children: React.ReactNode,
-    variant?: "blur" | "solid" | "outline",
-    className?: string,
-    onClick?: (e: React.MouseEvent<HTMLElement>) => void
+interface PropsType extends React.HTMLAttributes<HTMLDivElement> {
+    variant?: "blur" | "solid" | "outline"
 }
 
-export default function Badge({ children, variant = "blur", className = "", onClick }: PropsType) {
+export default function Badge({ children, variant = "blur", className = "", ...props }: PropsType) {
     return (
         <div
             className={cn(
@@ -20,7 +17,7 @@ export default function Badge({ children, variant = "blur", className = "", onCl
                         variant === "solid" && "bg-theme-main text-white",
                 className
             )}
-            onClick={onClick}
+            {...props}
         >
             {children}
         </div>

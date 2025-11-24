@@ -1,7 +1,11 @@
 "use client"
 
+import DiscountForm from "@/app/admin/product-settings/discounts/components/form/DiscountForm";
+
 export default function Page() {
     return (
-        <div>page</div>
+        <DiscountForm
+            formType="edit"
+        />
     )
 }

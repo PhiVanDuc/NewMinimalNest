@@ -1,6 +1,6 @@
 "use client"
 
-import BreadcrumbCustom from "@/components/BreadcrumbCustom";
+import BreadcrumbBase from "@/components/BreadcrumbBase";
 
 interface PropsType {
     children: React.ReactNode;
@@ -10,7 +10,7 @@ interface PropsType {
 export default function Header({ children, isBreadcrumb = true }: Readonly<PropsType>) {
     return (
         <header className="space-y-[40px]">
-            {isBreadcrumb && <BreadcrumbCustom />}
+            {isBreadcrumb && <BreadcrumbBase />}
 
             <div>
                 {children}

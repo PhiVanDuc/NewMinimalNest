@@ -19,7 +19,7 @@ interface PropsType {
 export default function CategoriesFilter({ filter, setFilter }: PropsType) {
     const router = useRouter();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilter(() => {
             return { name: e.target.value }
         });
@@ -35,7 +35,7 @@ export default function CategoriesFilter({ filter, setFilter }: PropsType) {
                 value={filter.name}
                 placeholder="Lọc tên danh mục . . ."
                 className="w-[300px]"
-                onChange={handleChange}
+                onChange={handleChangeName}
             />
 
             <button

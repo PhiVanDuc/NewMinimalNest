@@ -3,14 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 
 import Badge from "@/components/Badge";
-
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogDescription
-} from "@/components/ui/dialog";
+import DialogBase from "@/components/DialogBase";
 
 import { Input } from "@/components/ui/input";
 
@@ -59,52 +52,47 @@ export default function BadgeSelectorDialog({
     }
 
     return (
-        <Dialog
+        <DialogBase
             open={isOpen}
             onOpenChange={setIsOpen}
+            title={`Lựa chọn ${object ? object : "nhãn"}`}
+            desc={`Tìm kiếm và lựa chọn ${object ? object : "nhãn"} tại đây.`}
         >
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Lựa chọn {object ? object : "nhãn"}</DialogTitle>
-                    <DialogDescription>Tìm kiếm và lựa chọn {object ? object : "nhãn"} tại đây.</DialogDescription>
-                </DialogHeader>
+            <div className="px-[20px] space-y-[20px]">
+                <Input
+                    placeholder={`Lọc tên ${object ? object : "nhãn"} . . .`}
+                    value={searchText}
+                    onChange={e => setSearchText(e.target.value)}
+                />
 
-                <div className="px-[20px] space-y-[20px]">
-                    <Input
-                        placeholder={`Lọc tên ${object ? object : "nhãn"} . . .`}
-                        value={searchText}
-                        onChange={e => setSearchText(e.target.value)}
-                    />
+                <div className="flex flex-wrap gap-[6px]">
+                    {
+                        filteredBadges.length === 0 ?
+                            (
+                                <div className="flex justify-center w-full">
+                                    <p className="desc-basic">{object ? String(object).charAt(0).toUpperCase() + String(object).slice(1) : "nhãn"} không tồn tại!</p>
+                                </div>
+                            ) :
+                            filteredBadges.map(badge => {
+                                const isActive = selectedData.find(item => item.value === badge.value);
 
-                    <div className="flex flex-wrap gap-[6px]">
-                        {
-                            filteredBadges.length === 0 ?
-                                (
-                                    <div className="flex justify-center w-full">
-                                        <p className="desc-basic">{object ? String(object).charAt(0).toUpperCase() + String(object).slice(1) : "nhãn"} không tồn tại!</p>
-                                    </div>
-                                ) :
-                                filteredBadges.map(badge => {
-                                    const isActive = selectedData.find(item => item.value === badge.value);
-
-                                    return (
-                                        <Badge
-                                            key={badge.value}
-                                            variant="outline"
-                                            className={cn(
-                                                "transition-colors cursor-pointer",
-                                                isActive ? "bg-zinc-100 border-zinc-100" : "bg-white hover:bg-zinc-100 hover:border-zinc-100"
-                                            )}
-                                            onClick={() => { handleClick(badge) }}
-                                        >
-                                            <p>{badge.label}</p>
-                                        </Badge>
-                                    )
-                                })
-                        }
-                    </div>
+                                return (
+                                    <Badge
+                                        key={badge.value}
+                                        variant="outline"
+                                        className={cn(
+                                            "transition-colors cursor-pointer",
+                                            isActive ? "bg-zinc-100 border-zinc-100" : "bg-white hover:bg-zinc-100 hover:border-zinc-100"
+                                        )}
+                                        onClick={() => { handleClick(badge) }}
+                                    >
+                                        <p>{badge.label}</p>
+                                    </Badge>
+                                )
+                            })
+                    }
                 </div>
-            </DialogContent>
-        </Dialog>
+            </div>
+        </DialogBase>
     )
 }

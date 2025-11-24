@@ -99,11 +99,18 @@ export default function Combobox({
                                 <CommandGroup>
                                     {
                                         optionList.map((optionItem, index) => {
+                                            const isActive = optionItem.value === value;
+                                            const isFirst = index === 0;
+
                                             return (
                                                 <CommandItem
                                                     key={`${optionItem.value}.${index}`}
                                                     value={optionItem.value}
                                                     onSelect={handleSelect}
+                                                    className={cn(
+                                                        isFirst ? "mt-0" : "mt-[5px]",
+                                                        isActive ? "bg-accent text-accent-foreground" : ""
+                                                    )}
                                                 >
                                                     {optionItem.label}
                                                 </CommandItem>

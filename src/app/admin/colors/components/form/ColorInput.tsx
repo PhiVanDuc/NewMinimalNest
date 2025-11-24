@@ -17,7 +17,7 @@ interface PropsType {
     }>;
 }
 
-export default function InputColor({ form }: PropsType) {
+export default function ColorInput({ form }: PropsType) {
     return (
         <FormField
             control={form.control}

@@ -13,20 +13,22 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { FaPlus } from "react-icons/fa6";
+import { IoReloadOutline } from "react-icons/io5";
 
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
 
 import type { UseFormReturn } from "react-hook-form";
 import type { DiscountFormDataType } from "@/app/admin/product-settings/discounts/types";
-import { Button } from "@/components/ui/button";
-import { FaPlus } from "react-icons/fa6";
 
 interface PropsType {
+    formType: "add" | "edit"
     form: UseFormReturn<DiscountFormDataType>
 }
 
-export default function DiscountGeneralForm({ form }: PropsType) {
+export default function DiscountGeneralForm({ formType, form }: PropsType) {
     const watchDiscount = useWatch({
         control: form.control,
         name: "discount"
@@ -123,10 +125,28 @@ export default function DiscountGeneralForm({ form }: PropsType) {
                 </div>
             </div>
 
-            <Button className="w-full bg-theme-main hover:bg-theme-main/95">
-                <FaPlus />
-                Thêm giảm giá
-            </Button>
+            {
+                (formType === "add" || formType === "edit") &&
+                (
+                    <Button className="w-full bg-theme-main hover:bg-theme-main/95">
+                        {
+                            formType === "add" ?
+                                (
+                                    <>
+                                        <FaPlus />
+                                        Thêm giảm giá
+                                    </>
+                                ) :
+                                (
+                                    <>
+                                        <IoReloadOutline />
+                                        Cập nhật giảm giá
+                                    </>
+                                )
+                        }
+                    </Button>
+                )
+            }
         </div>
     )
 }

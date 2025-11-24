@@ -1,5 +1,5 @@
 import Banner from "@/app/(user)/products/components/Banner/Banner";
-import BreadcrumbCustom from "@/components/BreadcrumbCustom";
+import BreadcrumbBase from "@/components/BreadcrumbBase";
 import FilterOpenButton from "@/app/(user)/products/components/Filter/FilterOpenButton";
 import Products from "@/app/(user)/products/components/Products/Products";
 
@@ -14,7 +14,7 @@ export default async function Page({ searchParams }: PropsType) {
         <div className="space-y-[80px]">
             <div className="space-y-[20px]">
                 <Banner />
-                <BreadcrumbCustom />
+                <BreadcrumbBase />
             </div>
 
             <div className="space-y-[20px]">

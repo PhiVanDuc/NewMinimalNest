@@ -54,10 +54,13 @@ export default function DiscountForm({ formType, data }: PropsType) {
                     className="space-y-[40px]"
                     onSubmit={form.handleSubmit(handleSubmit)}
                 >
-                    <DiscountGeneralForm form={form} />
+                    <DiscountGeneralForm
+                        formType={formType}
+                        form={form}
+                    />
 
                     <div className="flex items-start gap-[20px]">
-                        <DiscountFilterForm />
+                        <DiscountFilterForm form={form} />
                         <DiscountSelectedProductForm form={form} />
                     </div>
                 </form>

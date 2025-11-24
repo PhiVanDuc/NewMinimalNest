@@ -26,7 +26,7 @@ interface PropsType {
     form: UseFormReturn<DiscountFormDataType>
 }
 
-export default function DiscountFilterForm() {
+export default function DiscountFilterForm({ form }: PropsType) {
     const [productsFiltered, setProductsFiltered] = useState([]);
     const [isOpenDialog, setIsOpenDialog] = useState(false);
     const [filter, setFilter] = useState<DiscountFilterType>({

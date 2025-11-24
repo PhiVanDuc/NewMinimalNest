@@ -3,16 +3,17 @@
 import { useRouter } from "next/navigation";
 
 import Combobox from "@/components/Combobox";
+
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
-import ranks from "@/consts/ranks";
+import inventoryStatuses from "@/consts/inventory-statuses";
 
 import type { Dispatch, SetStateAction } from "react";
 
 type FilterType = {
     name: string,
-    rank: string
+    status: string
 }
 
 interface PropsType {
@@ -20,7 +21,7 @@ interface PropsType {
     setFilter: Dispatch<SetStateAction<FilterType>>
 }
 
-export default function AccountsFilter({ filter, setFilter }: PropsType) {
+export default function InventoryFilter({ filter, setFilter }: PropsType) {
     const router = useRouter();
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,11 +33,11 @@ export default function AccountsFilter({ filter, setFilter }: PropsType) {
         });
     }
 
-    const handleChangeRole = (value: string) => {
+    const handleChangeStatus = (value: string) => {
         setFilter((state) => {
             return {
                 ...state,
-                rank: value
+                status: value
             }
         });
     }
@@ -50,23 +51,23 @@ export default function AccountsFilter({ filter, setFilter }: PropsType) {
             <div className="flex gap-[10px]">
                 <Input
                     value={filter.name}
-                    placeholder="Lọc tên người dùng . . ."
+                    placeholder="Lọc tên sản phẩm . . ."
                     className="w-[300px]"
                     onChange={handleChangeName}
                 />
 
                 <Combobox
-                    buttonPlaceholder="Lọc thứ hạng"
-                    searchPlaceholder="Tìm kiếm thứ hạng . . ."
-                    emptyPlaceholder="Danh sách thứ hạng rỗng."
-                    optionList={Object.values(ranks).map(rank => {
+                    buttonPlaceholder="Lọc trạng thái"
+                    searchPlaceholder="Tìm kiếm trạng thái . . ."
+                    emptyPlaceholder="Danh sách trạng thái rỗng."
+                    optionList={Object.values(inventoryStatuses).map(status => {
                         return {
-                            label: rank.label,
-                            value: rank.value
+                            label: status.label,
+                            value: status.value
                         }
                     })}
-                    value={filter.rank}
-                    onChange={handleChangeRole}
+                    value={filter.status}
+                    onChange={handleChangeStatus}
                 />
             </div>
 

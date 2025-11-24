@@ -19,7 +19,7 @@ interface PropsType {
 export default function ProductsFilter({ filter, setFilter }: PropsType) {
     const router = useRouter();
 
-    const handleChangeProductName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilter(() => {
             return { name: e.target.value }
         });
@@ -35,7 +35,7 @@ export default function ProductsFilter({ filter, setFilter }: PropsType) {
                 value={filter.name}
                 placeholder="Lọc tên sản phẩm . . ."
                 className="w-[300px]"
-                onChange={handleChangeProductName}
+                onChange={handleChangeName}
             />
 
             <button

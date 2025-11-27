@@ -9,7 +9,7 @@ import Pagination from "@/components/Pagination";
 import CouponsFilter from "./components/CouponsFilter";
 
 import { Button } from "@/components/ui/button";
-import { FiPlus } from "react-icons/fi";
+import { FaPlus } from "react-icons/fa6";
 
 import couponsColumns from "@/app/admin/coupons/coupons-columns";
 
@@ -32,7 +32,7 @@ export default function Page() {
                     asChild
                 >
                     <Link href="/admin/coupons/add">
-                        <FiPlus />
+                        <FaPlus />
                         Thêm phiếu giảm giá
                     </Link>
                 </Button>

@@ -9,7 +9,7 @@ import Pagination from "@/components/Pagination";
 import CategoriesFilter from "@/app/admin/categories/components/CategoriesFilter";
 
 import { Button } from "@/components/ui/button";
-import { FiPlus } from "react-icons/fi";
+import { FaPlus } from "react-icons/fa6";
 
 import categoriesColumns from "@/app/admin/categories/categories-columns";
 
@@ -31,7 +31,7 @@ export default function Page() {
                     asChild
                 >
                     <Link href="/admin/categories/add">
-                        <FiPlus />
+                        <FaPlus />
                         Thêm danh mục
                     </Link>
                 </Button>

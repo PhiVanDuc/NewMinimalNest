@@ -9,7 +9,7 @@ import Pagination from "@/components/Pagination";
 import ProductsFilter from "@/app/admin/products/components/ProductsFilter";
 
 import { Button } from "@/components/ui/button";
-import { FiPlus } from "react-icons/fi";
+import { FaPlus } from "react-icons/fa6";
 
 import productsColumns from "@/app/admin/products/products-columns";
 
@@ -31,7 +31,7 @@ export default function Page() {
                     asChild
                 >
                     <Link href="/admin/products/add">
-                        <FiPlus />
+                        <FaPlus />
                         Thêm sản phẩm
                     </Link>
                 </Button>

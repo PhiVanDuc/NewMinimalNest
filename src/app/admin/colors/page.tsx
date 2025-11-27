@@ -9,7 +9,7 @@ import Pagination from "@/components/Pagination";
 import ColorsFilter from "@/app/admin/colors/components/ColorsFilter";
 
 import { Button } from "@/components/ui/button";
-import { FiPlus } from "react-icons/fi";
+import { FaPlus } from "react-icons/fa6";
 
 import colorsColumns from "@/app/admin/colors/colors-columns";
 
@@ -31,7 +31,7 @@ export default function Page() {
                     asChild
                 >
                     <Link href="/admin/colors/add">
-                        <FiPlus />
+                        <FaPlus />
                         Thêm màu sắc
                     </Link>
                 </Button>

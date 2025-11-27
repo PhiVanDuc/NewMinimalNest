@@ -9,7 +9,7 @@ import Pagination from "@/components/Pagination";
 import ProductGroupsFilter from "@/app/admin/product-settings/product-groups/components/ProductGroupsFilter";
 
 import { Button } from "@/components/ui/button";
-import { FiPlus } from "react-icons/fi";
+import { FaPlus } from "react-icons/fa6";
 
 import productGroupsColumns from "@/app/admin/product-settings/product-groups/product-groups-columns";
 
@@ -31,7 +31,7 @@ export default function ProductGroupsClient() {
                     asChild
                 >
                     <Link href="/admin/product-settings/product-groups/add">
-                        <FiPlus />
+                        <FaPlus />
                         Thêm nhóm sản phẩm
                     </Link>
                 </Button>

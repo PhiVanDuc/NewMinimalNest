@@ -3,7 +3,7 @@ import Compliment from "@/app/(landing)/components/Compliment";
 import FeaturedProducts from "@/app/(landing)/components/FeaturedProducts";
 import LatestProducts from "@/app/(landing)/components/LatestProducts";
 import Policies from "@/app/(landing)/components/Policies";
-import Newsletter from "./components/Newsletter";
+import Newsletter from "@/app/(landing)/components//Newsletter";
 
 import { cn } from "@/lib/utils";
 

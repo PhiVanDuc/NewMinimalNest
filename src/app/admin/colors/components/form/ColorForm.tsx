@@ -35,7 +35,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { ColorDataType, ColorFormDataType } from "@/app/admin/colors/types";
 
 interface PropsType {
-    formType: "add" | "edit",
+    formType: "add" | "update",
     data?: ColorDataType
 }
 
@@ -56,14 +56,14 @@ export default function ColorForm({ formType, data }: PropsType) {
                 <h1 className="header-basic">
                     {
                         formType === "add" ? "Thêm màu sắc" :
-                            formType === "edit" ? "Cập nhật màu sắc" : "Sai loại biểu mẫu"
+                            formType === "update" ? "Cập nhật màu sắc" : "Sai loại biểu mẫu"
                     }
                 </h1>
 
                 <p className="desc-basic">
                     {
                         formType === "add" ? "Vui lòng thêm màu sắc tại đây." :
-                            formType === "edit" ? "Vui lòng cập nhật màu sắc tại đây." : "Vui lòng cung cấp đúng loại biểu mẫu."
+                            formType === "update" ? "Vui lòng cập nhật màu sắc tại đây." : "Vui lòng cung cấp đúng loại biểu mẫu."
                     }
                 </p>
             </Header>
@@ -119,7 +119,7 @@ export default function ColorForm({ formType, data }: PropsType) {
                     </div>
 
                     {
-                        (formType === "add" || formType === "edit") &&
+                        (formType === "add" || formType === "update") &&
                         (
                             <Button className="w-full bg-theme-main hover:bg-theme-main/95">
                                 {

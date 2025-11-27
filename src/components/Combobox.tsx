@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import {
     Command,
@@ -31,9 +31,9 @@ interface PropsType {
     buttonPlaceholder?: string,
     searchPlaceholder?: string,
     emptyPlaceholder?: string,
-    optionList: OptionItemType[],
-    value?: string,
-    onChange?: (value: string) => void,
+    options: OptionItemType[],
+    option?: string,
+    onSelect?: (option: string) => void,
     disabled?: boolean
 }
 
@@ -41,24 +41,26 @@ export default function Combobox({
     className,
     buttonPlaceholder,
     emptyPlaceholder,
-    optionList,
-    value: propValue,
-    onChange,
+    options,
+    option: propOption,
+    onSelect,
     disabled
 }: PropsType) {
     const [open, setOpen] = useState(false);
-    const [internalValue, setInternalValue] = useState("");
+    const [internalOption, setInternalOption] = useState("");
 
-    const value = propValue || internalValue;
+    const option = propOption || internalOption;
 
-    const handleSelect = (currentValue: string) => {
-        const nextValue = currentValue === value ? "" : currentValue
+    const selectedOption = useMemo(
+        () => options.find(optionItem => optionItem.value === option),
+        [options, option]
+    );
 
-        if (onChange) onChange(nextValue)
-        else setInternalValue(nextValue)
-
-        setOpen(false)
-    }
+    const handleSelect = (currentOption: string) => {
+        const next = currentOption === option ? "" : currentOption;
+        onSelect ? onSelect(next) : setInternalOption(next);
+        setOpen(false);
+    };
 
     return (
         <Popover
@@ -75,12 +77,7 @@ export default function Combobox({
                         className
                     )}
                 >
-                    {
-                        value
-                            ? optionList.find(optionItem => optionItem.value === value)?.label
-                            : buttonPlaceholder || "Lựa chọn thông tin"
-                    }
-
+                    {selectedOption?.label || buttonPlaceholder || "Lựa chọn thông tin"}
                     <LuChevronsUpDown />
                 </Button>
             </PopoverTrigger>
@@ -94,17 +91,17 @@ export default function Combobox({
                         <CommandEmpty>{emptyPlaceholder || "Danh sách lựa chọn rỗng."}</CommandEmpty>
 
                         {
-                            optionList.length > 0
+                            options.length > 0
                             && (
                                 <CommandGroup>
                                     {
-                                        optionList.map((optionItem, index) => {
-                                            const isActive = optionItem.value === value;
+                                        options.map((optionItem, index) => {
+                                            const isActive = optionItem.value === option;
                                             const isFirst = index === 0;
 
                                             return (
                                                 <CommandItem
-                                                    key={`${optionItem.value}.${index}`}
+                                                    key={optionItem.value}
                                                     value={optionItem.value}
                                                     onSelect={handleSelect}
                                                     className={cn(

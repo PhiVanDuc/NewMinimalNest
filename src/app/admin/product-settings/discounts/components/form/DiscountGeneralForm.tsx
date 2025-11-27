@@ -24,7 +24,7 @@ import type { UseFormReturn } from "react-hook-form";
 import type { DiscountFormDataType } from "@/app/admin/product-settings/discounts/types";
 
 interface PropsType {
-    formType: "add" | "edit"
+    formType: "add" | "update"
     form: UseFormReturn<DiscountFormDataType>
 }
 
@@ -43,14 +43,14 @@ export default function DiscountGeneralForm({ formType, form }: PropsType) {
         const discount = toPositiveIntegerString(e.target.value);
 
         if (watchDiscountType === "percent") {
-            if (Number(discount) > 100) form.setValue("discount", "100");
-            else form.setValue("discount", discount);
+            if (Number(discount) > 100) form.setValue("discount", "100", { shouldValidate: true });
+            else form.setValue("discount", discount, { shouldValidate: true });
         }
-        else form.setValue("discount", toStandardPositiveIntegerString(discount));
+        else form.setValue("discount", toStandardPositiveIntegerString(discount), { shouldValidate: true });
     }
 
-    const handleChooseDiscountType = (value: string) => {
-        form.setValue("discount", "");
+    const handleSelectDiscountType = (value: string) => {
+        form.setValue("discount", "", { shouldValidate: true });
         form.setValue("discountType", value as "percent" | "amount");
     }
 
@@ -109,7 +109,7 @@ export default function DiscountGeneralForm({ formType, form }: PropsType) {
                     <label className="block text-[14px] text-zinc-700 font-medium leading-none">Loại giảm giá</label>
 
                     <Combobox
-                        optionList={[
+                        options={[
                             {
                                 label: "Phần trăm",
                                 value: "percent"
@@ -119,14 +119,14 @@ export default function DiscountGeneralForm({ formType, form }: PropsType) {
                                 value: "amount"
                             }
                         ]}
-                        value={watchDiscountType}
-                        onChange={handleChooseDiscountType}
+                        option={watchDiscountType}
+                        onSelect={handleSelectDiscountType}
                     />
                 </div>
             </div>
 
             {
-                (formType === "add" || formType === "edit") &&
+                (formType === "add" || formType === "update") &&
                 (
                     <Button className="w-full bg-theme-main hover:bg-theme-main/95">
                         {

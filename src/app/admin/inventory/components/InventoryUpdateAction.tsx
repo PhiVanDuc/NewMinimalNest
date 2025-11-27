@@ -18,7 +18,7 @@ export default function InventoryUpdateAction() {
                 onClick={() => setIsOpenDialog(true)}
             >
                 <IoReloadOutline />
-                Cập nhật tồn kho
+                Cập nhật
             </DropdownMenuItem>
 
             {

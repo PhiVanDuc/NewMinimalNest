@@ -9,19 +9,20 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel
+    FormLabel,
+    FormMessage
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { IoReloadOutline } from "react-icons/io5";
 
-import type { Dispatch, SetStateAction } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import inventorySchema from "@/schema/inventory-schema";
+import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
-interface FormDataType {
-    name: string,
-    quantity: string
-}
+import type { Dispatch, SetStateAction } from "react";
+import type { InventoryFormDataType } from "@/app/admin/inventory/types";
 
 interface PropsType {
     isOpen: boolean,
@@ -29,21 +30,26 @@ interface PropsType {
 }
 
 export default function InventoryQuantityFormDialog({ isOpen, setIsOpen }: PropsType) {
-    const form = useForm<FormDataType>({
+    const form = useForm<InventoryFormDataType>({
+        resolver: zodResolver(inventorySchema),
         defaultValues: {
             name: "Tên sản phẩm muốn cập nhật",
-            quantity: ""
+            totalQuantity: ""
         }
     });
 
-    const handleSubmit = (data: FormDataType) => { }
+    const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
+        form.setValue("totalQuantity", toPositiveIntegerString(e.target.value), { shouldValidate: true });
+    }
+
+    const handleSubmit = (data: InventoryFormDataType) => { }
 
     return (
         <DialogBase
             open={isOpen}
             onOpenChange={setIsOpen}
-            title="Cập nhật tồn kho"
-            desc="Vui lòng cập nhật tồn kho sản phẩm thủ công tại đây."
+            title="Cập nhật tổng số lượng"
+            desc="Vui lòng cập nhật tổng số lượng tồn kho cho sản phẩm thủ công tại đây."
         >
             <Form {...form}>
                 <form
@@ -65,6 +71,7 @@ export default function InventoryQuantityFormDialog({ isOpen, setIsOpen }: Props
                                             disabled={true}
                                         />
                                     </FormControl>
+                                    <FormMessage />
                                 </FormItem>
                             )
                         }}
@@ -72,18 +79,20 @@ export default function InventoryQuantityFormDialog({ isOpen, setIsOpen }: Props
 
                     <FormField
                         control={form.control}
-                        name="quantity"
+                        name="totalQuantity"
                         render={({ field }) => {
                             return (
                                 <FormItem>
-                                    <FormLabel>Tồn kho</FormLabel>
+                                    <FormLabel>Tổng số lượng</FormLabel>
 
                                     <FormControl>
                                         <Input
-                                            placeholder="Nhập tồn kho sản phẩm . . ."
-                                            {...field}
+                                            value={field.value}
+                                            placeholder="Nhập tổng số lượng tồn kho cho sản phẩm . . ."
+                                            onChange={handleChangeQuantity}
                                         />
                                     </FormControl>
+                                    <FormMessage />
                                 </FormItem>
                             )
                         }}
@@ -91,7 +100,7 @@ export default function InventoryQuantityFormDialog({ isOpen, setIsOpen }: Props
 
                     <Button className="w-full bg-theme-main hover:bg-theme-main/95">
                         <IoReloadOutline />
-                        Cập nhật tồn kho
+                        Cập nhật tổng số lượng
                     </Button>
                 </form>
             </Form>

@@ -20,18 +20,18 @@ interface PropsType {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
     object?: string,
-    data: BadgeType[],
-    selectedData: BadgeType[],
-    onClickBadge?: (badge: BadgeType) => void
+    options: BadgeType[],
+    selectedOptions: BadgeType[],
+    onSelect?: (badge: BadgeType) => void
 }
 
-export default function BadgeSelectorDialog({
+export default function BadgePickerDialog({
     isOpen,
     setIsOpen,
     object,
-    data,
-    selectedData,
-    onClickBadge
+    options,
+    selectedOptions,
+    onSelect
 }: PropsType) {
     const [searchText, setSearchText] = useState("");
     const [debouncedSearchText, setDebouncedSearchText] = useState("");
@@ -41,14 +41,14 @@ export default function BadgeSelectorDialog({
         return () => clearTimeout(handler);
     }, [searchText]);
 
-    const filteredBadges = useMemo(() => {
-        return data.filter(item =>
+    const filteredOptions = useMemo(() => {
+        return options.filter(item =>
             item.label.toLowerCase().includes(debouncedSearchText.toLowerCase())
         )
-    }, [data, debouncedSearchText]);
+    }, [options, debouncedSearchText]);
 
     const handleClick = (badge: BadgeType) => {
-        if (onClickBadge) onClickBadge(badge)
+        if (onSelect) onSelect(badge)
     }
 
     return (
@@ -67,14 +67,14 @@ export default function BadgeSelectorDialog({
 
                 <div className="flex flex-wrap gap-[6px]">
                     {
-                        filteredBadges.length === 0 ?
+                        filteredOptions.length === 0 ?
                             (
                                 <div className="flex justify-center w-full">
                                     <p className="desc-basic">{object ? String(object).charAt(0).toUpperCase() + String(object).slice(1) : "nhãn"} không tồn tại!</p>
                                 </div>
                             ) :
-                            filteredBadges.map(badge => {
-                                const isActive = selectedData.find(item => item.value === badge.value);
+                            filteredOptions.map(badge => {
+                                const isActive = selectedOptions.find(option => option.value === badge.value);
 
                                 return (
                                     <Badge

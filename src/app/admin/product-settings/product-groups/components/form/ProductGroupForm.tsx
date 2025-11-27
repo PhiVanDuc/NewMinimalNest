@@ -3,8 +3,8 @@
 import { useForm } from "react-hook-form";
 
 import Header from "@/components/Header";
+import ProductFilterForm from "@/components/ProductFilterForm";
 import ProductGroupNameForm from "@/app/admin/product-settings/product-groups/components/form/ProductGroupNameForm";
-import ProductGroupFilterForm from "@/app/admin/product-settings/product-groups/components/form/ProductGroupFilterForm";
 import ProductGroupSelectedProductForm from "@/app/admin/product-settings/product-groups/components/form/ProductGroupSelectedProductForm";
 
 import { Form } from "@/components/ui/form";
@@ -15,7 +15,7 @@ import productGroupSchema from "@/schema/product-group-schema";
 import type { ProductGroupDataType, ProductGroupFormDataType } from "@/app/admin/product-settings/product-groups/types";
 
 interface PropsType {
-    formType: "add" | "edit",
+    formType: "add" | "update",
     data?: ProductGroupDataType
 }
 
@@ -38,14 +38,14 @@ export default function ProductGroupForm({ formType, data }: PropsType) {
                 <h1 className="header-basic">
                     {
                         formType === "add" ? "Thêm nhóm sản phẩm" :
-                            formType === "edit" ? "Cập nhật nhóm sản phẩm" : "Sai loại biểu mẫu"
+                            formType === "update" ? "Cập nhật nhóm sản phẩm" : "Sai loại biểu mẫu"
                     }
                 </h1>
 
                 <p className="desc-basic">
                     {
                         formType === "add" ? "Vui lòng thêm nhóm sản phẩm tại đây." :
-                            formType === "edit" ? "Vui lòng cập nhật nhóm sản phẩm tại đây." : "Vui lòng cung cấp đúng loại biểu mẫu."
+                            formType === "update" ? "Vui lòng cập nhật nhóm sản phẩm tại đây." : "Vui lòng cung cấp đúng loại biểu mẫu."
                     }
                 </p>
             </Header>
@@ -62,7 +62,7 @@ export default function ProductGroupForm({ formType, data }: PropsType) {
                     />
 
                     <div className="flex items-start gap-[20px]">
-                        <ProductGroupFilterForm form={form} />
+                        <ProductFilterForm />
                         <ProductGroupSelectedProductForm form={form} />
                     </div>
                 </form>

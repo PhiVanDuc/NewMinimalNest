@@ -5,7 +5,7 @@ import ProductGroupForm from "@/app/admin/product-settings/product-groups/compon
 export default function Page() {
     return (
         <ProductGroupForm
-            formType="edit"
+            formType="update"
         />
     )
 }

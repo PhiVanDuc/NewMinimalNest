@@ -6,7 +6,7 @@ interface PropsType extends React.HTMLAttributes<HTMLDivElement> {
     variant?: "blur" | "solid" | "outline"
 }
 
-export default function Badge({ children, variant = "blur", className = "", ...props }: PropsType) {
+export default function Badge({ children, className = "", variant = "blur", ...props }: PropsType) {
     return (
         <div
             className={cn(

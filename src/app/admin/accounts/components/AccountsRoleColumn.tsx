@@ -7,13 +7,13 @@ import Combobox from "@/components/Combobox";
 export default function AccountsRoleColumn() {
     const [role, setRole] = useState("khach-hang");
 
-    const handleChange = (value: string) => {
+    const handleSelectRole = (value: string) => {
         setRole(value);
     }
 
     return (
         <Combobox
-            optionList={[
+            options={[
                 {
                     label: "Khách hàng",
                     value: "khach-hang"
@@ -23,8 +23,8 @@ export default function AccountsRoleColumn() {
                     value: "quan-tri-vien"
                 }
             ]}
-            value={role}
-            onChange={handleChange}
+            option={role}
+            onSelect={handleSelectRole}
         />
     )
 }

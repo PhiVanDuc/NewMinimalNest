@@ -2,22 +2,22 @@ const inventoryStatuses = {
     "qua-nhieu": {
         label: "Quá nhiều",
         value: "qua-nhieu",
-        color: "#9c27b0"
+        colorCode: "#1e88e5"
     },
     "ly-tuong": {
         label: "Lý tưởng",
         value: "ly-tuong",
-        color: "#4caf50"
+        colorCode: "#43a047"
     },
     "sap-het": {
         label: "Sắp hết",
         value: "sap-het",
-        color: "#ff9800"
+        colorCode: "#ffb300"
     },
     "ban-vuot": {
         label: "Bán vượt",
         value: "ban-vuot",
-        color: "#f44336"
+        colorCode: "#e53935"
     }
 }
 

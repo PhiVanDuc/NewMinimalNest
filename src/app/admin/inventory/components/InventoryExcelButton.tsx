@@ -21,6 +21,12 @@ import { FaRegFileExcel } from "react-icons/fa6";
 
 export default function InventoryExcelButton() {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
+    const [resultType, setResultType] = useState<"overwrite" | "increase" | "decrease">("overwrite");
+
+    const handleClickAction = (action: "overwrite" | "increase" | "decrease") => {
+        setIsOpenDialog(true);
+        setResultType(action);
+    }
 
     return (
         <>
@@ -40,17 +46,26 @@ export default function InventoryExcelButton() {
                         </Link>
                     </DropdownMenuItem>
 
-                    <DropdownMenuItem>
+                    <DropdownMenuItem
+                        onSelect={(e) => e.preventDefault()}
+                        onClick={() => handleClickAction("overwrite")}
+                    >
                         <FiEdit2 />
                         Ghi đè tồn kho
                     </DropdownMenuItem>
 
-                    <DropdownMenuItem>
+                    <DropdownMenuItem
+                        onSelect={(e) => e.preventDefault()}
+                        onClick={() => handleClickAction("increase")}
+                    >
                         <FiPlus />
                         Tăng tồn kho
                     </DropdownMenuItem>
 
-                    <DropdownMenuItem>
+                    <DropdownMenuItem
+                        onSelect={(e) => e.preventDefault()}
+                        onClick={() => handleClickAction("decrease")}
+                    >
                         <FiMinus />
                         Giảm tồn kho
                     </DropdownMenuItem>
@@ -60,6 +75,7 @@ export default function InventoryExcelButton() {
             <InventoryExcelResultDialog
                 isOpen={isOpenDialog}
                 setIsOpen={setIsOpenDialog}
+                resultType={resultType}
             />
         </>
     )

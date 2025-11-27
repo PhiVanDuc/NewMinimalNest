@@ -32,7 +32,7 @@ export default function AccountsFilter({ filter, setFilter }: PropsType) {
         });
     }
 
-    const handleChangeRole = (value: string) => {
+    const handleSelectRole = (value: string) => {
         setFilter((state) => {
             return {
                 ...state,
@@ -59,14 +59,14 @@ export default function AccountsFilter({ filter, setFilter }: PropsType) {
                     buttonPlaceholder="Lọc thứ hạng"
                     searchPlaceholder="Tìm kiếm thứ hạng . . ."
                     emptyPlaceholder="Danh sách thứ hạng rỗng."
-                    optionList={Object.values(ranks).map(rank => {
+                    options={Object.values(ranks).map(rank => {
                         return {
                             label: rank.label,
                             value: rank.value
                         }
                     })}
-                    value={filter.rank}
-                    onChange={handleChangeRole}
+                    option={filter.rank}
+                    onSelect={handleSelectRole}
                 />
             </div>
 

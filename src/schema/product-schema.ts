@@ -14,7 +14,7 @@ const productSchema = z.object({
         .string()
         .min(1, { error: "Vui lòng nhập lãi xuất %!" }),
     discountType: z
-        .enum(["percent", "amount"]),
+        .string(),
     discount: z
         .string(),
     price: z

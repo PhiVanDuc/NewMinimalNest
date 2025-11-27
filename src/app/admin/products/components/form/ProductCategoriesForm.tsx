@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useWatch, useFieldArray } from "react-hook-form";
 
 import dynamic from "next/dynamic";
-const BadgeSelectorDialog = dynamic(() => import("@/components/BadgeSelectorDialog"), { ssr: false });
+const BadgePickerDialog = dynamic(() => import("@/components/BadgePickerDialog"), { ssr: false });
 
 import Badge from "@/components/Badge";
 
@@ -41,7 +41,7 @@ export default function ProductCategoriesForm({ form }: PropsType) {
         keyName: "_id"
     });
 
-    const handleClickBadge = (badge: { label: string, value: string }) => {
+    const handleSelectCategory = (badge: { label: string, value: string }) => {
         const category = {
             name: badge.label,
             slug: badge.value
@@ -61,7 +61,7 @@ export default function ProductCategoriesForm({ form }: PropsType) {
                 render={({ fieldState }) => {
                     return (
                         <FormItem>
-                            <FormLabel>Danh mục</FormLabel>
+                            <FormLabel isRequired={true}>Danh mục</FormLabel>
 
                             <div className="flex flex-wrap gap-[6px]">
                                 {
@@ -100,13 +100,13 @@ export default function ProductCategoriesForm({ form }: PropsType) {
 
             {
                 isOpenDialog && (
-                    <BadgeSelectorDialog
+                    <BadgePickerDialog
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
                         object="danh mục"
-                        data={categories.map(category => ({ label: category.label, value: category.value }))}
-                        selectedData={watchCategories.map(category => ({ label: category.name, value: category.slug }))}
-                        onClickBadge={handleClickBadge}
+                        options={categories.map(category => ({ label: category.label, value: category.value }))}
+                        selectedOptions={watchCategories.map(category => ({ label: category.name, value: category.slug }))}
+                        onSelect={handleSelectCategory}
                     />
                 )
             }

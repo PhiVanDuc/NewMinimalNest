@@ -4,7 +4,7 @@ export interface DiscountDataType {
 
 export interface DiscountFormDataType {
     name: string,
-    discountType: "percent" | "amount",
+    discountType: string,
     discount: string,
     products: number[]
 }

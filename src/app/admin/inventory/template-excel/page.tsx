@@ -3,15 +3,17 @@
 import { useForm } from "react-hook-form";
 
 import Header from "@/components/Header";
-import TemplateExcelFilterProductForm from "@/app/admin/inventory/template-excel/TemplateExcelFilterProductForm";
+import ProductFilterForm from "@/components/ProductFilterForm";
 import TemplateExcelSelectedProductForm from "@/app/admin/inventory/template-excel/TemplateExcelSelectedProductForm";
 
+import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { FaRegFileExcel } from "react-icons/fa6";
-import { Form } from "@/components/ui/form";
+
+import type { TemplateExcelFormDataType } from "@/app/admin/inventory/types";
 
 export default function Page() {
-    const form = useForm<{ products: number[] }>({
+    const form = useForm<TemplateExcelFormDataType>({
         defaultValues: {
             products: []
         }
@@ -38,10 +40,10 @@ export default function Page() {
                 </div>
 
                 <div className="space-y-[10px]">
-                    <p className="desc-basic">Có thể chọn trước các sản phẩm sẽ xuất hiện trong file trước khi xuất mẫu Excel.</p>
+                    <p className="desc-basic">Có thể chọn trước các sản phẩm sẽ xuất hiện trong Excel.</p>
 
                     <div className="flex items-start gap-[20px]">
-                        <TemplateExcelFilterProductForm form={form} />
+                        <ProductFilterForm />
                         <TemplateExcelSelectedProductForm form={form} />
                     </div>
                 </div>

@@ -33,7 +33,7 @@ export default function InventoryFilter({ filter, setFilter }: PropsType) {
         });
     }
 
-    const handleChangeStatus = (value: string) => {
+    const handleSelectStatus = (value: string) => {
         setFilter((state) => {
             return {
                 ...state,
@@ -60,14 +60,14 @@ export default function InventoryFilter({ filter, setFilter }: PropsType) {
                     buttonPlaceholder="Lọc trạng thái"
                     searchPlaceholder="Tìm kiếm trạng thái . . ."
                     emptyPlaceholder="Danh sách trạng thái rỗng."
-                    optionList={Object.values(inventoryStatuses).map(status => {
+                    options={Object.values(inventoryStatuses).map(status => {
                         return {
                             label: status.label,
                             value: status.value
                         }
                     })}
-                    value={filter.status}
-                    onChange={handleChangeStatus}
+                    option={filter.status}
+                    onSelect={handleSelectStatus}
                 />
             </div>
 

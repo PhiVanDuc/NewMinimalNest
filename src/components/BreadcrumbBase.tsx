@@ -35,6 +35,7 @@ const list = {
     "product-statuses": "Trạng thái sản phẩm",
     "inventory": "Tồn kho",
     "template-excel": "Mẫu Excel",
+    "banners": "Banner",
     "add": "Thêm"
 }
 

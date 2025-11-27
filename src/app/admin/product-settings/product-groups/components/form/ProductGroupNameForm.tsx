@@ -17,7 +17,7 @@ import type { UseFormReturn } from "react-hook-form";
 import type { ProductGroupFormDataType } from "@/app/admin/product-settings/product-groups/types";
 
 interface PropsType {
-    formType: "add" | "edit",
+    formType: "add" | "update",
     form: UseFormReturn<ProductGroupFormDataType>
 }
 
@@ -47,7 +47,7 @@ export default function ProductGroupNameForm({ formType, form }: PropsType) {
             />
 
             {
-                (formType === "add" || formType === "edit") &&
+                (formType === "add" || formType === "update") &&
                 (
                     <Button className="w-full bg-theme-main hover:bg-theme-main/95">
                         {

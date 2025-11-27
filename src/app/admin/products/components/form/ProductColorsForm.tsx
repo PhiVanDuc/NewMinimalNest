@@ -85,7 +85,7 @@ export default function ProductColorsForm({ form }: PropsType) {
             render={() => {
                 return (
                     <FormItem>
-                        <FormLabel>Màu sắc</FormLabel>
+                        <FormLabel isRequired={true}>Màu sắc</FormLabel>
 
                         <div className="flex flex-wrap gap-[15px]">
                             {

@@ -87,7 +87,7 @@ export default function ProductDiscountForm({ form }: PropsType) {
         }
     }
 
-    const handleChooseDiscountType = (value: string) => {
+    const handleSelectDiscountType = (value: string) => {
         form.setValue("discount", "");
         form.setValue("discountType", value as "percent" | "amount");
     }
@@ -128,7 +128,7 @@ export default function ProductDiscountForm({ form }: PropsType) {
                     <label className="block text-[14px] text-zinc-700 font-medium leading-none">Loại giảm giá</label>
 
                     <Combobox
-                        optionList={[
+                        options={[
                             {
                                 label: "Phần trăm",
                                 value: "percent"
@@ -138,8 +138,8 @@ export default function ProductDiscountForm({ form }: PropsType) {
                                 value: "amount"
                             }
                         ]}
-                        value={watchDiscountType}
-                        onChange={handleChooseDiscountType}
+                        option={watchDiscountType}
+                        onSelect={handleSelectDiscountType}
                     />
                 </div>
             </div>

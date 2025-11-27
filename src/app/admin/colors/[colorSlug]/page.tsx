@@ -5,7 +5,7 @@ import ColorForm from "@/app/admin/colors/components/form/ColorForm";
 export default function Page() {
     return (
         <ColorForm
-            formType="edit"
+            formType="update"
         />
     )
 }

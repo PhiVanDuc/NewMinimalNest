@@ -20,7 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { ProductDataType, ProductFormDataType } from "@/app/admin/products/types";
 
 interface PropsType {
-    formType: "add" | "edit",
+    formType: "add" | "update",
     data?: ProductDataType
 }
 
@@ -52,14 +52,14 @@ export default function ProductForm({ formType, data }: PropsType) {
                 <h1 className="header-basic">
                     {
                         formType === "add" ? "Thêm sản phẩm" :
-                            formType === "edit" ? "Cập nhật sản phẩm" : "Sai loại biểu mẫu"
+                            formType === "update" ? "Cập nhật sản phẩm" : "Sai loại biểu mẫu"
                     }
                 </h1>
 
                 <p className="desc-basic">
                     {
                         formType === "add" ? "Vui lòng thêm sản phẩm tại đây." :
-                            formType === "edit" ? "Vui lòng cập nhật sản phẩm tại đây." : "Vui lòng cung cấp đúng loại biểu mẫu."
+                            formType === "update" ? "Vui lòng cập nhật sản phẩm tại đây." : "Vui lòng cung cấp đúng loại biểu mẫu."
                     }
                 </p>
             </Header>
@@ -82,7 +82,7 @@ export default function ProductForm({ formType, data }: PropsType) {
                         </div>
 
                         {
-                            (formType === "add" || formType === "edit") &&
+                            (formType === "add" || formType === "update") &&
                             (
                                 <Button className="w-full bg-theme-main hover:bg-theme-main/95">
                                     {

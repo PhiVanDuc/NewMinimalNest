@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
 import InventoryFilter from "@/app/admin/inventory/components/InventoryFilter";
+import InventoryAnalysis from "@/app/admin/inventory/components/InventoryAnalysis";
 import InventoryExcelButton from "@/app/admin/inventory/components/InventoryExcelButton";
 
 import inventoryColumns from "@/app/admin/inventory/inventory-columns";
@@ -26,6 +27,8 @@ export default function Page() {
 
                 <InventoryExcelButton />
             </div>
+
+            <InventoryAnalysis />
 
             <div className="space-y-[10px]">
                 <InventoryFilter

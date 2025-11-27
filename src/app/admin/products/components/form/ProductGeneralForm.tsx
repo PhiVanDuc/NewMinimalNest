@@ -56,7 +56,7 @@ export default function ProductGeneralForm({ form }: PropsType) {
                 render={({ field }) => {
                     return (
                         <FormItem>
-                            <FormLabel>Tên sản phẩm</FormLabel>
+                            <FormLabel isRequired={true}>Tên sản phẩm</FormLabel>
 
                             <FormControl>
                                 <Input
@@ -76,7 +76,7 @@ export default function ProductGeneralForm({ form }: PropsType) {
                 render={({ field }) => {
                     return (
                         <FormItem>
-                            <FormLabel>Mô tả</FormLabel>
+                            <FormLabel isRequired={true}>Mô tả</FormLabel>
 
                             <FormControl>
                                 <Textarea
@@ -97,7 +97,7 @@ export default function ProductGeneralForm({ form }: PropsType) {
                     render={() => {
                         return (
                             <FormItem className="w-full">
-                                <FormLabel>Giá gốc</FormLabel>
+                                <FormLabel isRequired={true}>Giá gốc</FormLabel>
 
                                 <FormControl>
                                     <Input
@@ -118,7 +118,7 @@ export default function ProductGeneralForm({ form }: PropsType) {
                     render={() => {
                         return (
                             <FormItem className="w-full">
-                                <FormLabel>Lãi xuất %</FormLabel>
+                                <FormLabel isRequired={true}>Lãi xuất %</FormLabel>
 
                                 <FormControl>
                                     <Input

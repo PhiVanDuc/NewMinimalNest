@@ -37,8 +37,8 @@ const inventoryColumns: ColumnDef<number>[] = [
         }
     },
     {
-        accessorKey: "inventoryQuantity",
-        header: () => <h3 className={headerClassName}>Tồn kho</h3>,
+        accessorKey: "totalQuantity",
+        header: () => <h3 className={headerClassName}>Tổng số lượng</h3>,
         cell: () => {
             return (
                 <p className="content-table-row">100</p>
@@ -79,7 +79,7 @@ const inventoryColumns: ColumnDef<number>[] = [
             return (
                 <Badge
                     className="text-white"
-                    style={{ background: inventoryStatuses["ly-tuong"].color }}
+                    style={{ background: inventoryStatuses["ly-tuong"].colorCode }}
                 >
                     <p>{inventoryStatuses["ly-tuong"].label}</p>
                 </Badge>

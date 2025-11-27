@@ -5,7 +5,7 @@ import DiscountForm from "@/app/admin/product-settings/discounts/components/form
 export default function Page() {
     return (
         <DiscountForm
-            formType="edit"
+            formType="update"
         />
     )
 }

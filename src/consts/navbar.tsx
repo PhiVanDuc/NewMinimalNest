@@ -1,7 +1,7 @@
 import { IoAnalytics } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
 import { PiFlagBannerFold } from "react-icons/pi";
-import { RiDiscountPercentLine, RiCoupon4Line, RiBillLine } from "react-icons/ri";
+import { RiCoupon4Line, RiBillLine } from "react-icons/ri";
 import { TbCategory2, TbColorFilter, TbSettings2 } from "react-icons/tb";
 import { AiOutlineInbox } from "react-icons/ai";
 import { MdOutlineInventory2 } from "react-icons/md";
@@ -129,16 +129,16 @@ export const adminDrawerNavList = [
         title: "Quảng bá",
         list: [
             {
-                id: "3.1",
-                label: "Banner quảng cáo",
-                href: "/admin/banners",
-                icon: <PiFlagBannerFold size={20} />
-            },
-            {
                 id: "3.3",
                 label: "Phiếu giảm giá",
                 href: "/admin/coupons",
                 icon: <RiCoupon4Line size={20} />
+            },
+            {
+                id: "3.1",
+                label: "Banner quảng cáo",
+                href: "/admin/banners",
+                icon: <PiFlagBannerFold size={20} />
             }
         ]
     },

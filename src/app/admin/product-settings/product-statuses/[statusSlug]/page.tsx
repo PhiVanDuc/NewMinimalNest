@@ -3,16 +3,20 @@
 import { useForm } from "react-hook-form";
 
 import Header from "@/components/Header";
+import ProductFilterForm from "@/components/ProductFilterForm";
 import ProductStatusNameForm from "@/app/admin/product-settings/product-statuses/[statusSlug]/components/ProductStatusNameForm";
-import ProductStatusFilterForm from "@/app/admin/product-settings/product-statuses/[statusSlug]/components/ProductStatusFilterForm";
 import ProductStatusSelectedProductForm from "@/app/admin/product-settings/product-statuses/[statusSlug]/components/ProductStatusSelectedProductForm";
 
 import { Form } from "@/components/ui/form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import productStatusSchema from "@/schema/product-status-schema";
 
 import type { ProductStatusFormDataType } from "@/app/admin/product-settings/product-statuses/type";
 
 export default function Page() {
     const form = useForm<ProductStatusFormDataType>({
+        resolver: zodResolver(productStatusSchema),
         defaultValues: {
             name: "",
             products: []
@@ -39,7 +43,7 @@ export default function Page() {
                     <ProductStatusNameForm form={form} />
 
                     <div className="flex items-start gap-[20px]">
-                        <ProductStatusFilterForm form={form} />
+                        <ProductFilterForm />
                         <ProductStatusSelectedProductForm form={form} />
                     </div>
                 </form>

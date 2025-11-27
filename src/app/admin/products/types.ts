@@ -7,7 +7,7 @@ export interface ProductFormDataType {
     desc: string,
     costPrice: string,
     interestPercent: string,
-    discountType: "percent" | "amount",
+    discountType: string,
     discount: string,
     price: string,
     categories: { name: string, slug: string }[]

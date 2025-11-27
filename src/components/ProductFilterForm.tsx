@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const BadgeSelectorDialog = dynamic(() => import("@/components/BadgeSelectorDialog"), { ssr: false });
+const BadgePickerDialog = dynamic(() => import("@/components/BadgePickerDialog"), { ssr: false });
 
 import Badge from "@/components/Badge";
 
@@ -19,20 +19,22 @@ import { IoFilter } from "react-icons/io5";
 
 import { categories } from "@/consts/filter";
 
-import type { UseFormReturn } from "react-hook-form";
-import type { ProductStatusFormDataType, ProductStatusFilterType } from "@/app/admin/product-settings/product-statuses/type";
-
-interface PropsType {
-    form: UseFormReturn<ProductStatusFormDataType>
+interface FilterType {
+    name: string,
+    categories: {
+        name: string,
+        slug: string
+    }[]
 }
 
-export default function ProductStatusFilterForm({ form }: PropsType) {
-    const [productsFiltered, setProductsFiltered] = useState([]);
-    const [isOpenDialog, setIsOpenDialog] = useState(false);
-    const [filter, setFilter] = useState<ProductStatusFilterType>({
+export default function ProductFilterForm() {
+    const [filter, setFilter] = useState<FilterType>({
         name: "",
         categories: []
     });
+
+    const [isOpenDialog, setIsOpenDialog] = useState(false);
+    const [productsFiltered, setProductsFiltered] = useState([]);
 
     const handleSelectCategory = (badge: { label: string, value: string }) => {
         const category = {
@@ -41,35 +43,25 @@ export default function ProductStatusFilterForm({ form }: PropsType) {
         }
 
         const index = filter.categories.findIndex(fCategory => fCategory.slug === category.slug);
-
         if (index !== -1) {
-            setFilter((state) => {
-                const categories = state.categories;
-                categories.splice(index, 1);
-
-                return {
-                    ...state,
-                    categories
-                }
-            });
+            setFilter((state) => ({
+                ...state,
+                categories: state.categories.filter(fCategory => fCategory.slug !== category.slug)
+            }));
         }
         else {
-            setFilter((state) => {
-                return {
-                    ...state,
-                    categories: [...state.categories, category]
-                };
-            });
+            setFilter((state) => ({
+                ...state,
+                categories: [...state.categories, category]
+            }));
         }
     }
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilter(state => {
-            return {
-                ...state,
-                name: e.target.value
-            }
-        });
+        setFilter(state => ({
+            ...state,
+            name: e.target.value
+        }));
     }
 
     return (
@@ -128,13 +120,13 @@ export default function ProductStatusFilterForm({ form }: PropsType) {
 
             {
                 isOpenDialog && (
-                    <BadgeSelectorDialog
+                    <BadgePickerDialog
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
                         object="danh mục"
-                        data={categories.map(category => ({ label: category.label, value: category.value }))}
-                        selectedData={filter.categories.map(category => ({ label: category.name, value: category.slug }))}
-                        onClickBadge={handleSelectCategory}
+                        options={categories.map(category => ({ label: category.label, value: category.value }))}
+                        selectedOptions={filter.categories.map(category => ({ label: category.name, value: category.slug }))}
+                        onSelect={handleSelectCategory}
                     />
                 )
             }

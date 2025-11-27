@@ -24,7 +24,7 @@ import categorySchema from "@/schema/category-schema";
 import type { CategoryDataType, CategoryFormDataType } from "@/app/admin/categories/types";
 
 interface PropsType {
-    formType: "add" | "edit",
+    formType: "add" | "update",
     data?: CategoryDataType
 }
 
@@ -44,14 +44,14 @@ export default function CategoryForm({ formType, data }: PropsType) {
                 <h1 className="header-basic">
                     {
                         formType === "add" ? "Thêm danh mục" :
-                            formType === "edit" ? "Cập nhật danh mục" : "Sai loại biểu mẫu"
+                            formType === "update" ? "Cập nhật danh mục" : "Sai loại biểu mẫu"
                     }
                 </h1>
 
                 <p className="desc-basic">
                     {
                         formType === "add" ? "Vui lòng thêm danh mục tại đây." :
-                            formType === "edit" ? "Vui lòng cập nhật danh mục tại đây." : "Vui lòng cung cấp đúng loại biểu mẫu."
+                            formType === "update" ? "Vui lòng cập nhật danh mục tại đây." : "Vui lòng cung cấp đúng loại biểu mẫu."
                     }
                 </p>
             </Header>
@@ -82,7 +82,7 @@ export default function CategoryForm({ formType, data }: PropsType) {
                     />
 
                     {
-                        (formType === "add" || formType === "edit") &&
+                        (formType === "add" || formType === "update") &&
                         (
                             <Button className="w-full bg-theme-main hover:bg-theme-main/95">
                                 {

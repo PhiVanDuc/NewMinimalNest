@@ -1,6 +1,6 @@
 const toPositiveIntegerString = (string: string) => {
     const positiveIntegerString = string.replace(/\D/g, '');
-    if (!positiveIntegerString || positiveIntegerString.startsWith("0")) return "";
+    if (!positiveIntegerString || positiveIntegerString.startsWith("0") || positiveIntegerString.length > 15) return "";
 
     return positiveIntegerString;
 }

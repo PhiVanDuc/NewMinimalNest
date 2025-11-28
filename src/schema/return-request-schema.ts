@@ -20,7 +20,7 @@ const returnProductSchema = z.object({
 const returnRequestSchema = z.object({
     returnProducts: z
         .array(returnProductSchema)
-        .min(1, { error: "Vui lòng chọn ít nhất một sản phẩm hoàn trả!" })
+        .min(1, { error: "Vui lòng chọn ít nhất 1 sản phẩm hoàn trả!" })
 });
 
 export default returnRequestSchema;

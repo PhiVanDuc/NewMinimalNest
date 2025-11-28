@@ -3,14 +3,7 @@
 import { useState } from "react";
 
 import Quantity from "@/components/Quantity";
-
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle
-} from "@/components/ui/dialog";
+import DialogBase from "@/components/DialogBase";
 
 import { Button } from "@/components/ui/button";
 import { MdOutlineShoppingBag } from "react-icons/md";
@@ -53,84 +46,76 @@ export default function HeroProductOptionsDialog({ isOpen, setIsOpen, action }: 
     }
 
     return (
-        <Dialog
+        <DialogBase
             open={isOpen}
             onOpenChange={setIsOpen}
+            title="Tuỳ chọn"
+            desc={`Vui lòng chọn màu sắc và số lượng sản phẩm mà bạn muốn ${action === "buyNow" ? "mua ngay." : "thêm vào giỏ hàng."}`}
         >
-            <DialogContent className="max-h-[85dvh]">
-                <DialogHeader>
-                    <DialogTitle>Tuỳ chọn</DialogTitle>
-                    <DialogDescription>
-                        <span>Vui lòng chọn màu sắc và số lượng sản phẩm mà bạn muốn </span>
-                        <span>{action === "buyNow" ? "mua ngay." : "thêm vào giỏ hàng."}</span>
-                    </DialogDescription>
-                </DialogHeader>
+            <div className="px-[20px] space-y-[20px]">
+                <div className="space-y-[10px]">
+                    <p
+                        className={cn(
+                            "text-[14px] text-zinc-600 font-medium",
+                            "sm:text-[15px]"
+                        )}
+                    >
+                        Màu sắc
+                    </p>
 
-                <div className="px-[20px] space-y-[20px]">
-                    <div className="space-y-[10px]">
-                        <p
+                    <div className="flex flex-wrap items-center gap-[20px]">
+                        <span
                             className={cn(
-                                "text-[14px] text-zinc-600 font-medium",
-                                "sm:text-[15px]"
+                                "shrink-0 w-[25px] aspect-square rounded-full bg-amber-400 outline-[3px] outline-offset-2 outline-zinc-100 hover:outline-zinc-200 transition-colors cursor-pointer",
+                                "sm:w-[28px]"
                             )}
-                        >
-                            Màu sắc
-                        </p>
-
-                        <div className="flex flex-wrap items-center gap-[20px]">
-                            <span
-                                className={cn(
-                                    "shrink-0 w-[25px] aspect-square rounded-full bg-amber-400 outline-[3px] outline-offset-2 outline-zinc-100 hover:outline-zinc-200 transition-colors cursor-pointer",
-                                    "sm:w-[28px]"
-                                )}
-                            />
-                        </div>
-                    </div>
-
-                    <div className="space-y-[10px]">
-                        <p
-                            className={cn(
-                                "text-[14px] text-zinc-600 font-medium",
-                                "sm:text-[15px]"
-                            )}
-                        >
-                            Số lượng
-                        </p>
-
-                        <Quantity
-                            value={quantity}
-                            handleBlurQuantity={handleBlurQuantity}
-                            handleChangeQuantity={handleChangeQuantity}
-                            handleClickDecrease={() => { handleClickAdjustment("decrease") }}
-                            handleClickIncrease={() => { handleClickAdjustment("increase") }}
                         />
                     </div>
-
-                    <Button
-                        className={cn(
-                            "w-full",
-                            action === "buyNow" ? "" : "bg-theme-main hover:bg-theme-main/95"
-                        )}
-                        onClick={() => { setIsOpen(false) }}
-                    >
-                        {
-                            action === "buyNow" ?
-                                (
-                                    <>
-                                        <MdOutlineShoppingBag />
-                                        Mua ngay
-                                    </>
-                                ) :
-                                (
-                                    <>
-                                        <FiShoppingCart />
-                                        Thêm vào giỏ hàng
-                                    </>
-                                )
-                        }
-                    </Button>
                 </div>
-            </DialogContent>
-        </Dialog>
+
+                <div className="space-y-[10px]">
+                    <p
+                        className={cn(
+                            "text-[14px] text-zinc-600 font-medium",
+                            "sm:text-[15px]"
+                        )}
+                    >
+                        Số lượng
+                    </p>
+
+                    <Quantity
+                        value={quantity}
+                        handleBlurQuantity={handleBlurQuantity}
+                        handleChangeQuantity={handleChangeQuantity}
+                        handleClickDecrease={() => { handleClickAdjustment("decrease") }}
+                        handleClickIncrease={() => { handleClickAdjustment("increase") }}
+                    />
+                </div>
+
+                <Button
+                    className={cn(
+                        "w-full",
+                        action === "buyNow" ? "" : "bg-theme-main hover:bg-theme-main/95"
+                    )}
+                    onClick={() => { setIsOpen(false) }}
+                >
+                    {
+                        action === "buyNow" ?
+                            (
+                                <>
+                                    <MdOutlineShoppingBag />
+                                    Mua ngay
+                                </>
+                            ) :
+                            (
+                                <>
+                                    <FiShoppingCart />
+                                    Thêm vào giỏ hàng
+                                </>
+                            )
+                    }
+                </Button>
+            </div>
+        </DialogBase>
     )
 }

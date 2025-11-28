@@ -23,7 +23,7 @@ interface PropsType {
 export default function AccountsFilter({ filter, setFilter }: PropsType) {
     const router = useRouter();
 
-    const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilter((state) => {
             return {
                 ...state,
@@ -32,7 +32,7 @@ export default function AccountsFilter({ filter, setFilter }: PropsType) {
         });
     }
 
-    const handleChangeRole = (value: string) => {
+    const handleSelectRole = (value: string) => {
         setFilter((state) => {
             return {
                 ...state,
@@ -52,21 +52,21 @@ export default function AccountsFilter({ filter, setFilter }: PropsType) {
                     value={filter.name}
                     placeholder="Lọc tên người dùng . . ."
                     className="w-[300px]"
-                    onChange={handleChangeUsername}
+                    onChange={handleChangeName}
                 />
 
                 <Combobox
                     buttonPlaceholder="Lọc thứ hạng"
                     searchPlaceholder="Tìm kiếm thứ hạng . . ."
                     emptyPlaceholder="Danh sách thứ hạng rỗng."
-                    optionList={Object.values(ranks).map(rank => {
+                    options={Object.values(ranks).map(rank => {
                         return {
                             label: rank.label,
                             value: rank.value
                         }
                     })}
-                    value={filter.rank}
-                    onChange={handleChangeRole}
+                    option={filter.rank}
+                    onSelect={handleSelectRole}
                 />
             </div>
 

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
+
 import type { ReduxStateType } from "@/store/store";
 
 interface PropsType {

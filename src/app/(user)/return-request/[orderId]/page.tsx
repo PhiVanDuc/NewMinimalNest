@@ -201,9 +201,9 @@ export default function Page() {
                                                                                             <Button
                                                                                                 type="button"
                                                                                                 onClick={() => handleDeleteImage(index, indexEvidenceImage)}
-                                                                                                className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute top-[5px] right-[5px] transition-all"
+                                                                                                className="absolute top-[5px] right-[5px] opacity-0 invisible group-hover:opacity-100 group-hover:visible data-[state=open]:opacity-100 data-[state=open]:visible flex items-center justify-center size-[40px] rounded-full bg-zinc-800 text-white transition-all cursor-pointer"
                                                                                             >
-                                                                                                <PiTrashSimpleBold />
+                                                                                                <PiTrashSimpleBold size={20} />
                                                                                             </Button>
                                                                                         </div>
                                                                                     )
@@ -239,7 +239,7 @@ export default function Page() {
 
                                                                 return (
                                                                     <FormItem>
-                                                                        <FormLabel>Số lượng</FormLabel>
+                                                                        <FormLabel isRequired={true}>Số lượng</FormLabel>
 
                                                                         <Quantity
                                                                             value={returnQuantity}
@@ -259,7 +259,7 @@ export default function Page() {
                                                             render={({ field }) => {
                                                                 return (
                                                                     <FormItem>
-                                                                        <FormLabel>Lý do</FormLabel>
+                                                                        <FormLabel isRequired={true}>Lý do</FormLabel>
 
                                                                         <FormControl>
                                                                             <Textarea

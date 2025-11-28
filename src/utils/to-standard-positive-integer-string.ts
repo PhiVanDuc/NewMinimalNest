@@ -1,5 +1,5 @@
 import numeral from "numeral";
-import toPositiveIntegerString from "@/utils/to-positive-integer-string"
+import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
 const toStandardPositiveIntegerString = (string: string) => {
     const positiveIntegerString = toPositiveIntegerString(string);

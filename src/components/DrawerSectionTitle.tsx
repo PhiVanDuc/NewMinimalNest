@@ -3,11 +3,11 @@
 import { cn } from "@/lib/utils";
 
 interface PropsType {
-    title: string,
-    className?: string
+    className?: string,
+    title: string
 }
 
-export default function DrawerSectionTitle({ title, className = "" }: PropsType) {
+export default function DrawerSectionTitle({ className = "", title }: PropsType) {
     return (
         <p
             className={cn(

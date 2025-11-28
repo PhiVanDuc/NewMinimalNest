@@ -1,4 +1,4 @@
-import BreadcrumbCustom from "@/components/BreadcrumbCustom";
+import BreadcrumbBase from "@/components/BreadcrumbBase";
 import ProductInfo from "@/app/(user)/products/[productSlug]/components/ProductInfo";
 import ProductImage from "@/app/(user)/products/[productSlug]/components/ProductImage";
 import ProductReviews from "@/app/(user)/products/[productSlug]/components/ProductReviews";
@@ -10,7 +10,7 @@ export default function Page() {
     return (
         <div className="space-y-[60px]">
             <div className="space-y-[40px]">
-                <BreadcrumbCustom />
+                <BreadcrumbBase />
 
                 <div
                     className={cn(

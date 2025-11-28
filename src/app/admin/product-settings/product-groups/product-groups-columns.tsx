@@ -19,7 +19,7 @@ const headerClassName = "text-[14px] text-zinc-700 font-medium";
 
 const productGroupsColumns: ColumnDef<number>[] = [
     {
-        accessorKey: "product",
+        accessorKey: "productGroup",
         header: () => <h3 className={headerClassName}>Nhóm sản phẩm</h3>,
         cell: () => {
             return (
@@ -28,11 +28,11 @@ const productGroupsColumns: ColumnDef<number>[] = [
         }
     },
     {
-        accessorKey: "categories",
-        header: () => <h3 className={headerClassName + " text-center"}>Số lượng sản phẩm</h3>,
+        accessorKey: "productQuantity",
+        header: () => <h3 className={headerClassName}>Số lượng sản phẩm</h3>,
         cell: () => {
             return (
-                <p className="content-table-row text-center">5 sản phẩm</p>
+                <p className="content-table-row">5 sản phẩm</p>
             )
         }
     },

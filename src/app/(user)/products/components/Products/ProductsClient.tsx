@@ -1,14 +1,12 @@
 "use client"
 
 import { useRef } from "react";
-import { useSearchParams } from "next/navigation";
 
 import Pagination from "@/components/Pagination";
 import Product from "@/components/Product";
 
 export default function ProductsClient() {
     const productListRef = useRef(null);
-    const searchParams = useSearchParams();
 
     return (
         <div className="space-y-[40px]">
@@ -24,7 +22,6 @@ export default function ProductsClient() {
             </ul>
 
             <Pagination
-                page={searchParams.get("page") || "1"}
                 totalPage="10"
                 listRef={productListRef}
             />

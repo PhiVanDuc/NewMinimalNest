@@ -1,7 +1,11 @@
 "use client"
 
-export default function page() {
+import ProductGroupForm from "@/app/admin/product-settings/product-groups/components/form/ProductGroupForm";
+
+export default function Page() {
     return (
-        <div>page</div>
+        <ProductGroupForm
+            formType="add"
+        />
     )
 }

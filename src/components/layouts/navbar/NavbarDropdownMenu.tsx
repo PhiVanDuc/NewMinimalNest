@@ -12,11 +12,11 @@ import { FiUser } from "react-icons/fi";
 import { PiMedalFill } from "react-icons/pi";
 import { IoIosLogOut } from "react-icons/io";
 
+import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 
 import type { ReduxStateType } from "@/store/store";
-import ranks from "@/consts/ranks";
 
 interface PropsType {
     side?: "top" | "right" | "bottom" | "left",

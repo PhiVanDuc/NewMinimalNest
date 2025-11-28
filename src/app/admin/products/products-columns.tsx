@@ -70,8 +70,8 @@ const productsColumns: ColumnDef<number>[] = [
         }
     },
     {
-        accessorKey: "discount",
-        header: () => <h3 className={headerClassName}>Giảm giá</h3>,
+        accessorKey: "price",
+        header: () => <h3 className={headerClassName}>Giá bán</h3>,
         cell: () => {
             return (
                 <Price className="text-[15px]" />
@@ -79,8 +79,8 @@ const productsColumns: ColumnDef<number>[] = [
         }
     },
     {
-        accessorKey: "price",
-        header: () => <h3 className={headerClassName}>Giá bán</h3>,
+        accessorKey: "discount",
+        header: () => <h3 className={headerClassName}>Giảm giá</h3>,
         cell: () => {
             return (
                 <Price className="text-[15px]" />

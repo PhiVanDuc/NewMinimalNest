@@ -122,21 +122,26 @@ export default function NavbarUserClient() {
                 )}>
                     <DropdownMenu>
                         <DropdownMenuTrigger
-                            className="relative flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors"
-                            style={{
-                                outline: `3px solid ${ranks["khach-super-vip"].colorCode}`,
-                                outlineOffset: "3px"
-                            }}
+                            suppressHydrationWarning
+                            asChild
                         >
-                            <FiUser size={20} />
+                            <div
+                                className="relative flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors"
+                                style={{
+                                    outline: `3px solid ${ranks["khach-super-vip"].colorCode}`,
+                                    outlineOffset: "3px"
+                                }}
+                            >
+                                <FiUser size={20} />
 
-                            <div className="absolute -bottom-[30px] flex items-center justify-center size-[40px] rounded-full bg-white">
-                                <PiMedalFill
-                                    size={24}
-                                    style={{
-                                        color: ranks["khach-super-vip"].colorCode
-                                    }}
-                                />
+                                <div className="absolute -bottom-[30px] flex items-center justify-center size-[40px] rounded-full bg-white">
+                                    <PiMedalFill
+                                        size={24}
+                                        style={{
+                                            color: ranks["khach-super-vip"].colorCode
+                                        }}
+                                    />
+                                </div>
                             </div>
                         </DropdownMenuTrigger>
 

@@ -15,11 +15,9 @@ interface PropsType {
 }
 
 export default function Navbar({ children, isScroll = true, className = "" }: PropsType) {
-
     const navbarRef = useRef<null | HTMLElement>(null);
     const lastScrollRef = useRef(0);
     const displayStatusRef = useRef("top");
-
 
     useEffect(() => {
         if (isScroll) {

@@ -2,6 +2,17 @@
 
 import { useForm } from "react-hook-form";
 
+import dynamic from "next/dynamic";
+const InputColor = dynamic(
+    () => import("@/components/InputColor"),
+    {
+        ssr: false,
+        loading: () => (
+            <div className="shrink-0 self-stretch w-[60px] outline-[2px] outline-offset-[2px] outline-zinc-200 rounded-[10px]" />
+        )
+    }
+);
+
 import Header from "@/components/Header";
 
 import {
@@ -23,19 +34,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import type { ColorDataType, ColorFormDataType } from "@/app/admin/colors/types";
 
-import dynamic from "next/dynamic";
-const InputColor = dynamic
-    <{ form: ReturnType<typeof useForm<ColorFormDataType>>; name: keyof ColorFormDataType }>
-    (
-        () => import("@/components/InputColor"),
-        {
-            ssr: false,
-            loading: () => (
-                <div className="shrink-0 self-stretch w-[60px] outline-[2px] outline-offset-[2px] outline-zinc-200 rounded-[10px]" />
-            )
-        }
-    );
-
 interface PropsType {
     formType: "add" | "update",
     data?: ColorDataType
@@ -49,6 +47,10 @@ export default function ColorForm({ formType, data }: PropsType) {
             colorCode: "#000000"
         }
     });
+
+    const handleChangeColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+        form.setValue("colorCode", e.target.value, { shouldValidate: true });
+    }
 
     const handleSubmit = (data: ColorFormDataType) => { }
 
@@ -97,9 +99,19 @@ export default function ColorForm({ formType, data }: PropsType) {
                     />
 
                     <div className="flex items-stretch gap-[20px]">
-                        <InputColor
-                            form={form}
+                        <FormField
+                            control={form.control}
                             name="colorCode"
+                            render={({ field }) => {
+                                return (
+                                    <FormItem>
+                                        <InputColor
+                                            colorCode={field.value}
+                                            onChange={handleChangeColor}
+                                        />
+                                    </FormItem>
+                                )
+                            }}
                         />
 
                         <FormField

@@ -12,11 +12,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { HiDotsVertical } from "react-icons/hi";
-import { FaChevronRight } from "react-icons/fa6";
 import { IoReloadOutline } from "react-icons/io5";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 interface PropsType {
     bannerType: "product" | "discount" | "coupon",
@@ -83,19 +81,13 @@ export default function Banner({ bannerType, colorCode }: PropsType) {
                         "xl:text-[40px]"
                     )}
                 >
-                    Bàn làm việc ISOMATRIC
-                </h1>
+                    {
+                        bannerType === "product" ? "Bàn làm việc ISOMATRIC" :
+                            bannerType === "coupon" ? "Phiếu giảm giá 28 tháng 11" :
+                                bannerType === "discount" && "Giảm giá BLACK FRIDAY"
+                    }
 
-                {
-                    (bannerType === "product" || bannerType === "coupon") &&
-                    (
-                        <Button className="bg-white/30 hover:bg-white/35 backdrop-blur-md">
-                            Khám phá
-                            {bannerType === "product" ? " sản phẩm" : " phiếu giảm giá"}
-                            <FaChevronRight />
-                        </Button>
-                    )
-                }
+                </h1>
             </div>
         </div>
     )

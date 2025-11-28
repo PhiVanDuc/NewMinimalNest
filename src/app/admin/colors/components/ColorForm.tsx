@@ -2,17 +2,6 @@
 
 import { useForm } from "react-hook-form";
 
-import dynamic from "next/dynamic";
-const ColorInput = dynamic(
-    () => import("@/app/admin/colors/components/form/ColorInput"),
-    {
-        ssr: false,
-        loading: () => (
-            <div className="self-stretch w-[60px] outline-[2px] outline-offset-[2px] outline-zinc-200 rounded-[10px]" />
-        )
-    }
-);
-
 import Header from "@/components/Header";
 
 import {
@@ -33,6 +22,19 @@ import colorSchema from "@/schema/color-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import type { ColorDataType, ColorFormDataType } from "@/app/admin/colors/types";
+
+import dynamic from "next/dynamic";
+const InputColor = dynamic
+    <{ form: ReturnType<typeof useForm<ColorFormDataType>>; name: keyof ColorFormDataType }>
+    (
+        () => import("@/components/InputColor"),
+        {
+            ssr: false,
+            loading: () => (
+                <div className="shrink-0 self-stretch w-[60px] outline-[2px] outline-offset-[2px] outline-zinc-200 rounded-[10px]" />
+            )
+        }
+    );
 
 interface PropsType {
     formType: "add" | "update",
@@ -95,7 +97,10 @@ export default function ColorForm({ formType, data }: PropsType) {
                     />
 
                     <div className="flex items-stretch gap-[20px]">
-                        <ColorInput form={form} />
+                        <InputColor
+                            form={form}
+                            name="colorCode"
+                        />
 
                         <FormField
                             control={form.control}

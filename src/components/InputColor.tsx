@@ -8,27 +8,25 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
-import { UseFormReturn } from "react-hook-form";
+import type { UseFormReturn, FieldValues, Path } from "react-hook-form";
 
-interface PropsType {
-    form: UseFormReturn<{
-        name: string,
-        colorCode: string
-    }>;
+interface PropsType<FormDataType extends FieldValues> {
+    form: UseFormReturn<FormDataType>;
+    name: Path<FormDataType>;
 }
 
-export default function ColorInput({ form }: PropsType) {
+export default function InputColor<FormDataType extends FieldValues>({ form, name }: PropsType<FormDataType>) {
     return (
         <FormField
             control={form.control}
-            name="colorCode"
+            name={name}
             render={({ field }) => {
                 return (
-                    <FormItem className="relative self-stretch">
+                    <FormItem className="shrink-0 relative self-stretch">
                         <FormLabel
                             className="block w-[60px] h-full rounded-[10px] outline-[2px] outline-offset-[2px] outline-zinc-200 cursor-pointer"
                             style={{
-                                backgroundColor: form.watch("colorCode")
+                                backgroundColor: form.watch(name)
                             }}
                         />
 

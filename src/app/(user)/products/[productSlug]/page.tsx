@@ -4,7 +4,7 @@ import ProductImage from "@/app/(user)/products/[productSlug]/components/Product
 import ProductReviews from "@/app/(user)/products/[productSlug]/components/ProductReviews";
 import ProductRelateds from "@/app/(user)/products/[productSlug]/components/ProductRelateds";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function Page() {
     return (

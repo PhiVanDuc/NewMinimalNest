@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import drawerSlice from "@/store/slices/drawerSlice";
 
 import type { ReduxStateType } from "@/store/store";

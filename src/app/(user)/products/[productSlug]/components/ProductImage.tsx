@@ -7,7 +7,7 @@ import ProductImages from "@/app/(user)/products/[productSlug]/components/Produc
 import { Button } from "@/components/ui/button";
 import { TbLayoutGridFilled } from "react-icons/tb";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function ProductImage() {
     const [isOpenDrawer, setisOpenDrawer] = useState(false);

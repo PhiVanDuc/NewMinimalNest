@@ -17,7 +17,7 @@ import {
 
 import { FaPlus } from "react-icons/fa6";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { categories } from "@/consts/filter";
 
 import type { UseFormReturn } from "react-hook-form";

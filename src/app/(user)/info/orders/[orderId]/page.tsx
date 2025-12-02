@@ -9,7 +9,7 @@ import PaymentMethods from "@/app/(user)/payment/components/PaymentMethods";
 import OrderReviewProducts from "@/app/(user)/info/orders/[orderId]/components/OrderReviewProducts";
 import PaymentSummary from "@/app/(user)/payment/components/PaymentSummary";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function Page() {
     return (

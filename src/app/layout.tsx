@@ -1,6 +1,10 @@
-import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+
+import { Toaster } from "@pheralb/toast";
 import ReduxProvider from "@/providers/ReduxProvider";
+import TanstackqueryProvider from "@/providers/TanstackqueryProvider";
+
+import type { Metadata } from "next";
 
 import "./globals.css";
 
@@ -26,9 +30,13 @@ export default function RootLayout({
             <body
                 className={`${roboto.className} text-zinc-800 antialiased`}
             >
-                <ReduxProvider>
-                    {children}
-                </ReduxProvider>
+                <TanstackqueryProvider>
+                    <ReduxProvider>
+                        {children}
+                    </ReduxProvider>
+                </TanstackqueryProvider>
+
+                <Toaster position="top-right" />
             </body>
         </html>
     );

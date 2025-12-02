@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { IoReloadOutline } from "react-icons/io5";
 import { RiCoupon5Fill } from "react-icons/ri";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface PropsType {
     isEdit?: boolean

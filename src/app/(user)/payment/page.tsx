@@ -8,7 +8,7 @@ import PaymentMessage from "@/app/(user)/payment/components/PaymentMessage";
 import PaymentMethods from "@/app/(user)/payment/components/PaymentMethods";
 import PaymentSummary from "@/app/(user)/payment/components/PaymentSummary";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function Page() {
     return (

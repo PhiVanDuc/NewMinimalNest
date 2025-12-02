@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { IoReloadOutline } from "react-icons/io5";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function Address() {
     const [isOpenDialog, setIsOpenDialog] = useState(false);

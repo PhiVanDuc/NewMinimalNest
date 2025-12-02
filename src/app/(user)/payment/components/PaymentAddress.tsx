@@ -12,7 +12,7 @@ import { FaBook } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoReloadOutline } from "react-icons/io5";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface PropsType {
     isEdit?: boolean

@@ -4,7 +4,7 @@ import Product from "@/components/Product";
 import { Button } from "@/components/ui/button";
 import { TbLayoutGridFilled } from "react-icons/tb";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function LatestProducts() {
     return (

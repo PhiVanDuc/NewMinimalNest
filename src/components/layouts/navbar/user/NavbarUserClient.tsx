@@ -12,11 +12,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { PiMedalFill } from "react-icons/pi";
+import { PiSignInBold } from "react-icons/pi";
 import { FiUser, FiMenu } from "react-icons/fi";
 import { FiShoppingCart } from "react-icons/fi";
 import { TiLocationArrow } from "react-icons/ti";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import { userNavList } from "@/consts/navbar";
@@ -54,7 +55,7 @@ export default function NavbarUserClient() {
                     >
                         Trang chủ
 
-                        <TiLocationArrow size={18} className="translate-y-[-0.5px]" />
+                        <TiLocationArrow className="translate-y-[-0.5px]" />
                     </Link>
 
                     <Link
@@ -176,5 +177,5 @@ export default function NavbarUserClient() {
 >
     Đăng nhập
 
-    <TiLocationArrow size={18} className="translate-y-[-0.5px]" />
+    <PiSignInBold />
 </Link> */}

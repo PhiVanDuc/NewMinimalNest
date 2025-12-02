@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { IoIosSend } from "react-icons/io";
 import { ShoppingCart } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface PropsType {
     isEdit?: boolean

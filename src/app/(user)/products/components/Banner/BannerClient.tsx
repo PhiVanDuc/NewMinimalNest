@@ -10,7 +10,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
 
 import gsap from "gsap";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function BannerClient() {
     const [navigateDirection, setNavigateDirection] = useState<"prev" | "next" | null>(null);

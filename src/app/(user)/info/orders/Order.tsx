@@ -8,7 +8,7 @@ import ProductSummary from "@/components/ProductSummary";
 import { Button } from "@/components/ui/button";
 import { FaEye } from "react-icons/fa6";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function Order() {
     return (

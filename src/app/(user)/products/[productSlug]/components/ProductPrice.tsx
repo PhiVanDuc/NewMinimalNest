@@ -3,7 +3,7 @@
 import Price from "@/components/Price";
 import Badge from "@/components/Badge";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function ProductPrice() {
     return (

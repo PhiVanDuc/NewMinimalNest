@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { FiShoppingCart } from "react-icons/fi";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 const standards = [
     "Sự thoải mái tuyệt đối",

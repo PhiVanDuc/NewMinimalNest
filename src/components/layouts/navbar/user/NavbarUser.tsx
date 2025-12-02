@@ -9,10 +9,7 @@ export default function NavbarUser() {
 
     return (
         <>
-            <Navbar>
-                <NavbarUserClient />
-            </Navbar>
-
+            <Navbar><NavbarUserClient /></Navbar>
             <NavbarDrawer drawerNavList={userDrawerNavList} />
         </>
     )

@@ -19,7 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { LuChevronsUpDown } from "react-icons/lu";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface OptionItemType {
     label: string,

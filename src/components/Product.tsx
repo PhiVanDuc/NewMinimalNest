@@ -3,7 +3,7 @@ import Link from "next/link";
 import Price from "@/components/Price";
 import { FaStar } from "react-icons/fa6";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function Product() {
     return (

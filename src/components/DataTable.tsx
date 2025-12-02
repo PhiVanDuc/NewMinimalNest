@@ -16,7 +16,7 @@ import {
     TableRow
 } from "@/components/ui/table";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface PropsType<TData, TValue> {
     data: TData[],

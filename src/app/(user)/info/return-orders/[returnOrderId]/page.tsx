@@ -17,7 +17,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 
 import { v7 } from "uuid";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface ReturnProductType {
     id: string,

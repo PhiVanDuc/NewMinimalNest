@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface PropsType {
     value: string,

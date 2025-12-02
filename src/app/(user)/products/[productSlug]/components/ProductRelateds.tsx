@@ -8,7 +8,7 @@ import {
     CarouselItem
 } from "@/components/ui/carousel";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function ProductRelateds() {
     return (

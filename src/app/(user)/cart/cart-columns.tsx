@@ -5,7 +5,7 @@ import Price from "@/components/Price";
 import { Checkbox } from "@/components/ui/checkbox";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 import type { ColumnDef } from "@tanstack/react-table";
 

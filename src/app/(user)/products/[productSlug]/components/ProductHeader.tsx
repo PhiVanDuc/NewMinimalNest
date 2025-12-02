@@ -5,7 +5,7 @@ import Badge from "@/components/Badge";
 import { FaStar } from "react-icons/fa6";
 import { FaCircleInfo } from "react-icons/fa6";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function ProductHeader() {
     return (

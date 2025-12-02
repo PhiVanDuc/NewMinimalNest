@@ -5,7 +5,7 @@ import LatestProducts from "@/app/(landing)/components/LatestProducts";
 import Policies from "@/app/(landing)/components/Policies";
 import Newsletter from "@/app/(landing)/components//Newsletter";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function Page() {
     return (

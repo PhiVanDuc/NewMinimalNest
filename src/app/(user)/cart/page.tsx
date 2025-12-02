@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import CartTable from "@/app/(user)/cart/components/CartTable";
 import CartSummary from "@/app/(user)/cart/components/CartSummary";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function Page() {
     return (

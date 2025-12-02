@@ -6,7 +6,7 @@ import ProductSummary from "@/components/ProductSummary";
 import { Button } from "@/components/ui/button";
 import { IoIosSend } from "react-icons/io";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function Order() {
     return (

@@ -6,7 +6,7 @@ import ProductOptions from "@/app/(user)/products/[productSlug]/components/Produ
 import ProductActionButtons from "@/app/(user)/products/[productSlug]/components/ProductActionButtons";
 import ProductDetailInfo from "@/app/(user)/products/[productSlug]/components/ProductDetailInfo";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 export default function ProductInfo() {
     return (

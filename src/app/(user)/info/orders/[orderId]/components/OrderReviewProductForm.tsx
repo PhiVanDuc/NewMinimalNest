@@ -19,7 +19,7 @@ import { FaStar } from "react-icons/fa6";
 import { FaRegCommentAlt } from "react-icons/fa";
 
 import { v7 } from "uuid";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import orderReviewSchema from "@/schema/order-review";
 

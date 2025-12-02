@@ -8,7 +8,7 @@ import {
     DrawerTitle
 } from "@/components/ui/drawer";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 import type { Dispatch, SetStateAction } from "react";
 

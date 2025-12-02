@@ -13,7 +13,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import filterProductSlice from "@/store/slices/filterProduct";
 import { categories, statuses, colors, priceRanges } from "@/consts/filter";
 

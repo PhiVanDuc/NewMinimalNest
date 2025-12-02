@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import DataTable from "@/components/DataTable";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import cartColumns from "@/app/(user)/cart/cart-columns";
 
 import type { ReduxStateType } from "@/store/store";

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 import InfoOptions from "@/app/(user)/info/components/InfoOptions";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import infoOptionPaths from "@/consts/info-option-paths";
 
 interface PropsType {

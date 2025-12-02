@@ -28,7 +28,7 @@ import {
 import type { UseFormReturn } from "react-hook-form";
 import type { ProductFormDataType } from "@/app/admin/products/types";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface PropsType {
     form: UseFormReturn<ProductFormDataType>

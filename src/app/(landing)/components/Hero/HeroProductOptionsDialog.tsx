@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { FiShoppingCart } from "react-icons/fi";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
 import type { Dispatch, SetStateAction } from "react";

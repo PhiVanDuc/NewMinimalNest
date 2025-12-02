@@ -9,7 +9,7 @@ import NavbarAdminNotification from "@/components/layouts/navbar/admin/NavbarAdm
 import { FiMenu } from "react-icons/fi";
 import { TiLocationArrow } from "react-icons/ti";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 

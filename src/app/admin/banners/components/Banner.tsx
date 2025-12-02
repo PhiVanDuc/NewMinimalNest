@@ -14,7 +14,7 @@ import {
 import { HiDotsVertical } from "react-icons/hi";
 import { IoReloadOutline } from "react-icons/io5";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface PropsType {
     bannerType: "product" | "discount" | "coupon",

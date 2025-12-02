@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 import gsap from "gsap";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);

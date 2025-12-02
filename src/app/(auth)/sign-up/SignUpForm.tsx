@@ -1,6 +1,7 @@
 "use client"
 
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 
 import Link from "next/link";
 
@@ -16,21 +17,57 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+import { toast } from "@pheralb/toast";
+import { signUp } from "@/services/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import signUpSchema from "@/schema/sign-up-schema";
 
+interface FormDataType {
+    username: string,
+    email: string,
+    password: string,
+    confirmPassword: string
+}
+
 export default function SignUpForm() {
-    const form = useForm({
+    const form = useForm<FormDataType>({
         resolver: zodResolver(signUpSchema),
         defaultValues: {
-            username: "",
-            email: "",
-            password: "",
-            confirmPassword: ""
+            username: "Phí Văn Đức",
+            email: "phivanduc325@gmail.com",
+            password: "123456",
+            confirmPassword: "123456"
         }
     });
 
-    const handleSignIn = () => { }
+    const mutation = useMutation({
+        mutationFn: (data: FormDataType) => signUp(data),
+        onSuccess: (data) => {
+            if (!data.success) {
+                toast.error({
+                    text: "Thất bại",
+                    description: data.message
+                });
+                return;
+            }
+
+            toast.success({
+                text: "Thành công",
+                description: data.message
+            });
+        },
+        onError: (error) => {
+            const message = error.message;
+            console.log(message);
+
+            toast.error({
+                text: "Thất bại",
+                description: message || "Lỗi đăng ký tài khoản!"
+            });
+        }
+    });
+
+    const handleSignIn = async (data: FormDataType) => { mutation.mutate(data); }
 
     return (
         <Form {...form}>
@@ -134,7 +171,12 @@ export default function SignUpForm() {
                     </Link>
                 </div>
 
-                <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Đăng ký</Button>
+                <Button
+                    className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95"
+                    disabled={mutation.isPending}
+                >
+                    {mutation.isPending ? "Đang đăng ký . . ." : "Đăng ký"}
+                </Button>
             </form>
         </Form>
     )

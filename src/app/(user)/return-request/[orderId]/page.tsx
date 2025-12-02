@@ -23,7 +23,7 @@ import { IoMdImages } from "react-icons/io";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
 import { v7 } from "uuid";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import returnRequestSchema from "@/schema/return-request-schema";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import Quantity from "@/components/Quantity";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
 export default function ProductOptions() {

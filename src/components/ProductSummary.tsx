@@ -1,7 +1,7 @@
 "use client"
 
 import Price from "@/components/Price";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface PropsType {
     className?: string

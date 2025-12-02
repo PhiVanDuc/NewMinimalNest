@@ -7,7 +7,7 @@ import DialogBase from "@/components/DialogBase";
 
 import { Input } from "@/components/ui/input";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 import type { Dispatch, SetStateAction } from "react";
 

@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import isPositiveIntegerString from "@/utils/is-positive-integer-string";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 

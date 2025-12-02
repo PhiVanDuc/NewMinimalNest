@@ -9,7 +9,7 @@ import {
     FormMessage
 } from "@/components/ui/form";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { colors as filterColors } from "@/consts/filter";
 
 import type { UseFormReturn } from "react-hook-form";

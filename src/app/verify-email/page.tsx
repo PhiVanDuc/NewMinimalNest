@@ -13,11 +13,11 @@ interface PropsType {
 
 export default async function Page({ searchParams }: PropsType) {
     const parseSearchParams = await searchParams;
-
     let isSuccess = true;
+
     try {
-        const result = await publicFetch.post("/auth/verify-email", { token: parseSearchParams.token });
-        isSuccess = result.success;
+        const { success } = await publicFetch.post("/auth/verify-email", { token: parseSearchParams.token });
+        isSuccess = success;
     }
     catch (err) {
         isSuccess = false;

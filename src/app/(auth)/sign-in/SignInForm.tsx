@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Link from "next/link";
@@ -18,19 +19,57 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc";
 
+import { toast } from "@pheralb/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import signInSchema from "@/schema/sign-in-schema";
 
+interface FormData {
+    email: string,
+    password: string
+}
+
 export default function SignInForm() {
-    const form = useForm({
+    const [isPending, setIsPending] = useState(false);
+
+    const form = useForm<FormData>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
-            email: "",
-            password: ""
+            email: "phivanduc325@gmail.com",
+            password: "123456"
         }
     });
 
-    const handleSignIn = () => { }
+    const handleSignIn = async (data: FormData) => {
+        try {
+            setIsPending(true);
+
+            const response = await fetch(
+                "/api/auth/sign-in",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                    cache: "no-cache"
+                }
+            );
+
+            const { success, message } = await response.json();
+            if (success) toast.success({ text: "Thành công", description: message });
+            else toast.error({ text: "Thất bại", description: message });
+        }
+        catch (err) {
+            const error = err as Error;
+
+            console.log("Fetch -- Đăng nhập -- Lỗi không xác định!");
+            console.log(error.message);
+
+            toast.error({ text: "Thất bại", description: error.message });
+        }
+        finally {
+            await new Promise(r => setTimeout(r, 1000));
+            setIsPending(false);
+        }
+    }
 
     return (
         <Form {...form}>
@@ -91,7 +130,12 @@ export default function SignInForm() {
                     </Link>
                 </div>
 
-                <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Đăng nhập</Button>
+                <Button
+                    className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95"
+                    disabled={isPending}
+                >
+                    {isPending ? "Đang đăng nhập . . ." : "Đăng nhập"}
+                </Button>
 
                 <div className="relative">
                     <Separator className="absolute top-1/2 -translat-y-1/2" />

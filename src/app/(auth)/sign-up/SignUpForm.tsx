@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { toast } from "@pheralb/toast";
-import { signUp } from "@/services/auth";
+import { signUp } from "@/services/auth/server";
 import { zodResolver } from "@hookform/resolvers/zod";
 import signUpSchema from "@/schema/sign-up-schema";
 
@@ -42,28 +42,15 @@ export default function SignUpForm() {
 
     const mutation = useMutation({
         mutationFn: (data: FormDataType) => signUp(data),
-        onSuccess: (data) => {
-            if (!data.success) {
-                toast.error({
-                    text: "Thất bại",
-                    description: data.message
-                });
-                return;
-            }
+        onSuccess: (result) => {
+            const { success, message } = result;
 
-            toast.success({
-                text: "Thành công",
-                description: data.message
-            });
+            if (success) toast.success({ text: "Thành công", description: message });
+            else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
-            const message = error.message;
-            console.log(message);
-
-            toast.error({
-                text: "Thất bại",
-                description: message || "Lỗi đăng ký tài khoản!"
-            });
+            console.log("Tanstack Query Mutation -- Đăng ký tài khoản -- ", error.message);
+            toast.error({ text: "Thất bại", description: error.message });
         }
     });
 

@@ -23,7 +23,7 @@ import { toast } from "@pheralb/toast";
 import signInSchema from "@/schema/sign-in-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-interface FormData {
+interface FormDataType {
     email: string,
     password: string
 }
@@ -31,7 +31,7 @@ interface FormData {
 export default function SignInForm() {
     const [isPending, setIsPending] = useState(false);
 
-    const form = useForm<FormData>({
+    const form = useForm<FormDataType>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
             email: "phivanduc325@gmail.com",
@@ -39,7 +39,7 @@ export default function SignInForm() {
         }
     });
 
-    const handleSignIn = async (data: FormData) => {
+    const handleSignIn = async (data: FormDataType) => {
         try {
             setIsPending(true);
 
@@ -65,10 +65,7 @@ export default function SignInForm() {
 
             toast.error({ text: "Thất bại", description: error.message });
         }
-        finally {
-            await new Promise(r => setTimeout(r, 1000));
-            setIsPending(false);
-        }
+        finally { setIsPending(false); }
     }
 
     return (

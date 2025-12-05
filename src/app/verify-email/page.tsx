@@ -21,13 +21,12 @@ export default async function Page({ searchParams }: PropsType) {
     }
     catch (err) {
         isSuccess = false;
-
         const error = err as Error;
         console.log(error.message);
     }
 
     return (
-        <div className="h-dvh flex flex-col items-center justify-center">
+        <div className="h-dvh flex flex-col items-center justify-center p-[20px]">
             <div className="space-y-[30px]">
                 <div className="space-y-[2px]">
                     <h1 className="header-basic">

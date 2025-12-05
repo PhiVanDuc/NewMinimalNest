@@ -1,6 +1,7 @@
 "use client"
 
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 
 import Link from "next/link";
 
@@ -15,30 +16,46 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { RiSendPlaneFill } from "react-icons/ri";
 
+import { toast } from "@pheralb/toast";
+import { resetPasswordEmail } from "@/services/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import forgotPasswordSchema from "@/schema/forgot-password-schema";
 
+interface FormDataType {
+    email: string
+}
+
 export default function ForgotPasswordForm() {
-    const form = useForm({
+    const form = useForm<FormDataType>({
         resolver: zodResolver(forgotPasswordSchema),
         defaultValues: {
-            email: "",
-            otp: "",
-            password: "",
-            confirmPassword: ""
+            email: "phivanduc325@gmail.com"
         }
     });
 
-    const handleSignIn = () => { }
+    const mutation = useMutation({
+        mutationFn: (data: FormDataType) => resetPasswordEmail(data),
+        onSuccess: (result) => {
+            const { success, message } = result;
+
+            if (success) toast.success({ text: "Thành công", description: message });
+            else toast.error({ text: "Thất bại", description: message });
+        },
+        onError: (error) => {
+            console.log("Tanstack Query Mutation -- Quên mật khẩu -- ", error.message);
+            toast.error({ text: "Thất bại", description: error.message });
+        }
+    });
+
+    const handleSubmit = (data: FormDataType) => { mutation.mutate(data); }
 
     return (
         <Form {...form}>
             <form
                 autoComplete="off"
                 className="space-y-[20px]"
-                onSubmit={form.handleSubmit(handleSignIn)}
+                onSubmit={form.handleSubmit(handleSubmit)}
             >
                 <FormField
                     control={form.control}
@@ -61,80 +78,6 @@ export default function ForgotPasswordForm() {
                     }}
                 />
 
-                <FormField
-                    control={form.control}
-                    name="otp"
-                    render={({ field }) => {
-                        return (
-                            <FormItem>
-                                <FormLabel className="text-zinc-700">OTP</FormLabel>
-
-                                <div className="flex items-stretch gap-[5px]">
-                                    <FormControl>
-                                        <Input
-                                            placeholder="Nhập mã OTP . . ."
-                                            {...field}
-                                        />
-                                    </FormControl>
-
-                                    <Button
-                                        type="button"
-                                        className="self-stretch h-full bg-zinc-800 hover:bg-zinc-800/95 cursor-pointer"
-                                    >
-                                        <RiSendPlaneFill className="text-[20px]" />
-                                    </Button>
-                                </div>
-
-                                <FormMessage />
-                            </FormItem>
-                        )
-                    }}
-                />
-
-                <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => {
-                        return (
-                            <FormItem>
-                                <FormLabel className="text-zinc-700">Mật khẩu</FormLabel>
-
-                                <FormControl>
-                                    <Input
-                                        type="password"
-                                        placeholder="Nhập mật khẩu . . ."
-                                        {...field}
-                                    />
-                                </FormControl>
-
-                                <FormMessage />
-                            </FormItem>
-                        )
-                    }}
-                />
-
-                <FormField
-                    control={form.control}
-                    name="confirmPassword"
-                    render={({ field }) => {
-                        return (
-                            <FormItem>
-                                <FormLabel className="text-zinc-700">Xác nhận mật khẩu</FormLabel>
-
-                                <FormControl>
-                                    <Input
-                                        type="password"
-                                        placeholder="Nhập lại mật khẩu . . ."
-                                        {...field}
-                                    />
-                                </FormControl>
-
-                                <FormMessage />
-                            </FormItem>
-                        )
-                    }}
-                />
-
                 <div className="flex justify-end">
                     <Link
                         href="/sign-in"
@@ -144,7 +87,12 @@ export default function ForgotPasswordForm() {
                     </Link>
                 </div>
 
-                <Button className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95">Đặt lại mật khẩu</Button>
+                <Button
+                    className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95"
+                    disabled={mutation.isPending}
+                >
+                    {mutation.isPending ? "Đang gửi email . . ." : "Gửi email"}
+                </Button>
             </form>
         </Form>
     )

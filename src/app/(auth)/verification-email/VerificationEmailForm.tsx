@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
@@ -20,23 +19,23 @@ import { Button } from "@/components/ui/button";
 
 import { toast } from "@pheralb/toast";
 import { verificationEmail } from "@/services/auth";
-import resendEmailSchema from "@/schema/resend-email-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import verificationEmailSchema from "@/schema/verification-email-schema";
 
-interface FormData {
+interface FormDataType {
     email: string
 }
 
 export default function VerificationEmailForm() {
-    const form = useForm<FormData>({
-        resolver: zodResolver(resendEmailSchema),
+    const form = useForm<FormDataType>({
+        resolver: zodResolver(verificationEmailSchema),
         defaultValues: {
             email: "phivanduc325@gmail.com"
         }
     });
 
     const mutation = useMutation({
-        mutationFn: (data: FormData) => verificationEmail(data),
+        mutationFn: (data: FormDataType) => verificationEmail(data),
         onSuccess: (result) => {
             const { success, message } = result;
 
@@ -47,9 +46,9 @@ export default function VerificationEmailForm() {
             console.log("Tanstack Query Mutation -- Email xác minh -- ", error.message);
             toast.error({ text: "Thất bại", description: error.message });
         }
-    })
+    });
 
-    const handleSubmit = (data: FormData) => {
+    const handleSubmit = (data: FormDataType) => {
         mutation.mutate(data);
     }
 

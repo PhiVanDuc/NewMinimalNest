@@ -3,13 +3,16 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import publicFetch from "@/libs/fetch/public-fetch";
+import providersConst from "@/consts/providers-const";
+import tokenTypesConst from "@/consts/token-types-const";
+import emailTemplatesConst from "@/consts/email-templates-const";
 
 export const signUp = async <DataType>(data: DataType) => {
     return await publicFetch.post<DataType & { provider: string }>(
         "/auth/sign-up",
         {
             ...data,
-            provider: "credentials"
+            provider: providersConst.CREDENTIALS
         }
     );
 }
@@ -19,9 +22,27 @@ export const verificationEmail = async <DataType>(data: DataType) => {
         "/auth/send-auth-email",
         {
             ...data,
-            tokenType: "verify-email",
-            emailTemplate: "verification-email"
+            tokenType: tokenTypesConst.VERIFY_EMAIL,
+            emailTemplate: emailTemplatesConst.VERIFICATION_EMAIL
         }
+    );
+}
+
+export const resetPasswordEmail = async <DataType>(data: DataType) => {
+    return await publicFetch.post<DataType & { tokenType: string, emailTemplate: string }>(
+        "/auth/send-auth-email",
+        {
+            ...data,
+            tokenType: tokenTypesConst.RESET_PASSWORD,
+            emailTemplate: emailTemplatesConst.RESET_PASSWORD_EMAIL
+        }
+    );
+}
+
+export const resetPassword = async <DataType>(data: DataType) => {
+    return await publicFetch.post<DataType>(
+        "/auth/reset-password",
+        data
     );
 }
 

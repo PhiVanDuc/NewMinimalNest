@@ -20,8 +20,8 @@ import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc";
 
 import { toast } from "@pheralb/toast";
-import { zodResolver } from "@hookform/resolvers/zod";
 import signInSchema from "@/schema/sign-in-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface FormData {
     email: string,
@@ -121,7 +121,14 @@ export default function SignInForm() {
                     }}
                 />
 
-                <div className="flex justify-end">
+                <div className="flex justify-between">
+                    <Link
+                        href="/verification-email"
+                        className="inline-block text-[14px] text-theme-main font-medium underline underline-offset-2 leading-tight"
+                    >
+                        Email xác minh
+                    </Link>
+
                     <Link
                         href="/forgot-password"
                         className="inline-block text-[14px] text-theme-main font-medium underline underline-offset-2 leading-tight"
@@ -137,7 +144,7 @@ export default function SignInForm() {
                     {isPending ? "Đang đăng nhập . . ." : "Đăng nhập"}
                 </Button>
 
-                <div className="relative">
+                <div className="relative py-[10px]">
                     <Separator className="absolute top-1/2 -translat-y-1/2" />
 
                     <div className="flex justify-center">
@@ -145,13 +152,13 @@ export default function SignInForm() {
                     </div>
                 </div>
 
-                <div className="space-y-[10px]">
+                <div className="space-y-[15px]">
                     <button className="flex items-center justify-center gap-[15px] rounded-[10px] px-[15px] py-[12px] bg-zinc-100 w-full cursor-pointer">
                         <FcGoogle className="text-[26px]" />
                         <span className="text-[15px] font-medium text-zinc-700">Google</span>
                     </button>
 
-                    <p className="text-center desc-basic">Bạn chưa có tài khoản? <Link href="/sign-up" className="text-theme-main font-medium underline underline-offset-2">Đăng ký</Link></p>
+                    <p className="text-center desc-basic">Bạn chưa có tài khoản? <Link href="/sign-up" className="inline-block text-[14px] text-theme-main font-medium underline underline-offset-2 leading-tight">Đăng ký</Link></p>
                 </div>
             </form>
         </Form>

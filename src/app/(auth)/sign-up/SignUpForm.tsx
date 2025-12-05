@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { toast } from "@pheralb/toast";
-import { signUp } from "@/services/auth/server";
+import { signUp } from "@/services/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import signUpSchema from "@/schema/sign-up-schema";
 

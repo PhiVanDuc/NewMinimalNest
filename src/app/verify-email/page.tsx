@@ -33,7 +33,7 @@ export default async function Page({ searchParams }: PropsType) {
                     <h1 className="header-basic">
                         {
                             isSuccess ?
-                                "Xác thực Email thành công!" :
+                                "Xác minh email thành công!" :
                                 "Opps!"
                         }
                     </h1>
@@ -41,8 +41,8 @@ export default async function Page({ searchParams }: PropsType) {
                     <p className="desc-basic">
                         {
                             isSuccess ?
-                                "Tài khoản của bạn đã được xác thực. Bạn có thể đăng nhập để bắt đầu sử dụng dịch vụ." :
-                                "Liên kết xác thực không hợp lệ hoặc đã hết hạn. Vui lòng thử lại hoặc yêu cầu gửi lại email xác thực."
+                                "Email của bạn đã được xác minh. Bạn có thể đăng nhập để bắt đầu sử dụng dịch vụ." :
+                                "Liên kết xác minh email không hợp lệ hoặc đã hết hạn."
                         }
                     </p>
                 </div>
@@ -60,8 +60,8 @@ export default async function Page({ searchParams }: PropsType) {
                             ) :
                             (
                                 <Button className="bg-theme-main hover:bg-theme-main/95" asChild>
-                                    <Link href="/resend-email">
-                                        Gửi lại Email
+                                    <Link href="/verification-email">
+                                        Email xác minh
                                         <MdOutlineEmail />
                                     </Link>
                                 </Button>

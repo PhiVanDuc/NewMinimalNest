@@ -26,25 +26,23 @@ const NEXT_PUBLIC_ROOT_API = process.env.NEXT_PUBLIC_ROOT_API;
 const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown>(method: MethodType, path: string, body?: BodyInit | RequestBodyType, options?: OptionsType): Promise<ReturnType<ResponseDataType>> => {
     try {
         const isBody = ["POST", "PUT", "PATCH"].includes(method);
+        const isBodyFormData = body instanceof FormData;
 
         const headers = {
-            ...(isBody ? { "Content-Type": "application/json" } : {}),
+            ...(isBody && body && !isBodyFormData ? { "Content-Type": "application/json" } : {}),
             ...(options?.headers ?? {})
         };
 
-        if (!headers["Content-Type"]) delete headers["Content-Type"];
         const parseBody = (isBody && body) ?
-            body instanceof FormData || typeof body === "string" || body instanceof Blob || body instanceof ArrayBuffer || ArrayBuffer.isView(body) || body instanceof URLSearchParams ?
-                body :
-                JSON.stringify(body) :
+            (isBodyFormData ? body : JSON.stringify(body)) :
             undefined;
 
         const finalOptions = {
-            cache: "no-cache" as RequestCache,
-            ...options,
             method,
             headers,
-            ...(parseBody ? { body: parseBody as BodyInit } : {})
+            cache: "no-cache" as RequestCache,
+            ...options,
+            ...(parseBody ? { body: parseBody } : {})
         }
 
         const response = await fetch(`${NEXT_PUBLIC_ROOT_API || ROOT_API}${path}`, finalOptions);

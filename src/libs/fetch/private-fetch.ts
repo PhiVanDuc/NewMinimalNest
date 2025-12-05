@@ -1,6 +1,5 @@
-import { refresh } from "@/services/auth/client";
-import { signOut } from "@/services/auth/server";
-import { getAccessToken } from "@/services/cookies";
+import { signOut } from "@/services/auth";
+import { getAccessToken, getRefreshToken } from "@/services/cookies";
 
 type MethodType = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
@@ -24,46 +23,73 @@ interface ReturnType<ResponseDataType> {
     data?: ResponseDataType
 }
 
-const ROOT_API = process.env.ROOT_API;
 const NEXT_PUBLIC_ROOT_API = process.env.NEXT_PUBLIC_ROOT_API;
 
-let refreshPromise: Promise<Omit<ReturnType<{ accessToken: string }>, "status">> | null = null;
+let refreshPromise: Promise<Omit<ReturnType<{ accessToken: string }>, "status">> | undefined;
 
-const singleRefresh = async (): Promise<Omit<ReturnType<{ accessToken: string }>, "status"> | null> => {
+const refresh = async (): Promise<Omit<ReturnType<{ accessToken: string }>, "status"> | undefined> => {
     if (!refreshPromise) {
-        refreshPromise = refresh()
-            .finally(() => refreshPromise = null);
+        refreshPromise = (async () => {
+            try {
+                const refreshToken = await getRefreshToken();
+                const response = await fetch(
+                    "/api/auth/refresh",
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ refreshToken }),
+                        cache: "no-cache"
+                    }
+                );
+
+                const result = await response.json();
+                if (!result.success) await signOut();
+
+                return result;
+            }
+            catch (err) {
+                const error = err as Error;
+
+                console.log("Private Fetch - 500 /api/auth/refresh -- Lỗi không xác định!");
+                console.log(error.message);
+
+                return {
+                    success: false,
+                    message: "Lỗi không xác định!"
+                }
+            }
+            finally { refreshPromise = undefined; }
+        })();
     }
+
     return refreshPromise;
 }
 
 const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown>(method: MethodType, path: string, body?: BodyInit | RequestBodyType, options?: OptionsType): Promise<ReturnType<ResponseDataType>> => {
     try {
         const isBody = ["POST", "PUT", "PATCH"].includes(method);
+        const isBodyFormData = body instanceof FormData;
         const accessToken = await getAccessToken();
 
         const headers = {
-            ...(isBody ? { "Content-Type": "application/json" } : {}),
             "Authorization": `Bearer ${accessToken}`,
+            ...(isBody && body && !isBodyFormData ? { "Content-Type": "application/json" } : {}),
             ...(options?.headers ?? {})
         };
 
-        if (!headers["Content-Type"]) delete headers["Content-Type"];
         const parseBody = (isBody && body) ?
-            body instanceof FormData || typeof body === "string" || body instanceof Blob || body instanceof ArrayBuffer || ArrayBuffer.isView(body) || body instanceof URLSearchParams ?
-                body :
-                JSON.stringify(body) :
+            isBodyFormData ? body : JSON.stringify(body) :
             undefined;
 
         let finalOptions = {
-            cache: "no-cache" as RequestCache,
-            ...options,
             method,
             headers,
+            cache: "no-cache" as RequestCache,
+            ...options,
             ...(parseBody ? { body: parseBody } : {})
         }
 
-        const response = await fetch(`${NEXT_PUBLIC_ROOT_API || ROOT_API}${path}`, finalOptions);
+        const response = await fetch(`${NEXT_PUBLIC_ROOT_API}${path}`, finalOptions);
         const result = await response.json();
 
         if (response.status === 401) {
@@ -72,7 +98,7 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
 
             if (isInvalid) await signOut();
             else if (isExpired) {
-                const refreshed = await singleRefresh();
+                const refreshed = await refresh();
                 if (!refreshed?.success) await signOut();
 
                 finalOptions = {
@@ -83,9 +109,10 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
                     }
                 }
 
-                const retryResponse = await fetch(`${NEXT_PUBLIC_ROOT_API || ROOT_API}${path}`, finalOptions);
+                const retryResponse = await fetch(`${NEXT_PUBLIC_ROOT_API}${path}`, finalOptions);
                 const retryResult = await retryResponse.json();
 
+                if (retryResponse.status === 401) await signOut();
                 return { status: retryResponse.status, ...retryResult };
             }
         }

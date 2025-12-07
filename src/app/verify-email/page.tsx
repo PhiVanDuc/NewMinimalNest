@@ -16,13 +16,13 @@ export default async function Page({ searchParams }: PropsType) {
     let isSuccess = true;
 
     try {
-        const { success } = await publicFetch.post("/auth/verify-email", { token: parseSearchParams.token });
+        const { success } = await publicFetch.post("/auth/email/verify", { token: parseSearchParams.token });
         isSuccess = success;
     }
     catch (err) {
         isSuccess = false;
         const error = err as Error;
-        console.log(error.message);
+        console.log(error);
     }
 
     return (

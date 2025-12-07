@@ -27,13 +27,13 @@ const NEXT_PUBLIC_ROOT_API = process.env.NEXT_PUBLIC_ROOT_API;
 
 let refreshPromise: Promise<Omit<ReturnType<{ accessToken: string }>, "status">> | undefined;
 
-const refresh = async (): Promise<Omit<ReturnType<{ accessToken: string }>, "status"> | undefined> => {
+const refreshTokens = async (): Promise<Omit<ReturnType<{ accessToken: string }>, "status"> | undefined> => {
     if (!refreshPromise) {
         refreshPromise = (async () => {
             try {
                 const refreshToken = await getRefreshToken();
                 const response = await fetch(
-                    "/api/auth/refresh",
+                    "/api/auth/tokens/refresh",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -43,7 +43,7 @@ const refresh = async (): Promise<Omit<ReturnType<{ accessToken: string }>, "sta
                 );
 
                 const result = await response.json();
-                if (!result.success) await signOut();
+                if (response.status === 401 || !result.success) await signOut();
 
                 return result;
             }
@@ -51,7 +51,7 @@ const refresh = async (): Promise<Omit<ReturnType<{ accessToken: string }>, "sta
                 const error = err as Error;
 
                 console.log("Private Fetch - 500 /api/auth/refresh -- Lỗi không xác định!");
-                console.log(error.message);
+                console.log(error);
 
                 return {
                     success: false,
@@ -98,7 +98,7 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
 
             if (isInvalid) await signOut();
             else if (isExpired) {
-                const refreshed = await refresh();
+                const refreshed = await refreshTokens();
                 if (!refreshed?.success) await signOut();
 
                 finalOptions = {
@@ -123,7 +123,7 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
         const error = err as Error;
 
         console.log(`Private Fetch -- 500 ${path} -- Lỗi không xác định!`);
-        console.log(error.message);
+        console.log(error);
 
         throw new Error("Lỗi không xác định!");
     }

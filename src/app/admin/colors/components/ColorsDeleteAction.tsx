@@ -8,7 +8,11 @@ const ConfirmDeleteDialog = dynamic(() => import("@/components/ConfirmDeleteDial
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
-export default function ColorsDeleteAction() {
+interface PropsType {
+    id: string
+}
+
+export default function ColorsDeleteAction({ id }: PropsType) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     return (
@@ -27,6 +31,7 @@ export default function ColorsDeleteAction() {
                         isOpen={isOpenDialog}
                         setIsOpen={setIsOpenDialog}
                         object="màu sắc"
+                        handleClickDelete={() => console.log(id)}
                     />
                 )
             }

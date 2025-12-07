@@ -48,14 +48,12 @@ export default function ForgotPasswordForm() {
         }
     });
 
-    const handleSubmit = (data: FormDataType) => { mutation.mutate(data); }
-
     return (
         <Form {...form}>
             <form
                 autoComplete="off"
                 className="space-y-[20px]"
-                onSubmit={form.handleSubmit(handleSubmit)}
+                onSubmit={form.handleSubmit(data => mutation.mutate(data))}
             >
                 <FormField
                     control={form.control}

@@ -7,7 +7,7 @@ interface ResponseDataType extends RequestBodyType { accessToken: string }
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { status, success, message, data } = await publicFetch.post<RequestBodyType, ResponseDataType>("/auth/refresh", body);
+        const { status, success, message, data } = await publicFetch.post<RequestBodyType, ResponseDataType>("/auth/tokens/refresh", body);
 
         if (success && data) {
             const { accessToken, refreshToken } = data;
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
         const error = err as Error;
 
         console.log("Route Handlers -- 500 /auth/refresh -- Lỗi không xác định!");
-        console.log(error.message);
+        console.log(error);
 
         return NextResponse.json(
             { success: false, message: "Lỗi không xác định!" },

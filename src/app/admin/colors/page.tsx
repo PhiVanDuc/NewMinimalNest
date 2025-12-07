@@ -1,8 +1,10 @@
 "use client"
 
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 import Link from "next/link";
+import Error from "@/components/Error";
 import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
@@ -11,12 +13,20 @@ import ColorsFilter from "@/app/admin/colors/components/ColorsFilter";
 import { Button } from "@/components/ui/button";
 import { FaPlus } from "react-icons/fa6";
 
+import { adminGetColors } from "@/services/admin-color";
 import colorsColumns from "@/app/admin/colors/colors-columns";
 
 export default function Page() {
-    const [filter, setFilter] = useState({
-        name: ""
+    const searchParams = useSearchParams();
+    const page = searchParams.get("page") || "1";
+
+    const query = useQuery({
+        queryKey: ["adminColors", { page }],
+        queryFn: () => adminGetColors(page)
     });
+
+    const isLoading = query.isLoading;
+    const isError = query.isError || !query.data?.success;
 
     return (
         <div className="space-y-[40px]">
@@ -38,20 +48,28 @@ export default function Page() {
             </div>
 
             <div className="space-y-[10px]">
-                <ColorsFilter
-                    filter={filter}
-                    setFilter={setFilter}
-                />
+                <ColorsFilter />
 
-                <DataTable
-                    data={[1, 2, 3, 4]}
-                    columns={colorsColumns}
-                />
+                {
+                    (!isLoading && isError) ? <Error /> :
+                        (
+                            <DataTable
+                                data={query.data?.data?.colors || []}
+                                columns={colorsColumns}
+                                isLoading={isLoading}
+                            />
+                        )
+                }
             </div>
 
-            <Pagination
-                totalPage="10"
-            />
+            {
+                (!isLoading && !isError) &&
+                (
+                    <Pagination
+                        totalPage="10"
+                    />
+                )
+            }
         </div>
     )
 }

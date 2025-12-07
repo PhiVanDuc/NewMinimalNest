@@ -5,17 +5,9 @@ import { useMutation } from "@tanstack/react-query";
 
 import Link from "next/link";
 
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from "@/components/ui/form";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { toast } from "@pheralb/toast";
 import { signUp } from "@/services/auth";
@@ -54,14 +46,12 @@ export default function SignUpForm() {
         }
     });
 
-    const handleSignIn = async (data: FormDataType) => { mutation.mutate(data); }
-
     return (
         <Form {...form}>
             <form
                 autoComplete="off"
                 className="space-y-[20px]"
-                onSubmit={form.handleSubmit(handleSignIn)}
+                onSubmit={form.handleSubmit(data => mutation.mutate(data))}
             >
                 <FormField
                     control={form.control}

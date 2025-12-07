@@ -1,29 +1,15 @@
 "use client"
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Input } from "@/components/ui/input";
+
 import { SearchIcon } from "lucide-react";
 
-import type { Dispatch, SetStateAction } from "react";
-
-type FilterType = {
-    name: string
-}
-
-interface PropsType {
-    filter: FilterType,
-    setFilter: Dispatch<SetStateAction<FilterType>>
-}
-
-export default function ColorsFilter({ filter, setFilter }: PropsType) {
+export default function ColorsFilter() {
     const router = useRouter();
-
-    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilter(() => {
-            return { name: e.target.value }
-        });
-    }
+    const [filter, setFilter] = useState({ name: "" });
 
     const handleClickFilter = () => {
         router.refresh();
@@ -35,7 +21,7 @@ export default function ColorsFilter({ filter, setFilter }: PropsType) {
                 value={filter.name}
                 placeholder="Lọc tên màu sắc . . ."
                 className="w-[300px]"
-                onChange={handleChangeName}
+                onChange={(e) => setFilter(() => ({ name: e.target.value }))}
             />
 
             <button

@@ -61,7 +61,7 @@ export default function SignInForm() {
             const error = err as Error;
 
             console.log("Fetch -- Đăng nhập -- Lỗi không xác định!");
-            console.log(error.message);
+            console.log(error);
 
             toast.error({ text: "Thất bại", description: error.message });
         }

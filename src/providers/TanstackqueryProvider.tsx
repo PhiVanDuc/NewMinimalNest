@@ -12,10 +12,22 @@ interface PropsType {
 }
 
 export default function TanstackqueryProvider({ children }: Readonly<PropsType>) {
-    const [queryClient] = useState(() => new QueryClient());
+    const [queryClient] = useState(() => {
+        return new QueryClient({
+            defaultOptions: {
+                queries: {
+                    staleTime: 5 * 60 * 1000,
+                    retry: false
+                }
+            }
+        });
+    });
 
     return (
-        <QueryClientProvider client={queryClient}>
+        <QueryClientProvider
+            client={queryClient}
+
+        >
             {children}
         </QueryClientProvider>
     )

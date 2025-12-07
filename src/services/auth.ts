@@ -19,7 +19,7 @@ export const signUp = async <DataType>(data: DataType) => {
 
 export const verificationEmail = async <DataType>(data: DataType) => {
     return await publicFetch.post<DataType & { tokenType: string, emailTemplate: string }>(
-        "/auth/send-auth-email",
+        "/auth/email/send",
         {
             ...data,
             tokenType: tokenTypesConst.VERIFY_EMAIL,
@@ -30,7 +30,7 @@ export const verificationEmail = async <DataType>(data: DataType) => {
 
 export const resetPasswordEmail = async <DataType>(data: DataType) => {
     return await publicFetch.post<DataType & { tokenType: string, emailTemplate: string }>(
-        "/auth/send-auth-email",
+        "/auth/email/send",
         {
             ...data,
             tokenType: tokenTypesConst.RESET_PASSWORD,
@@ -41,7 +41,7 @@ export const resetPasswordEmail = async <DataType>(data: DataType) => {
 
 export const resetPassword = async <DataType>(data: DataType) => {
     return await publicFetch.post<DataType>(
-        "/auth/reset-password",
+        "/auth/password/reset",
         data
     );
 }

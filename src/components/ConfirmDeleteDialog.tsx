@@ -10,8 +10,8 @@ import { PiTrashSimpleBold } from "react-icons/pi";
 interface PropsType {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
-    handleClickDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void,
-    object?: string
+    object?: string,
+    handleClickDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export default function ConfirmDeleteDialog({ isOpen, setIsOpen, handleClickDelete, object }: PropsType) {

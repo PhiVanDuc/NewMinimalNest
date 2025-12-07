@@ -54,7 +54,7 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
         const error = err as Error;
 
         console.log(`Public Fetch -- 500 ${path} -- Lỗi không xác định!`);
-        console.log(error.message);
+        console.log(error);
 
         throw new Error("Lỗi không xác định!");
     }

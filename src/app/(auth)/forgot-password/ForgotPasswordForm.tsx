@@ -43,7 +43,6 @@ export default function ForgotPasswordForm() {
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
-            console.log("Tanstack Query Mutation -- Quên mật khẩu -- ", error.message);
             toast.error({ text: "Thất bại", description: error.message });
         }
     });

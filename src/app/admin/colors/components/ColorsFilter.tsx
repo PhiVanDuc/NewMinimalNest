@@ -1,27 +1,37 @@
 "use client"
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { Input } from "@/components/ui/input";
 
 import { SearchIcon } from "lucide-react";
 
-export default function ColorsFilter() {
-    const router = useRouter();
-    const [filter, setFilter] = useState({ name: "" });
+import type { Dispatch, SetStateAction } from "react";
+import type { ColorsFilterDataType } from "@/app/admin/colors/types";
+
+interface PropsType {
+    setFilter: Dispatch<SetStateAction<ColorsFilterDataType>>
+}
+
+export default function ColorsFilter({ setFilter }: PropsType) {
+    const queryClient = useQueryClient();
+    const [tempFilter, setTempFilter] = useState({
+        name: ""
+    });
 
     const handleClickFilter = () => {
-        router.refresh();
+        setFilter(tempFilter);
+        queryClient.invalidateQueries({ queryKey: ["adminColors"] });
     }
 
     return (
         <div className="flex items-center justify-between gap-[10px]">
             <Input
-                value={filter.name}
+                value={tempFilter.name}
                 placeholder="Lọc tên màu sắc . . ."
                 className="w-[300px]"
-                onChange={(e) => setFilter(() => ({ name: e.target.value }))}
+                onChange={(e) => setTempFilter(() => ({ name: e.target.value }))}
             />
 
             <button

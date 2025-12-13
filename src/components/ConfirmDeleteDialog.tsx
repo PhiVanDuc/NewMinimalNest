@@ -10,11 +10,12 @@ import { PiTrashSimpleBold } from "react-icons/pi";
 interface PropsType {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
+    handleClickDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void,
     object?: string,
-    handleClickDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void
+    isLoading?: boolean
 }
 
-export default function ConfirmDeleteDialog({ isOpen, setIsOpen, handleClickDelete, object }: PropsType) {
+export default function ConfirmDeleteDialog({ isOpen, setIsOpen, handleClickDelete, object, isLoading }: PropsType) {
     return (
         <DialogBase
             open={isOpen}
@@ -34,9 +35,10 @@ export default function ConfirmDeleteDialog({ isOpen, setIsOpen, handleClickDele
                 <Button
                     className="bg-theme-main hover:bg-theme-main/95"
                     onClick={handleClickDelete}
+                    disabled={isLoading}
                 >
                     <PiTrashSimpleBold />
-                    Xác nhận xoá
+                    {isLoading ? "Đang xoá . . ." : "Xác nhận xoá"}
                 </Button>
             </div>
         </DialogBase>

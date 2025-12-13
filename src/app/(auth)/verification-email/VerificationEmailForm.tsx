@@ -43,7 +43,6 @@ export default function VerificationEmailForm() {
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
-            console.log("Tanstack Query Mutation -- Email xác minh -- ", error.message);
             toast.error({ text: "Thất bại", description: error.message });
         }
     });

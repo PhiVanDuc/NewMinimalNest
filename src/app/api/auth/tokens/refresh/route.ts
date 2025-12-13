@@ -38,11 +38,6 @@ export async function POST(req: NextRequest) {
         );
     }
     catch (err) {
-        const error = err as Error;
-
-        console.log("Route Handlers -- 500 /auth/refresh -- Lỗi không xác định!");
-        console.log(error);
-
         return NextResponse.json(
             { success: false, message: "Lỗi không xác định!" },
             { status: 500 }

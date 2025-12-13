@@ -53,7 +53,6 @@ export default function Page() {
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
-            console.log("Tanstack Query Mutation -- Đặt lại mật khẩu -- ", error.message);
             toast.error({ text: "Thất bại", description: error.message });
         }
     });

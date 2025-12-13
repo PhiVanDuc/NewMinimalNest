@@ -25,7 +25,7 @@ import { IoReloadOutline } from "react-icons/io5";
 import { toast } from "@pheralb/toast";
 import colorSchema from "@/schema/color-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { adminAddColor, adminUpdateColor } from "@/services/admin-color";
+import { adminAddColor, adminUpdateColor } from "@/services/colors/admin";
 
 import type { ColorDataType, ColorFormDataType } from "@/app/admin/colors/types";
 
@@ -39,7 +39,7 @@ export default function ColorForm({ formType, data }: PropsType) {
     const queryClient = useQueryClient();
 
     const id = params.colorId;
-    const isAdd = formType === "add";
+    const isAddType = formType === "add";
 
     const form = useForm<ColorFormDataType>({
         resolver: zodResolver(colorSchema),
@@ -51,23 +51,20 @@ export default function ColorForm({ formType, data }: PropsType) {
 
     const mutation = useMutation({
         mutationFn: (data: ColorFormDataType) => {
-            if (isAdd) return adminAddColor(data);
+            if (isAddType) return adminAddColor(data);
             return adminUpdateColor(id, data);
         },
         onSuccess: ({ success, message }) => {
             if (success) {
                 toast.success({ text: "Thành công", description: message });
+                queryClient.invalidateQueries({ queryKey: ["adminColors"] });
 
-                if (isAdd) form.reset();
-                else {
-                    queryClient.invalidateQueries({ queryKey: ["adminColor", { id }] });
-                    queryClient.invalidateQueries({ queryKey: ["adminColors"] });
-                }
+                if (isAddType) form.reset();
+                else queryClient.invalidateQueries({ queryKey: ["adminColor", { id }] });
             }
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
-            console.log(error);
             toast.error({ text: "Thất bại", description: error.message });
         }
     });
@@ -141,7 +138,7 @@ export default function ColorForm({ formType, data }: PropsType) {
                     disabled={mutation.isPending}
                 >
                     {
-                        isAdd ?
+                        isAddType ?
                             (
                                 <>
                                     <FaPlus />

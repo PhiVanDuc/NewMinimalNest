@@ -19,11 +19,7 @@ export default async function Page({ searchParams }: PropsType) {
         const { success } = await publicFetch.post("/auth/email/verify", { token: parseSearchParams.token });
         isSuccess = success;
     }
-    catch (err) {
-        isSuccess = false;
-        const error = err as Error;
-        console.log(error);
-    }
+    catch (err) { isSuccess = false; }
 
     return (
         <div className="h-dvh flex flex-col items-center justify-center p-[20px]">

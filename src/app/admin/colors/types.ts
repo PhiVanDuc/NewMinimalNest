@@ -7,13 +7,17 @@ export interface ColorDataType {
     updated_at: Date
 }
 
+export interface ColorFormDataType {
+    name: string,
+    colorCode: string
+}
+
 export interface ColorsDataType {
     colors: ColorDataType[],
     page: string,
     totalPage: string,
 }
 
-export interface ColorFormDataType {
-    name: string,
-    colorCode: string
+export interface ColorsFilterDataType {
+    name: string
 }

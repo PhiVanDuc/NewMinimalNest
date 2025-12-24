@@ -1,17 +1,13 @@
 "use server"
 
 import publicFetch from "@/libs/fetch/public-fetch";
-import toSearchParams from "@/utils/to-search-params";
+import toParams from "@/utils/to-params";
 
-import type { ColorDataType, ColorsDataType } from "@/app/admin/colors/types";
+import type { ColorsDataType, ColorDataType } from "@/app/admin/colors/types";
 
-export const adminGetColors = async <PageType, FilterDataType extends Record<string, any>>(page: PageType, filter: FilterDataType) => {
-    const searchParams = toSearchParams({
-        page,
-        ...filter
-    });
-
-    return publicFetch.get<ColorsDataType>(`/admin/colors?${searchParams}`);
+export const adminGetColors = async <PageType, FilterDataType extends Record<string, string>>(page: PageType, filter: FilterDataType) => {
+    const params = toParams({ page, ...filter });
+    return publicFetch.get<ColorsDataType>(`/admin/colors?${params}`);
 }
 
 export const adminGetColor = async <IdType>(id: IdType) => {

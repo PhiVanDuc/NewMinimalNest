@@ -1,18 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import publicFetch from "@/libs/fetch/public-fetch";
 
-interface RequestBodyType {
-    email: string,
-    password: string
-}
-
+interface RequestBodyType { token: string }
 interface ResponseDataType {
-    accessToken: string,
-    refreshToken: string
+    refreshToken: string,
+    accessToken: string
 }
 
 const BE_API = process.env.BE_API;
-const path = "/auth/sign-in";
+const path = "/auth/google/exchange";
 
 export async function POST(req: NextRequest) {
     try {
@@ -49,7 +45,7 @@ export async function POST(req: NextRequest) {
     }
     catch (err) {
         const error = err as Error;
-        
+
         console.log(`Route Handlers - ${BE_API}${path}`);
         console.log(error.message);
 

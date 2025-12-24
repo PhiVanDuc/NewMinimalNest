@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 
 import Link from "next/link";
 
@@ -29,8 +29,6 @@ interface FormDataType {
 }
 
 export default function SignInForm() {
-    const [isPending, setIsPending] = useState(false);
-
     const form = useForm<FormDataType>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
@@ -38,11 +36,9 @@ export default function SignInForm() {
             password: "123456"
         }
     });
-
-    const handleSignIn = async (data: FormDataType) => {
-        try {
-            setIsPending(true);
-
+    
+    const mutation = useMutation({
+        mutationFn: async (data: FormDataType) => {
             const response = await fetch(
                 "/api/auth/sign-in",
                 {
@@ -54,14 +50,23 @@ export default function SignInForm() {
             );
 
             const { success, message } = await response.json();
+            return { success, message };
+        },
+        onSuccess: ({ success, message }) => {
             if (success) toast.success({ text: "Thành công", description: message });
             else toast.error({ text: "Thất bại", description: message });
-        }
-        catch (err) {
-            const error = err as Error;
+        },
+        onError: (error) => {
             toast.error({ text: "Thất bại", description: error.message });
         }
-        finally { setIsPending(false); }
+    })
+
+    const handleSignIn = async (data: FormDataType) => {
+        mutation.mutate(data);
+    }
+
+    const handleSignInGoogle = () => {
+        window.location.href = `${process.env.NEXT_PUBLIC_BE_API}/auth/google`;
     }
 
     return (
@@ -85,7 +90,6 @@ export default function SignInForm() {
                                         {...field}
                                     />
                                 </FormControl>
-
                                 <FormMessage />
                             </FormItem>
                         )
@@ -107,7 +111,6 @@ export default function SignInForm() {
                                         {...field}
                                     />
                                 </FormControl>
-
                                 <FormMessage />
                             </FormItem>
                         )
@@ -132,9 +135,9 @@ export default function SignInForm() {
 
                 <Button
                     className="w-full cursor-pointer bg-theme-main hover:bg-theme-main/95"
-                    disabled={isPending}
+                    disabled={mutation.isPending}
                 >
-                    {isPending ? "Đang đăng nhập . . ." : "Đăng nhập"}
+                    {mutation.isPending ? "Đang đăng nhập . . ." : "Đăng nhập"}
                 </Button>
 
                 <div className="relative py-[10px]">
@@ -146,7 +149,11 @@ export default function SignInForm() {
                 </div>
 
                 <div className="space-y-[15px]">
-                    <button className="flex items-center justify-center gap-[15px] rounded-[10px] px-[15px] py-[12px] bg-zinc-100 w-full cursor-pointer">
+                    <button
+                        type="button"
+                        className="flex items-center justify-center gap-[15px] rounded-[10px] px-[15px] py-[12px] bg-zinc-100 w-full cursor-pointer"
+                        onClick={handleSignInGoogle}
+                    >
                         <FcGoogle className="text-[26px]" />
                         <span className="text-[15px] font-medium text-zinc-700">Google</span>
                     </button>

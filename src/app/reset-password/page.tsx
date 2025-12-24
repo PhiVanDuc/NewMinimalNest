@@ -5,17 +5,10 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from "@/components/ui/form";
-
+import { Suspense } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { toast } from "@pheralb/toast";
 import { resetPassword } from "@/services/auth";
@@ -28,7 +21,7 @@ interface FormDataType {
     token: string
 }
 
-export default function Page() {
+function PageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -128,5 +121,13 @@ export default function Page() {
                 </Form>
             </div>
         </div>
+    )
+}
+
+export default function Page() {
+    return (
+        <Suspense>
+            <PageContent />
+        </Suspense>
     )
 }

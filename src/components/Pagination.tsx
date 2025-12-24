@@ -18,17 +18,6 @@ interface PropsType {
     listRef?: React.RefObject<null | HTMLElement>
 }
 
-export default function Pagination({ totalPage, listRef }: PropsType) {
-    return (
-        <Suspense fallback={null}>
-            <PaginationView
-                totalPage={totalPage}
-                listRef={listRef}
-            />
-        </Suspense>
-    )
-}
-
 function PaginationView({ totalPage, listRef }: PropsType) {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -142,5 +131,16 @@ function PaginationView({ totalPage, listRef }: PropsType) {
                 </button>
             </div>
         </div>
+    )
+}
+
+export default function Pagination({ totalPage, listRef }: PropsType) {
+    return (
+        <Suspense fallback="">
+            <PaginationView
+                totalPage={totalPage}
+                listRef={listRef}
+            />
+        </Suspense>
     )
 }

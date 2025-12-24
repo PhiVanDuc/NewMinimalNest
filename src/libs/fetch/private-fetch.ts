@@ -23,17 +23,19 @@ interface ReturnType<ResponseDataType> {
     data?: ResponseDataType
 }
 
-const NEXT_PUBLIC_ROOT_API = process.env.NEXT_PUBLIC_ROOT_API;
+const NEXT_PUBLIC_BE_API = process.env.NEXT_PUBLIC_BE_API;
 
 let refreshPromise: Promise<Omit<ReturnType<{ accessToken: string }>, "status">> | undefined;
 
 const refreshTokens = async (): Promise<Omit<ReturnType<{ accessToken: string }>, "status"> | undefined> => {
     if (!refreshPromise) {
         refreshPromise = (async () => {
+            const path = "/api/auth/tokens/refresh";
+
             try {
                 const refreshToken = await getRefreshToken();
                 const response = await fetch(
-                    "/api/auth/tokens/refresh",
+                    path,
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -49,13 +51,13 @@ const refreshTokens = async (): Promise<Omit<ReturnType<{ accessToken: string }>
             }
             catch (err) {
                 const error = err as Error;
-
-                console.log("Private Fetch - 500 /api/auth/refresh -- Lỗi không xác định!");
-                console.log(error);
+                
+                console.log(`Private Fetch - ${window.location.origin}${path}`);
+                console.log(error.message);
 
                 return {
                     success: false,
-                    message: "Lỗi không xác định!"
+                    message: error.message || "Lỗi không xác định!"
                 }
             }
             finally { refreshPromise = undefined; }
@@ -89,7 +91,7 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
             ...(parseBody ? { body: parseBody } : {})
         }
 
-        const response = await fetch(`${NEXT_PUBLIC_ROOT_API}${path}`, finalOptions);
+        const response = await fetch(`${NEXT_PUBLIC_BE_API}${path}`, finalOptions);
         const result = await response.json();
 
         if (response.status === 401) {
@@ -109,7 +111,7 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
                     }
                 }
 
-                const retryResponse = await fetch(`${NEXT_PUBLIC_ROOT_API}${path}`, finalOptions);
+                const retryResponse = await fetch(`${NEXT_PUBLIC_BE_API}${path}`, finalOptions);
                 const retryResult = await retryResponse.json();
 
                 if (retryResponse.status === 401) await signOut();
@@ -120,7 +122,12 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
         return { status: response.status, ...result };
     }
     catch (err) {
-        throw new Error("Lỗi không xác định!");
+        const error = err as Error;
+
+        console.log(`Private Fetch - ${NEXT_PUBLIC_BE_API}${path}`);
+        console.log(error.message);
+        
+        throw new Error(error.message || "Lỗi không xác định!");
     }
 }
 

@@ -20,8 +20,8 @@ interface ReturnType<ResponseDataType> {
     data?: ResponseDataType
 }
 
-const ROOT_API = process.env.ROOT_API;
-const NEXT_PUBLIC_ROOT_API = process.env.NEXT_PUBLIC_ROOT_API;
+const BE_API = process.env.BE_API;
+const NEXT_PUBLIC_BE_API = process.env.NEXT_PUBLIC_BE_API;
 
 const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown>(method: MethodType, path: string, body?: BodyInit | RequestBodyType, options?: OptionsType): Promise<ReturnType<ResponseDataType>> => {
     try {
@@ -45,13 +45,18 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
             ...(parseBody ? { body: parseBody } : {})
         }
 
-        const response = await fetch(`${NEXT_PUBLIC_ROOT_API || ROOT_API}${path}`, finalOptions);
+        const response = await fetch(`${NEXT_PUBLIC_BE_API || BE_API}${path}`, finalOptions);
         const result = await response.json();
 
         return { status: response.status, ...result };
     }
     catch (err) {
-        throw new Error("Lỗi không xác định!");
+        const error = err as Error;
+
+        console.log(`Public Fetch - ${NEXT_PUBLIC_BE_API || BE_API}${path}`);
+        console.log(error.message);
+
+        throw new Error(error.message || "Lỗi không xác định!");
     }
 }
 

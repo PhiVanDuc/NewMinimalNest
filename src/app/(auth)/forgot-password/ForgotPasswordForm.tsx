@@ -35,10 +35,8 @@ export default function ForgotPasswordForm() {
     });
 
     const mutation = useMutation({
-        mutationFn: (data: FormDataType) => resetPasswordEmail(data),
-        onSuccess: (result) => {
-            const { success, message } = result;
-
+        mutationFn: (data: FormDataType) => resetPasswordEmail<FormDataType>(data),
+        onSuccess: ({ success, message }) => {
             if (success) toast.success({ text: "Thành công", description: message });
             else toast.error({ text: "Thất bại", description: message });
         },
@@ -68,7 +66,6 @@ export default function ForgotPasswordForm() {
                                         {...field}
                                     />
                                 </FormControl>
-
                                 <FormMessage />
                             </FormItem>
                         )

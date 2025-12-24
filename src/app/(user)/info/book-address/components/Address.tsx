@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import dynamic from "next/dynamic";
 const AddressAddFormDialog = dynamic(() => import("@/app/(user)/info/book-address/components/AddressAddFormDialog"), { ssr: false });
-const ConfirmDeleteDialog = dynamic(() => import("@/components/ConfirmDeleteDialog"), { ssr: false });
+const DialogConfirmDelete = dynamic(() => import("@/components/DialogConfirmDelete"), { ssr: false });
 
 import { Button } from "@/components/ui/button";
 import { IoReloadOutline } from "react-icons/io5";
@@ -14,7 +14,7 @@ import { cn } from "@/libs/utils";
 
 export default function Address() {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
-    const [isOpenConfirmDeleteDialog, setIsOpenConfirmDeleteDialog] = useState(false);
+    const [isOpenDialogConfirmDelete, setIsOpenDialogConfirmDelete] = useState(false);
 
     return (
         <>
@@ -46,7 +46,7 @@ export default function Address() {
 
                     <Button
                         className="bg-transparent hover:bg-zinc-100 text-zinc-800"
-                        onClick={() => { setIsOpenConfirmDeleteDialog(true); }}
+                        onClick={() => { setIsOpenDialogConfirmDelete(true); }}
                     >
                         <PiTrashSimpleBold />
                         Xoá
@@ -66,11 +66,11 @@ export default function Address() {
             }
 
             {
-                isOpenConfirmDeleteDialog &&
+                isOpenDialogConfirmDelete &&
                 (
-                    <ConfirmDeleteDialog
-                        isOpen={isOpenConfirmDeleteDialog}
-                        setIsOpen={setIsOpenConfirmDeleteDialog}
+                    <DialogConfirmDelete
+                        isOpen={isOpenDialogConfirmDelete}
+                        setIsOpen={setIsOpenDialogConfirmDelete}
                         object="địa chỉ"
                     />
                 )

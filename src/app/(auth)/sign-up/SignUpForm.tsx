@@ -34,9 +34,7 @@ export default function SignUpForm() {
 
     const mutation = useMutation({
         mutationFn: (data: FormDataType) => signUp(data),
-        onSuccess: (result) => {
-            const { success, message } = result;
-
+        onSuccess: ({ success, message }) => {
             if (success) toast.success({ text: "Thành công", description: message });
             else toast.error({ text: "Thất bại", description: message });
         },
@@ -66,7 +64,6 @@ export default function SignUpForm() {
                                         {...field}
                                     />
                                 </FormControl>
-
                                 <FormMessage />
                             </FormItem>
                         )
@@ -87,7 +84,6 @@ export default function SignUpForm() {
                                         {...field}
                                     />
                                 </FormControl>
-
                                 <FormMessage />
                             </FormItem>
                         )
@@ -109,7 +105,6 @@ export default function SignUpForm() {
                                         {...field}
                                     />
                                 </FormControl>
-
                                 <FormMessage />
                             </FormItem>
                         )
@@ -131,7 +126,6 @@ export default function SignUpForm() {
                                         {...field}
                                     />
                                 </FormControl>
-
                                 <FormMessage />
                             </FormItem>
                         )

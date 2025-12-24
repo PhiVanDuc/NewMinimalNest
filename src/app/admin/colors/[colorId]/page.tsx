@@ -40,7 +40,7 @@ export default function Page() {
                                 formType="update"
                                 data={query.data?.data}
                             />
-                        )
+                        )    
             }
         </div>
     )

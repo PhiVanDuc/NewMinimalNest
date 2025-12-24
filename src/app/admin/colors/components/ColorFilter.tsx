@@ -14,11 +14,14 @@ interface PropsType {
     setFilter: Dispatch<SetStateAction<ColorsFilterDataType>>
 }
 
-export default function ColorsFilter({ setFilter }: PropsType) {
+export default function ColorFilter({ setFilter }: PropsType) {
     const queryClient = useQueryClient();
+
     const [tempFilter, setTempFilter] = useState({
         name: ""
     });
+
+    const handleChangeColorName = (e: React.ChangeEvent<HTMLInputElement>) => setTempFilter(() => ({ name: e.target.value }));
 
     const handleClickFilter = () => {
         setFilter(tempFilter);
@@ -30,8 +33,8 @@ export default function ColorsFilter({ setFilter }: PropsType) {
             <Input
                 value={tempFilter.name}
                 placeholder="Lọc tên màu sắc . . ."
-                className="w-[300px]"
-                onChange={(e) => setTempFilter(() => ({ name: e.target.value }))}
+                className="w-full max-w-[300px]"
+                onChange={handleChangeColorName}
             />
 
             <button

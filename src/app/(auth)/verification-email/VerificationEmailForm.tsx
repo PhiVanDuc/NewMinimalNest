@@ -36,9 +36,7 @@ export default function VerificationEmailForm() {
 
     const mutation = useMutation({
         mutationFn: (data: FormDataType) => verificationEmail(data),
-        onSuccess: (result) => {
-            const { success, message } = result;
-
+        onSuccess: ({ success, message }) => {
             if (success) toast.success({ text: "Thành công", description: message });
             else toast.error({ text: "Thất bại", description: message });
         },
@@ -68,7 +66,6 @@ export default function VerificationEmailForm() {
                                         {...field}
                                     />
                                 </FormControl>
-
                                 <FormMessage />
                             </FormItem>
                         )

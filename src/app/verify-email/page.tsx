@@ -24,7 +24,7 @@ export default async function Page({ searchParams }: PropsType) {
     return (
         <div className="h-dvh flex flex-col items-center justify-center p-[20px]">
             <div className="space-y-[30px]">
-                <div className="space-y-[2px]">
+                <header className="space-y-[2px]">
                     <h1 className="header-basic">
                         {
                             isSuccess ?
@@ -40,7 +40,7 @@ export default async function Page({ searchParams }: PropsType) {
                                 "Liên kết xác minh email không hợp lệ hoặc đã hết hạn."
                         }
                     </p>
-                </div>
+                </header>
 
                 <div className="flex gap-[5px]">
                     {

@@ -5,24 +5,24 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams, useRouter } from "next/navigation";
 
 import Link from "next/link";
+import { Suspense } from "react";
 import Error from "@/components/Error";
 import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
-import ColorsFilter from "@/app/admin/colors/components/ColorsFilter";
+import ColorFilter from "@/app/admin/colors/components/ColorFilter";
 
 import { Button } from "@/components/ui/button";
 import { FaPlus } from "react-icons/fa6";
 
-import colorsColumns from "@/app/admin/colors/colors-columns";
+import colorColumns from "@/app/admin/colors/color-columns";
 import { adminGetColors } from "@/services/colors/admin";
 import isPositiveIntegerString from "@/utils/is-positive-integer-string";
 
-export default function Page() {
-    const [filter, setFilter] = useState({ name: "" });
-
+function PageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
+    const [filter, setFilter] = useState({ name: "" });
 
     const page = searchParams.get("page") || "1";
     const isValidPage = isPositiveIntegerString(page);
@@ -38,14 +38,10 @@ export default function Page() {
     const totalPage = Math.max(1, Number(query.data?.data?.totalPage || 1)).toString();
 
     useEffect(() => {
-        if (!isValidPage) {
-            router.replace("?");
-            return;
-        }
-
+        if (!isValidPage) router.replace("?");
         if (!isLoading && isValidPage && Number(page) > Number(totalPage)) router.replace(`?page=${totalPage}`);
-    }, [page, totalPage, isValidPage, isLoading]);
-
+    }, [page, isValidPage, totalPage, isLoading]);
+    
     return (
         <div className="space-y-[40px]">
             <div className="flex items-center justify-between">
@@ -66,24 +62,30 @@ export default function Page() {
             </div>
 
             {
-                isError ?
-                    <Error /> :
-                    (
-                        <>
-                            <div className="space-y-[10px]">
-                                <ColorsFilter setFilter={setFilter} />
+                isError ? <Error /> :
+                (
+                    <>
+                        <div className="space-y-[10px]">
+                            <ColorFilter setFilter={setFilter} />
+                            <DataTable
+                                data={query.data?.data?.colors || []}
+                                columns={colorColumns}
+                                isLoading={isLoading}
+                            />
+                        </div>
 
-                                <DataTable
-                                    data={query.data?.data?.colors || []}
-                                    columns={colorsColumns}
-                                    isLoading={isLoading}
-                                />
-                            </div>
-
-                            {!isLoading && <Pagination totalPage={totalPage} />}
-                        </>
-                    )
+                        {!isLoading && <Pagination totalPage={totalPage} />}
+                    </>
+                )
             }
         </div>
+    )
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback="">
+            <PageContent />
+        </Suspense>
     )
 }

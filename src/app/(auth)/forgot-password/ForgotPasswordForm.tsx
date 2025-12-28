@@ -5,17 +5,9 @@ import { useMutation } from "@tanstack/react-query";
 
 import Link from "next/link";
 
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from "@/components/ui/form";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { toast } from "@pheralb/toast";
 import { resetPasswordEmail } from "@/services/auth";
@@ -27,7 +19,7 @@ interface FormDataType {
 }
 
 export default function ForgotPasswordForm() {
-    const form = useForm<FormDataType>({
+    const form = useForm({
         resolver: zodResolver(forgotPasswordSchema),
         defaultValues: {
             email: "phivanduc325@gmail.com"
@@ -35,22 +27,26 @@ export default function ForgotPasswordForm() {
     });
 
     const mutation = useMutation({
-        mutationFn: (data: FormDataType) => resetPasswordEmail<FormDataType>(data),
+        mutationFn: (data: FormDataType) => resetPasswordEmail(data),
         onSuccess: ({ success, message }) => {
             if (success) toast.success({ text: "Thành công", description: message });
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
+            console.log("useMutation");
+            console.log(error);
             toast.error({ text: "Thất bại", description: error.message });
         }
     });
+
+    const handleSubmit = (data: FormDataType) => mutation.mutate(data);
 
     return (
         <Form {...form}>
             <form
                 autoComplete="off"
                 className="space-y-[20px]"
-                onSubmit={form.handleSubmit(data => mutation.mutate(data))}
+                onSubmit={form.handleSubmit(handleSubmit)}
             >
                 <FormField
                     control={form.control}

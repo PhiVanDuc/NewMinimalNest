@@ -12,18 +12,16 @@ import { adminGetColor } from "@/services/colors/admin";
 
 export default function Page() {
     const params = useParams();
-
     const id = params.colorId;
-    const isValidId = (!!id && typeof id === "string");
 
     const query = useQuery({
         queryKey: ["adminColor", { id }],
         queryFn: () => adminGetColor(id),
-        enabled: isValidId
+        enabled: !!id
     });
 
     const isLoading = query.isPending;
-    const isError = !isValidId || query.isError || query.data?.success === false;
+    const isError = !id || query.isError || query.data?.success === false;
 
     return (
         <div className="space-y-[40px]">

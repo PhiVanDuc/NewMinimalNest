@@ -22,7 +22,7 @@ interface FormDataType {
 }
 
 export default function SignUpForm() {
-    const form = useForm<FormDataType>({
+    const form = useForm({
         resolver: zodResolver(signUpSchema),
         defaultValues: {
             username: "Phí Văn Đức",
@@ -39,16 +39,20 @@ export default function SignUpForm() {
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
+            console.log("useMutation");
+            console.log(error);
             toast.error({ text: "Thất bại", description: error.message });
         }
     });
+
+    const handleSubmit = (data: FormDataType) => mutation.mutate(data);
 
     return (
         <Form {...form}>
             <form
                 autoComplete="off"
                 className="space-y-[20px]"
-                onSubmit={form.handleSubmit(data => mutation.mutate(data))}
+                onSubmit={form.handleSubmit(handleSubmit)}
             >
                 <FormField
                     control={form.control}

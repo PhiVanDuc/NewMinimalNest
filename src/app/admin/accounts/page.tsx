@@ -1,19 +1,39 @@
 "use client"
 
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
+import { Suspense } from "react";
+import Error from "@/components/Error";
 import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
-import AccountsFilter from "@/app/admin/accounts/components/AccountsFilter";
+import AccountFilter from "@/app/admin/accounts/components/AccountFilter";
 
-import accountsColumns from "@/app/admin/accounts/accounts-columns";
+import { adminGetAccounts } from "@/services/accounts/admin";
+import accountColumns from "@/app/admin/accounts/account-columns";
+import isPositiveIntegerString from "@/utils/is-positive-integer-string";
 
-export default function Page() {
+function PageContent() {
+    const searchParams = useSearchParams();
     const [filter, setFilter] = useState({
-        name: "",
+        username: "",
         rank: ""
     });
+
+    const page = searchParams.get("page") || "1";
+    const isValidPage = isPositiveIntegerString(page);
+
+    const query = useQuery({
+        queryKey: ["adminAccounts", { page, filter }],
+        queryFn: () => adminGetAccounts(page, filter),
+        enabled: isValidPage
+    });
+
+    const isLoading = query.isPending;
+    const isError = query.isError || query.data?.success === false;
+    const totalPage = query.data?.data?.totalPage || "1";
 
     return (
         <div className="space-y-[40px]">
@@ -22,21 +42,29 @@ export default function Page() {
                 <p className="desc-basic">Xem danh sách và phân quyền tài khoản người dùng tại đây.</p>
             </Header>
 
-            <div className="space-y-[10px]">
-                <AccountsFilter
-                    filter={filter}
-                    setFilter={setFilter}
-                />
+            {
+                isError ? <Error /> :
+                (
+                    <div className="space-y-[10px]">
+                        <AccountFilter setFilter={setFilter} />
+                        <DataTable
+                            data={query.data?.data?.accounts || []}
+                            columns={accountColumns}
+                            isLoading={isLoading}
+                        />
+                    </div>
+                )
+            }
 
-                <DataTable
-                    data={[1]}
-                    columns={accountsColumns}
-                />
-            </div>
-
-            <Pagination
-                totalPage="10"
-            />
+            {(!isLoading && !isError) && (<Pagination totalPage={totalPage} />)}
         </div>
+    )
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback="">
+            <PageContent />
+        </Suspense>
     )
 }

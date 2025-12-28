@@ -6,9 +6,7 @@ interface PropsType {
 }
 
 export default async function Page({ searchParams }: PropsType) {
-    const parseSearchParams = await searchParams;
-    const token = parseSearchParams.token;
-
+    const { token } = await searchParams;
     if (!token) redirect("/google-sign-in/failed");
 
     return <FetchGoogleExchange token={token} />

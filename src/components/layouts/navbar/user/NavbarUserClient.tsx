@@ -129,7 +129,7 @@ export default function NavbarUserClient() {
                             <div
                                 className="relative flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors"
                                 style={{
-                                    outline: `3px solid ${ranks["khach-super-vip"].colorCode}`,
+                                    outline: `3px solid ${ranks["khach-vip"].colorCode}`,
                                     outlineOffset: "3px"
                                 }}
                             >
@@ -139,7 +139,7 @@ export default function NavbarUserClient() {
                                     <PiMedalFill
                                         size={24}
                                         style={{
-                                            color: ranks["khach-super-vip"].colorCode
+                                            color: ranks["khach-vip"].colorCode
                                         }}
                                     />
                                 </div>

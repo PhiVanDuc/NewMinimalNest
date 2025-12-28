@@ -5,18 +5,11 @@ import { useMutation } from "@tanstack/react-query";
 
 import Link from "next/link";
 
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from "@/components/ui/form";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+
 import { FcGoogle } from "react-icons/fc";
 
 import { toast } from "@pheralb/toast";
@@ -29,7 +22,7 @@ interface FormDataType {
 }
 
 export default function SignInForm() {
-    const form = useForm<FormDataType>({
+    const form = useForm({
         resolver: zodResolver(signInSchema),
         defaultValues: {
             email: "phivanduc325@gmail.com",
@@ -44,8 +37,7 @@ export default function SignInForm() {
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data),
-                    cache: "no-cache"
+                    body: JSON.stringify(data)
                 }
             );
 
@@ -57,17 +49,14 @@ export default function SignInForm() {
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
+            console.log("useMutation");
+            console.log(error);
             toast.error({ text: "Thất bại", description: error.message });
         }
     })
 
-    const handleSignIn = async (data: FormDataType) => {
-        mutation.mutate(data);
-    }
-
-    const handleSignInGoogle = () => {
-        window.location.href = `${process.env.NEXT_PUBLIC_BE_API}/auth/google`;
-    }
+    const handleSignIn = async (data: FormDataType) => mutation.mutate(data);
+    const handleSignInGoogle = () => window.location.href = `${process.env.NEXT_PUBLIC_BE_API}/auth/google`;
 
     return (
         <Form {...form}>

@@ -1,6 +1,7 @@
 "use client"
 
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 import Combobox from "@/components/Combobox";
 import { Input } from "@/components/ui/input";
@@ -9,31 +10,30 @@ import { SearchIcon } from "lucide-react";
 import ranks from "@/consts/ranks";
 
 import type { Dispatch, SetStateAction } from "react";
-
-type FilterType = {
-    name: string,
-    rank: string
-}
+import type { AccountFilterDataType } from "@/app/admin/accounts/types";
 
 interface PropsType {
-    filter: FilterType,
-    setFilter: Dispatch<SetStateAction<FilterType>>
+    setFilter: Dispatch<SetStateAction<AccountFilterDataType>>
 }
 
-export default function AccountsFilter({ filter, setFilter }: PropsType) {
-    const router = useRouter();
+export default function AccountFilter({ setFilter }: PropsType) {
+    const queryClient = useQueryClient();
+    const [tempFilter, setTempFilter] = useState({
+        username: "",
+        rank: ""
+    });
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilter((state) => {
+        setTempFilter((state) => {
             return {
                 ...state,
-                name: e.target.value
+                username: e.target.value
             }
         });
     }
 
-    const handleSelectRole = (value: string) => {
-        setFilter((state) => {
+    const handleSelectRank = (value: string) => {
+        setTempFilter((state) => {
             return {
                 ...state,
                 rank: value
@@ -42,14 +42,15 @@ export default function AccountsFilter({ filter, setFilter }: PropsType) {
     }
 
     const handleClickFilter = () => {
-        router.refresh();
+        setFilter(tempFilter);
+        queryClient.invalidateQueries({ queryKey: ["adminAccounts"] });
     }
 
     return (
         <div className="flex items-center justify-between gap-[10px]">
             <div className="flex gap-[10px]">
                 <Input
-                    value={filter.name}
+                    value={tempFilter.username}
                     placeholder="Lọc tên người dùng . . ."
                     className="w-[300px]"
                     onChange={handleChangeName}
@@ -65,8 +66,8 @@ export default function AccountsFilter({ filter, setFilter }: PropsType) {
                             value: rank.value
                         }
                     })}
-                    option={filter.rank}
-                    onSelect={handleSelectRole}
+                    option={tempFilter.rank}
+                    onSelect={handleSelectRank}
                 />
             </div>
 

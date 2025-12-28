@@ -1,28 +1,25 @@
+export type RankType = "khach-moi" | "khach-thuong" | "khach-quen" | "khach-vip";
+
 const ranks = {
     "khach-moi": {
         label: "Khách mới",
         value: "khach-moi",
-        colorCode: undefined
+        colorCode: "#D88E52"
     },
     "khach-thuong": {
         label: "Khách thường",
         value: "khach-thuong",
-        colorCode: "#CE8946"
+        colorCode: "#8D94A6"
     },
     "khach-quen": {
         label: "Khách quen",
         value: "khach-quen",
-        colorCode: "#A9A9A9"
+        colorCode: "#0482ED"
     },
     "khach-vip": {
         label: "Khách VIP",
         value: "khach-vip",
-        colorCode: "#EFBF04"
-    },
-    "khach-super-vip": {
-        label: "Khách Super VIP",
-        value: "khach-super-vip",
-        colorCode: "#1E90FF"
+        colorCode: "#FFAE07"
     }
 }
 

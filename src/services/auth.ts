@@ -37,7 +37,7 @@ export const resetPasswordEmail = async <DataType>(data: DataType) => {
 }
 
 export const resetPassword = async <DataType>(data: DataType) => {
-    return publicFetch.post<DataType>(
+    return publicFetch.post(
         "/auth/password/reset",
         data
     );

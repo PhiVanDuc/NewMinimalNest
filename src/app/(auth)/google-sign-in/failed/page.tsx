@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Header from "@/components/Header";
+
+import { Button } from "@/components/ui/button";
 
 import { PiSignInBold } from "react-icons/pi";
 
@@ -13,10 +15,10 @@ export default async function Page({ searchParams }: PropsType) {
 
     return (
         <div className="space-y-[30px]">
-            <header className="space-y-[2px]">
+            <Header isBreadcrumb={false}>
                 <h1 className="header-basic">Google</h1>
                 <p className="desc-basic">{message || "Đăng nhập bằng google thất bại!"}</p>
-            </header>
+            </Header>
 
             <Button className="bg-theme-main hover:bg-theme-main/95" asChild>
                 <Link href="/sign-in">

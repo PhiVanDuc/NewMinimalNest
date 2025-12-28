@@ -1,3 +1,5 @@
+"use client"
+
 import { signOut } from "@/services/auth";
 import { getAccessToken, getRefreshToken } from "@/services/cookies";
 
@@ -23,6 +25,7 @@ interface ReturnType<ResponseDataType> {
     data?: ResponseDataType
 }
 
+const NEXT_PUBLIC_FE = process.env.NEXT_PUBLIC_FE;
 const NEXT_PUBLIC_BE_API = process.env.NEXT_PUBLIC_BE_API;
 
 let refreshPromise: Promise<Omit<ReturnType<{ accessToken: string }>, "status">> | undefined;
@@ -39,21 +42,17 @@ const refreshTokens = async (): Promise<Omit<ReturnType<{ accessToken: string }>
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ refreshToken }),
-                        cache: "no-cache"
+                        body: JSON.stringify({ refreshToken: refreshToken?.value })
                     }
                 );
 
-                const result = await response.json();
-                if (response.status === 401 || !result.success) await signOut();
-
-                return result;
+                return await response.json();
             }
             catch (err) {
                 const error = err as Error;
                 
-                console.log(`Private Fetch - ${window.location.origin}${path}`);
-                console.log(error.message);
+                console.log(`Private Fetch - ${NEXT_PUBLIC_FE}${path}`);
+                console.log(error);
 
                 return {
                     success: false,
@@ -74,7 +73,7 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
         const accessToken = await getAccessToken();
 
         const headers = {
-            "Authorization": `Bearer ${accessToken}`,
+            "Authorization": `Bearer ${accessToken?.value}`,
             ...(isBody && body && !isBodyFormData ? { "Content-Type": "application/json" } : {}),
             ...(options?.headers ?? {})
         };
@@ -86,7 +85,6 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
         let finalOptions = {
             method,
             headers,
-            cache: "no-cache" as RequestCache,
             ...options,
             ...(parseBody ? { body: parseBody } : {})
         }
@@ -99,7 +97,7 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
             const isExpired = result.data?.isExpired;
 
             if (isInvalid) await signOut();
-            else if (isExpired) {
+            if (isExpired) {
                 const refreshed = await refreshTokens();
                 if (!refreshed?.success) await signOut();
 
@@ -123,11 +121,12 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
     }
     catch (err) {
         const error = err as Error;
+        error.message = error.message || "Lỗi không xác định!";
 
         console.log(`Private Fetch - ${NEXT_PUBLIC_BE_API}${path}`);
-        console.log(error.message);
+        console.log(error);
         
-        throw new Error(error.message || "Lỗi không xác định!");
+        throw error;
     }
 }
 

@@ -40,7 +40,6 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
         const finalOptions = {
             method,
             headers,
-            cache: "no-cache" as RequestCache,
             ...options,
             ...(parseBody ? { body: parseBody } : {})
         }
@@ -52,11 +51,12 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
     }
     catch (err) {
         const error = err as Error;
+        error.message = error.message || "Lỗi không xác định!";
 
         console.log(`Public Fetch - ${NEXT_PUBLIC_BE_API || BE_API}${path}`);
-        console.log(error.message);
+        console.log(error);
 
-        throw new Error(error.message || "Lỗi không xác định!");
+        throw error;
     }
 }
 

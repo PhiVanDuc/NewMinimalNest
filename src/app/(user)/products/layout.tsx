@@ -10,7 +10,7 @@ export default function Layout({ children }: Readonly<PropsType>) {
     return (
         <>
             <Filter />
-            <Suspense fallback={null}><FilterSync /></Suspense>
+            <Suspense fallback=""><FilterSync /></Suspense>
             {children}
         </>
     )

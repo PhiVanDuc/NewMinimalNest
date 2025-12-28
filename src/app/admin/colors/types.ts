@@ -1,10 +1,7 @@
 export interface ColorDataType {
     id: string,
-    name: string,
-    slug: string
-    color_code: string,
-    created_at: Date,
-    updated_at: Date
+    name: string
+    color_code: string
 }
 
 export interface ColorsDataType {
@@ -13,7 +10,7 @@ export interface ColorsDataType {
     totalPage: string,
 }
 
-export interface ColorsFilterDataType {
+export interface ColorFilterDataType {
     name: string
 }
 

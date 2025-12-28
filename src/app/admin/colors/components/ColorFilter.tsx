@@ -8,24 +8,27 @@ import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
 import type { Dispatch, SetStateAction } from "react";
-import type { ColorsFilterDataType } from "@/app/admin/colors/types";
+import type { ColorFilterDataType } from "@/app/admin/colors/types";
 
 interface PropsType {
-    setFilter: Dispatch<SetStateAction<ColorsFilterDataType>>
+    setFilter: Dispatch<SetStateAction<ColorFilterDataType>>
 }
 
 export default function ColorFilter({ setFilter }: PropsType) {
     const queryClient = useQueryClient();
-
     const [tempFilter, setTempFilter] = useState({
         name: ""
     });
 
-    const handleChangeColorName = (e: React.ChangeEvent<HTMLInputElement>) => setTempFilter(() => ({ name: e.target.value }));
+    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => setTempFilter(() => ({ name: e.target.value }));
 
     const handleClickFilter = () => {
         setFilter(tempFilter);
         queryClient.invalidateQueries({ queryKey: ["adminColors"] });
+    }
+
+    const handleKeyUpEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter" || e.keyCode === 13) handleClickFilter();
     }
 
     return (
@@ -34,7 +37,8 @@ export default function ColorFilter({ setFilter }: PropsType) {
                 value={tempFilter.name}
                 placeholder="Lọc tên màu sắc . . ."
                 className="w-full max-w-[300px]"
-                onChange={handleChangeColorName}
+                onChange={handleChangeName}
+                onKeyUp={handleKeyUpEnter}
             />
 
             <button

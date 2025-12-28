@@ -12,9 +12,14 @@ import { PiTrashSimpleBold } from "react-icons/pi";
 import { toast } from "@pheralb/toast";
 import { adminDeleteColor } from "@/services/colors/admin";
 
-interface PropsType { id: string }
+import type { Dispatch, SetStateAction } from "react";
 
-export default function ColorDeleteOption({ id }: PropsType) {
+interface PropsType {
+    id: string,
+    setIsOpenDropdownMenu: Dispatch<SetStateAction<boolean>>
+}
+
+export default function ColorDeleteOption({ id, setIsOpenDropdownMenu }: PropsType) {
     const queryClient = useQueryClient();
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
@@ -32,6 +37,7 @@ export default function ColorDeleteOption({ id }: PropsType) {
         },
         onSettled: () => {
             setIsOpenDialog(false);
+            setIsOpenDropdownMenu(false);
         }
     });
 

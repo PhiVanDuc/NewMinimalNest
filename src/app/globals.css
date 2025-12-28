@@ -239,7 +239,7 @@
 }
 
 @utility header-table-row {
-    @apply text-[14px] md:text-[15px] text-zinc-700 font-medium capitalize
+    @apply text-[14px] md:text-[15px] text-zinc-700 font-medium;
 }
 
 @utility content-table-row {

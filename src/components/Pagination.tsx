@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Suspense } from "react";
@@ -18,22 +18,29 @@ interface PropsType {
     listRef?: React.RefObject<null | HTMLElement>
 }
 
-function PaginationView({ totalPage, listRef }: PropsType) {
+function PaginationContent({ totalPage, listRef }: PropsType) {
     const router = useRouter();
     const searchParams = useSearchParams();
 
     const pageParam = searchParams.get("page") || "1";
-    const [page, setPage] = useState((!isPositiveIntegerString(pageParam) || Number(pageParam) > Number(totalPage)) ? totalPage : pageParam);
+    const isValidPage = isPositiveIntegerString(pageParam);
+    const [page, setPage] = useState(pageParam);
+
+    useEffect(() => setPage(pageParam), [pageParam]);
+
+    useEffect(() => {
+        if (!isValidPage) router.replace("?");
+        else if (Number(page) > Number(totalPage)) router.replace(`?page=${totalPage}`);
+    }, [page, isValidPage, totalPage]);
 
     const handleChangePage = (e: React.ChangeEvent<HTMLInputElement>) => {
         const positivePageString = toPositiveIntegerString(e.target.value);
         const positiveTotalPageString = toPositiveIntegerString(totalPage);
 
         if (!positivePageString) setPage("");
-        if (positivePageString.length > 16) setPage("1");
 
         const positivePage = Number(positivePageString);
-        const positiveTotalPage = Number(toPositiveIntegerString(totalPage));
+        const positiveTotalPage = Number(positiveTotalPageString);
 
         if (positivePage > positiveTotalPage) setPage(positiveTotalPageString);
         else setPage(positivePageString);
@@ -48,13 +55,10 @@ function PaginationView({ totalPage, listRef }: PropsType) {
         params.set("page", value);
         router.replace(`?${params.toString()}`, { scroll: false });
 
-        setTimeout(() => {
-            if (listRef && listRef.current) {
-                const top = listRef.current.offsetTop - 100;
-                window.scrollTo({ top: top > 0 ? top : 0, behavior: "smooth" });
-            }
-            else window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 50);
+        requestAnimationFrame(() => {
+            const top = listRef?.current ? listRef.current.offsetTop - 100 : 0;
+            window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+        });
     }
 
     const handlePressNavigate = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -137,7 +141,7 @@ function PaginationView({ totalPage, listRef }: PropsType) {
 export default function Pagination({ totalPage, listRef }: PropsType) {
     return (
         <Suspense fallback="">
-            <PaginationView
+            <PaginationContent
                 totalPage={totalPage}
                 listRef={listRef}
             />

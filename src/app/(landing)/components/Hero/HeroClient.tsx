@@ -25,7 +25,6 @@ export default function HeroClient() {
             "relative flex flex-col items-center h-dvh container-horizontal bg-zinc-100",
             "lg:flex-row lg:gap-[40px]"
         )}>
-            {/* Hình nền động */}
             <Squares
                 speed={0.5}
                 squareSize={40}
@@ -34,7 +33,6 @@ export default function HeroClient() {
                 hoverFillColor="transparent"
             />
 
-            {/* Nút khám phá */}
             <div
                 className={cn(
                     "group absolute right-[20px] bottom-[20px] flex items-center gap-[10px] p-[5px] rounded-full bg-theme-main/30 z-10",
@@ -74,12 +72,8 @@ export default function HeroClient() {
                 />
             </div>
 
-            {/* Thông tin sản phẩm */}
-            <HeroProduct
-                currentProduct={currentProduct}
-            />
+            <HeroProduct currentProduct={currentProduct} />
 
-            {/* Điều hướng sản phẩm */}
             <HeroNavigateProduct
                 currentProduct={currentProduct}
                 setCurrentProduct={setCurrentProduct}

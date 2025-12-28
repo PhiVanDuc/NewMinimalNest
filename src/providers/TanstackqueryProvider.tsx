@@ -24,10 +24,7 @@ export default function TanstackqueryProvider({ children }: Readonly<PropsType>)
     });
 
     return (
-        <QueryClientProvider
-            client={queryClient}
-
-        >
+        <QueryClientProvider client={queryClient}>
             {children}
         </QueryClientProvider>
     )

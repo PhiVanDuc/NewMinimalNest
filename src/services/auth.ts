@@ -11,7 +11,7 @@ export const signUp = async <DataType>(data: DataType) => {
         "/auth/sign-up",
         {
             ...data,
-            provider: providersConst.CREDENTIALS
+            provider: providersConst.credentials.value
         }
     );
 }

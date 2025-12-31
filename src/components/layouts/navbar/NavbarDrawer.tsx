@@ -18,7 +18,7 @@ import {
 import { PiMedalFill } from "react-icons/pi";
 
 import { cn } from "@/libs/utils";
-import ranks from "@/consts/ranks";
+import ranks from "@/consts/ranks-const";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 

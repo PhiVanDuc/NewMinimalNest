@@ -1,22 +1,11 @@
 "use client"
 
-import { useState, useMemo } from "react";
-
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandItem,
-    CommandList
-} from "@/components/ui/command";
-
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger
-} from "@/components/ui/popover";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from "@/components/ui/command";
+
 import { LuChevronsUpDown } from "react-icons/lu";
 
 import { cn } from "@/libs/utils";
@@ -27,38 +16,27 @@ interface OptionItemType {
 }
 
 interface PropsType {
-    className?: string,
-    buttonPlaceholder?: string,
-    searchPlaceholder?: string,
-    emptyPlaceholder?: string,
     options: OptionItemType[],
-    option?: string,
-    onSelect?: (option: string) => void,
-    disabled?: boolean
+    value: string,
+    onSelect: (value: string) => void,
+    disabled?: boolean,
+    placeholder?: string,
+    className?: string,
 }
 
 export default function Combobox({
-    className,
-    buttonPlaceholder,
-    emptyPlaceholder,
     options,
-    option: propOption,
+    value,
     onSelect,
-    disabled
+    disabled,
+    placeholder,
+    className
 }: PropsType) {
     const [open, setOpen] = useState(false);
-    const [internalOption, setInternalOption] = useState("");
+    const selectedOption = options.find((opt) => opt.value === value);
 
-    const option = propOption || internalOption;
-
-    const selectedOption = useMemo(
-        () => options.find(optionItem => optionItem.value === option),
-        [options, option]
-    );
-
-    const handleSelect = (currentOption: string) => {
-        const next = currentOption === option ? "" : currentOption;
-        onSelect ? onSelect(next) : setInternalOption(next);
+    const handleSelect = (value: string) => {
+        onSelect(value);
         setOpen(false);
     };
 
@@ -73,43 +51,40 @@ export default function Combobox({
             >
                 <Button
                     className={cn(
-                        "gap-[25px] py-[22px] bg-white hover:bg-white border border-input text-[14px] text-muted-foreground font-normal",
+                        "gap-[20px] py-[22px] bg-white hover:bg-white border border-input text-[14px] text-muted-foreground font-normal",
                         className
                     )}
                 >
-                    {selectedOption?.label || buttonPlaceholder || "Lựa chọn thông tin"}
+                    {selectedOption?.label || placeholder || "Lựa chọn"}
                     <LuChevronsUpDown />
                 </Button>
             </PopoverTrigger>
 
-            <PopoverContent
-                className="w-[250px]"
-                align="start"
-            >
+            <PopoverContent>
                 <Command>
                     <CommandList>
-                        <CommandEmpty>{emptyPlaceholder || "Danh sách lựa chọn rỗng."}</CommandEmpty>
+                        <CommandEmpty>Danh sách lựa chọn rỗng.</CommandEmpty>
 
                         {
                             options.length > 0
                             && (
                                 <CommandGroup>
                                     {
-                                        options.map((optionItem, index) => {
-                                            const isActive = optionItem.value === option;
+                                        options.map((opiton, index) => {
                                             const isFirst = index === 0;
+                                            const isSelected = opiton.value === value;
 
                                             return (
                                                 <CommandItem
-                                                    key={optionItem.value}
-                                                    value={optionItem.value}
+                                                    key={opiton.value}
+                                                    value={opiton.value}
                                                     onSelect={handleSelect}
                                                     className={cn(
                                                         isFirst ? "mt-0" : "mt-[5px]",
-                                                        isActive ? "bg-accent text-accent-foreground" : ""
+                                                        isSelected ? "bg-accent text-accent-foreground" : ""
                                                     )}
                                                 >
-                                                    {optionItem.label}
+                                                    {opiton.label}
                                                 </CommandItem>
                                             )
                                         })

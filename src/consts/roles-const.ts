@@ -1,6 +1,6 @@
-export type RoleType = "khach-hang" | "quan-tri-vien" | "sieu-quan-tri-vien";
+export type RoleConstType = "khach-hang" | "quan-tri-vien" | "sieu-quan-tri-vien";
 
-const roles = {
+const rolesConst = {
     "khach-hang": {
         label: "Khách hàng",
         value: "khach-hang"
@@ -15,4 +15,4 @@ const roles = {
     }
 }
 
-export default roles;
+export default rolesConst;

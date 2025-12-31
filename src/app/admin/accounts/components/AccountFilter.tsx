@@ -4,10 +4,11 @@ import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import Combobox from "@/components/Combobox";
+
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
-import ranks from "@/consts/ranks";
+import ranksConst from "@/consts/ranks-const";
 
 import type { Dispatch, SetStateAction } from "react";
 import type { AccountFilterDataType } from "@/app/admin/accounts/types";
@@ -57,17 +58,10 @@ export default function AccountFilter({ setFilter }: PropsType) {
                 />
 
                 <Combobox
-                    buttonPlaceholder="Lọc thứ hạng"
-                    searchPlaceholder="Tìm kiếm thứ hạng . . ."
-                    emptyPlaceholder="Danh sách thứ hạng rỗng."
-                    options={Object.values(ranks).map(rank => {
-                        return {
-                            label: rank.label,
-                            value: rank.value
-                        }
-                    })}
-                    option={tempFilter.rank}
+                    options={Object.values(ranksConst)}
+                    value={tempFilter.rank}
                     onSelect={handleSelectRank}
+                    placeholder="Lọc thứ hạng"
                 />
             </div>
 

@@ -1,6 +1,6 @@
-export type RankType = "khach-moi" | "khach-thuong" | "khach-quen" | "khach-vip";
+export type RankConstType = "khach-moi" | "khach-thuong" | "khach-quen" | "khach-vip";
 
-const ranks = {
+const ranksConst = {
     "khach-moi": {
         label: "Khách mới",
         value: "khach-moi",
@@ -23,4 +23,4 @@ const ranks = {
     }
 }
 
-export default ranks;
+export default ranksConst;

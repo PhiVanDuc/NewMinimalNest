@@ -138,7 +138,7 @@ export default function ProductDiscountForm({ form }: PropsType) {
                                 value: "amount"
                             }
                         ]}
-                        option={watchDiscountType}
+                        value={watchDiscountType}
                         onSelect={handleSelectDiscountType}
                     />
                 </div>

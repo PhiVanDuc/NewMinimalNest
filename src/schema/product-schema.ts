@@ -53,30 +53,24 @@ const productSchema = z.object({
             })
         )
 })
-    .refine(
-        data => {
-            let result = true;
-            const images = data.images;
-            const colors = data.colors;
+    .superRefine((data, ctx) => {
+        const { colors, images } = data;
 
-            for (const color of colors) {
-                const groupImages = images.filter(img => img.colorSlug === color.slug);
+        for (const color of colors) {
+            const groupImages = images.filter(img => img.colorSlug === color.slug);
+            const mainCount = groupImages.filter(i => i.type === "main").length;
+            const subCount = groupImages.filter(i => i.type === "sub").length;
 
-                const mainCount = groupImages.filter(i => i.type === "main").length;
-                const subCount = groupImages.filter(i => i.type === "sub").length;
+            if (mainCount < 1 || subCount < 2) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: `Vui lòng cung cấp cho màu "${color.name}" 1 ảnh chính và 2 ảnh phụ!`,
+                    path: ["images"]
+                });
 
-                if (mainCount < 1 || subCount < 2) {
-                    result = false;
-                    break;
-                }
+                break;
             }
-
-            return result;
-        },
-        {
-            message: "Vui lòng cung cấp mỗi màu 1 ảnh chính và 2 ảnh phụ cho hình ảnh!",
-            path: ["images"]
         }
-    )
+    })
 
 export default productSchema;

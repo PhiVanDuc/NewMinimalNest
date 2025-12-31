@@ -8,7 +8,7 @@ export default function Avatar({ username }: PropsType) {
 
     return (
         <div className="shrink-0 flex items-center justify-center size-[45px] aspect-square rounded-full bg-zinc-800">
-            <p className="text-[20px] text-white font-medium">{lastName[0]}</p>
+            <p className="text-[20px] text-white font-medium uppercase">{lastName[0]}</p>
         </div>
     )
 }

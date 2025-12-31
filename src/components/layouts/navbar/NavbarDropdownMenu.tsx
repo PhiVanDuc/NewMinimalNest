@@ -12,7 +12,7 @@ import { FiUser } from "react-icons/fi";
 import { PiMedalFill } from "react-icons/pi";
 import { IoIosLogOut } from "react-icons/io";
 
-import ranks from "@/consts/ranks";
+import ranks from "@/consts/ranks-const";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 

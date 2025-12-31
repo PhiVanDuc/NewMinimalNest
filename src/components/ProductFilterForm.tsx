@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-const BadgePickerDialog = dynamic(() => import("@/components/BadgePickerDialog"), { ssr: false });
+const BadgePickerDialog = dynamic(() => import("@/components/DialogBadgePicker"), { ssr: false });
 
 import Badge from "@/components/Badge";
 

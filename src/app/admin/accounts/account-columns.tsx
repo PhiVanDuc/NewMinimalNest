@@ -5,7 +5,8 @@ import AccountRoleColumn from "@/app/admin/accounts/components/AccountRoleColumn
 
 import { PiMedalFill } from "react-icons/pi";
 
-import ranks from "@/consts/ranks";
+import ranksConst from "@/consts/ranks-const";
+import providersConst from "@/consts/providers-const";
 
 import type { ColumnDef } from "@tanstack/react-table";
 import type { AccountDataType } from "@/app/admin/accounts/types";
@@ -41,10 +42,10 @@ const accountColumns: ColumnDef<AccountDataType>[] = [
                 <div className="flex items-center gap-[10px]">
                     <PiMedalFill
                         size={25}
-                        style={{ color: ranks[rank].colorCode }}
+                        style={{ color: ranksConst[rank].colorCode }}
                     />
 
-                    <p className="content-table-row">{ranks[rank].label}</p>
+                    <p className="content-table-row">{ranksConst[rank].label}</p>
                 </div>
             )
         }
@@ -53,9 +54,8 @@ const accountColumns: ColumnDef<AccountDataType>[] = [
         accessorKey: "role",
         header: () => <h3 className={headerClassName}>Vai trò</h3>,
         cell: ({ row }) => {
-            const { role } = row.original;
-
-            return <AccountRoleColumn role={role} />
+            const { id, role } = row.original;
+            return <AccountRoleColumn key={id} id={id} role={role} />
         }
     },
     {
@@ -63,12 +63,7 @@ const accountColumns: ColumnDef<AccountDataType>[] = [
         header: () => <h3 className={headerClassName}>Loại tài khoản</h3>,
         cell: ({ row }) => {
             const { provider } = row.original;
-
-            return (
-                <p className="caplizalize content-table-row">
-                    {provider}
-                </p>
-            )
+            return <p className="content-table-row">{providersConst[provider].label}</p>
         }
     }
 ];

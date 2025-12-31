@@ -25,7 +25,7 @@ interface PropsType {
 }
 
 export default function ProductForm({ formType, data }: PropsType) {
-    const form = useForm<ProductFormDataType>({
+    const form = useForm({
         resolver: zodResolver(productSchema),
         defaultValues: {
             name: "",
@@ -42,9 +42,7 @@ export default function ProductForm({ formType, data }: PropsType) {
         }
     });
 
-    const handleSubmit = (data: ProductFormDataType) => {
-        console.log(data);
-    }
+    const handleSubmit = (data: ProductFormDataType) => console.log(data);
 
     return (
         <div className="space-y-[40px]">

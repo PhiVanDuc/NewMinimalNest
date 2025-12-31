@@ -2,25 +2,15 @@
 
 import { useWatch } from "react-hook-form";
 
-import {
-    FormField,
-    FormItem,
-    FormLabel,
-    FormControl,
-    FormMessage
-} from "@/components/ui/form";
-
-import {
-    RadioGroup,
-    RadioGroupItem
-} from "@/components/ui/radio-group";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+
 import { FaPlus } from "react-icons/fa6";
 import { IoReloadOutline } from "react-icons/io5";
 
-import ranks from "@/consts/ranks";
+import ranksConst from "@/consts/ranks-const";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
 
@@ -101,7 +91,7 @@ export default function CouponConditionForm({ formType, form }: PropsType) {
                                     </FormItem>
 
                                     {
-                                        Object.values(ranks).map((rank) => (
+                                        Object.values(ranksConst).map((rank) => (
                                             <FormItem
                                                 key={rank.value}
                                                 className="flex items-center gap-[10px]"

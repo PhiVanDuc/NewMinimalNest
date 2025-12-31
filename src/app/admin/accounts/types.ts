@@ -1,13 +1,14 @@
-import type { RankType } from "@/consts/ranks";
-import type { RoleType } from "@/consts/roles";
+import type { RankConstType } from "@/consts/ranks-const";
+import type { RoleConstType } from "@/consts/roles-const";
+import type { ProviderConstType } from "@/consts/providers-const";
 
 export interface AccountDataType {
     id: string,
     username: string
     email: string,
-    rank: RankType,
-    role: RoleType,
-    provider: string
+    rank: RankConstType,
+    role: RoleConstType,
+    provider: ProviderConstType
 }
 
 export interface AccountsDataType {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useWatch, useFieldArray } from "react-hook-form";
 
 import dynamic from "next/dynamic";
-const BadgePickerDialog = dynamic(() => import("@/components/BadgePickerDialog"), { ssr: false });
+const BadgePickerDialog = dynamic(() => import("@/components/DialogBadgePicker"), { ssr: false });
 
 import Badge from "@/components/Badge";
 
@@ -41,16 +41,14 @@ export default function ProductCategoriesForm({ form }: PropsType) {
         keyName: "_id"
     });
 
-    const handleSelectCategory = (badge: { label: string, value: string }) => {
-        const category = {
-            name: badge.label,
-            slug: badge.value
-        }
+    const handleSelectCategory = (value: string) => {
+        const category = categories.find(category => category.value === value);
+        if (!category) return;
 
-        const index = watchCategories.findIndex(wCategory => wCategory.slug === category.slug);
+        const index = watchCategories.findIndex(wCategory => wCategory.slug === category.value);
 
         if (index !== -1) fieldCategories.remove(index);
-        else fieldCategories.append(category);
+        else fieldCategories.append({ name: category.label, slug: category.value });
     }
 
     return (
@@ -101,12 +99,12 @@ export default function ProductCategoriesForm({ form }: PropsType) {
             {
                 isOpenDialog && (
                     <BadgePickerDialog
-                        isOpen={isOpenDialog}
-                        setIsOpen={setIsOpenDialog}
-                        object="danh mục"
-                        options={categories.map(category => ({ label: category.label, value: category.value }))}
-                        selectedOptions={watchCategories.map(category => ({ label: category.name, value: category.slug }))}
+                        open={isOpenDialog}
+                        onOpenChange={setIsOpenDialog}
+                        badges={categories.map(category => ({ label: category.label, value: category.value }))}
+                        values={watchCategories.map(category => category.slug)}
                         onSelect={handleSelectCategory}
+                        object="danh mục"
                     />
                 )
             }

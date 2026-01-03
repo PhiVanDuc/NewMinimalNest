@@ -1,3 +1,6 @@
+import type { CategoryDataType } from "@/app/admin/categories/types";
+import type { ColorDataType } from "@/app/admin/colors/types";
+
 export interface ProductDataType {
     name: string
 }
@@ -12,6 +15,8 @@ export interface ProductFilterDataType {
     name: string
 }
 
+export type ProductImageRoleType = "main" | "sub" | "normal";
+
 export interface ProductFormDataType {
     name: string,
     desc: string,
@@ -20,12 +25,13 @@ export interface ProductFormDataType {
     discountType: string,
     discount: string,
     price: string,
-    categories: { name: string, slug: string }[],
-    colors: { name: string, slug: string, colorCode: string }[],
-    color?: { name: string, slug: string, colorCode: string },
+    categories: CategoryDataType[],
+    colors: ColorDataType[],
+    color?: ColorDataType,
     images: {
-        colorSlug: string;
-        type: "main" | "sub" | "normal";
-        image: File | string;
+        colorId: string,
+        role: ProductImageRoleType,
+        image: File | string,
+        preview?: string
     }[]
 }

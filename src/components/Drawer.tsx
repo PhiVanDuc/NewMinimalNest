@@ -8,13 +8,13 @@ import drawerSlice from "@/store/slices/drawerSlice";
 
 import type { ReduxStateType } from "@/store/store";
 
-interface PropsType {
+interface Props {
     readonly children: React.ReactNode,
     className?: string,
     id: string,
 }
 
-export default function Drawer({ children, className = "", id }: PropsType) {
+export default function Drawer({ children, className = "", id }: Props) {
     const dispatch = useDispatch();
     const isOpen = useSelector((state: ReduxStateType) => state.drawer[id]);
 

@@ -10,12 +10,12 @@ import { Form } from "@/components/ui/form";
 
 import type { BannerFormDataType } from "@/app/admin/banners/types";
 
-interface PropsType {
+interface Props {
     formType: "add" | "update",
     data?: number[]
 }
 
-export default function BannerForm({ formType, data }: PropsType) {
+export default function BannerForm({ formType, data }: Props) {
     const form = useForm<BannerFormDataType>({
         defaultValues: {
             type: "san-pham",

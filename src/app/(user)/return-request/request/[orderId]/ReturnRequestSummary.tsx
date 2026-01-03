@@ -10,11 +10,11 @@ import { ShoppingCart } from "lucide-react";
 
 import { cn } from "@/libs/utils";
 
-interface PropsType {
+interface Props {
     isEdit?: boolean
 }
 
-export default function ReturnRequestSummary({ isEdit = true }: PropsType) {
+export default function ReturnRequestSummary({ isEdit = true }: Props) {
     return (
         <div
             className={cn(

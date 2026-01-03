@@ -10,11 +10,11 @@ import {
 import type { UseFormReturn } from "react-hook-form";
 import type { ProductStatusFormDataType } from "@/app/admin/product-settings/product-statuses/type";
 
-interface PropsType {
+interface Props {
     form: UseFormReturn<ProductStatusFormDataType>
 }
 
-export default function ProductStatusSelectedProductForm({ form }: PropsType) {
+export default function ProductStatusSelectedProductForm({ form }: Props) {
     return (
         <FormField
             control={form.control}

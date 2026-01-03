@@ -27,30 +27,33 @@ import colorSchema from "@/schema/color-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { adminAddColor, adminUpdateColor } from "@/services/colors/admin";
 
-import type { ColorDataType, ColorFormDataType } from "@/app/admin/colors/types";
-
-interface PropsType {
+interface Props {
     formType: "add" | "update",
-    data?: ColorDataType
+    data?: Color
 }
 
-export default function ColorForm({ formType, data }: PropsType) {
+interface ColorForm {
+    name: string,
+    colorCode: string
+}
+
+export default function ColorForm({ formType, data }: Props) {
     const params = useParams();
     const queryClient = useQueryClient();
 
     const id = params.colorId;
     const isAddType = formType === "add";
 
-    const form = useForm<ColorFormDataType>({
+    const form = useForm({
         resolver: zodResolver(colorSchema),
         defaultValues: {
             name: data?.name || "",
-            colorCode: data?.color_code || "#000000"
+            colorCode: data?.colorCode || "#000000"
         }
     });
 
     const mutation = useMutation({
-        mutationFn: (data: ColorFormDataType) => {
+        mutationFn: (data: ColorForm) => {
             if (isAddType) return adminAddColor(data);
             return adminUpdateColor(id, data);
         },
@@ -65,15 +68,19 @@ export default function ColorForm({ formType, data }: PropsType) {
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
+            console.error("useMutation");
+            console.error(error);
             toast.error({ text: "Thất bại", description: error.message });
         }
     });
+
+    const handleSubmit = (data: ColorForm) => mutation.mutate(data);
 
     return (
         <Form {...form}>
             <form
                 autoComplete="off"
-                onSubmit={form.handleSubmit(data => mutation.mutate(data))}
+                onSubmit={form.handleSubmit(handleSubmit)}
                 className="space-y-[20px]"
             >
                 <FormField

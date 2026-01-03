@@ -35,6 +35,7 @@ function PageContent() {
 
     const isLoading = query.isPending;
     const isError = query.isError || query.data?.success === false;
+    const colors = query.data?.data?.colors || []
     const totalPage = query.data?.data?.totalPage || "1";
     
     return (
@@ -62,7 +63,7 @@ function PageContent() {
                     <div className="space-y-[10px]">
                         <ColorFilter setFilter={setFilter} />
                         <DataTable
-                            data={query.data?.data?.colors || []}
+                            data={colors}
                             columns={colorColumns}
                             isLoading={isLoading}
                         />

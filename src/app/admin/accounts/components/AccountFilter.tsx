@@ -8,21 +8,29 @@ import Combobox from "@/components/Combobox";
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
-import ranksConst from "@/consts/ranks-const";
+import RANKS from "@/consts/ranks";
 
 import type { Dispatch, SetStateAction } from "react";
-import type { AccountFilterDataType } from "@/app/admin/accounts/types";
 
-interface PropsType {
-    setFilter: Dispatch<SetStateAction<AccountFilterDataType>>
+export interface Filter {
+    username: string,
+    rank: Rank
 }
 
-export default function AccountFilter({ setFilter }: PropsType) {
+interface Props {
+    setFilter: Dispatch<SetStateAction<Filter>>
+}
+
+const ranks = Object.values(RANKS).map(rank => {
+    return {
+        label: rank.label,
+        value: rank.value
+    }
+});
+
+export default function AccountFilter({ setFilter }: Props) {
     const queryClient = useQueryClient();
-    const [tempFilter, setTempFilter] = useState({
-        username: "",
-        rank: ""
-    });
+    const [tempFilter, setTempFilter] = useState({ username: "", rank: "" as Rank });
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTempFilter((state) => {
@@ -37,7 +45,7 @@ export default function AccountFilter({ setFilter }: PropsType) {
         setTempFilter((state) => {
             return {
                 ...state,
-                rank: value
+                rank: value as Rank
             }
         });
     }
@@ -58,7 +66,7 @@ export default function AccountFilter({ setFilter }: PropsType) {
                 />
 
                 <Combobox
-                    options={Object.values(ranksConst)}
+                    options={ranks}
                     value={tempFilter.rank}
                     onSelect={handleSelectRank}
                     placeholder="Lọc thứ hạng"

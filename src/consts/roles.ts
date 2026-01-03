@@ -1,5 +1,3 @@
-export type RoleConstType = "khach-hang" | "quan-tri-vien" | "sieu-quan-tri-vien";
-
 const rolesConst = {
     "khach-hang": {
         label: "Khách hàng",

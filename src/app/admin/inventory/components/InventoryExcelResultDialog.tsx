@@ -4,13 +4,13 @@ import DialogBase from "@/components/DialogBase";
 
 import type { Dispatch, SetStateAction } from "react";
 
-interface PropsType {
+interface Props {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
     resultType: "overwrite" | "increase" | "decrease"
 }
 
-export default function InventoryExcelResultDialog({ isOpen, setIsOpen, resultType }: PropsType) {
+export default function InventoryExcelResultDialog({ isOpen, setIsOpen, resultType }: Props) {
     return (
         <DialogBase
             open={isOpen}

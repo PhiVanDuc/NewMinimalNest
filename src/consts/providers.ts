@@ -1,5 +1,3 @@
-export type ProviderConstType = "credentials" | "google";
-
 export default {
     credentials: {
         label: "Thông tin đăng nhập",

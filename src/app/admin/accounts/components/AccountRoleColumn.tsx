@@ -5,35 +5,42 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import Combobox from "@/components/Combobox";
 
+import ROLES from "@/consts/roles";
 import { toast } from "@pheralb/toast";
-import rolesConst from "@/consts/roles-const";
 import { adminUpdateAccountRole } from "@/services/accounts/admin";
 
-import type { RoleConstType } from "@/consts/roles-const";
-
-interface PropsType {
+interface Props {
     id: string,
-    role: RoleConstType
+    role: Role
 }
 
-export default function AccountRoleColumn({ id, role }: PropsType) {
-    const queryClient = useQueryClient();
+const roles = Object.values(ROLES).map(role => {
+    return {
+        label: role.label,
+        value: role.value
+    }
+});
 
+export default function AccountRoleColumn({ id, role }: Props) {
+    const queryClient = useQueryClient();
     const [currentRole, setCurrentRole] = useState(role);
     const [previousRole, setPreviousRole] = useState(role);
 
     const mutation = useMutation({
-        mutationFn: (role: RoleConstType) => adminUpdateAccountRole(id, role),
+        mutationFn: (role: Role) => adminUpdateAccountRole(id, role),
         onSuccess: ({ success, message }) => {
             if (success) {
                 toast.success({ text: "Thành công", description: message });
                 queryClient.invalidateQueries({ queryKey: ["adminAccounts"] })
             }
-            else toast.error({ text: "Thất bại", description: message });
+            else {
+                setCurrentRole(previousRole);
+                toast.error({ text: "Thất bại", description: message });
+            }
         },
         onError: (error) => {
-            console.log("useMutation");
-            console.log(error);
+            console.error("useMutation");
+            console.error(error);
 
             setCurrentRole(previousRole);
             toast.error({ text: "Thất bại", description: error.message });
@@ -41,7 +48,8 @@ export default function AccountRoleColumn({ id, role }: PropsType) {
     });
 
     const handleSelectRole = (value: string) => {
-        const nextRole = value as RoleConstType;
+        const nextRole = value as Role;
+        if (!nextRole) return;
 
         setPreviousRole(currentRole);
         setCurrentRole(nextRole);
@@ -51,7 +59,7 @@ export default function AccountRoleColumn({ id, role }: PropsType) {
 
     return (
         <Combobox
-            options={Object.values(rolesConst)}
+            options={roles}
             value={currentRole}
             onSelect={handleSelectRole}
             className="w-[200px] justify-between"

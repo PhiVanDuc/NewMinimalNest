@@ -3,11 +3,11 @@
 import store from "@/store/store";
 import { Provider } from "react-redux";
 
-interface PropsType {
+interface Props {
     children: React.ReactNode;
 }
 
-export default function ReduxProvider({ children }: Readonly<PropsType>) {
+export default function ReduxProvider({ children }: Readonly<Props>) {
     return (
         <Provider store={store}>
             {children}

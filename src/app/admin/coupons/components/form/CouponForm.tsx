@@ -14,12 +14,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import type { CouponDataType, CouponFormDataType } from "@/app/admin/coupons/types";
 
-interface PropsType {
+interface Props {
     formType: "add" | "update",
     data?: CouponDataType
 }
 
-export default function CouponForm({ formType, data }: PropsType) {
+export default function CouponForm({ formType, data }: Props) {
     const form = useForm<CouponFormDataType>({
         resolver: zodResolver(couponSchema),
         defaultValues: {

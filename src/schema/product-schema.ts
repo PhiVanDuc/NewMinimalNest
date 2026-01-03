@@ -23,33 +23,34 @@ const productSchema = z.object({
     categories: z
         .array(
             z.object({
-                name: z.string(),
-                slug: z.string()
+                id: z.string(),
+                name: z.string()
             })
         )
         .min(1, { error: "Vui lòng chọn ít nhất 1 danh mục cho sản phẩm!" }),
     colors: z
         .array(
             z.object({
+                id: z.string(),
                 name: z.string(),
-                slug: z.string(),
                 colorCode: z.string()
             })
         )
         .min(1, { error: "Vui lòng chọn ít nhất 1 màu sắc cho sản phẩm!" }),
     color: z
         .object({
+            id: z.string(),
             name: z.string(),
-            slug: z.string(),
             colorCode: z.string()
         })
         .optional(),
     images: z
         .array(
             z.object({
-                colorSlug: z.string(),
-                type: z.enum(["main", "sub", "normal"]),
-                image: z.union([z.instanceof(File), z.string()])
+                colorId: z.string(),
+                role: z.enum(["main", "sub", "normal"]),
+                image: z.union([z.instanceof(File), z.string()]),
+                preview: z.optional(z.string())
             })
         )
 })
@@ -57,14 +58,24 @@ const productSchema = z.object({
         const { colors, images } = data;
 
         for (const color of colors) {
-            const groupImages = images.filter(img => img.colorSlug === color.slug);
-            const mainCount = groupImages.filter(i => i.type === "main").length;
-            const subCount = groupImages.filter(i => i.type === "sub").length;
+            const groupImages = images.filter(image => image.colorId === color.id);
+            const mainCount = groupImages.filter(image => image.role === "main").length;
+            const subCount = groupImages.filter(image => image.role === "sub").length;
 
             if (mainCount < 1 || subCount < 2) {
                 ctx.addIssue({
                     code: z.ZodIssueCode.custom,
                     message: `Vui lòng cung cấp cho màu "${color.name}" 1 ảnh chính và 2 ảnh phụ!`,
+                    path: ["images"]
+                });
+
+                break;
+            }
+
+            if (groupImages.length > 10) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: `Vui lòng chỉ cung cấp cho màu "${color.name}" tối đa 10 ảnh!`,
                     path: ["images"]
                 });
 

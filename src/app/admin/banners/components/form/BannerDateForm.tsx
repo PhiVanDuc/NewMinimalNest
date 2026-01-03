@@ -19,12 +19,12 @@ import { IoReloadOutline } from "react-icons/io5";
 import type { UseFormReturn } from "react-hook-form";
 import type { BannerFormDataType } from "@/app/admin/banners/types";
 
-interface PropsType {
+interface Props {
     formType: "add" | "update",
     form: UseFormReturn<BannerFormDataType>
 }
 
-export default function BannerDateForm({ formType, form }: PropsType) {
+export default function BannerDateForm({ formType, form }: Props) {
     const watchStartDate = useWatch({
         control: form.control,
         name: "startDate"

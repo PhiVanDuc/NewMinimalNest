@@ -16,7 +16,7 @@ interface BadgeType {
     value: string
 }
 
-interface PropsType {
+interface Props {
     open: boolean,
     onOpenChange: Dispatch<SetStateAction<boolean>>,
     badges: BadgeType[],
@@ -32,7 +32,7 @@ export default function BadgePickerDialog({
     values,
     onSelect,
     object
-}: PropsType) {
+}: Props) {
     const [searchText, setSearchText] = useState("");
     const [debouncedSearchText, setDebouncedSearchText] = useState("");
 

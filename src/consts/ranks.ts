@@ -1,5 +1,3 @@
-export type RankConstType = "khach-moi" | "khach-thuong" | "khach-quen" | "khach-vip";
-
 const ranksConst = {
     "khach-moi": {
         label: "Khách mới",

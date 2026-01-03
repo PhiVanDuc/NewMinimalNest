@@ -11,7 +11,7 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 
 import { cn } from "@/libs/utils";
 
-interface PropsType {
+interface Props {
     currentProduct: {
         category: string,
         name: string,
@@ -21,7 +21,7 @@ interface PropsType {
     }
 }
 
-export default function HeroProduct({ currentProduct }: PropsType) {
+export default function HeroProduct({ currentProduct }: Props) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
     const [action, setAction] = useState<"buyNow" | "addToCart">("buyNow");
 

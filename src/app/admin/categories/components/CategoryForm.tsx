@@ -16,21 +16,23 @@ import categorySchema from "@/schema/category-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { adminAddCategory, adminUpdateCategory } from "@/services/categories/admin";
 
-import type { CategoryDataType, CategoryFormDataType } from "@/app/admin/categories/types";
-
-interface PropsType {
+interface Props {
     formType: "add" | "update",
-    data?: CategoryDataType
+    data?: Category
 }
 
-export default function CategoryForm({ formType, data }: PropsType) {
+interface CategoryForm {
+    name: string
+}
+
+export default function CategoryForm({ formType, data }: Props) {
     const params = useParams();
     const queryClient = useQueryClient();
 
     const id = params.categoryId;
     const isAddType = formType === "add";
 
-    const form = useForm<CategoryFormDataType>({
+    const form = useForm({
         resolver: zodResolver(categorySchema),
         defaultValues: {
             name: data?.name || "",
@@ -38,7 +40,7 @@ export default function CategoryForm({ formType, data }: PropsType) {
     });
 
     const mutation = useMutation({
-        mutationFn: (data: CategoryFormDataType) => {
+        mutationFn: (data: CategoryForm) => {
             if (isAddType) return adminAddCategory(data);
             return adminUpdateCategory(id, data);
         },
@@ -53,6 +55,8 @@ export default function CategoryForm({ formType, data }: PropsType) {
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
+            console.error("useMutation");
+            console.error(error);
             toast.error({ text: "Thất bại", description: error.message });
         }
     });

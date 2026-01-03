@@ -3,11 +3,11 @@ import BreadcrumbBase from "@/components/BreadcrumbBase";
 import FilterOpenButton from "@/app/(user)/products/components/Filter/FilterOpenButton";
 import Products from "@/app/(user)/products/components/Products/Products";
 
-interface PropsType {
+interface Props {
     searchParams: Promise<{ page?: string }>
 }
 
-export default async function Page({ searchParams }: PropsType) {
+export default async function Page({ searchParams }: Props) {
     const parseSearchParams = await searchParams;
 
     return (

@@ -18,11 +18,11 @@ import {
 import { PiMedalFill } from "react-icons/pi";
 
 import { cn } from "@/libs/utils";
-import ranks from "@/consts/ranks-const";
+import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 
-interface PropsType {
+interface Props {
     drawerNavList: {
         id: string,
         title: string,
@@ -35,7 +35,7 @@ interface PropsType {
     }[]
 }
 
-export default function NavbarDrawer({ drawerNavList }: PropsType) {
+export default function NavbarDrawer({ drawerNavList }: Props) {
     const dispatch = useDispatch();
     const pathname = usePathname();
 

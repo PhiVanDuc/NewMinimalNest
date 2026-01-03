@@ -13,6 +13,7 @@ import Pagination from "@/components/Pagination";
 import CategoryFilter from "@/app/admin/categories/components/CategoryFilter";
 
 import { Button } from "@/components/ui/button";
+
 import { FaPlus } from "react-icons/fa6";
 
 import { adminGetCategories } from "@/services/categories/admin";
@@ -34,6 +35,7 @@ function PageContent() {
 
     const isLoading = query.isPending;
     const isError = query.isError || query.data?.success === false;
+    const categories = query.data?.data?.categories || [];
     const totalPage = query.data?.data?.totalPage || "1";
     
     return (
@@ -61,7 +63,7 @@ function PageContent() {
                     <div className="space-y-[10px]">
                         <CategoryFilter setFilter={setFilter} />
                         <DataTable
-                            data={query.data?.data?.categories || []}
+                            data={categories}
                             columns={categoryColumns}
                             isLoading={isLoading}
                         />

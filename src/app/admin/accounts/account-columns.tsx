@@ -5,18 +5,15 @@ import AccountRoleColumn from "@/app/admin/accounts/components/AccountRoleColumn
 
 import { PiMedalFill } from "react-icons/pi";
 
-import ranksConst from "@/consts/ranks-const";
-import providersConst from "@/consts/providers-const";
+import RANKS from "@/consts/ranks";
+import PROVIDERS from "@/consts/providers";
 
 import type { ColumnDef } from "@tanstack/react-table";
-import type { AccountDataType } from "@/app/admin/accounts/types";
 
-const headerClassName = "text-[14px] text-zinc-700 font-medium";
-
-const accountColumns: ColumnDef<AccountDataType>[] = [
+const accountColumns: ColumnDef<Account>[] = [
     {
         accessorKey: "account",
-        header: () => <h3 className={headerClassName}>Tài khoản</h3>,
+        header: () => <h3 className="header-table">Tài khoản</h3>,
         cell: ({ row }) => {
             const { username, email } = row.original;
 
@@ -34,7 +31,7 @@ const accountColumns: ColumnDef<AccountDataType>[] = [
     },
     {
         accessorKey: "rank",
-        header: () => <h3 className={headerClassName}>Thứ hạng</h3>,
+        header: () => <h3 className="header-table">Thứ hạng</h3>,
         cell: ({ row }) => {
             const { rank } = row.original;
 
@@ -42,17 +39,17 @@ const accountColumns: ColumnDef<AccountDataType>[] = [
                 <div className="flex items-center gap-[10px]">
                     <PiMedalFill
                         size={25}
-                        style={{ color: ranksConst[rank].colorCode }}
+                        style={{ color: RANKS[rank].colorCode }}
                     />
 
-                    <p className="content-table-row">{ranksConst[rank].label}</p>
+                    <p className="content-table-row">{RANKS[rank].label}</p>
                 </div>
             )
         }
     },
     {
         accessorKey: "role",
-        header: () => <h3 className={headerClassName}>Vai trò</h3>,
+        header: () => <h3 className="header-table">Vai trò</h3>,
         cell: ({ row }) => {
             const { id, role } = row.original;
             return <AccountRoleColumn key={id} id={id} role={role} />
@@ -60,10 +57,10 @@ const accountColumns: ColumnDef<AccountDataType>[] = [
     },
     {
         accessorKey: "provider",
-        header: () => <h3 className={headerClassName}>Loại tài khoản</h3>,
+        header: () => <h3 className="header-table">Loại tài khoản</h3>,
         cell: ({ row }) => {
             const { provider } = row.original;
-            return <p className="content-table-row">{providersConst[provider].label}</p>
+            return <p className="content-table-row">{PROVIDERS[provider].label}</p>
         }
     }
 ];

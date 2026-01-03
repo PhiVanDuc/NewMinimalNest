@@ -8,19 +8,22 @@ import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
 import type { Dispatch, SetStateAction } from "react";
-import type { CategoryFilterDataType } from "@/app/admin/categories/types";
 
-interface PropsType {
-    setFilter: Dispatch<SetStateAction<CategoryFilterDataType>>
+export interface Filter {
+    name: string
 }
 
-export default function CategoryFilter({ setFilter }: PropsType) {
-    const queryClient = useQueryClient();
-    const [tempFilter, setTempFilter] = useState({
-        name: ""
-    });
+interface Props {
+    setFilter: Dispatch<SetStateAction<Filter>>
+}
 
-    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => setTempFilter(() => ({ name: e.target.value }));
+export default function CategoryFilter({ setFilter }: Props) {
+    const queryClient = useQueryClient();
+    const [tempFilter, setTempFilter] = useState({ name: "" });
+
+    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTempFilter(() => ({ name: e.target.value }))
+    }
 
     const handleClickFilter = () => {
         setFilter(tempFilter);

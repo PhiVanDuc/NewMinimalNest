@@ -10,19 +10,19 @@ import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/comp
 import { FaPlus } from "react-icons/fa6";
 import { IoReloadOutline } from "react-icons/io5";
 
-import ranksConst from "@/consts/ranks-const";
+import ranksConst from "@/consts/ranks";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
 
 import type { UseFormReturn } from "react-hook-form";
 import type { CouponFormDataType } from "@/app/admin/coupons/types";
 
-interface PropsType {
+interface Props {
     formType: "add" | "update"
     form: UseFormReturn<CouponFormDataType>
 }
 
-export default function CouponConditionForm({ formType, form }: PropsType) {
+export default function CouponConditionForm({ formType, form }: Props) {
     const watchMinTotal = useWatch({
         control: form.control,
         name: "minTotal"

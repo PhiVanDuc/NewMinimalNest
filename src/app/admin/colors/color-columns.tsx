@@ -3,22 +3,19 @@
 import ColorActionOptions from "@/app/admin/colors/components/ColorActionOptions";
 
 import type { ColumnDef } from "@tanstack/react-table";
-import type { ColorDataType } from "@/app/admin/colors/types";
 
-const headerClassName = "text-[14px] text-zinc-700 font-medium";
-
-const colorColumns: ColumnDef<ColorDataType>[] = [
+const colorColumns: ColumnDef<Color>[] = [
     {
         accessorKey: "color",
-        header: () => <h3 className={headerClassName}>Màu sắc</h3>,
+        header: () => <h3 className="header-table">Màu sắc</h3>,
         cell: ({ row }) => {
-            const { color_code, name } = row.original;
+            const { name, colorCode } = row.original;
 
             return (
                 <div className="flex items-center gap-[15px]">
                     <span
                         className="w-[20px] aspect-square rounded-full outline-[2px] outline-offset-2 outline-zinc-100"
-                        style={{ background: color_code }}
+                        style={{ background: colorCode }}
                     />
 
                     <p className="header-table-row">{name}</p>
@@ -28,9 +25,10 @@ const colorColumns: ColumnDef<ColorDataType>[] = [
     },
     {
         accessorKey: "actions",
-        header: () => <h3 className={headerClassName + " text-center"}>Hành động</h3>,
+        header: () => <h3 className="header-table text-center">Hành động</h3>,
         cell: ({ row }) => {
-            return <ColorActionOptions data={row.original} />
+            const { id } = row.original;
+            return <ColorActionOptions id={id} />
         }
     }
 ];

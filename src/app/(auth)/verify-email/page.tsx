@@ -8,11 +8,11 @@ import { MdOutlineEmail } from "react-icons/md";
 
 import publicFetch from "@/libs/fetch/public-fetch";
 
-interface PropsType {
+interface Props {
     searchParams: Promise<{ token: string }>
 }
 
-export default async function Page({ searchParams }: PropsType) {
+export default async function Page({ searchParams }: Props) {
     const parseSearchParams = await searchParams;
     let isSuccess = true;
 
@@ -21,7 +21,7 @@ export default async function Page({ searchParams }: PropsType) {
         isSuccess = success;
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
         isSuccess = false;
     }
 

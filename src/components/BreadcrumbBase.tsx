@@ -3,16 +3,9 @@
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator
-} from "@/components/ui/breadcrumb";
-
 import { Fragment } from "react";
+
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const list = {
     "products": "Sản phẩm",
@@ -36,7 +29,9 @@ const list = {
     "inventory": "Tồn kho",
     "template-excel": "Mẫu Excel",
     "banners": "Banner",
-    "add": "Thêm"
+    "add": "Thêm",
+    "update": "Cập nhật",
+    "request": "Yêu cầu"
 }
 
 export default function BreadcrumbBase() {
@@ -69,17 +64,13 @@ export default function BreadcrumbBase() {
                             <Fragment key={index}>
                                 <BreadcrumbItem>
                                     {
-                                        isLast ? (
-                                            <BreadcrumbPage className="text-theme-main font-medium">{item.label}</BreadcrumbPage>
-                                        ) : (
+                                        isLast ?
+                                            <BreadcrumbPage className="text-theme-main font-medium">{item.label}</BreadcrumbPage> :
                                             <BreadcrumbLink href={item.href} className="hover:text-zinc-800">{item.label}</BreadcrumbLink>
-                                        )
                                     }
                                 </BreadcrumbItem>
 
-                                {
-                                    !isLast && <BreadcrumbSeparator />
-                                }
+                                {!isLast && <BreadcrumbSeparator />}
                             </Fragment>
                         );
                     })

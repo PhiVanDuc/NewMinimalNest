@@ -5,12 +5,12 @@ import DialogBase from "@/components/DialogBase";
 
 import type { Dispatch, SetStateAction } from "react";
 
-interface PropsType {
+interface Props {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function PaymentCouponsDialog({ isOpen, setIsOpen }: PropsType) {
+export default function PaymentCouponsDialog({ isOpen, setIsOpen }: Props) {
     return (
         <DialogBase
             open={isOpen}

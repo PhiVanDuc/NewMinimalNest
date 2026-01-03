@@ -17,10 +17,7 @@ import isPositiveIntegerString from "@/utils/is-positive-integer-string";
 
 function PageContent() {
     const searchParams = useSearchParams();
-    const [filter, setFilter] = useState({
-        username: "",
-        rank: ""
-    });
+    const [filter, setFilter] = useState({ username: "", rank: "" as Rank });
 
     const page = searchParams.get("page") || "1";
     const isValidPage = isPositiveIntegerString(page);
@@ -33,6 +30,7 @@ function PageContent() {
 
     const isLoading = query.isPending;
     const isError = query.isError || query.data?.success === false;
+    const accounts = query.data?.data?.accounts || [];
     const totalPage = query.data?.data?.totalPage || "1";
 
     return (
@@ -48,7 +46,7 @@ function PageContent() {
                     <div className="space-y-[10px]">
                         <AccountFilter setFilter={setFilter} />
                         <DataTable
-                            data={query.data?.data?.accounts || []}
+                            data={accounts}
                             columns={accountColumns}
                             isLoading={isLoading}
                         />

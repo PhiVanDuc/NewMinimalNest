@@ -39,8 +39,8 @@ export default function SignUpForm() {
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
-            console.log("useMutation");
-            console.log(error);
+            console.error("useMutation");
+            console.error(error);
             toast.error({ text: "Thất bại", description: error.message });
         }
     });

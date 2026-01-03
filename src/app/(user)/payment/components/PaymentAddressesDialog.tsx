@@ -6,12 +6,12 @@ import { cn } from "@/libs/utils";
 
 import type { Dispatch, SetStateAction } from "react";
 
-interface PropsType {
+interface Props {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function PaymentAddressesDialog({ isOpen, setIsOpen }: PropsType) {
+export default function PaymentAddressesDialog({ isOpen, setIsOpen }: Props) {
     return (
         <DialogBase
             open={isOpen}

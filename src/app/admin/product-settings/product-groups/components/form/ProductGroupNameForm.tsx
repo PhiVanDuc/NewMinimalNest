@@ -16,12 +16,12 @@ import { IoReloadOutline } from "react-icons/io5";
 import type { UseFormReturn } from "react-hook-form";
 import type { ProductGroupFormDataType } from "@/app/admin/product-settings/product-groups/types";
 
-interface PropsType {
+interface Props {
     formType: "add" | "update",
     form: UseFormReturn<ProductGroupFormDataType>
 }
 
-export default function ProductGroupNameForm({ formType, form }: PropsType) {
+export default function ProductGroupNameForm({ formType, form }: Props) {
     return (
         <div className="relative pl-[24px] space-y-[20px]">
             <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />

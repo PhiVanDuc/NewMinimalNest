@@ -9,11 +9,11 @@ import {
 
 import type { UseFormReturn } from "react-hook-form";
 
-interface PropsType {
+interface Props {
     form: UseFormReturn<{ products: number[] }>
 }
 
-export default function TemplateExcelSelectedProductForm({ form }: PropsType) {
+export default function TemplateExcelSelectedProductForm({ form }: Props) {
     return (
         <FormField
             control={form.control}

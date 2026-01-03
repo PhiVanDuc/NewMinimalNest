@@ -14,11 +14,11 @@ import { Textarea } from "@/components/ui/textarea";
 import type { UseFormReturn } from "react-hook-form";
 import type { CouponFormDataType } from "@/app/admin/coupons/types";
 
-interface PropsType {
+interface Props {
     form: UseFormReturn<CouponFormDataType>
 }
 
-export default function CouponGeneralForm({ form }: PropsType) {
+export default function CouponGeneralForm({ form }: Props) {
     return (
         <div className="relative pl-[24px] space-y-[20px]">
             <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />

@@ -16,12 +16,12 @@ import { IoReloadOutline } from "react-icons/io5";
 
 import { cn } from "@/libs/utils";
 
-interface PropsType {
+interface Props {
     bannerType: "product" | "discount" | "coupon",
     colorCode: string
 }
 
-export default function Banner({ bannerType, colorCode }: PropsType) {
+export default function Banner({ bannerType, colorCode }: Props) {
     return (
         <div
             className={cn(

@@ -2,12 +2,12 @@
 
 import BreadcrumbBase from "@/components/BreadcrumbBase";
 
-interface PropsType {
+interface Props {
     children: React.ReactNode;
     isBreadcrumb?: boolean
 }
 
-export default function Header({ children, isBreadcrumb = true }: Readonly<PropsType>) {
+export default function Header({ children, isBreadcrumb = true }: Readonly<Props>) {
     return (
         <header className="space-y-[40px]">
             {isBreadcrumb && <BreadcrumbBase />}

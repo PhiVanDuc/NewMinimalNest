@@ -6,11 +6,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import { FaShippingFast } from "react-icons/fa";
 
-interface PropsType {
+interface Props {
     isEdit?: boolean
 }
 
-export default function PaymentMethods({ isEdit = true }: PropsType) {
+export default function PaymentMethods({ isEdit = true }: Props) {
     return (
         <div className="space-y-[20px]">
             <h2 className="sub-header-basic">Phương thức thanh toán</h2>

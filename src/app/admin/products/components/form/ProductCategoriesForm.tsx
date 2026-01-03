@@ -1,34 +1,41 @@
 "use client"
 
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useWatch, useFieldArray } from "react-hook-form";
 
 import dynamic from "next/dynamic";
 const BadgePickerDialog = dynamic(() => import("@/components/DialogBadgePicker"), { ssr: false });
 
+import Error from "@/components/Error";
 import Badge from "@/components/Badge";
+import Loading from "@/components/Loading";
 
-import {
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from "@/components/ui/form";
+import { FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { FaPlus } from "react-icons/fa6";
 
 import { cn } from "@/libs/utils";
-import { categories } from "@/consts/filter";
+import { publicGetCategories } from "@/services/categories/public";
 
 import type { UseFormReturn } from "react-hook-form";
 import type { ProductFormDataType } from "@/app/admin/products/types";
 
-interface PropsType {
+interface Props {
     form: UseFormReturn<ProductFormDataType>
 }
 
-export default function ProductCategoriesForm({ form }: PropsType) {
+export default function ProductCategoriesForm({ form }: Props) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
+
+    const query = useQuery({
+        queryKey: ["categories"],
+        queryFn: () => publicGetCategories()
+    });
+
+    const isLoading = query.isPending;
+    const isError = query.error || !query.data?.success;
+    const categories = query.data?.data?.categories?.map(category => ({ label: category.name, value: category.id })) || []
 
     const watchCategories = useWatch({
         control: form.control,
@@ -42,13 +49,13 @@ export default function ProductCategoriesForm({ form }: PropsType) {
     });
 
     const handleSelectCategory = (value: string) => {
-        const category = categories.find(category => category.value === value);
+        const category = query.data?.data?.categories.find(category => category.id === value);
         if (!category) return;
 
-        const index = watchCategories.findIndex(wCategory => wCategory.slug === category.value);
+        const index = watchCategories.findIndex(wCategory => wCategory.id === category.id);
 
         if (index !== -1) fieldCategories.remove(index);
-        else fieldCategories.append({ name: category.label, slug: category.value });
+        else fieldCategories.append({ name: category.name, id: category.id });
     }
 
     return (
@@ -61,35 +68,38 @@ export default function ProductCategoriesForm({ form }: PropsType) {
                         <FormItem>
                             <FormLabel isRequired={true}>Danh mục</FormLabel>
 
-                            <div className="flex flex-wrap gap-[6px]">
-                                {
-                                    watchCategories.map(category => {
-                                        return (
-                                            <Badge
-                                                key={category.slug}
-                                                variant="outline"
-                                            >
-                                                <p>{category.name}</p>
-                                            </Badge>
+                            {
+                                isLoading ? <Loading /> :
+                                    isError ? <Error /> :
+                                        (
+                                            <div className="flex flex-wrap gap-[6px]">
+                                                {
+                                                    watchCategories.map(category => {
+                                                        return (
+                                                            <Badge key={category.id} variant="outline">
+                                                                <p>{category.name}</p>
+                                                            </Badge>
+                                                        )
+                                                    })
+                                                }
+
+                                                <Badge
+                                                    variant="outline"
+                                                    className={cn(
+                                                        "cursor-pointer",
+                                                        fieldState.error ? "border-destructive" : ""
+                                                    )}
+                                                    onClick={() => { setIsOpenDialog(true) }}
+                                                >
+                                                    <div className="flex items-center gap-[10px]">
+                                                        <FaPlus className="text-[12px]" />
+                                                        Lựa chọn danh mục
+                                                    </div>
+                                                </Badge>
+                                            </div>
                                         )
-                                    })
-                                }
-
-                                <Badge
-                                    variant="outline"
-                                    className={cn(
-                                        "cursor-pointer",
-                                        fieldState.error ? "border-destructive" : ""
-                                    )}
-                                    onClick={() => { setIsOpenDialog(true) }}
-                                >
-                                    <div className="flex items-center gap-[10px]">
-                                        <FaPlus className="text-[12px]" />
-                                        <p>Lựa chọn danh mục</p>
-                                    </div>
-                                </Badge>
-                            </div>
-
+                            }
+                            
                             <FormMessage />
                         </FormItem>
                     )
@@ -101,8 +111,8 @@ export default function ProductCategoriesForm({ form }: PropsType) {
                     <BadgePickerDialog
                         open={isOpenDialog}
                         onOpenChange={setIsOpenDialog}
-                        badges={categories.map(category => ({ label: category.label, value: category.value }))}
-                        values={watchCategories.map(category => category.slug)}
+                        badges={categories}
+                        values={watchCategories.map(category => category.id)}
                         onSelect={handleSelectCategory}
                         object="danh mục"
                     />

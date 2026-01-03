@@ -15,11 +15,11 @@ import { HiOutlineSave } from "react-icons/hi";
 import type { UseFormReturn } from "react-hook-form";
 import type { ProductStatusFormDataType } from "@/app/admin/product-settings/product-statuses/type";
 
-interface PropsType {
+interface Props {
     form: UseFormReturn<ProductStatusFormDataType>
 }
 
-export default function ProductStatusNameForm({ form }: PropsType) {
+export default function ProductStatusNameForm({ form }: Props) {
     return (
         <div className="relative pl-[24px] space-y-[20px]">
             <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />

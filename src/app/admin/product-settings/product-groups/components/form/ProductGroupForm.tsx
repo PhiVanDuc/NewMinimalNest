@@ -14,12 +14,12 @@ import productGroupSchema from "@/schema/product-group-schema";
 
 import type { ProductGroupDataType, ProductGroupFormDataType } from "@/app/admin/product-settings/product-groups/types";
 
-interface PropsType {
+interface Props {
     formType: "add" | "update",
     data?: ProductGroupDataType
 }
 
-export default function ProductGroupForm({ formType, data }: PropsType) {
+export default function ProductGroupForm({ formType, data }: Props) {
     const form = useForm<ProductGroupFormDataType>({
         resolver: zodResolver(productGroupSchema),
         defaultValues: {

@@ -1,19 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import publicFetch from "@/libs/fetch/public-fetch";
 
-interface RequestBodyType { token: string }
-interface ResponseDataType {
+interface InputData { token: string }
+
+interface OutputData {
     refreshToken: string,
     accessToken: string
 }
 
 const BE_API = process.env.BE_API;
-const path = "/auth/google/exchange";
+const PATH = "/auth/google/exchange";
 
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { status, success, message, data } = await publicFetch.post<RequestBodyType, ResponseDataType>(path, body);
+        const { status, success, message, data } = await publicFetch.post<InputData, OutputData>(PATH, body);
 
         if (success && data) {
             const { accessToken, refreshToken } = data;
@@ -46,8 +47,8 @@ export async function POST(req: NextRequest) {
     catch (err) {
         const error = err as Error;
 
-        console.log(`Route Handlers - ${BE_API}${path}`);
-        console.log(error);
+        console.error(`Route Handlers - ${BE_API}${PATH}`);
+        console.error(error);
 
         return NextResponse.json(
             { success: false, message: error.message || "Lỗi không xác định!" },

@@ -14,12 +14,12 @@ import discountSchema from "@/schema/discount-schema";
 
 import type { DiscountDataType, DiscountFormDataType } from "@/app/admin/product-settings/discounts/types";
 
-interface PropsType {
+interface Props {
     formType: "add" | "update",
     data?: DiscountDataType
 }
 
-export default function DiscountForm({ formType, data }: PropsType) {
+export default function DiscountForm({ formType, data }: Props) {
     const form = useForm<DiscountFormDataType>({
         resolver: zodResolver(discountSchema),
         defaultValues: {

@@ -10,11 +10,11 @@ import {
 import type { UseFormReturn } from "react-hook-form";
 import type { DiscountFormDataType } from "@/app/admin/product-settings/discounts/types";
 
-interface PropsType {
+interface Props {
     form: UseFormReturn<DiscountFormDataType>
 }
 
-export default function DiscountSelectedProductForm({ form }: PropsType) {
+export default function DiscountSelectedProductForm({ form }: Props) {
     return (
         <FormField
             control={form.control}

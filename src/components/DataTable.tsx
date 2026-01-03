@@ -18,13 +18,13 @@ import {
 
 import { cn } from "@/libs/utils";
 
-interface PropsType<TData, TValue> {
+interface Props<TData, TValue> {
     data: TData[],
     columns: ColumnDef<TData, TValue>[],
     isLoading?: boolean
 }
 
-export default function DataTable<TData, TValue>({ data = [], columns, isLoading = false }: PropsType<TData, TValue>) {
+export default function DataTable<TData, TValue>({ data = [], columns, isLoading = false }: Props<TData, TValue>) {
     const table = useReactTable({
         data,
         columns,

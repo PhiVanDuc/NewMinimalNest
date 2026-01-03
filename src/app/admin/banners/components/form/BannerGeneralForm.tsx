@@ -30,11 +30,11 @@ import bannerTypes from "@/consts/banner-types";
 import type { UseFormReturn } from "react-hook-form";
 import type { BannerFormDataType } from "@/app/admin/banners/types";
 
-interface PropsType {
+interface Props {
     form: UseFormReturn<BannerFormDataType>
 }
 
-export default function BannerGeneralForm({ form }: PropsType) {
+export default function BannerGeneralForm({ form }: Props) {
     const watchType = useWatch({
         control: form.control,
         name: "type"

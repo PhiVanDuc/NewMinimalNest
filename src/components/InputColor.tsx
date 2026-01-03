@@ -8,12 +8,12 @@ import {
 
 import { Input } from "@/components/ui/input";
 
-interface PropsType {
+interface Props {
     colorCode: string,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function InputColor({ colorCode, onChange }: PropsType) {
+export default function InputColor({ colorCode, onChange }: Props) {
     return (
         <FormItem className="shrink-0 relative self-stretch">
             <FormLabel

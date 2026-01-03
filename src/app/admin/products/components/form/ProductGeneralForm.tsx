@@ -2,16 +2,9 @@
 
 import { useWatch } from "react-hook-form";
 
-import {
-    FormField,
-    FormItem,
-    FormLabel,
-    FormControl,
-    FormMessage
-} from "@/components/ui/form";
-
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
@@ -19,11 +12,11 @@ import toStandardPositiveIntegerString from "@/utils/to-standard-positive-intege
 import type { UseFormReturn } from "react-hook-form";
 import type { ProductFormDataType } from "@/app/admin/products/types";
 
-interface PropsType {
+interface Props {
     form: UseFormReturn<ProductFormDataType>
 }
 
-export default function ProductGeneralForm({ form }: PropsType) {
+export default function ProductGeneralForm({ form }: Props) {
     const watchCostPrice = useWatch({
         control: form.control,
         name: "costPrice"

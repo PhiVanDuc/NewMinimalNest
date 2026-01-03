@@ -2,11 +2,11 @@
 
 import { cn } from "@/libs/utils";
 
-interface PropsType {
+interface Props {
     className?: string
 }
 
-export default function Price({ className }: PropsType) {
+export default function Price({ className }: Props) {
     return (
         <p
             className={cn(

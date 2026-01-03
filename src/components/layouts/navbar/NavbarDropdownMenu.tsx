@@ -12,18 +12,18 @@ import { FiUser } from "react-icons/fi";
 import { PiMedalFill } from "react-icons/pi";
 import { IoIosLogOut } from "react-icons/io";
 
-import ranks from "@/consts/ranks-const";
+import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
 
 import type { ReduxStateType } from "@/store/store";
 
-interface PropsType {
+interface Props {
     side?: "top" | "right" | "bottom" | "left",
     align?: "start" | "center" | "end"
 }
 
-export default function NavbarDropdownMenu({ side = "bottom", align = "end" }: PropsType) {
+export default function NavbarDropdownMenu({ side = "bottom", align = "end" }: Props) {
     const dispatch = useDispatch();
     const isOpen = useSelector((state: ReduxStateType) => state.drawer[drawerIds.navbar]);
 

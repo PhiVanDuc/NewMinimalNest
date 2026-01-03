@@ -1,10 +1,10 @@
 import NavbarUser from "@/components/layouts/navbar/user/NavbarUser";
 
-interface PropsType {
+interface Props {
     children: React.ReactNode;
 }
 
-export default function Layout({ children }: Readonly<PropsType>) {
+export default function Layout({ children }: Readonly<Props>) {
     return (
         <main className="container-horizontal container-top container-bottom">
             <NavbarUser />

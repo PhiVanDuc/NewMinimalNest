@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Header from "@/components/Header";
@@ -16,22 +17,25 @@ import { IoReloadOutline } from "react-icons/io5";
 
 import productSchema from "@/schema/product-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import imageCompression from 'browser-image-compression';
 
 import type { ProductDataType, ProductFormDataType } from "@/app/admin/products/types";
 
-interface PropsType {
+interface Props {
     formType: "add" | "update",
     data?: ProductDataType
 }
 
-export default function ProductForm({ formType, data }: PropsType) {
+export default function ProductForm({ formType, data }: Props) {
+    const [compressing, setCompressing] = useState({ status: false, progress: 0 });
+
     const form = useForm({
         resolver: zodResolver(productSchema),
         defaultValues: {
-            name: "",
-            desc: "",
-            costPrice: "",
-            interestPercent: "",
+            name: "Tên sản phẩm",
+            desc: "Mô tả sản phẩm",
+            costPrice: "1.000.000",
+            interestPercent: "80",
             discountType: "percent",
             discount: "",
             price: "",
@@ -42,7 +46,30 @@ export default function ProductForm({ formType, data }: PropsType) {
         }
     });
 
-    const handleSubmit = (data: ProductFormDataType) => console.log(data);
+    const handleSubmit = async (data: ProductFormDataType) => {
+        setCompressing(state => ({ ...state, status: true }));
+
+        const totalImages = data.images.length;
+        const progresses = Array(totalImages).fill(0);
+
+        const images = await Promise.all(data.images.map(async (image, index) => {
+            if (typeof image.image === "string") return image; 
+
+            const compressedFile = await imageCompression(image.image, {
+                maxSizeMB: 2,
+                useWebWorker: true,
+                onProgress: (progress) => {
+                    progresses[index] = progress;
+                    const totalProgress = progresses.reduce((a, b) => a + b, 0) / totalImages;
+                    setCompressing(state => ({ ...state, progress: Math.round(totalProgress) }));
+                }
+            });
+
+            return { ...image, image: compressedFile };
+        }));
+
+        setCompressing({ status: false, progress: 0 });
+    }
 
     return (
         <div className="space-y-[40px]">
@@ -82,19 +109,22 @@ export default function ProductForm({ formType, data }: PropsType) {
                         {
                             (formType === "add" || formType === "update") &&
                             (
-                                <Button className="w-full bg-theme-main hover:bg-theme-main/95">
+                                <Button
+                                    className="w-full bg-theme-main hover:bg-theme-main/95"
+                                    disabled={compressing.status}
+                                >
                                     {
                                         formType === "add" ?
                                             (
                                                 <>
                                                     <FaPlus />
-                                                    Thêm sản phẩm
+                                                    { compressing.status ? `Đang nén ảnh ${compressing.progress}%` : "Thêm sản phẩm" }
                                                 </>
                                             ) :
                                             (
                                                 <>
                                                     <IoReloadOutline />
-                                                    Cập nhật sản phẩm
+                                                    { compressing.status ? `Đang nén ảnh ${compressing.progress}%` : "Cập nhật sản phẩm" }
                                                 </>
                                             )
                                     }

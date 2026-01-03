@@ -24,13 +24,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import type { Dispatch, SetStateAction } from "react";
 
-interface PropsType {
+interface Props {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
     action: "add" | "edit"
 }
 
-export default function AddressAddFormDialog({ isOpen, setIsOpen, action }: PropsType) {
+export default function AddressAddFormDialog({ isOpen, setIsOpen, action }: Props) {
     const form = useForm({
         resolver: zodResolver(addressSchema),
         defaultValues: {

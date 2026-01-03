@@ -234,8 +234,16 @@
     @apply text-[22px] font-semibold capitalize md:text-[26px];
 }
 
+@utility desc-basic {
+    @apply text-[14px] text-zinc-600 md:text-[15px];
+}
+
 @utility sub-header-basic {
     @apply text-[18px] font-semibold capitalize md:text-[22px];
+}
+
+@utility header-table {
+    @apply text-[14px] text-zinc-700 font-medium;
 }
 
 @utility header-table-row {
@@ -244,10 +252,6 @@
 
 @utility content-table-row {
     @apply text-[14px] md:text-[15px] text-zinc-700;
-}
-
-@utility desc-basic {
-    @apply text-[14px] text-zinc-600 md:text-[15px];
 }
 
 @utility desc-table-row {

@@ -14,7 +14,7 @@ import formatDate from "@/utils/format-date";
 
 import type { Matcher } from "react-day-picker";
 
-interface PropsType {
+interface Props {
     value: Date;
     onSelect?: (date: Date | undefined) => void;
     isError?: boolean,
@@ -26,7 +26,7 @@ export default function DatePicker({
     onSelect,
     isError,
     disabled
-}: PropsType) {
+}: Props) {
     return (
         <Popover>
             <PopoverTrigger className="w-full">

@@ -12,12 +12,12 @@ import { cn } from "@/libs/utils";
 
 import type { Dispatch, SetStateAction } from "react";
 
-interface PropsType {
+interface Props {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function ProductImages({ isOpen, setIsOpen }: PropsType) {
+export default function ProductImages({ isOpen, setIsOpen }: Props) {
     return (
         <Drawer
             open={isOpen}

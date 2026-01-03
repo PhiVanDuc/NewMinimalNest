@@ -5,7 +5,7 @@ import { FiMinus, FiPlus } from "react-icons/fi";
 
 import { cn } from "@/libs/utils";
 
-interface PropsType {
+interface Props {
     value: string,
     handleBlurQuantity?: (e: React.FocusEvent<HTMLInputElement>) => void,
     handleChangeQuantity?: (e: React.ChangeEvent<HTMLInputElement>) => void,
@@ -22,7 +22,7 @@ export default function Quantity(
         handleClickDecrease,
         handleClickIncrease,
         disabled = false
-    }: PropsType
+    }: Props
 ) {
     return (
         <div

@@ -10,11 +10,11 @@ import {
 import type { UseFormReturn } from "react-hook-form";
 import type { ProductGroupFormDataType } from "@/app/admin/product-settings/product-groups/types";
 
-interface PropsType {
+interface Props {
     form: UseFormReturn<ProductGroupFormDataType>
 }
 
-export default function ProductGroupSelectedProductForm({ form }: PropsType) {
+export default function ProductGroupSelectedProductForm({ form }: Props) {
     return (
         <FormField
             control={form.control}

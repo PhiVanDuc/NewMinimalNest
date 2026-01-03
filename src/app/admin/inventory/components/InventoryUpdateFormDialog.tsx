@@ -24,12 +24,12 @@ import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import type { Dispatch, SetStateAction } from "react";
 import type { InventoryFormDataType } from "@/app/admin/inventory/types";
 
-interface PropsType {
+interface Props {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function InventoryQuantityFormDialog({ isOpen, setIsOpen }: PropsType) {
+export default function InventoryQuantityFormDialog({ isOpen, setIsOpen }: Props) {
     const form = useForm<InventoryFormDataType>({
         resolver: zodResolver(inventorySchema),
         defaultValues: {

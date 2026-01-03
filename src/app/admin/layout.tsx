@@ -1,10 +1,10 @@
 import NavbarAdmin from "@/components/layouts/navbar/admin/NavbarAdmin";
 
-interface PropsType {
+interface Props {
     children: React.ReactNode;
 }
 
-export default function Layout({ children }: Readonly<PropsType>) {
+export default function Layout({ children }: Readonly<Props>) {
     return (
         <main className="admin-container-horizontal container-top container-bottom">
             <NavbarAdmin />

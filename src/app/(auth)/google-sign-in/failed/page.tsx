@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 
 import { PiSignInBold } from "react-icons/pi";
 
-interface PropsType {
+interface Props {
     searchParams: Promise<{ message: string }>
 }
 
-export default async function Page({ searchParams }: PropsType) {
+export default async function Page({ searchParams }: Props) {
     const parseSearchParams = await searchParams;
     const message = parseSearchParams.message;
 

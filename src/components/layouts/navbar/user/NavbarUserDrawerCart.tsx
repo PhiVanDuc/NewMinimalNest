@@ -8,13 +8,13 @@ import { cn } from "@/libs/utils";
 
 import type { ReduxStateType } from "@/store/store";
 
-interface PropsType {
+interface Props {
     itemHref: string,
     identifyHref: string,
     handleClose: (e: React.MouseEvent<HTMLElement>) => void
 }
 
-export default function NavbarDrawerCart({ itemHref, identifyHref, handleClose }: PropsType) {
+export default function NavbarDrawerCart({ itemHref, identifyHref, handleClose }: Props) {
     const cart = useSelector((state: ReduxStateType) => state.cart);
 
     return (

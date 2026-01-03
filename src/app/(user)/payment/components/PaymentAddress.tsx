@@ -14,11 +14,11 @@ import { IoReloadOutline } from "react-icons/io5";
 
 import { cn } from "@/libs/utils";
 
-interface PropsType {
+interface Props {
     isEdit?: boolean
 }
 
-export default function PaymentAddress({ isEdit = true }: PropsType) {
+export default function PaymentAddress({ isEdit = true }: Props) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     return (

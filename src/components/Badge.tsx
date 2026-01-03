@@ -2,11 +2,11 @@
 
 import { cn } from "@/libs/utils";
 
-interface PropsType extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
     variant?: "blur" | "solid" | "outline"
 }
 
-export default function Badge({ children, className = "", variant = "blur", ...props }: PropsType) {
+export default function Badge({ children, className = "", variant = "blur", ...props }: Props) {
     return (
         <div
             className={cn(

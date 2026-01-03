@@ -8,13 +8,13 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface PropsType {
+interface Props {
     readonly children: React.ReactNode,
     isScroll?: boolean,
     className?: string
 }
 
-export default function Navbar({ children, isScroll = true, className = "" }: PropsType) {
+export default function Navbar({ children, isScroll = true, className = "" }: Props) {
     const navbarRef = useRef<null | HTMLElement>(null);
     const lastScrollRef = useRef(0);
     const displayStatusRef = useRef("top");

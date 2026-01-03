@@ -1,29 +1,21 @@
-type MethodType = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+type Body<InputData> = BodyInit | InputData;
 
-interface OptionsType {
-    headers: Record<string, string>,
-    mode?: RequestMode,
-    credentials?: RequestCredentials,
-    cache?: RequestCache;
-    redirect?: RequestRedirect;
-    referrer?: string;
-    referrerPolicy?: ReferrerPolicy;
-    integrity?: string;
-    keepalive?: boolean;
-    signal?: AbortSignal | null;
+interface Options extends Omit<RequestInit, "method" | "body"> {
+    headers?: Record<string, string>;
 }
 
-interface ReturnType<ResponseDataType> {
+interface Output<OutputData> {
     status: number,
     success: boolean,
     message: string,
-    data?: ResponseDataType
+    data?: OutputData
 }
 
 const BE_API = process.env.BE_API;
 const NEXT_PUBLIC_BE_API = process.env.NEXT_PUBLIC_BE_API;
 
-const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown>(method: MethodType, path: string, body?: BodyInit | RequestBodyType, options?: OptionsType): Promise<ReturnType<ResponseDataType>> => {
+const handleFetch = async <InputData = unknown, OutputData = unknown>(method: Method, path: string, body?: Body<InputData>, options?: Options): Promise<Output<OutputData>> => {
     try {
         const isBody = ["POST", "PUT", "PATCH"].includes(method);
         const isBodyFormData = body instanceof FormData;
@@ -53,32 +45,32 @@ const handleFetch = async <RequestBodyType = unknown, ResponseDataType = unknown
         const error = err as Error;
         error.message = error.message || "Lỗi không xác định!";
 
-        console.log(`Public Fetch - ${NEXT_PUBLIC_BE_API || BE_API}${path}`);
-        console.log(error);
+        console.error(`Public Fetch - ${NEXT_PUBLIC_BE_API || BE_API}${path}`);
+        console.error(error);
 
         throw error;
     }
 }
 
 const publicFetch = {
-    get: async <ResponseDataType = unknown>(path: string, options?: OptionsType): Promise<ReturnType<ResponseDataType>> => {
-        return handleFetch<unknown, ResponseDataType>("GET", path, undefined, options);
+    get: async <OutputData = unknown>(path: string, options?: Options): Promise<Output<OutputData>> => {
+        return handleFetch<unknown, OutputData>("GET", path, undefined, options);
     },
 
-    post: async <RequestBodyType = unknown, ResponseDataType = unknown>(path: string, body?: BodyInit | RequestBodyType, options?: OptionsType): Promise<ReturnType<ResponseDataType>> => {
-        return handleFetch<RequestBodyType, ResponseDataType>("POST", path, body, options);
+    post: async <InputData = unknown, OutputData = unknown>(path: string, body?: BodyInit | InputData, options?: Options): Promise<Output<OutputData>> => {
+        return handleFetch<InputData, OutputData>("POST", path, body, options);
     },
 
-    put: async <RequestBodyType = unknown, ResponseDataType = unknown>(path: string, body?: BodyInit | RequestBodyType, options?: OptionsType): Promise<ReturnType<ResponseDataType>> => {
-        return handleFetch<RequestBodyType, ResponseDataType>("PUT", path, body, options);
+    put: async <InputData = unknown, OutputData = unknown>(path: string, body?: BodyInit | InputData, options?: Options): Promise<Output<OutputData>> => {
+        return handleFetch<InputData, OutputData>("PUT", path, body, options);
     },
 
-    patch: async <RequestBodyType = unknown, ResponseDataType = unknown>(path: string, body?: BodyInit | RequestBodyType, options?: OptionsType): Promise<ReturnType<ResponseDataType>> => {
-        return handleFetch<RequestBodyType, ResponseDataType>("PATCH", path, body, options);
+    patch: async <InputData = unknown, OutputData = unknown>(path: string, body?: BodyInit | InputData, options?: Options): Promise<Output<OutputData>> => {
+        return handleFetch<InputData, OutputData>("PATCH", path, body, options);
     },
 
-    delete: async <ResponseDataType = unknown>(path: string, options?: OptionsType): Promise<ReturnType<ResponseDataType>> => {
-        return handleFetch<unknown, ResponseDataType>("DELETE", path, undefined, options);
+    delete: async <OutputData = unknown>(path: string, options?: Options): Promise<Output<OutputData>> => {
+        return handleFetch<unknown, OutputData>("DELETE", path, undefined, options);
     },
 }
 

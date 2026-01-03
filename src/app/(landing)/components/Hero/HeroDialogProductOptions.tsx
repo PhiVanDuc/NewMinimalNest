@@ -15,13 +15,13 @@ import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
 import type { Dispatch, SetStateAction } from "react";
 
-interface PropsType {
+interface Props {
     open: boolean,
     onOpenChange: Dispatch<SetStateAction<boolean>>,
     action: "buyNow" | "addToCart"
 }
 
-export default function HeroDialogProductOptions({ open, onOpenChange, action }: PropsType) {
+export default function HeroDialogProductOptions({ open, onOpenChange, action }: Props) {
     const [quantity, setQuantity] = useState("1");
 
     const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {

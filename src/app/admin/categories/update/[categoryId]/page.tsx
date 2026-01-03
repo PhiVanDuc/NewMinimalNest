@@ -22,6 +22,7 @@ export default function Page() {
 
     const isLoading = query.isPending;
     const isError = !id || query.isError || query.data?.success === false;
+    const categories = query.data?.data;
 
     return (
         <div className="space-y-[40px]">
@@ -36,7 +37,7 @@ export default function Page() {
                         (
                             <CategoryForm
                                 formType="update"
-                                data={query.data?.data}
+                                data={categories}
                             />
                         )    
             }

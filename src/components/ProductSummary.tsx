@@ -3,11 +3,11 @@
 import Price from "@/components/Price";
 import { cn } from "@/libs/utils";
 
-interface PropsType {
+interface Props {
     className?: string
 }
 
-export default function ProductSummary({ className = "" }: PropsType) {
+export default function ProductSummary({ className = "" }: Props) {
     return (
         <div
             className={cn(

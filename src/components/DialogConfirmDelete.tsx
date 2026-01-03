@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 
 import { PiTrashSimpleBold } from "react-icons/pi";
 
-interface PropsType {
+interface Props {
     open: boolean,
     onOpenChange: Dispatch<SetStateAction<boolean>>,
     handleClickDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void,
@@ -15,7 +15,7 @@ interface PropsType {
     isLoading?: boolean
 }
 
-export default function DialogConfirmDelete({ open, onOpenChange, handleClickDelete, object, isLoading }: PropsType) {
+export default function DialogConfirmDelete({ open, onOpenChange, handleClickDelete, object, isLoading }: Props) {
     const handleClickCloseDialog = () => onOpenChange(false);
 
     return (

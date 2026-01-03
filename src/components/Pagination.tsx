@@ -13,12 +13,12 @@ import { cn } from "@/libs/utils";
 import isPositiveIntegerString from "@/utils/is-positive-integer-string";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 
-interface PropsType {
+interface Props {
     totalPage: string,
     listRef?: React.RefObject<null | HTMLElement>
 }
 
-function PaginationContent({ totalPage, listRef }: PropsType) {
+function PaginationContent({ totalPage, listRef }: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -138,7 +138,7 @@ function PaginationContent({ totalPage, listRef }: PropsType) {
     )
 }
 
-export default function Pagination({ totalPage, listRef }: PropsType) {
+export default function Pagination({ totalPage, listRef }: Props) {
     return (
         <Suspense fallback="">
             <PaginationContent

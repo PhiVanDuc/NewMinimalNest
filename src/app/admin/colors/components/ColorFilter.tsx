@@ -8,19 +8,24 @@ import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
 import type { Dispatch, SetStateAction } from "react";
-import type { ColorFilterDataType } from "@/app/admin/colors/types";
 
-interface PropsType {
-    setFilter: Dispatch<SetStateAction<ColorFilterDataType>>
+export interface Filter {
+    name: string
 }
 
-export default function ColorFilter({ setFilter }: PropsType) {
+interface Props {
+    setFilter: Dispatch<SetStateAction<Filter>>
+}
+
+export default function ColorFilter({ setFilter }: Props) {
     const queryClient = useQueryClient();
     const [tempFilter, setTempFilter] = useState({
         name: ""
     });
 
-    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => setTempFilter(() => ({ name: e.target.value }));
+    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTempFilter(() => ({ name: e.target.value }));
+    }
 
     const handleClickFilter = () => {
         setFilter(tempFilter);

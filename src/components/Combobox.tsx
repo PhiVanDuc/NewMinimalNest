@@ -10,13 +10,13 @@ import { LuChevronsUpDown } from "react-icons/lu";
 
 import { cn } from "@/libs/utils";
 
-interface OptionItemType {
+interface Option {
     label: string,
     value: string
 }
 
-interface PropsType {
-    options: OptionItemType[],
+interface Props {
+    options: Option[],
     value: string,
     onSelect: (value: string) => void,
     disabled?: boolean,
@@ -24,18 +24,13 @@ interface PropsType {
     className?: string,
 }
 
-export default function Combobox({
-    options,
-    value,
-    onSelect,
-    disabled,
-    placeholder,
-    className
-}: PropsType) {
+export default function Combobox({ options, value, onSelect, disabled, placeholder, className }: Props) {
     const [open, setOpen] = useState(false);
     const selectedOption = options.find((opt) => opt.value === value);
 
     const handleSelect = (value: string) => {
+        if (value === selectedOption?.value) return;
+
         onSelect(value);
         setOpen(false);
     };
@@ -69,9 +64,15 @@ export default function Combobox({
                             options.length > 0
                             && (
                                 <CommandGroup>
+                                    <CommandItem
+                                        value=""
+                                        onSelect={handleSelect}
+                                    >
+                                        {placeholder || "Lựa chọn"}
+                                    </CommandItem>
+
                                     {
                                         options.map((opiton, index) => {
-                                            const isFirst = index === 0;
                                             const isSelected = opiton.value === value;
 
                                             return (
@@ -80,7 +81,7 @@ export default function Combobox({
                                                     value={opiton.value}
                                                     onSelect={handleSelect}
                                                     className={cn(
-                                                        isFirst ? "mt-0" : "mt-[5px]",
+                                                        "mt-[5px]",
                                                         isSelected ? "bg-accent text-accent-foreground" : ""
                                                     )}
                                                 >

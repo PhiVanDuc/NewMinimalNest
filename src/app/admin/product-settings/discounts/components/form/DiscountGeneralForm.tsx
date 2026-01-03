@@ -23,12 +23,12 @@ import toStandardPositiveIntegerString from "@/utils/to-standard-positive-intege
 import type { UseFormReturn } from "react-hook-form";
 import type { DiscountFormDataType } from "@/app/admin/product-settings/discounts/types";
 
-interface PropsType {
+interface Props {
     formType: "add" | "update"
     form: UseFormReturn<DiscountFormDataType>
 }
 
-export default function DiscountGeneralForm({ formType, form }: PropsType) {
+export default function DiscountGeneralForm({ formType, form }: Props) {
     const watchDiscount = useWatch({
         control: form.control,
         name: "discount"

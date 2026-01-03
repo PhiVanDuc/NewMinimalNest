@@ -11,12 +11,12 @@ type FilterType = {
     name: string
 }
 
-interface PropsType {
+interface Props {
     filter: FilterType,
     setFilter: Dispatch<SetStateAction<FilterType>>
 }
 
-export default function ProductGroupsFilter({ filter, setFilter }: PropsType) {
+export default function ProductGroupsFilter({ filter, setFilter }: Props) {
     const router = useRouter();
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {

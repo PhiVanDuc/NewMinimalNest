@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 
-interface PropsType {
+interface Props {
     token: string
 }
 
-export default function FetchGoogleExchange({ token }: PropsType) {
+export default function FetchGoogleExchange({ token }: Props) {
     const router = useRouter();
 
     const mutation = useMutation({
@@ -32,8 +32,8 @@ export default function FetchGoogleExchange({ token }: PropsType) {
             }
         },
         onError: (error) => {
-            console.log("useMutation");
-            console.log(error);
+            console.error("useMutation");
+            console.error(error);
             router.replace(`/google-sign-in/failed`);
         }
     });

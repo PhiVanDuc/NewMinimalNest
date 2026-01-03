@@ -1,24 +1,52 @@
 "use client"
 
 import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import dynamic from "next/dynamic";
+const DialogConfirmDelete = dynamic(() => import("@/components/DialogConfirmDelete"), { ssr: false, loading: () => <></> });
 
 import Link from "next/link";
-import ColorDeleteOption from "@/app/admin/colors/components/ColorDeleteOption";
 
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 import { HiDotsVertical } from "react-icons/hi";
 import { IoReloadOutline } from "react-icons/io5";
+import { PiTrashSimpleBold } from "react-icons/pi";
 
-import type { ColorDataType } from "@/app/admin/colors/types";
+import { toast } from "@pheralb/toast";
+import { adminDeleteColor } from "@/services/colors/admin";
 
-interface PropsType {
-    data: ColorDataType
+interface Props {
+    id: string
 }
 
-export default function ColorActionOptions({ data }: PropsType) {
-    const { id } = data;
+export default function ColorActionOptions({ id }: Props) {
+    const queryClient = useQueryClient();
+    const [isOpenDialog, setIsOpenDialog] = useState(false);
     const [isOpenDropdownMenu, setIsOpenDropdownMenu] = useState(false);
+
+    const mutation = useMutation({
+        mutationFn: () => adminDeleteColor(id),
+        onSuccess: ({ success, message }) => {
+            if (success) {
+                toast.success({ text: "Thành công", description: message });
+                queryClient.invalidateQueries({ queryKey: ["adminColors"] });
+            }
+            else toast.error({ text: "Thất bại", description: message });
+        },
+        onError: (error) => {
+            console.error("useMutation");
+            console.error(error);
+            toast.error({ text: "Thất bại", description: error.message });
+        },
+        onSettled: () => {
+            setIsOpenDialog(false);
+            setIsOpenDropdownMenu(false);
+        }
+    });
+
+    const handleClickDelete = () => mutation.mutate();
 
     return (
         <div className="flex justify-center">
@@ -41,12 +69,28 @@ export default function ColorActionOptions({ data }: PropsType) {
                         </Link>
                     </DropdownMenuItem>
 
-                    <ColorDeleteOption
-                        id={id}
-                        setIsOpenDropdownMenu={setIsOpenDropdownMenu}
-                    />
+                    <DropdownMenuItem
+                        onSelect={(e) => e.preventDefault()}
+                        onClick={() => { setIsOpenDialog(true) }}
+                    >
+                        <PiTrashSimpleBold />
+                        Xoá
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
+
+            {
+                isOpenDialog &&
+                (
+                    <DialogConfirmDelete
+                        open={isOpenDialog}
+                        onOpenChange={setIsOpenDialog}
+                        handleClickDelete={handleClickDelete}
+                        object="màu sắc"
+                        isLoading={mutation.isPending}
+                    />
+                )
+            }
         </div>
     )
 }

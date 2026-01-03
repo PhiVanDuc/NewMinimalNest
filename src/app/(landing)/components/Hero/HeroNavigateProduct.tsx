@@ -13,7 +13,7 @@ import { cn } from "@/libs/utils";
 
 import type { Dispatch, SetStateAction } from "react";
 
-interface PropsType {
+interface Props {
     currentProduct: {
         category: string,
         name: string,
@@ -30,7 +30,7 @@ interface PropsType {
     }>>
 }
 
-export default function HeroNavigateProduct({ currentProduct, setCurrentProduct }: PropsType) {
+export default function HeroNavigateProduct({ currentProduct, setCurrentProduct }: Props) {
     const [navigateDirection, setNavigateDirection] = useState<"up" | "down" | null>(null);
 
     useGSAP(() => {

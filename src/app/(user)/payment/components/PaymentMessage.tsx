@@ -2,11 +2,11 @@
 
 import { Textarea } from "@/components/ui/textarea";
 
-interface PropsType {
+interface Props {
     isEdit?: boolean
 }
 
-export default function PaymentMessage({ isEdit = true }: PropsType) {
+export default function PaymentMessage({ isEdit = true }: Props) {
     return (
         <div className="space-y-[20px]">
             <header>

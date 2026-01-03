@@ -2,11 +2,11 @@
 
 import Badge from "@/components/Badge";
 
-interface PropsType {
+interface Props {
     isDesc?: boolean
 }
 
-export default function Coupon({ isDesc = true }: PropsType) {
+export default function Coupon({ isDesc = true }: Props) {
     return (
         <div className="relative">
             <span

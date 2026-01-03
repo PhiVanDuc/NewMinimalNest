@@ -13,11 +13,11 @@ import { RiCoupon5Fill } from "react-icons/ri";
 
 import { cn } from "@/libs/utils";
 
-interface PropsType {
+interface Props {
     isEdit?: boolean
 }
 
-export default function PaymentCoupon({ isEdit = true }: PropsType) {
+export default function PaymentCoupon({ isEdit = true }: Props) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     return (

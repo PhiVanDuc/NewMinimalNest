@@ -7,11 +7,11 @@ import InfoOptions from "@/app/(user)/info/components/InfoOptions";
 import { cn } from "@/libs/utils";
 import infoOptionPaths from "@/consts/info-option-paths";
 
-interface PropsType {
+interface Props {
     children: React.ReactNode;
 }
 
-export default function Layout({ children }: Readonly<PropsType>) {
+export default function Layout({ children }: Readonly<Props>) {
     const pathname = usePathname();
     const showInfoOption = infoOptionPaths.includes(pathname);
 

@@ -1,8 +1,8 @@
-interface PropsType {
+interface Props {
     username: string
 }
 
-export default function Avatar({ username }: PropsType) {
+export default function Avatar({ username }: Props) {
     const splitUsername = username.trim().split(/\s+/);
     const lastName = splitUsername[splitUsername.length - 1];
 

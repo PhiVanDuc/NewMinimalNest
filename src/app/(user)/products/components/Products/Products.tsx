@@ -3,11 +3,11 @@ import ProductsClient from "@/app/(user)/products/components/Products/ProductsCl
 import { redirect } from "next/navigation";
 import isPositiveIntegerString from "@/utils/is-positive-integer-string";
 
-interface PropsType {
+interface Props {
     searchParams: { page?: string }
 }
 
-export default function Products({ searchParams }: PropsType) {
+export default function Products({ searchParams }: Props) {
     const page = searchParams.page;
     if (page && !isPositiveIntegerString(page)) redirect("/products");
 

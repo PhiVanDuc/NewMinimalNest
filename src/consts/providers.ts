@@ -7,4 +7,4 @@ export default {
         label: "Google",
         value: "google"
     }
-}
+} as const;

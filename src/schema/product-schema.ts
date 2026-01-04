@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import IMAGE_ROLES from "@/consts/image-roles";
+
 const productSchema = z.object({
     name: z
         .string()
@@ -24,7 +26,8 @@ const productSchema = z.object({
         .array(
             z.object({
                 id: z.string(),
-                name: z.string()
+                name: z.string(),
+                slug: z.string()
             })
         )
         .min(1, { error: "Vui lòng chọn ít nhất 1 danh mục cho sản phẩm!" }),
@@ -33,6 +36,7 @@ const productSchema = z.object({
             z.object({
                 id: z.string(),
                 name: z.string(),
+                slug: z.string(),
                 colorCode: z.string()
             })
         )
@@ -41,47 +45,50 @@ const productSchema = z.object({
         .object({
             id: z.string(),
             name: z.string(),
+            slug: z.string(),
             colorCode: z.string()
         })
         .optional(),
     images: z
         .array(
             z.object({
+                id: z.optional(z.string()),
                 colorId: z.string(),
-                role: z.enum(["main", "sub", "normal"]),
-                image: z.union([z.instanceof(File), z.string()]),
-                preview: z.optional(z.string())
+                preview: z.optional(z.string()),
+                url: z.optional(z.string()),
+                image: z.optional(z.union([z.instanceof(File), z.string()])),
+                role: z.enum(Object.values(IMAGE_ROLES)),
             })
         )
 })
-    .superRefine((data, ctx) => {
-        const { colors, images } = data;
+    // .superRefine((data, ctx) => {
+    //     const { colors, images } = data;
 
-        for (const color of colors) {
-            const groupImages = images.filter(image => image.colorId === color.id);
-            const mainCount = groupImages.filter(image => image.role === "main").length;
-            const subCount = groupImages.filter(image => image.role === "sub").length;
+    //     for (const color of colors) {
+    //         const groupImages = images.filter(image => image.colorId === color.id);
+    //         const mainCount = groupImages.filter(image => image.role === "main").length;
+    //         const subCount = groupImages.filter(image => image.role === "sub").length;
 
-            if (mainCount < 1 || subCount < 2) {
-                ctx.addIssue({
-                    code: z.ZodIssueCode.custom,
-                    message: `Vui lòng cung cấp cho màu "${color.name}" 1 ảnh chính và 2 ảnh phụ!`,
-                    path: ["images"]
-                });
+    //         if (mainCount < 1 || subCount < 2) {
+    //             ctx.addIssue({
+    //                 code: z.ZodIssueCode.custom,
+    //                 message: `Vui lòng cung cấp cho màu "${color.name}" 1 ảnh chính và 2 ảnh phụ!`,
+    //                 path: ["images"]
+    //             });
 
-                break;
-            }
+    //             break;
+    //         }
 
-            if (groupImages.length > 10) {
-                ctx.addIssue({
-                    code: z.ZodIssueCode.custom,
-                    message: `Vui lòng chỉ cung cấp cho màu "${color.name}" tối đa 10 ảnh!`,
-                    path: ["images"]
-                });
+    //         if (groupImages.length > 10) {
+    //             ctx.addIssue({
+    //                 code: z.ZodIssueCode.custom,
+    //                 message: `Vui lòng chỉ cung cấp cho màu "${color.name}" tối đa 10 ảnh!`,
+    //                 path: ["images"]
+    //             });
 
-                break;
-            }
-        }
-    })
+    //             break;
+    //         }
+    //     }
+    // })
 
 export default productSchema;

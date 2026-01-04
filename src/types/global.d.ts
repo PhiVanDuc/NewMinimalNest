@@ -1,6 +1,7 @@
-type Rank = "khach-moi" | "khach-thuong" | "khach-quen" | "khach-vip";
-type Role = "khach-hang" | "quan-tri-vien" | "sieu-quan-tri-vien";
 type Provider = "credentials" | "google";
+type Role = "customer" | "admin" | "super-admin";
+type ProductImageRole = "main-image" | "sub-image" | "gallery-image";
+type Rank = "new-customer" | "customer" | "regular-customer" | "vip-customer";
 
 interface Pagination {
     page: string,
@@ -39,4 +40,26 @@ interface Color {
 
 interface Colors extends Pagination {
     colors: Color[]
+}
+
+interface ProductImage {
+    id: string,
+    url: string,
+    role: ProductImageRole
+}
+
+interface Product {
+    id: string,
+    name: string,
+    desc: string,
+    costPrice: number,
+    interestPercent: number,
+    discountType: string,
+    discount: number,
+    price: number,
+    categories: Category[],
+    colors: (
+        Color &
+        { images: ProductImage[] }
+    )[]
 }

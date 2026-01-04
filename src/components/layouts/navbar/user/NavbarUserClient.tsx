@@ -18,10 +18,11 @@ import { FiShoppingCart } from "react-icons/fi";
 import { TiLocationArrow } from "react-icons/ti";
 
 import { cn } from "@/libs/utils";
-import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import { userNavList } from "@/consts/navbar";
 import drawerSlice from "@/store/slices/drawerSlice";
+
+import RANKS from "@/consts/ranks";
 
 import type { ReduxStateType } from "@/store/store";
 
@@ -129,7 +130,7 @@ export default function NavbarUserClient() {
                             <div
                                 className="relative flex items-center justify-center w-[45px] aspect-square rounded-full bg-zinc-800 hover:bg-zinc-800/95 text-white cursor-pointer transition-colors"
                                 style={{
-                                    outline: `3px solid ${ranks["khach-vip"].colorCode}`,
+                                    outline: `3px solid ${RANKS["vip-customer"].colorCode}`,
                                     outlineOffset: "3px"
                                 }}
                             >
@@ -139,7 +140,7 @@ export default function NavbarUserClient() {
                                     <PiMedalFill
                                         size={24}
                                         style={{
-                                            color: ranks["khach-vip"].colorCode
+                                            color: RANKS["vip-customer"].colorCode
                                         }}
                                     />
                                 </div>

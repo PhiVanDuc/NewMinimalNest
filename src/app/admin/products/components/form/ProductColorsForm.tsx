@@ -12,11 +12,10 @@ import { cn } from "@/libs/utils";
 import { publicGetColors } from "@/services/colors/public";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { ColorDataType } from "@/app/admin/colors/types";
-import type { ProductFormDataType } from "@/app/admin/products/types";
+import type { ProductForm } from "@/app/admin/products/components/form/ProductForm";
 
 interface Props {
-    form: UseFormReturn<ProductFormDataType>
+    form: UseFormReturn<ProductForm>
 }
 
 export default function ProductColorsForm({ form }: Props) {
@@ -56,7 +55,7 @@ export default function ProductColorsForm({ form }: Props) {
         keyName: "_id"
     });
 
-    const handleClickChooseColor = (color: ColorDataType) => {
+    const handleClickChooseColor = (color: Color) => {
         const index = watchColors.findIndex(wColor => wColor.id === color.id);
 
         if (index === -1) {
@@ -70,7 +69,7 @@ export default function ProductColorsForm({ form }: Props) {
             }
 
             const filterdImages = watchImages
-                .map((image, index) => ({ index: index, ...image }))
+                .map((image, index) => ({ index, ...image }))
                 .filter(image => image.colorId === color.id);
 
             for (let i = filterdImages.length - 1; i >= 0; i--) fieldImages.remove(filterdImages[i].index);

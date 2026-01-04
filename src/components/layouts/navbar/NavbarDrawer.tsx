@@ -18,9 +18,10 @@ import {
 import { PiMedalFill } from "react-icons/pi";
 
 import { cn } from "@/libs/utils";
-import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
+
+import RANKS from "@/consts/ranks";
 
 interface Props {
     drawerNavList: {
@@ -148,13 +149,13 @@ export default function NavbarDrawer({ drawerNavList }: Props) {
                             <div
                                 className="absolute top-1/2 -translate-y-1/2 right-[15px] flex items-center justify-center size-[35px] rounded-full bg-white"
                                 style={{
-                                    border: `2px solid ${ranks["khach-vip"].colorCode}`
+                                    border: `2px solid ${RANKS["vip-customer"].colorCode}`
                                 }}
                             >
                                 <PiMedalFill
                                     size={18}
                                     style={{
-                                        color: ranks["khach-vip"].colorCode
+                                        color: RANKS["vip-customer"].colorCode
                                     }}
                                 />
                             </div>

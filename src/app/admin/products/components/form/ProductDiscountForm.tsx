@@ -12,10 +12,10 @@ import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { ProductFormDataType } from "@/app/admin/products/types";
+import type { ProductForm } from "@/app/admin/products/components/form/ProductForm";
 
 interface Props {
-    form: UseFormReturn<ProductFormDataType>
+    form: UseFormReturn<ProductForm>
 }
 
 export default function ProductDiscountForm({ form }: Props) {

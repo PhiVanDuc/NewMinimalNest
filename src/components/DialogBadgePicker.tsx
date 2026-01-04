@@ -25,14 +25,7 @@ interface Props {
     object?: string
 }
 
-export default function BadgePickerDialog({
-    open,
-    onOpenChange,
-    badges,
-    values,
-    onSelect,
-    object
-}: Props) {
+export default function BadgePickerDialog({ open, onOpenChange, badges, values, onSelect, object }: Props) {
     const [searchText, setSearchText] = useState("");
     const [debouncedSearchText, setDebouncedSearchText] = useState("");
 

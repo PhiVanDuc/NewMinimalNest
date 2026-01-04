@@ -19,10 +19,10 @@ import { cn } from "@/libs/utils";
 import { publicGetCategories } from "@/services/categories/public";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { ProductFormDataType } from "@/app/admin/products/types";
+import type { ProductForm } from "@/app/admin/products/components/form/ProductForm";
 
 interface Props {
-    form: UseFormReturn<ProductFormDataType>
+    form: UseFormReturn<ProductForm>
 }
 
 export default function ProductCategoriesForm({ form }: Props) {
@@ -35,7 +35,7 @@ export default function ProductCategoriesForm({ form }: Props) {
 
     const isLoading = query.isPending;
     const isError = query.error || !query.data?.success;
-    const categories = query.data?.data?.categories?.map(category => ({ label: category.name, value: category.id })) || []
+    const categories = query.data?.data?.categories?.map(category => ({ label: category.name, value: category.id })) || [];
 
     const watchCategories = useWatch({
         control: form.control,
@@ -55,7 +55,7 @@ export default function ProductCategoriesForm({ form }: Props) {
         const index = watchCategories.findIndex(wCategory => wCategory.id === category.id);
 
         if (index !== -1) fieldCategories.remove(index);
-        else fieldCategories.append({ name: category.name, id: category.id });
+        else fieldCategories.append(category);
     }
 
     return (

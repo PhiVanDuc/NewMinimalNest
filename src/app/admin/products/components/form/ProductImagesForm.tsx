@@ -13,16 +13,17 @@ import { IoMdImages, IoMdMore } from "react-icons/io";
 
 import { cn } from "@/libs/utils";
 import { toast } from "@pheralb/toast";
+import IMAGE_ROLES from "@/consts/image-roles";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { ProductFormDataType, ProductImageRoleType } from "@/app/admin/products/types";
+import type { ProductForm } from "@/app/admin/products/components/form/ProductForm";
 
 interface Props {
-    form: UseFormReturn<ProductFormDataType>
+    form: UseFormReturn<ProductForm>
 }
 
-const LIMIT_FILE_SIZE = 5 * 1024 * 1024;
 const LIMIT_FILE_NUMBER = 10;
+const LIMIT_FILE_SIZE = 5 * 1024 * 1024;
 
 export default function ProductImagesForm({ form }: Props) {
     const watchImages = useWatch({
@@ -74,13 +75,13 @@ export default function ProductImagesForm({ form }: Props) {
         const currentImages = [...colorImages];
 
         Array.from(images).forEach(image => {
-            let role: ProductImageRoleType = "normal";
+            let role: ProductImageRole = IMAGE_ROLES.GALLERY_IMAGE;
 
-            const hasMain = currentImages.some(image => image.role === "main");
-            const subCount = currentImages.filter(image => image.role === "sub").length;
+            const hasMain = currentImages.some(image => image.role === IMAGE_ROLES.MAIN_IMAGE);
+            const subCount = currentImages.filter(image => image.role === IMAGE_ROLES.SUB_IMAGE).length;
 
-            if (!hasMain) role = "main";
-            else if (subCount < 2) role = "sub";
+            if (!hasMain) role = IMAGE_ROLES.MAIN_IMAGE;
+            else if (subCount < 2) role = IMAGE_ROLES.SUB_IMAGE;
 
             const previewUrl = URL.createObjectURL(image);
 
@@ -98,20 +99,19 @@ export default function ProductImagesForm({ form }: Props) {
         e.target.value = "";
     };
 
-    const handleSelectImageRole = (index: number, role: ProductImageRoleType) => {
+    const handleSelectImageRole = (index: number, role: ProductImageRole) => {
         const images = [...watchImages];
         const image = images[index];
-        const order = { main: 0, sub: 1, normal: 2 };
+        const order = { [IMAGE_ROLES.MAIN_IMAGE]: 0, [IMAGE_ROLES.SUB_IMAGE]: 1, [IMAGE_ROLES.GALLERY_IMAGE]: 2 };
 
-        const hasMain = colorImages.some(image => image.role === "main");
-        const subCount = colorImages.filter(image => image.role === "sub").length;
+        const hasMain = colorImages.some(image => image.role === IMAGE_ROLES.MAIN_IMAGE);
+        const subCount = colorImages.filter(image => image.role === IMAGE_ROLES.SUB_IMAGE).length;
 
-        if (role === "main" && hasMain) return;
-        if (role === "sub" && subCount >= 2) return;
-        if (role === "normal" && image.role === role) return;
+        if (role === IMAGE_ROLES.MAIN_IMAGE && hasMain) return;
+        if (role === IMAGE_ROLES.SUB_IMAGE && subCount >= 2) return;
+        if (role === IMAGE_ROLES.GALLERY_IMAGE && image.role === role) return;
 
         images[index] = { ...image, role };
-
         images.sort((a, b) => {
             if (a.colorId !== b.colorId) return 0;
             return order[a.role] - order[b.role];
@@ -122,7 +122,7 @@ export default function ProductImagesForm({ form }: Props) {
 
     const handleSelectDeleteImage = (index: number) => {
         const images = [...watchImages];
-        const order = { main: 0, sub: 1, normal: 2 };
+        const order = { [IMAGE_ROLES.MAIN_IMAGE]: 0, [IMAGE_ROLES.SUB_IMAGE]: 1, [IMAGE_ROLES.GALLERY_IMAGE]: 2 };
 
         images.splice(index, 1);
         images.sort((a, b) => {
@@ -189,6 +189,9 @@ export default function ProductImagesForm({ form }: Props) {
                                         const index = watchImages.findIndex(wImage => image === wImage);
                                         const src = image.preview || (typeof image.image === "string" ? image.image : "");
 
+                                        const isSub = image.role === IMAGE_ROLES.SUB_IMAGE;
+                                        const isMainOrSub = image.role === IMAGE_ROLES.MAIN_IMAGE || image.role === IMAGE_ROLES.SUB_IMAGE;
+
                                         return (
                                             <div
                                                 key={index}
@@ -205,17 +208,17 @@ export default function ProductImagesForm({ form }: Props) {
                                                 <div
                                                     className={cn(
                                                         "absolute top-[10px] left-[10px] right-[10px] flex items-center",
-                                                        image.role !== "main" && image.role !== "sub" ? "justify-end" : "justify-between"
+                                                        !isMainOrSub ? "justify-end" : "justify-between"
                                                     )}
                                                 >
                                                     {
-                                                        (image.role === "main" || image.role === "sub") &&
+                                                        isMainOrSub &&
                                                         (
                                                             <Badge
                                                                 variant="solid"
-                                                                className={image.role === "sub" ? "bg-zinc-800" : ""}
+                                                                className={isSub ? "bg-zinc-800" : ""}
                                                             >
-                                                                <p>{ image.role === "main" ? "Ảnh chính" : "Ảnh phụ" }</p>
+                                                                <p>{ isSub ? "Ảnh phụ" : "Ảnh chính" }</p>
                                                             </Badge>
                                                         )
                                                     }
@@ -229,9 +232,9 @@ export default function ProductImagesForm({ form }: Props) {
                                                         </DropdownMenuTrigger>
 
                                                         <DropdownMenuContent align="end">
-                                                            <DropdownMenuItem onSelect={() => handleSelectImageRole(index, "main")}>Ảnh chính</DropdownMenuItem>
-                                                            <DropdownMenuItem onSelect={() => handleSelectImageRole(index, "sub")}>Ảnh phụ</DropdownMenuItem>
-                                                            <DropdownMenuItem onSelect={() => handleSelectImageRole(index, "normal")}>Ảnh thường</DropdownMenuItem>
+                                                            <DropdownMenuItem onSelect={() => handleSelectImageRole(index, IMAGE_ROLES.MAIN_IMAGE)}>Ảnh chính</DropdownMenuItem>
+                                                            <DropdownMenuItem onSelect={() => handleSelectImageRole(index, IMAGE_ROLES.SUB_IMAGE)}>Ảnh phụ</DropdownMenuItem>
+                                                            <DropdownMenuItem onSelect={() => handleSelectImageRole(index, IMAGE_ROLES.GALLERY_IMAGE)}>Ảnh thường</DropdownMenuItem>
                                                             <DropdownMenuItem onSelect={() => handleSelectDeleteImage(index)}>Xóa ảnh</DropdownMenuItem>
                                                         </DropdownMenuContent>
                                                     </DropdownMenu>

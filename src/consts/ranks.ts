@@ -1,24 +1,22 @@
-const ranksConst = {
-    "khach-moi": {
+export default {
+    "new-customer": {
         label: "Khách mới",
-        value: "khach-moi",
+        value: "new-customer",
         colorCode: "#D88E52"
     },
-    "khach-thuong": {
+    "customer": {
         label: "Khách thường",
-        value: "khach-thuong",
+        value: "customer",
         colorCode: "#8D94A6"
     },
-    "khach-quen": {
+    "regular-customer": {
         label: "Khách quen",
-        value: "khach-quen",
+        value: "regular-customer",
         colorCode: "#0482ED"
     },
-    "khach-vip": {
+    "vip-customer": {
         label: "Khách VIP",
-        value: "khach-vip",
+        value: "vip-customer",
         colorCode: "#FFAE07"
     }
-}
-
-export default ranksConst;
+} as const;

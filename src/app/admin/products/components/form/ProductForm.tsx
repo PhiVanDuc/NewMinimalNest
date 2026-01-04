@@ -18,57 +18,90 @@ import { IoReloadOutline } from "react-icons/io5";
 import productSchema from "@/schema/product-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import imageCompression from 'browser-image-compression';
+import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
 
-import type { ProductDataType, ProductFormDataType } from "@/app/admin/products/types";
+export interface ProductForm {
+    name: string,
+    desc: string,
+    costPrice: string,
+    interestPercent: string,
+    discountType: string,
+    discount: string,
+    price: string,
+    categories: Category[],
+    colors: Color[],
+    color?: Color,
+    images: {
+        id?: string,
+        colorId: string,
+        preview?: string,
+        url?: string,
+        image?: File | string,
+        role: ProductImageRole
+    }[]
+}
 
 interface Props {
     formType: "add" | "update",
-    data?: ProductDataType
+    data?: Product
 }
 
 export default function ProductForm({ formType, data }: Props) {
     const [compressing, setCompressing] = useState({ status: false, progress: 0 });
+    
+    const colors = data?.colors?.map(({ images, ...rest }) => rest);
+
+    const images = data?.colors?.flatMap(color => {
+        return color.images.map(img => {
+            return {
+                ...img,
+                colorId: color.id
+            }
+        })
+    });
 
     const form = useForm({
         resolver: zodResolver(productSchema),
         defaultValues: {
-            name: "Tên sản phẩm",
-            desc: "Mô tả sản phẩm",
-            costPrice: "1.000.000",
-            interestPercent: "80",
-            discountType: "percent",
-            discount: "",
-            price: "",
-            categories: [],
-            colors: [],
+            name: data?.name || "Tên sản phẩm",
+            desc: data?.desc || "Mô tả sản phẩm",
+            costPrice: toStandardPositiveIntegerString(data?.costPrice?.toString()) || "1.000.000",
+            interestPercent: toStandardPositiveIntegerString(data?.interestPercent?.toString()) || "80",
+            discountType: data?.discountType || "percent",
+            discount: toStandardPositiveIntegerString(data?.discount?.toString()) || "",
+            price: toStandardPositiveIntegerString(data?.price?.toString()) || "",
+            categories: data?.categories || [],
+            colors: colors || [],
             color: undefined,
-            images: []
+            images: images || []
         }
     });
 
-    const handleSubmit = async (data: ProductFormDataType) => {
-        setCompressing(state => ({ ...state, status: true }));
+    console.log(form.watch("costPrice"));
 
-        const totalImages = data.images.length;
-        const progresses = Array(totalImages).fill(0);
+    const handleSubmit = async (data: ProductForm) => {
+        // setCompressing(state => ({ ...state, status: true }));
 
-        const images = await Promise.all(data.images.map(async (image, index) => {
-            if (typeof image.image === "string") return image; 
+        // const totalImages = data.images.length;
+        // const progresses = Array(totalImages).fill(0);
 
-            const compressedFile = await imageCompression(image.image, {
-                maxSizeMB: 2,
-                useWebWorker: true,
-                onProgress: (progress) => {
-                    progresses[index] = progress;
-                    const totalProgress = progresses.reduce((a, b) => a + b, 0) / totalImages;
-                    setCompressing(state => ({ ...state, progress: Math.round(totalProgress) }));
-                }
-            });
+        // const images = await Promise.all(data.images.map(async (image, index) => {
+        //     if (typeof image.image === "string") return image; 
 
-            return { ...image, image: compressedFile };
-        }));
+        //     const compressedFile = await imageCompression(image.image, {
+        //         maxSizeMB: 2,
+        //         useWebWorker: true,
+        //         onProgress: (progress) => {
+        //             progresses[index] = progress;
+        //             const totalProgress = progresses.reduce((a, b) => a + b, 0) / totalImages;
+        //             setCompressing(state => ({ ...state, progress: Math.round(totalProgress) }));
+        //         }
+        //     });
 
-        setCompressing({ status: false, progress: 0 });
+        //     return { ...image, image: compressedFile };
+        // }));
+
+        // setCompressing({ status: false, progress: 0 });
     }
 
     return (

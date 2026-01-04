@@ -14,9 +14,7 @@ import { FaPlus } from "react-icons/fa6";
 import productsColumns from "@/app/admin/products/products-columns";
 
 export default function Page() {
-    const [filter, setFilter] = useState({
-        name: ""
-    });
+    const [filter, setFilter] = useState({ name: "" });
 
     return (
         <div className="space-y-[40px]">

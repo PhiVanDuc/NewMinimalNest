@@ -1,16 +1,14 @@
-const rolesConst = {
-    "khach-hang": {
+export default {
+    "customer": {
         label: "Khách hàng",
-        value: "khach-hang"
+        value: "customer"
     },
-    "quan-tri-vien": {
+    "admin": {
         label: "Quản trị viên",
-        value: "quan-tri-vien"
+        value: "admin"
     },
-    "sieu-quan-tri-vien": {
+    "super-admin": {
         label: "Siêu quản trị viên",
-        value: "sieu-quan-tri-vien"
+        value: "super-admin"
     }
-}
-
-export default rolesConst;
+} as const;

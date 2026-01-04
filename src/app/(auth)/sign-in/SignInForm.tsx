@@ -1,6 +1,7 @@
 "use client"
 
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 
 import Link from "next/link";
@@ -22,6 +23,8 @@ interface FormDataType {
 }
 
 export default function SignInForm() {
+    const router = useRouter();
+
     const form = useForm({
         resolver: zodResolver(signInSchema),
         defaultValues: {
@@ -45,7 +48,10 @@ export default function SignInForm() {
             return { success, message };
         },
         onSuccess: ({ success, message }) => {
-            if (success) toast.success({ text: "Thành công", description: message });
+            if (success) {
+                toast.success({ text: "Thành công", description: message });
+                router.replace("/");
+            }
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {

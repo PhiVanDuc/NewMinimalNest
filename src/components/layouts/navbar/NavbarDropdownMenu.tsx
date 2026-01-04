@@ -12,9 +12,10 @@ import { FiUser } from "react-icons/fi";
 import { PiMedalFill } from "react-icons/pi";
 import { IoIosLogOut } from "react-icons/io";
 
-import ranks from "@/consts/ranks";
 import drawerIds from "@/consts/drawer-ids";
 import drawerSlice from "@/store/slices/drawerSlice";
+
+import RANKS from "@/consts/ranks";
 
 import type { ReduxStateType } from "@/store/store";
 
@@ -48,11 +49,11 @@ export default function NavbarDropdownMenu({ side = "bottom", align = "end" }: P
                 <PiMedalFill
                     className="!size-[20px]"
                     style={{
-                        color: ranks["khach-vip"].colorCode
+                        color: RANKS["vip-customer"].colorCode
                     }}
                 />
 
-                {ranks["khach-vip"].label}
+                {RANKS["vip-customer"].label}
             </DropdownMenuItem>
 
             <DropdownMenuItem

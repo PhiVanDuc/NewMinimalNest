@@ -9,7 +9,7 @@ import Loading from "@/components/Loading";
 import { FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { cn } from "@/libs/utils";
-import { publicGetColors } from "@/services/colors/public";
+import { adminGetColors } from "@/services/colors/admin";
 
 import type { UseFormReturn } from "react-hook-form";
 import type { ProductForm } from "@/app/admin/products/components/form/ProductForm";
@@ -20,8 +20,8 @@ interface Props {
 
 export default function ProductColorsForm({ form }: Props) {
     const query = useQuery({
-        queryKey: ["colors"],
-        queryFn: () => publicGetColors()
+        queryKey: ["adminColors"],
+        queryFn: () => adminGetColors({ limit: "100" })
     });
 
     const isLoading = query.isPending;

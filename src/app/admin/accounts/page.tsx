@@ -24,7 +24,7 @@ function PageContent() {
 
     const query = useQuery({
         queryKey: ["adminAccounts", { page, filter }],
-        queryFn: () => adminGetAccounts(page, filter),
+        queryFn: () => adminGetAccounts({ page, filter }),
         enabled: isValidPage
     });
 

@@ -29,7 +29,7 @@ function PageContent() {
 
     const query = useQuery({
         queryKey: ["adminColors", { page, filter }],
-        queryFn: () => adminGetColors(page, filter),
+        queryFn: () => adminGetColors({ page, filter }),
         enabled: isValidPage
     });
 

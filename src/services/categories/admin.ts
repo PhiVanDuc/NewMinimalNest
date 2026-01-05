@@ -5,8 +5,8 @@ import toQueryString from "@/utils/to-query-string";
 
 import type { Filter } from "@/app/admin/categories/components/CategoryFilter";
 
-export const adminGetCategories = async (page: string, filter: Filter) => {
-    const queryString = toQueryString({ page, ...filter });
+export const adminGetCategories = async ({ page, limit, filter }: { page?: string, limit?: string, filter?: Filter }) => {
+    const queryString = toQueryString({ page, limit, ...filter });
     return privateFetch.get<Categories>(`/admin/categories?${queryString}`);
 }
 

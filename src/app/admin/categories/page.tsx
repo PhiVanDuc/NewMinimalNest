@@ -29,7 +29,7 @@ function PageContent() {
 
     const query = useQuery({
         queryKey: ["adminCategories", { page, filter }],
-        queryFn: () => adminGetCategories(page, filter),
+        queryFn: () => adminGetCategories({ page, filter }),
         enabled: isValidPage
     });
 

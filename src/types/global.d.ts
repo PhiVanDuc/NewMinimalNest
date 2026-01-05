@@ -2,6 +2,7 @@ type Provider = "credentials" | "google";
 type Role = "customer" | "admin" | "super-admin";
 type ProductImageRole = "main-image" | "sub-image" | "gallery-image";
 type Rank = "new-customer" | "customer" | "regular-customer" | "vip-customer";
+type DiscountType = "fixed" | "percent";
 
 interface Pagination {
     page: string,
@@ -54,7 +55,7 @@ interface Product {
     desc: string,
     costPrice: number,
     interestPercent: number,
-    discountType: string,
+    discountType: DiscountType,
     discount: number,
     price: number,
     categories: Category[],

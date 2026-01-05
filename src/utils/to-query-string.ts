@@ -1,4 +1,4 @@
-export default (data: Record<string, string | object>) => {
+export default (data: Record<string, string | object | undefined | null>) => {
     const searchParams = new URLSearchParams();
 
     Object.keys(data).forEach(key => {
@@ -8,5 +8,6 @@ export default (data: Record<string, string | object>) => {
         if (Array.isArray(value)) searchParams.append(key, value.join(","));
     });
 
-    return searchParams.toString();
+    const queryString = searchParams.toString();
+    return queryString ? `?${queryString}` : "";
 }

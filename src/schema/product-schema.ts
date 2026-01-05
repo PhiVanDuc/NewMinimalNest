@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import IMAGE_ROLES from "@/consts/image-roles";
+import DISCOUNT_TYPES from "@/consts/discount-types";
 
 const productSchema = z.object({
     name: z
@@ -16,7 +17,7 @@ const productSchema = z.object({
         .string()
         .min(1, { error: "Vui lòng nhập lãi xuất %!" }),
     discountType: z
-        .string(),
+        .enum(Object.values(DISCOUNT_TYPES)),
     discount: z
         .string(),
     price: z
@@ -56,39 +57,29 @@ const productSchema = z.object({
                 colorId: z.string(),
                 preview: z.optional(z.string()),
                 url: z.optional(z.string()),
-                image: z.optional(z.union([z.instanceof(File), z.string()])),
+                image: z.optional(z.instanceof(File)),
                 role: z.enum(Object.values(IMAGE_ROLES)),
             })
         )
 })
-    // .superRefine((data, ctx) => {
-    //     const { colors, images } = data;
+    .superRefine((data, ctx) => {
+        const { colors, images } = data;
 
-    //     for (const color of colors) {
-    //         const groupImages = images.filter(image => image.colorId === color.id);
-    //         const mainCount = groupImages.filter(image => image.role === "main").length;
-    //         const subCount = groupImages.filter(image => image.role === "sub").length;
+        for (const color of colors) {
+            const groupImages = images.filter(image => image.colorId === color.id);
+            const mainCount = groupImages.filter(image => image.role === IMAGE_ROLES.MAIN_IMAGE).length;
+            const subCount = groupImages.filter(image => image.role === IMAGE_ROLES.SUB_IMAGE).length;
 
-    //         if (mainCount < 1 || subCount < 2) {
-    //             ctx.addIssue({
-    //                 code: z.ZodIssueCode.custom,
-    //                 message: `Vui lòng cung cấp cho màu "${color.name}" 1 ảnh chính và 2 ảnh phụ!`,
-    //                 path: ["images"]
-    //             });
+            if (mainCount < 1 || subCount < 2) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: `Vui lòng chọn  1 ảnh chính và 2 ảnh phụ cho màu "${color.name}" !`,
+                    path: ["images"]
+                });
 
-    //             break;
-    //         }
-
-    //         if (groupImages.length > 10) {
-    //             ctx.addIssue({
-    //                 code: z.ZodIssueCode.custom,
-    //                 message: `Vui lòng chỉ cung cấp cho màu "${color.name}" tối đa 10 ảnh!`,
-    //                 path: ["images"]
-    //             });
-
-    //             break;
-    //         }
-    //     }
-    // })
+                break;
+            }
+        }
+    })
 
 export default productSchema;

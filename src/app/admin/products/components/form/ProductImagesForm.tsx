@@ -24,6 +24,36 @@ interface Props {
 
 const LIMIT_FILE_NUMBER = 10;
 const LIMIT_FILE_SIZE = 5 * 1024 * 1024;
+const IMAGE_ROLE_ORDER = {
+    [IMAGE_ROLES.MAIN_IMAGE]: 0,
+    [IMAGE_ROLES.SUB_IMAGE]: 1,
+    [IMAGE_ROLES.GALLERY_IMAGE]: 2
+};
+
+const getColorImageRoleStats = (images: ProductForm["images"], colorId?: string) => {
+    const colorImages = images.filter(image => image.colorId === colorId) || [];
+
+    return {
+        hasMain: colorImages.some(i => i.role === IMAGE_ROLES.MAIN_IMAGE),
+        subCount: colorImages.filter(i => i.role === IMAGE_ROLES.SUB_IMAGE).length,
+        total: colorImages.length,
+    };
+};
+
+const getImageRole = (hasMain: boolean, subCount: number) => {
+    if (!hasMain) return IMAGE_ROLES.MAIN_IMAGE;
+    if (subCount < 2) return IMAGE_ROLES.SUB_IMAGE;
+    return IMAGE_ROLES.GALLERY_IMAGE;
+};
+
+const sortImagesByImageRole = (images: ProductForm["images"]) => {
+    return [...images].sort((a, b) => {
+        return a.colorId !== b.colorId
+            ? 0
+            : IMAGE_ROLE_ORDER[a.role] - IMAGE_ROLE_ORDER[b.role]
+    });
+}
+  
 
 export default function ProductImagesForm({ form }: Props) {
     const watchImages = useWatch({
@@ -47,44 +77,31 @@ export default function ProductImagesForm({ form }: Props) {
         name: "color"
     });
 
-    const colorImages = watchImages.filter(wImage => watchColor && (wImage.colorId === watchColor.id));
+    const colorImagesIndexed = watchImages
+        .map((image, index) => ({ image, index }))
+        .filter(({ image }) => image.colorId === watchColor?.id);
 
     const handleChooseImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const images = e.target.files;
-
         if (!images || !watchColor) return;
-        if (images.length > LIMIT_FILE_NUMBER) {
-            toast.warning({ text: "Chú ý", description: `Vui lòng chọn tối đa ${LIMIT_FILE_NUMBER} ảnh!` });
-            return;
-        }
-
-        let isValidSize = true;
+        
+        const stats = getColorImageRoleStats(watchImages, watchColor?.id);
         
         for(let i = 0; i < images.length; i++) {
-            if (images[i].size > LIMIT_FILE_SIZE) {
-                isValidSize = false;
+            const image = images[i];
+
+            if (stats.total >= LIMIT_FILE_NUMBER) {
+                toast.warning({ text: "Chú ý", description: `Vui lòng chỉ chọn tối đa ${LIMIT_FILE_NUMBER} ảnh cho màu "${watchColor.name}" !` });
                 break;
             }
-        }
 
-        if (!isValidSize) {
-            toast.warning({ text: "Chú ý", description: "Vui lòng chọn ảnh có kích cỡ tối đa 5MB!" });
-            return;
-        }
+            if (images[i].size > LIMIT_FILE_SIZE) {
+                toast.warning({ text: "Chú ý", description: "Vui lòng chỉ chọn ảnh có kích cỡ tối đa 5MB !" });
+                continue;
+            }
 
-        const currentImages = [...colorImages];
-
-        Array.from(images).forEach(image => {
-            let role: ProductImageRole = IMAGE_ROLES.GALLERY_IMAGE;
-
-            const hasMain = currentImages.some(image => image.role === IMAGE_ROLES.MAIN_IMAGE);
-            const subCount = currentImages.filter(image => image.role === IMAGE_ROLES.SUB_IMAGE).length;
-
-            if (!hasMain) role = IMAGE_ROLES.MAIN_IMAGE;
-            else if (subCount < 2) role = IMAGE_ROLES.SUB_IMAGE;
-
+            const role = getImageRole(stats.hasMain, stats.subCount);
             const previewUrl = URL.createObjectURL(image);
-
             const newImage = { 
                 colorId: watchColor.id, 
                 role, 
@@ -92,9 +109,12 @@ export default function ProductImagesForm({ form }: Props) {
                 preview: previewUrl
             };
 
-            currentImages.push(newImage);
             fieldImages.append(newImage);
-        });
+
+            stats.total++;
+            if (role === IMAGE_ROLES.MAIN_IMAGE) stats.hasMain = true;
+            if (role === IMAGE_ROLES.SUB_IMAGE) stats.subCount++;
+        }
 
         e.target.value = "";
     };
@@ -102,35 +122,21 @@ export default function ProductImagesForm({ form }: Props) {
     const handleSelectImageRole = (index: number, role: ProductImageRole) => {
         const images = [...watchImages];
         const image = images[index];
-        const order = { [IMAGE_ROLES.MAIN_IMAGE]: 0, [IMAGE_ROLES.SUB_IMAGE]: 1, [IMAGE_ROLES.GALLERY_IMAGE]: 2 };
+        const stats = getColorImageRoleStats(watchImages, watchColor?.id);
 
-        const hasMain = colorImages.some(image => image.role === IMAGE_ROLES.MAIN_IMAGE);
-        const subCount = colorImages.filter(image => image.role === IMAGE_ROLES.SUB_IMAGE).length;
-
-        if (role === IMAGE_ROLES.MAIN_IMAGE && hasMain) return;
-        if (role === IMAGE_ROLES.SUB_IMAGE && subCount >= 2) return;
-        if (role === IMAGE_ROLES.GALLERY_IMAGE && image.role === role) return;
+        if (role === IMAGE_ROLES.MAIN_IMAGE && stats.hasMain) return;
+        if (role === IMAGE_ROLES.SUB_IMAGE && stats.subCount >= 2) return;
+        if (image.role === role) return;
 
         images[index] = { ...image, role };
-        images.sort((a, b) => {
-            if (a.colorId !== b.colorId) return 0;
-            return order[a.role] - order[b.role];
-        });
-
-        form.setValue("images", images, { shouldDirty: true });
+        form.setValue("images", sortImagesByImageRole(images), { shouldDirty: true });
     }
 
     const handleSelectDeleteImage = (index: number) => {
         const images = [...watchImages];
-        const order = { [IMAGE_ROLES.MAIN_IMAGE]: 0, [IMAGE_ROLES.SUB_IMAGE]: 1, [IMAGE_ROLES.GALLERY_IMAGE]: 2 };
 
         images.splice(index, 1);
-        images.sort((a, b) => {
-            if (a.colorId !== b.colorId) return 0;
-            return order[a.role] - order[b.role];
-        });
-
-        form.setValue("images", images, { shouldDirty: true });
+        form.setValue("images", sortImagesByImageRole(images), { shouldDirty: true });
     }
 
     return (
@@ -185,12 +191,10 @@ export default function ProductImagesForm({ form }: Props) {
 
                             <div className="grid grid-cols-2 gap-[10px] transition-all">
                                 {
-                                    colorImages.map(image => {
-                                        const index = watchImages.findIndex(wImage => image === wImage);
-                                        const src = image.preview || (typeof image.image === "string" ? image.image : "");
-
+                                    colorImagesIndexed.map(({ image, index }) => {
+                                        const src = image.preview || image.url || "";
+                                        const isMain = image.role === IMAGE_ROLES.MAIN_IMAGE;
                                         const isSub = image.role === IMAGE_ROLES.SUB_IMAGE;
-                                        const isMainOrSub = image.role === IMAGE_ROLES.MAIN_IMAGE || image.role === IMAGE_ROLES.SUB_IMAGE;
 
                                         return (
                                             <div
@@ -208,11 +212,11 @@ export default function ProductImagesForm({ form }: Props) {
                                                 <div
                                                     className={cn(
                                                         "absolute top-[10px] left-[10px] right-[10px] flex items-center",
-                                                        !isMainOrSub ? "justify-end" : "justify-between"
+                                                        (!isMain && !isSub) ? "justify-end" : "justify-between"
                                                     )}
                                                 >
                                                     {
-                                                        isMainOrSub &&
+                                                        (isMain || isSub) &&
                                                         (
                                                             <Badge
                                                                 variant="solid"

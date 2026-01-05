@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import Header from "@/components/Header";
 import ProductGeneralForm from "@/app/admin/products/components/form/ProductGeneralForm";
@@ -15,17 +16,23 @@ import { Button } from "@/components/ui/button";
 import { FaPlus } from "react-icons/fa6";
 import { IoReloadOutline } from "react-icons/io5";
 
+import { toast } from "@pheralb/toast";
 import productSchema from "@/schema/product-schema";
+import DISCOUNT_TYPES from "@/consts/discount-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import imageCompression from 'browser-image-compression';
+import { adminAddProduct } from "@/services/products/admin";
+import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
+
+import type { AdminAddProductData } from "@/services/products/admin";
 
 export interface ProductForm {
     name: string,
     desc: string,
     costPrice: string,
     interestPercent: string,
-    discountType: string,
+    discountType: DiscountType,
     discount: string,
     price: string,
     categories: Category[],
@@ -36,7 +43,7 @@ export interface ProductForm {
         colorId: string,
         preview?: string,
         url?: string,
-        image?: File | string,
+        image?: File,
         role: ProductImageRole
     }[]
 }
@@ -47,8 +54,9 @@ interface Props {
 }
 
 export default function ProductForm({ formType, data }: Props) {
+    const queryClient = useQueryClient();
     const [compressing, setCompressing] = useState({ status: false, progress: 0 });
-    
+
     const colors = data?.colors?.map(({ images, ...rest }) => rest);
 
     const images = data?.colors?.flatMap(color => {
@@ -67,9 +75,9 @@ export default function ProductForm({ formType, data }: Props) {
             desc: data?.desc || "Mô tả sản phẩm",
             costPrice: toStandardPositiveIntegerString(data?.costPrice?.toString()) || "1.000.000",
             interestPercent: toStandardPositiveIntegerString(data?.interestPercent?.toString()) || "80",
-            discountType: data?.discountType || "percent",
+            discountType: data?.discountType || DISCOUNT_TYPES.PERCENT,
             discount: toStandardPositiveIntegerString(data?.discount?.toString()) || "",
-            price: toStandardPositiveIntegerString(data?.price?.toString()) || "",
+            price: toStandardPositiveIntegerString(data?.price?.toString()) || "1.800.00",
             categories: data?.categories || [],
             colors: colors || [],
             color: undefined,
@@ -77,18 +85,48 @@ export default function ProductForm({ formType, data }: Props) {
         }
     });
 
-    console.log(form.watch("costPrice"));
+    const mutation = useMutation({
+        mutationFn: (data: AdminAddProductData) => adminAddProduct(data),
+        onSuccess: ({ success, message }) => {
+            if (success) {
+                toast.success({ text: "Thành công", description: message });
+                queryClient.invalidateQueries({ queryKey: ["adminColors"] });
+                form.reset();
+            }
+            else toast.error({ text: "Thất bại", description: message });
+        },
+        onError: (error) => {
+            console.error("useMutation");
+            console.error(error);
+            toast.error({ text: "Thất bại", description: error.message });
+        }
+    });
 
     const handleSubmit = async (data: ProductForm) => {
+        // Thêm / cập nhật thông tin cơ bản
+
+        const { images, color, ...rest } = data;
+        const formatData = {
+            ...rest,
+            costPrice: Number(toPositiveIntegerString(data.costPrice)),
+            interestPercent: Number(toPositiveIntegerString(data.interestPercent)),
+            discount: Number(toPositiveIntegerString(data.discount)),
+            price: Number(toPositiveIntegerString(data.price)),
+        }
+
+        mutation.mutateAsync(formatData);
+
+        // Xử lý nén - chia nhiều ảnh sản phẩm thành nhiều batch - thêm / cập nhật ảnh theo batch
+
         // setCompressing(state => ({ ...state, status: true }));
 
         // const totalImages = data.images.length;
         // const progresses = Array(totalImages).fill(0);
 
         // const images = await Promise.all(data.images.map(async (image, index) => {
-        //     if (typeof image.image === "string") return image; 
+        //     if (!image.image) return image; 
 
-        //     const compressedFile = await imageCompression(image.image, {
+        //     const compressedFile = await imageCompression(image.image as File, {
         //         maxSizeMB: 2,
         //         useWebWorker: true,
         //         onProgress: (progress) => {
@@ -102,6 +140,16 @@ export default function ProductForm({ formType, data }: Props) {
         // }));
 
         // setCompressing({ status: false, progress: 0 });
+
+        // const groupColorImages: Record<string, typeof images> = {};
+
+        // images.forEach(image => {
+        //     const colorImages =  groupColorImages[image.colorId];
+        //     if (!colorImages) groupColorImages[image.colorId] = [image];
+        //     else colorImages.push(image);
+        // });
+
+        // const batchColorImages = Object.values(groupColorImages);
     }
 
     return (

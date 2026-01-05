@@ -29,7 +29,8 @@ export default function ProductGeneralForm({ form }: Props) {
 
     const handleChangeCostPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
         const costPrice = toPositiveIntegerString(e.target.value);
-        form.setValue("costPrice", toStandardPositiveIntegerString(costPrice), { shouldValidate: true });
+        const standardCostPrice = toStandardPositiveIntegerString(costPrice);
+        form.setValue("costPrice", standardCostPrice, { shouldValidate: true });
     }
 
     const handleChangeInterestPercent = (e: React.ChangeEvent<HTMLInputElement>) => {

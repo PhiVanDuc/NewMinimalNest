@@ -16,7 +16,7 @@ import { FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/for
 import { FaPlus } from "react-icons/fa6";
 
 import { cn } from "@/libs/utils";
-import { publicGetCategories } from "@/services/categories/public";
+import { adminGetCategories } from "@/services/categories/admin";
 
 import type { UseFormReturn } from "react-hook-form";
 import type { ProductForm } from "@/app/admin/products/components/form/ProductForm";
@@ -29,8 +29,8 @@ export default function ProductCategoriesForm({ form }: Props) {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
 
     const query = useQuery({
-        queryKey: ["categories"],
-        queryFn: () => publicGetCategories()
+        queryKey: ["adminCategories"],
+        queryFn: () => adminGetCategories({ limit: "100" })
     });
 
     const isLoading = query.isPending;

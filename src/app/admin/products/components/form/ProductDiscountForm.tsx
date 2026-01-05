@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useWatch } from "react-hook-form";
 
 import Combobox from "@/components/Combobox";
@@ -8,6 +8,8 @@ import Combobox from "@/components/Combobox";
 import { Input } from "@/components/ui/input";
 import { FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
 
+import calculatePrice from "@/utils/calculate-price";
+import DISCOUNT_TYPES from "@/consts/discount-types";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
 
@@ -39,49 +41,42 @@ export default function ProductDiscountForm({ form }: Props) {
         name: "discountType"
     });
 
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            form.setValue("discount", "");
-        }, 500);
+    const watchPrice = useWatch({
+        control: form.control,
+        name: "price"
+    });
 
+    useEffect(() => {
+        const handler = setTimeout(() => form.setValue("discount", ""), 500);
         return () => clearTimeout(handler);
     }, [watchCostPrice]);
 
-    const price = useMemo(() => {
-        const costPrice = Number(toPositiveIntegerString(watchCostPrice));
-        const discount = Number(toPositiveIntegerString(watchDiscount));
-        const interestPercent = Number(toPositiveIntegerString(watchInterestPercent));
-
-        if (!costPrice) return "";
-        const priceWithInterest = costPrice * (1 + interestPercent / 100);
-
-        let finalPrice = 0;
-        if (!discount) finalPrice = priceWithInterest;
-        else {
-            if (watchDiscountType === "percent") finalPrice = priceWithInterest - (priceWithInterest * discount) / 100;
-            else finalPrice = priceWithInterest - discount;
-        }
-
-        return Math.ceil(finalPrice).toString();
-    }, [watchCostPrice, watchDiscount, watchDiscountType, watchInterestPercent]);
+    useEffect(() => {
+        const finalPrice = calculatePrice(watchCostPrice, watchInterestPercent, watchDiscount, watchDiscountType);
+        form.setValue("price", finalPrice, { shouldValidate: true });
+    }, [watchCostPrice, watchInterestPercent, watchDiscount, watchDiscountType]);
 
     const handleChangeDiscount = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const discount = toPositiveIntegerString(e.target.value);
-        const costPrice = toPositiveIntegerString(watchCostPrice);
+        const discountString = toPositiveIntegerString(e.target.value);
+        const costPriceString = toPositiveIntegerString(watchCostPrice);
+        const standardDiscountString = toStandardPositiveIntegerString(discountString);
+        const standardCostPriceString = toStandardPositiveIntegerString(costPriceString);
+        const discount = Number(discountString);
+        const costPrice = Number(costPriceString);
 
-        if (watchDiscountType === "percent") {
-            if (Number(discount) > 100) form.setValue("discount", "100");
-            else form.setValue("discount", discount);
+        if (watchDiscountType === DISCOUNT_TYPES.PERCENT) {
+            if (discount > 100) form.setValue("discount", "100");
+            else form.setValue("discount", discountString);
         }
         else {
-            if (Number(discount) > Number(costPrice)) form.setValue("discount", toStandardPositiveIntegerString(costPrice));
-            else form.setValue("discount", toStandardPositiveIntegerString(discount));
+            if (discount > costPrice) form.setValue("discount", standardCostPriceString);
+            else form.setValue("discount", standardDiscountString);
         }
     }
 
     const handleSelectDiscountType = (value: string) => {
         form.setValue("discount", "");
-        form.setValue("discountType", value as "percent" | "amount");
+        form.setValue("discountType", value as DiscountType);
     }
 
     return (
@@ -127,7 +122,7 @@ export default function ProductDiscountForm({ form }: Props) {
                             },
                             {
                                 label: "Giá cố định",
-                                value: "amount"
+                                value: "fixed"
                             }
                         ]}
                         value={watchDiscountType}
@@ -146,7 +141,7 @@ export default function ProductDiscountForm({ form }: Props) {
 
                             <FormControl>
                                 <Input
-                                    value={!toStandardPositiveIntegerString(price) ? "0" : toStandardPositiveIntegerString(price)}
+                                    value={watchPrice}
                                     placeholder="Giá bán sản phẩm . . ."
                                     disabled={true}
                                     readOnly

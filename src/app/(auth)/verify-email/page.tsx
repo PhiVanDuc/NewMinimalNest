@@ -21,7 +21,7 @@ export default async function Page({ searchParams }: Props) {
         isSuccess = success;
     }
     catch (error) {
-        console.error(error);
+        console.log(error);
         isSuccess = false;
     }
 

@@ -39,8 +39,8 @@ export default function AccountRoleColumn({ id, role }: Props) {
             }
         },
         onError: (error) => {
-            console.error("useMutation");
-            console.error(error);
+            console.log("useMutation");
+            console.log(error);
 
             setCurrentRole(previousRole);
             toast.error({ text: "Thất bại", description: error.message });

@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import Header from "@/components/Header";
 import ProductGeneralForm from "@/app/admin/products/components/form/ProductGeneralForm";
@@ -21,11 +21,16 @@ import productSchema from "@/schema/product-schema";
 import DISCOUNT_TYPES from "@/consts/discount-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import imageCompression from 'browser-image-compression';
-import { adminAddProduct } from "@/services/products/admin";
+import { adminAddProduct, adminAddProductImages } from "@/services/products/admin";
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
 
-import type { AdminAddProductData } from "@/services/products/admin";
+import type { Dispatch, SetStateAction } from "react";
+
+interface Props {
+    formType: "add" | "update",
+    data?: Product
+}
 
 export interface ProductForm {
     name: string,
@@ -48,29 +53,103 @@ export interface ProductForm {
     }[]
 }
 
-interface Props {
-    formType: "add" | "update",
-    data?: Product
+interface CompressImages {
+    images: ProductForm["images"],
+    setCompressing: Dispatch<SetStateAction<{
+        isPending: boolean,
+        progress: number
+    }>>
+}
+
+const compressImages = async (images: CompressImages["images"], setCompressing: CompressImages["setCompressing"]) => {
+    const totalImages = images.length;
+    const progresses = Array(totalImages).fill(0);
+
+    return await Promise.all(
+        images.map(async (image, index) => {
+            if (!image.image) return image;
+
+            const options = {
+                maxSizeMB: 2,
+                useWebWorker: true,
+                onProgress: (progress: number) => {
+                    progresses[index] = progress;
+                    const totalProgress = Math.round(progresses.reduce((prev, curr) => prev + curr, 0) / totalImages);
+                    setCompressing(state => ({ ...state, progress: totalProgress }));
+                }
+            };
+
+            const blob = await imageCompression(image.image, options);
+            const name = image.image.name.substring(0, image.image.name.lastIndexOf('.'));
+            const extension = blob.type.split('/')[1];
+
+            const file = new File([blob], `${name}.${extension}`, {
+                type: blob.type,
+                lastModified: Date.now()
+            });
+
+            return { ...image, image: file };
+        })
+    );
+}
+
+const uploadBatchs = async (productId: string, images: ProductForm['images']) => {
+    const batches = Object.values(
+        images.reduce(
+            (prev, { preview, ...img }) => {
+                if (!prev[img.colorId]) prev[img.colorId] = [];
+                prev[img.colorId].push(img);
+                return prev;
+            },
+            {} as Record<string, ProductForm['images']>
+        )
+    );
+
+    for(let i = 0; i < batches.length; i++) {
+        const outputs = await Promise.allSettled(
+            batches.slice(i, i + 1)
+                .filter(Boolean)
+                .map(batch => {
+                    const formData = new FormData();
+
+                    batch.forEach(image => {
+                        formData.append("roles", image.role);
+                        formData.append("colorIds", image.colorId);
+                        if (image.image) formData.append("images", image.image);
+                        if (image.id) formData.append("ids", image.id);
+                    });
+
+                    return adminAddProductImages(productId, formData);
+                })
+        );
+
+        outputs.forEach(output => {
+            if (output.status === 'fulfilled') {
+                const { success, message } = output.value;
+                if (success) toast.success({ text: "Thành công", description: message, delayDuration: 20000 });
+                else toast.error({ text: "Thất bại", description: message, delayDuration: 20000 });
+            }
+            else toast.error({ text: "Thất bại", description: output.reason, delayDuration: 20000 });
+        });
+    }
 }
 
 export default function ProductForm({ formType, data }: Props) {
-    const queryClient = useQueryClient();
-    const [compressing, setCompressing] = useState({ status: false, progress: 0 });
+    const [compressing, setCompressing] = useState({ isPending: false, progress: 0 });
 
-    const colors = data?.colors?.map(({ images, ...rest }) => rest);
+    const initialValues = useMemo<ProductForm>(() => {
+        const colors = data?.colors?.map(({ images, ...rest }) => rest);
 
-    const images = data?.colors?.flatMap(color => {
-        return color.images.map(img => {
-            return {
-                ...img,
-                colorId: color.id
-            }
-        })
-    });
+        const images = data?.colors?.flatMap(color => {
+            return color.images.map(img => {
+                return {
+                    ...img,
+                    colorId: color.id
+                }
+            })
+        });
 
-    const form = useForm({
-        resolver: zodResolver(productSchema),
-        defaultValues: {
+        return {
             name: data?.name || "Tên sản phẩm",
             desc: data?.desc || "Mô tả sản phẩm",
             costPrice: toStandardPositiveIntegerString(data?.costPrice?.toString()) || "1.000.000",
@@ -79,78 +158,48 @@ export default function ProductForm({ formType, data }: Props) {
             discount: toStandardPositiveIntegerString(data?.discount?.toString()) || "",
             price: toStandardPositiveIntegerString(data?.price?.toString()) || "1.800.00",
             categories: data?.categories || [],
-            colors: colors || [],
+            colors: colors  || [],
             color: undefined,
-            images: images || []
-        }
+            images: images  || []
+        };
+    }, [data]);
+
+    const form = useForm({
+        resolver: zodResolver(productSchema),
+        defaultValues: initialValues
     });
 
     const mutation = useMutation({
-        mutationFn: (data: AdminAddProductData) => adminAddProduct(data),
-        onSuccess: ({ success, message }) => {
-            if (success) {
-                toast.success({ text: "Thành công", description: message });
-                queryClient.invalidateQueries({ queryKey: ["adminColors"] });
-                form.reset();
-            }
-            else toast.error({ text: "Thất bại", description: message });
+        mutationFn: async (data: ProductForm) => {
+            // Nén ảnh
+            setCompressing({ isPending: true, progress: 0 });
+            const compressedImages = await compressImages(data.images, setCompressing);
+            setCompressing({ isPending: false, progress: 0 });
+
+            // Thêm sản phẩm
+            const { images, color, price, ...rest } = data;
+            const basicData = {
+                ...rest,
+                costPrice: Number(toPositiveIntegerString(data.costPrice)),
+                interestPercent: Number(toPositiveIntegerString(data.interestPercent)),
+                discount: Number(toPositiveIntegerString(data.discount))
+            };
+
+            const productOutput = await adminAddProduct(basicData);
+            if (productOutput.success) toast.success({ text: "Thành công", description: productOutput.message, delayDuration: 20000 });
+            else throw new Error(productOutput.message);
+
+            // Thêm ảnh sản phẩm
+            await uploadBatchs(productOutput.data?.id as string, compressedImages);
         },
         onError: (error) => {
-            console.error("useMutation");
-            console.error(error);
-            toast.error({ text: "Thất bại", description: error.message });
+            console.log("useMutation");
+            console.log(error);
+            toast.error({ text: "Thất bại", description: error.message, delayDuration: 20000 });
         }
     });
 
-    const handleSubmit = async (data: ProductForm) => {
-        // Thêm / cập nhật thông tin cơ bản
-
-        const { images, color, ...rest } = data;
-        const formatData = {
-            ...rest,
-            costPrice: Number(toPositiveIntegerString(data.costPrice)),
-            interestPercent: Number(toPositiveIntegerString(data.interestPercent)),
-            discount: Number(toPositiveIntegerString(data.discount)),
-            price: Number(toPositiveIntegerString(data.price)),
-        }
-
-        mutation.mutateAsync(formatData);
-
-        // Xử lý nén - chia nhiều ảnh sản phẩm thành nhiều batch - thêm / cập nhật ảnh theo batch
-
-        // setCompressing(state => ({ ...state, status: true }));
-
-        // const totalImages = data.images.length;
-        // const progresses = Array(totalImages).fill(0);
-
-        // const images = await Promise.all(data.images.map(async (image, index) => {
-        //     if (!image.image) return image; 
-
-        //     const compressedFile = await imageCompression(image.image as File, {
-        //         maxSizeMB: 2,
-        //         useWebWorker: true,
-        //         onProgress: (progress) => {
-        //             progresses[index] = progress;
-        //             const totalProgress = progresses.reduce((a, b) => a + b, 0) / totalImages;
-        //             setCompressing(state => ({ ...state, progress: Math.round(totalProgress) }));
-        //         }
-        //     });
-
-        //     return { ...image, image: compressedFile };
-        // }));
-
-        // setCompressing({ status: false, progress: 0 });
-
-        // const groupColorImages: Record<string, typeof images> = {};
-
-        // images.forEach(image => {
-        //     const colorImages =  groupColorImages[image.colorId];
-        //     if (!colorImages) groupColorImages[image.colorId] = [image];
-        //     else colorImages.push(image);
-        // });
-
-        // const batchColorImages = Object.values(groupColorImages);
-    }
+    const handleSubmit = (data: ProductForm) => mutation.mutate(data);
 
     return (
         <div className="space-y-[40px]">
@@ -192,20 +241,32 @@ export default function ProductForm({ formType, data }: Props) {
                             (
                                 <Button
                                     className="w-full bg-theme-main hover:bg-theme-main/95"
-                                    disabled={compressing.status}
+                                    disabled={compressing.isPending || mutation.isPending}
                                 >
                                     {
                                         formType === "add" ?
                                             (
                                                 <>
                                                     <FaPlus />
-                                                    { compressing.status ? `Đang nén ảnh ${compressing.progress}%` : "Thêm sản phẩm" }
+                                                    {
+                                                        compressing.isPending ?
+                                                            `Đang nén ảnh ${compressing.progress}%` :
+                                                            mutation.isPending ?
+                                                                "Đang thêm sản phẩm . . ." :
+                                                                "Thêm sản phẩm"
+                                                    }
                                                 </>
                                             ) :
                                             (
                                                 <>
                                                     <IoReloadOutline />
-                                                    { compressing.status ? `Đang nén ảnh ${compressing.progress}%` : "Cập nhật sản phẩm" }
+                                                    {
+                                                        compressing.isPending ?
+                                                            `Đang nén ảnh ${compressing.progress}%` :
+                                                            mutation.isPending ?
+                                                                "Đang cập nhật sản phẩm . . ." :
+                                                                "Cập nhật sản phẩm"
+                                                    }
                                                 </>
                                             )
                                     }

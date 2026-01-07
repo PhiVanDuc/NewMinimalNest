@@ -52,7 +52,7 @@ export default function ProductDiscountForm({ form }: Props) {
     }, [watchCostPrice]);
 
     useEffect(() => {
-        const finalPrice = calculatePrice(watchCostPrice, watchInterestPercent, watchDiscount, watchDiscountType);
+        const finalPrice = calculatePrice(watchCostPrice, watchInterestPercent, watchDiscountType, watchDiscount);
         form.setValue("price", finalPrice, { shouldValidate: true });
     }, [watchCostPrice, watchInterestPercent, watchDiscount, watchDiscountType]);
 

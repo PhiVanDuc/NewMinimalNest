@@ -3,7 +3,7 @@ import toStandardPositiveIntegerString from "@/utils/to-standard-positive-intege
 
 import DISCOUNT_TYPES from "@/consts/discount-types";
 
-export default (costPriceStr: string, interestPercentStr: string, discountStr: string, discountType: string) => {
+export default (costPriceStr: string, interestPercentStr: string, discountType: string, discountStr: string) => {
     const costPrice = Number(toPositiveIntegerString(costPriceStr) || 0);
     const interestPercent = Number(toPositiveIntegerString(interestPercentStr) || 0);
     const discount = Number(toPositiveIntegerString(discountStr) || 0);

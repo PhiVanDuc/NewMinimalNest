@@ -45,8 +45,8 @@ const handleFetch = async <InputData = unknown, OutputData = unknown>(method: Me
         const error = err as Error;
         error.message = error.message || "Lỗi không xác định!";
 
-        console.error(`Public Fetch - ${NEXT_PUBLIC_BE_API || BE_API}${path}`);
-        console.error(error);
+        console.log(`Public Fetch - ${NEXT_PUBLIC_BE_API || BE_API}${path}`);
+        console.log(error);
 
         throw error;
     }

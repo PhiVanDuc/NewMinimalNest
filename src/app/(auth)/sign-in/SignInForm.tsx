@@ -55,8 +55,8 @@ export default function SignInForm() {
             else toast.error({ text: "Thất bại", description: message });
         },
         onError: (error) => {
-            console.error("useMutation");
-            console.error(error);
+            console.log("useMutation");
+            console.log(error);
             toast.error({ text: "Thất bại", description: error.message });
         }
     })

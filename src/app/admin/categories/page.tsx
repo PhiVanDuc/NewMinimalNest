@@ -37,6 +37,8 @@ function PageContent() {
     const isError = query.isError || query.data?.success === false;
     const categories = query.data?.data?.categories || [];
     const totalPage = query.data?.data?.totalPage || "1";
+
+    // console.log(query.data?.data);
     
     return (
         <div className="space-y-[40px]">

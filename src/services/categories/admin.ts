@@ -7,7 +7,7 @@ import type { Filter } from "@/app/admin/categories/components/CategoryFilter";
 
 export const adminGetCategories = async ({ page, limit, filter }: { page?: string, limit?: string, filter?: Filter }) => {
     const queryString = toQueryString({ page, limit, ...filter });
-    return privateFetch.get<Categories>(`/admin/categories?${queryString}`);
+    return privateFetch.get<Categories>(`/admin/categories${queryString}`);
 }
 
 export const adminGetCategory = async <Id>(id: Id) => {

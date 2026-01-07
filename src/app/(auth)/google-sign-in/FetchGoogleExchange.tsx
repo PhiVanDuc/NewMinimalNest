@@ -32,8 +32,8 @@ export default function FetchGoogleExchange({ token }: Props) {
             }
         },
         onError: (error) => {
-            console.error("useMutation");
-            console.error(error);
+            console.log("useMutation");
+            console.log(error);
             router.replace(`/google-sign-in/failed`);
         }
     });

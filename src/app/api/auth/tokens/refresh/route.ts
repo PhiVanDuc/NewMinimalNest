@@ -43,8 +43,8 @@ export async function POST(req: NextRequest) {
     catch (err) {
         const error = err as Error;
         
-        console.error(`Route Handlers - ${BE_API}${PATH}`);
-        console.error(error);
+        console.log(`Route Handlers - ${BE_API}${PATH}`);
+        console.log(error);
 
         return NextResponse.json(
             { success: false, message: error.message || "Lỗi không xác định!" },

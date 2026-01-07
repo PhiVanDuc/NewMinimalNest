@@ -43,13 +43,14 @@ const productSchema = z.object({
         )
         .min(1, { error: "Vui lòng chọn ít nhất 1 màu sắc cho sản phẩm!" }),
     color: z
-        .object({
-            id: z.string(),
-            name: z.string(),
-            slug: z.string(),
-            colorCode: z.string()
-        })
-        .optional(),
+        .optional(
+            z.object({
+                id: z.string(),
+                name: z.string(),
+                slug: z.string(),
+                colorCode: z.string()
+            })
+        ),
     images: z
         .array(
             z.object({

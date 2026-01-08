@@ -191,6 +191,7 @@ export default function ProductForm({ formType, data }: Props) {
 
             // Thêm ảnh sản phẩm
             await uploadBatchs(productOutput.data?.id as string, compressedImages);
+            form.reset();
         },
         onError: (error) => {
             console.log("useMutation");

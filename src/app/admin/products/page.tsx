@@ -47,9 +47,7 @@ export default function Page() {
                 />
             </div>
 
-            <Pagination
-                totalPage="10"
-            />
+            <Pagination totalPage="10" />
         </div>
     )
 }

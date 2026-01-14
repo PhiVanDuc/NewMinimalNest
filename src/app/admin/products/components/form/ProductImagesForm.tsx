@@ -1,5 +1,6 @@
 "use client"
 
+import { useMemo } from "react";
 import { useFieldArray, useWatch } from "react-hook-form";
 
 import Image from "next/image";
@@ -12,6 +13,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { IoMdImages, IoMdMore } from "react-icons/io";
 
 import { cn } from "@/libs/utils";
+import { v4 as uuidv4 } from "uuid";
 import { toast } from "@pheralb/toast";
 import IMAGE_ROLES from "@/consts/image-roles";
 
@@ -77,9 +79,9 @@ export default function ProductImagesForm({ form }: Props) {
         name: "color"
     });
 
-    const colorImagesIndexed = watchImages
-        .map((image, index) => ({ image, index }))
-        .filter(({ image }) => image.colorId === watchColor?.id);
+    // const colorImagesIndexed = watchImages
+    //     .map((image, index) => ({ image, index }))
+    //     .filter(({ image }) => image.colorId === watchColor?.id);
 
     const handleChooseImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const images = e.target.files;
@@ -103,6 +105,7 @@ export default function ProductImagesForm({ form }: Props) {
             const role = getImageRole(stats.hasMain, stats.subCount);
             const previewUrl = URL.createObjectURL(image);
             const newImage = { 
+                id: uuidv4(),
                 colorId: watchColor.id, 
                 role, 
                 image,
@@ -191,15 +194,23 @@ export default function ProductImagesForm({ form }: Props) {
 
                             <div className="grid grid-cols-2 gap-[10px] transition-all">
                                 {
-                                    colorImagesIndexed.map(({ image, index }) => {
+                                    watchImages.map((image, index) => {
+                                        const isVisible = image.colorId === watchColor?.id;
+
                                         const src = image.preview || image.url || "";
+                                        const blurSrc = image.blurUrl;
+                                        const isBlur = src && blurSrc;
+
                                         const isMain = image.role === IMAGE_ROLES.MAIN_IMAGE;
                                         const isSub = image.role === IMAGE_ROLES.SUB_IMAGE;
 
                                         return (
                                             <div
-                                                key={index}
-                                                className="group relative rounded-[10px] overflow-hidden cursor-pointer"
+                                                key={image.id}
+                                                className={cn(
+                                                    "group relative rounded-[10px] overflow-hidden cursor-pointer",
+                                                    !isVisible && "hidden"
+                                                )}
                                             >
                                                 <Image
                                                     src={src}
@@ -207,6 +218,8 @@ export default function ProductImagesForm({ form }: Props) {
                                                     width={800}
                                                     height={800}
                                                     className="w-full aspect-square object-cover object-center"
+                                                    placeholder={isBlur ? "blur" : "empty"}
+                                                    blurDataURL={isBlur ? blurSrc : undefined}
                                                 />
 
                                                 <div

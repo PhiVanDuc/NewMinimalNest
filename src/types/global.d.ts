@@ -46,10 +46,28 @@ interface Colors extends Pagination {
 interface ProductImage {
     id: string,
     url: string,
+    blurUrl: string,
     role: ProductImageRole
 }
 
-interface Product {
+interface ProductCard {
+    id: string,
+    name: string,
+    costPrice: number,
+    interestPercent: number,
+    discountType: DiscountType,
+    discount: number,
+    price: number,
+    categories: Category[],
+    colors: Color[],
+    image: ProductImage
+}
+
+interface ProductCards extends Pagination {
+    products: ProductCard[]
+}
+
+interface ProductDetail {
     id: string,
     name: string,
     desc: string,

@@ -1,20 +1,42 @@
 "use client"
 
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 import Link from "next/link";
+import { Suspense } from "react";
+import Error from "@/components/Error";
 import Header from "@/components/Header";
 import DataTable from "@/components/DataTable";
 import Pagination from "@/components/Pagination";
-import ProductsFilter from "@/app/admin/products/components/ProductsFilter";
+import ProductFilter from "@/app/admin/products/components/ProductFilter";
 
 import { Button } from "@/components/ui/button";
+
 import { FaPlus } from "react-icons/fa6";
 
-import productsColumns from "@/app/admin/products/products-columns";
+import { adminGetProducts } from "@/services/products/admin";
+import productColumns from "@/app/admin/products/product-columns";
+import isPositiveIntegerString from "@/utils/is-positive-integer-string";
 
-export default function Page() {
+function PageContent() {
+    const searchParams = useSearchParams();
     const [filter, setFilter] = useState({ name: "" });
+
+    const page = searchParams.get("page") || "1";
+    const isValidPage = isPositiveIntegerString(page);
+
+    const query = useQuery({
+        queryKey: ["adminProducts", { page, filter }],
+        queryFn: () => adminGetProducts({ page, filter }),
+        enabled: isValidPage
+    });
+
+    const isLoading = query.isPending;
+    const isError = query.isError || query.data?.success === false;
+    const products = query.data?.data?.products || []
+    const totalPage = query.data?.data?.totalPage || "1";
 
     return (
         <div className="space-y-[40px]">
@@ -34,20 +56,30 @@ export default function Page() {
                     </Link>
                 </Button>
             </div>
+            
+            {
+                isError ? <Error /> :
+                (
+                    <div className="space-y-[10px]">
+                        <ProductFilter setFilter={setFilter} />
+                        <DataTable
+                            data={products}
+                            columns={productColumns}
+                            isLoading={isLoading}
+                        />
+                    </div>
+                )
+            }
 
-            <div className="space-y-[10px]">
-                <ProductsFilter
-                    filter={filter}
-                    setFilter={setFilter}
-                />
-
-                <DataTable
-                    data={[1, 2, 3, 4]}
-                    columns={productsColumns}
-                />
-            </div>
-
-            <Pagination totalPage="10" />
+            <Pagination totalPage={totalPage} />
         </div>
+    )
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback="">
+            <PageContent />
+        </Suspense>
     )
 }

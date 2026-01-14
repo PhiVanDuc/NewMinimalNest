@@ -6,7 +6,7 @@ interface Options extends Omit<RequestInit, "method" | "body"> {
 }
 
 interface Output<OutputData> {
-    status: number,
+    statusCode: number,
     success: boolean,
     message: string,
     data?: OutputData
@@ -39,7 +39,7 @@ const handleFetch = async <InputData = unknown, OutputData = unknown>(method: Me
         const response = await fetch(`${NEXT_PUBLIC_BE_API || BE_API}${path}`, finalOptions);
         const result = await response.json();
 
-        return { status: response.status, ...result };
+        return { statusCode: response.status, ...result };
     }
     catch (err) {
         const error = err as Error;

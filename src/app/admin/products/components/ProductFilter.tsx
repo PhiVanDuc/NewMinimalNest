@@ -1,41 +1,49 @@
 "use client"
 
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { Input } from "@/components/ui/input";
+
 import { SearchIcon } from "lucide-react";
 
 import type { Dispatch, SetStateAction } from "react";
 
-type FilterType = {
+export interface Filter {
     name: string
 }
 
 interface Props {
-    filter: FilterType,
-    setFilter: Dispatch<SetStateAction<FilterType>>
+    setFilter: Dispatch<SetStateAction<Filter>>
 }
 
-export default function ProductsFilter({ filter, setFilter }: Props) {
-    const router = useRouter();
+export default function ProductFilter({ setFilter }: Props) {
+    const queryClient = useQueryClient();
+    const [tempFilter, setTempFilter] = useState({
+        name: ""
+    });
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilter(() => {
-            return { name: e.target.value }
-        });
+        setTempFilter(() => ({ name: e.target.value }));
     }
 
     const handleClickFilter = () => {
-        router.refresh();
+        setFilter(tempFilter);
+        queryClient.invalidateQueries({ queryKey: ["adminProducts"] });
+    }
+
+    const handleKeyUpEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter" || e.keyCode === 13) handleClickFilter();
     }
 
     return (
         <div className="flex items-center justify-between gap-[10px]">
             <Input
-                value={filter.name}
+                value={tempFilter.name}
                 placeholder="Lọc tên sản phẩm . . ."
-                className="w-[300px]"
+                className="w-full max-w-[300px]"
                 onChange={handleChangeName}
+                onKeyUp={handleKeyUpEnter}
             />
 
             <button

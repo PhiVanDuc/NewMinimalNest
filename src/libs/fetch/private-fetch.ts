@@ -11,7 +11,7 @@ interface Options extends Omit<RequestInit, "method" | "body"> {
 }
 
 interface Output<OutputData> {
-    status: number,
+    statusCode: number,
     success: boolean,
     message: string,
     data?: OutputData
@@ -20,9 +20,9 @@ interface Output<OutputData> {
 const NEXT_PUBLIC_FE = process.env.NEXT_PUBLIC_FE;
 const NEXT_PUBLIC_BE_API = process.env.NEXT_PUBLIC_BE_API;
 
-let refreshPromise: Promise<Omit<Output<{ accessToken: string }>, "status">> | undefined;
+let refreshPromise: Promise<Omit<Output<{ accessToken: string }>, "statusCode">> | undefined;
 
-const refreshTokens = async (): Promise<Omit<Output<{ accessToken: string }>, "status"> | undefined> => {
+const refreshTokens = async (): Promise<Omit<Output<{ accessToken: string }>, "statusCode"> | undefined> => {
     if (!refreshPromise) {
         refreshPromise = (async () => {
             const path = "/api/auth/tokens/refresh";
@@ -98,11 +98,11 @@ const handleFetch = async <InputData = unknown, OutputData = unknown>(method: Me
                 const retryResult = await retryResponse.json();
 
                 if (retryResponse.status === 401) await signOut();
-                return { status: retryResponse.status, ...retryResult };
+                return { statusCode: retryResponse.status, ...retryResult };
             }
         }
 
-        return { status: response.status, ...result };
+        return { statusCode: response.status, ...result };
     }
     catch (err) {
         const error = err as Error;

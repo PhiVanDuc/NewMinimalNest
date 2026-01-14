@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
-import Header from "@/components/Header";
 import ProductGeneralForm from "@/app/admin/products/components/form/ProductGeneralForm";
 import ProductDiscountForm from "@/app/admin/products/components/form/ProductDiscountForm";
 import ProductCategoriesForm from "@/app/admin/products/components/form/ProductCategoriesForm";
@@ -25,11 +24,12 @@ import { adminAddProduct, adminAddProductImages } from "@/services/products/admi
 import toPositiveIntegerString from "@/utils/to-positive-integer-string";
 import toStandardPositiveIntegerString from "@/utils/to-standard-positive-integer-string";
 
+import type { UseFormReturn } from "react-hook-form";
 import type { Dispatch, SetStateAction } from "react";
 
 interface Props {
     formType: "add" | "update",
-    data?: Product
+    data?: ProductDetail
 }
 
 export interface ProductForm {
@@ -48,6 +48,7 @@ export interface ProductForm {
         colorId: string,
         preview?: string,
         url?: string,
+        blurUrl?: string,
         image?: File,
         role: ProductImageRole
     }[]
@@ -93,60 +94,71 @@ const compressImages = async (images: CompressImages["images"], setCompressing: 
     );
 }
 
-const uploadBatchs = async (productId: string, images: ProductForm['images']) => {
+const uploadBatchs = async (productId: string, images: ProductForm['images'], form: UseFormReturn<ProductForm>) => {
+    let allSuccess = true;
+
     const batches = Object.values(
-        images.reduce(
-            (prev, { preview, ...img }) => {
-                if (!prev[img.colorId]) prev[img.colorId] = [];
-                prev[img.colorId].push(img);
-                return prev;
+        images.reduce((acc, { preview, ...img }) => {
+                if (!acc[img.colorId]) acc[img.colorId] = [];
+                acc[img.colorId].push(img);
+                return acc;
             },
             {} as Record<string, ProductForm['images']>
         )
     );
 
-    for(let i = 0; i < batches.length; i++) {
-        const outputs = await Promise.allSettled(
-            batches.slice(i, i + 1)
-                .filter(Boolean)
-                .map(batch => {
-                    const formData = new FormData();
+    for(let i = 0; i < batches.length; i += 2) {
+        const outputs = await Promise.allSettled(batches.slice(i, i + 2).map(batch => {
+            const formData = new FormData();
 
-                    batch.forEach(image => {
-                        formData.append("roles", image.role);
-                        formData.append("colorIds", image.colorId);
-                        if (image.image) formData.append("images", image.image);
-                        if (image.id) formData.append("ids", image.id);
-                    });
+            batch.forEach(image => {
+                formData.append("roles", image.role);
+                formData.append("colorIds", image.colorId);
+                if (image.image) formData.append("images", image.image);
+                if (image.id) formData.append("ids", image.id);
+            });
 
-                    return adminAddProductImages(productId, formData);
-                })
-        );
+            return adminAddProductImages(productId, formData);
+        }));
 
         outputs.forEach(output => {
-            if (output.status === 'fulfilled') {
-                const { success, message } = output.value;
-                if (success) toast.success({ text: "Thành công", description: message, delayDuration: 20000 });
-                else toast.error({ text: "Thất bại", description: message, delayDuration: 20000 });
+            if (output.status !== 'fulfilled') {
+                toast.error({ text: "Thất bại", description: output.reason, delayDuration: 20000 });
+                allSuccess = false;
+                return;
             }
-            else toast.error({ text: "Thất bại", description: output.reason, delayDuration: 20000 });
+
+            const { success, message, data } = output.value;
+
+            if (!success) {
+                toast.error({ text: "Thất bại", description: message, delayDuration: 20000 });
+                allSuccess = false;
+                return;
+            }
+
+            if (!data?.length) {
+                toast.success({ text: "Thành công", description: message, delayDuration: 20000 });
+                return;
+            }
+
+            data.forEach(item => {
+                if (item.statusCode === 207) toast.warning({ text: "Thành công một phần", description: item.message, delayDuration: 20000 });
+                else toast.success({ text: "Thành công", description: item.message, delayDuration: 20000 });
+            });
         });
     }
+
+    if (allSuccess) form.reset();
 }
 
 export default function ProductForm({ formType, data }: Props) {
     const [compressing, setCompressing] = useState({ isPending: false, progress: 0 });
+    const isAddType = formType === "add";
 
     const initialValues = useMemo<ProductForm>(() => {
         const colors = data?.colors?.map(({ images, ...rest }) => rest);
-
         const images = data?.colors?.flatMap(color => {
-            return color.images.map(img => {
-                return {
-                    ...img,
-                    colorId: color.id
-                }
-            })
+            return color.images.map(image => ({ ...image, colorId: color.id }));
         });
 
         return {
@@ -159,7 +171,7 @@ export default function ProductForm({ formType, data }: Props) {
             price: toStandardPositiveIntegerString(data?.price?.toString()) || "1.800.00",
             categories: data?.categories || [],
             colors: colors  || [],
-            color: undefined,
+            color: colors?.[0],
             images: images  || []
         };
     }, [data]);
@@ -186,99 +198,75 @@ export default function ProductForm({ formType, data }: Props) {
             };
 
             const productOutput = await adminAddProduct(basicData);
-            if (productOutput.success) toast.success({ text: "Thành công", description: productOutput.message, delayDuration: 20000 });
+            if (productOutput.success) toast.success({ text: "Thành công", description: productOutput.message });
             else throw new Error(productOutput.message);
 
             // Thêm ảnh sản phẩm
-            await uploadBatchs(productOutput.data?.id as string, compressedImages);
-            form.reset();
+            await uploadBatchs(productOutput.data?.id as string, compressedImages, form);
         },
         onError: (error) => {
             console.log("useMutation");
             console.log(error);
-            toast.error({ text: "Thất bại", description: error.message, delayDuration: 20000 });
+            toast.error({ text: "Thất bại", description: error.message });
         }
     });
 
     const handleSubmit = (data: ProductForm) => mutation.mutate(data);
 
     return (
-        <div className="space-y-[40px]">
-            <Header>
-                <h1 className="header-basic">
-                    {
-                        formType === "add" ? "Thêm sản phẩm" :
-                            formType === "update" ? "Cập nhật sản phẩm" : "Sai loại biểu mẫu"
-                    }
-                </h1>
+        <Form {...form}>
+            <form
+                autoComplete="off"
+                className="flex gap-[40px]"
+                onSubmit={form.handleSubmit(handleSubmit)}
+            >
+                <div className="space-y-[40px] w-[65%]">
+                    <ProductGeneralForm form={form} />
+                    <ProductDiscountForm form={form} />
 
-                <p className="desc-basic">
-                    {
-                        formType === "add" ? "Vui lòng thêm sản phẩm tại đây." :
-                            formType === "update" ? "Vui lòng cập nhật sản phẩm tại đây." : "Vui lòng cung cấp đúng loại biểu mẫu."
-                    }
-                </p>
-            </Header>
+                    <div className="relative pl-[24px] space-y-[20px]">
+                        <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
 
-            <Form {...form}>
-                <form
-                    autoComplete="off"
-                    className="flex gap-[40px]"
-                    onSubmit={form.handleSubmit(handleSubmit)}
-                >
-                    <div className="space-y-[40px] w-[65%]">
-                        <ProductGeneralForm form={form} />
-                        <ProductDiscountForm form={form} />
-
-                        <div className="relative pl-[24px] space-y-[20px]">
-                            <div className="absolute left-0 top-0 bottom-0 w-[4px] h-full rounded-full bg-theme-main" />
-
-                            <ProductCategoriesForm form={form} />
-                            <ProductColorsForm form={form} />
-                        </div>
-
-                        {
-                            (formType === "add" || formType === "update") &&
-                            (
-                                <Button
-                                    className="w-full bg-theme-main hover:bg-theme-main/95"
-                                    disabled={compressing.isPending || mutation.isPending}
-                                >
-                                    {
-                                        formType === "add" ?
-                                            (
-                                                <>
-                                                    <FaPlus />
-                                                    {
-                                                        compressing.isPending ?
-                                                            `Đang nén ảnh ${compressing.progress}%` :
-                                                            mutation.isPending ?
-                                                                "Đang thêm sản phẩm . . ." :
-                                                                "Thêm sản phẩm"
-                                                    }
-                                                </>
-                                            ) :
-                                            (
-                                                <>
-                                                    <IoReloadOutline />
-                                                    {
-                                                        compressing.isPending ?
-                                                            `Đang nén ảnh ${compressing.progress}%` :
-                                                            mutation.isPending ?
-                                                                "Đang cập nhật sản phẩm . . ." :
-                                                                "Cập nhật sản phẩm"
-                                                    }
-                                                </>
-                                            )
-                                    }
-                                </Button>
-                            )
-                        }
+                        <ProductCategoriesForm form={form} />
+                        <ProductColorsForm form={form} />
                     </div>
 
-                    <ProductImagesForm form={form} />
-                </form>
-            </Form>
-        </div>
+                    <Button
+                        className="w-full bg-theme-main hover:bg-theme-main/95"
+                        disabled={compressing.isPending || mutation.isPending}
+                    >
+                        {
+                            isAddType ?
+                                (
+                                    <>
+                                        <FaPlus />
+                                        {
+                                            compressing.isPending ?
+                                                `Đang nén ảnh ${compressing.progress}%` :
+                                                mutation.isPending ?
+                                                    "Đang thêm sản phẩm . . ." :
+                                                    "Thêm sản phẩm"
+                                        }
+                                    </>
+                                ) :
+                                (
+                                    <>
+                                        <IoReloadOutline />
+                                        {
+                                            compressing.isPending ?
+                                                `Đang nén ảnh ${compressing.progress}%` :
+                                                mutation.isPending ?
+                                                    "Đang cập nhật sản phẩm . . ." :
+                                                    "Cập nhật sản phẩm"
+                                        }
+                                    </>
+                                )
+                        }
+                    </Button>
+                </div>
+
+                <ProductImagesForm form={form} />
+            </form>
+        </Form>
     )
 }

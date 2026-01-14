@@ -58,6 +58,7 @@ const productSchema = z.object({
                 colorId: z.string(),
                 preview: z.optional(z.string()),
                 url: z.optional(z.string()),
+                blurUrl: z.optional(z.string()),
                 image: z.optional(z.instanceof(File)),
                 role: z.enum(Object.values(IMAGE_ROLES)),
             })

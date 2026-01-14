@@ -6,38 +6,38 @@ import { useQuery } from "@tanstack/react-query";
 import Error from "@/components/Error";
 import Header from "@/components/Header";
 import Loading from "@/components/Loading";
-import ColorForm from "@/app/admin/colors/components/ColorForm";
+import ProductForm from "@/app/admin/products/components/form/ProductForm";
 
-import { adminGetColor } from "@/services/colors/admin";
+import { adminGetProduct } from "@/services/products/admin";
 
 export default function Page() {
     const params = useParams();
-    const id = params.colorId;
+    const id = params.productId;
 
     const query = useQuery({
-        queryKey: ["adminColor", { id }],
-        queryFn: () => adminGetColor(id),
+        queryKey: ["adminProduct", { id }],
+        queryFn: () => adminGetProduct(id),
         enabled: !!id
     });
 
     const isLoading = query.isPending;
     const isError = !id || query.isError || query.data?.success === false;
-    const color = query.data?.data;
+    const product = query.data?.data;
 
     return (
         <div className="space-y-[40px]">
             <Header>
-                <h1 className="header-basic">Cập nhật màu sắc</h1>
-                <p className="desc-basic">Vui lòng cập nhật màu sắc tại đây.</p>
+                <h1 className="header-basic">Cập nhật sản phẩm</h1>
+                <p className="desc-basic">Vui lòng cập nhật sản phẩm tại đây.</p>
             </Header>
 
             {
                 isLoading ? <Loading /> :
                     isError ? <Error /> :
                         (
-                            <ColorForm
+                            <ProductForm
                                 formType="update"
-                                data={color}
+                                data={product}
                             />
                         )    
             }
